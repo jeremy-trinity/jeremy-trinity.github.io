@@ -141,7 +141,7 @@ This site is deployed using the following stack:
 ```
 Domain Registrar: site.pt (jeremytrinity.com)
      ↓
-Nameservers: Cloudflare (ashley.ns.cloudflare.com / yichun.ns.cloudflare.com)
+Nameservers: Cloudflare (lucy.ns.cloudflare.com / marty.ns.cloudflare.com) 
      ↓
 DNS Records:
   A     @    → 185.199.108.153  (GitHub Pages)
