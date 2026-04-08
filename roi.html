@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Return on Investment | Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F9F8F5;--surface:#FFFFFF;--surface2:#F2F1EE;--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--ink:#1A1A18;--ink2:#52514E;--ink3:#8A8880;--accent:#2A5F8F;--accent-lt:#EBF2F9;--accent2:#1D4A70;--p1:#2A5F8F;--p2:#0F6E56;--p3:#854F0B;--p4:#534AB7;--p5:#A32D2D;--p1-lt:#EBF2F9;--p2-lt:#E1F5EE;--p3-lt:#FAEEDA;--p4-lt:#EEEDFE;--p5-lt:#FCEBEB;}
+[data-theme="dark"]{--bg:#111110;--surface:#1C1C1A;--surface2:#252523;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--ink:#EEECEA;--ink2:#AAAAAA;--ink3:#777775;--accent:#5B9BD5;--accent-lt:#1A2A3A;--accent2:#7AB3E0;--p1:#5B9BD5;--p2:#4ecdb4;--p3:#FAC775;--p4:#AFA9EC;--p5:#F09595;--p1-lt:#1A2A3A;--p2-lt:#0A2820;--p3-lt:#2A1E0A;--p4-lt:#1A1830;--p5-lt:#2A1010;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;transition:background .3s,color .3s;padding-top:60px;}
+a{color:var(--accent);text-decoration:none;}a:hover{color:var(--accent2);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:background .3s,border-color .3s;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:0.8rem;font-weight:500;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-btn{background:none;border:1px solid var(--border2);border-radius:20px;padding:.25rem .75rem;cursor:pointer;font-size:.75rem;font-weight:500;color:var(--ink2);display:flex;align-items:center;gap:.35rem;font-family:'Inter',sans-serif;transition:all .2s;}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);}
+.sun{color:#F5A623;font-size:.85rem;display:none;}.moon{font-size:.85rem;}
+[data-theme="dark"] .sun{display:inline;}[data-theme="dark"] .moon{display:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:20px;height:1.5px;background:var(--ink);display:block;}
+section{padding:4rem 2rem;}
+.si{max-width:920px;margin:0 auto;}
+table{width:100%;border-collapse:collapse;margin:1rem 0 1.4rem;font-size:.84rem;}
+th{background:var(--ink);color:var(--surface);padding:.5rem .7rem;text-align:left;font-weight:600;font-size:.79rem;}
+td{padding:.42rem .7rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:var(--surface2);}
+footer{background:var(--surface2);border-top:1px solid var(--border);padding:2rem;text-align:center;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
+.footer-meta{font-size:.78rem;color:var(--ink3);}
+.footer-meta a{color:var(--accent);}
+@media(max-width:900px){.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem;z-index:199;}.hamburger{display:flex;}}
+
+/* ── LAYOUT ──────────────────────────────────────────────────── */
+.page-hero{background:var(--surface);border-bottom:1px solid var(--border);padding:3.5rem 2rem 2.5rem;}
+.page-hero-inner,.page-wrap{max-width:960px;margin:0 auto;}
+.page-wrap{padding:2.5rem 2rem 5rem;}
+.back-link{font-size:.78rem;color:var(--ink3);display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1.2rem;}
+.back-link:hover{color:var(--accent);}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:.8rem;}
+.ph-sub{font-size:.95rem;color:var(--ink2);max-width:720px;line-height:1.7;margin-bottom:1.5rem;}
+.ph-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.ph-stat-val{font-size:1.35rem;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;}
+.ph-stat-label{font-size:.7rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;}
+
+/* ── TOC ─────────────────────────────────────────────────────── */
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2.5rem;}
+.toc-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:.8rem;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.2rem .5rem;}
+.toc-grid a{font-size:.82rem;color:var(--accent);padding:.12rem 0;}
+
+/* ── SECTION HEADINGS ────────────────────────────────────────── */
+.anchor{display:block;height:72px;margin-top:-72px;visibility:hidden;}
+.sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;margin-top:3rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:600;color:var(--ink);margin-bottom:.35rem;}
+.title-rule{width:36px;height:2px;background:var(--accent);margin-bottom:1.5rem;}
+
+/* ── CORE STAT CARDS ─────────────────────────────────────────── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.85rem;margin:1.2rem 0;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;text-align:center;}
+.stat-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.3rem;}
+.stat-label{font-size:.72rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;line-height:1.35;}
+.stat-note{font-size:.75rem;color:var(--ink2);margin-top:.35rem;line-height:1.4;}
+
+/* ── PILLAR ROI BLOCKS ───────────────────────────────────────── */
+.pillar-roi{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:2rem 0;}
+.pr-header{display:flex;align-items:center;gap:.9rem;padding:1rem 1.4rem;background:var(--surface);border-bottom:1px solid var(--border);}
+.pr-num{font-size:.68rem;font-weight:700;color:#fff;padding:.26rem .8rem;border-radius:20px;white-space:nowrap;}
+.p1c{background:#2A5F8F;} .p2c{background:#0F6E56;} .p3c{background:#854F0B;}
+.p4c{background:#534AB7;} .p5c{background:#A32D2D;}
+.pr-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--ink);}
+.pr-subtitle{font-size:.78rem;color:var(--ink3);margin-top:.1rem;}
+.pr-body{padding:1.3rem;}
+
+/* ── SALARY TABLES ───────────────────────────────────────────── */
+.sal-table{width:100%;border-collapse:collapse;margin:.9rem 0;font-size:.83rem;}
+.sal-table th{background:var(--ink);color:var(--surface);padding:.44rem .7rem;text-align:left;font-weight:600;font-size:.76rem;}
+.sal-table td{padding:.38rem .7rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+.sal-table tr:nth-child(even) td{background:var(--surface2);}
+.sal-table tr:last-child td{border-bottom:none;}
+.sal-hi{color:var(--accent);font-weight:700;}
+
+/* ── CERT ROI CARDS ──────────────────────────────────────────── */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.85rem;margin:1.1rem 0;}
+.cert-card{border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;background:var(--surface);}
+.cert-name{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.2rem;}
+.cert-cost{font-size:.73rem;color:var(--ink3);margin-bottom:.4rem;}
+.cert-impact{font-size:.83rem;color:var(--ink2);line-height:1.55;}
+.cert-gain{font-size:.8rem;font-weight:700;color:var(--accent);margin-top:.4rem;}
+
+/* ── INFO/HIGHLIGHT BOXES ────────────────────────────────────── */
+.hbox{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:.9rem 1.1rem;margin:.65rem 0;}
+.hbox p{font-size:.87rem;color:var(--ink2);margin:0;line-height:1.6;}
+.hbox strong{color:var(--accent);}
+.wbox{background:var(--p3-lt);border:1px solid var(--p3);border-radius:10px;padding:.85rem 1.1rem;margin:.65rem 0;}
+.wbox p{font-size:.84rem;color:var(--ink2);margin:0;line-height:1.6;}
+.wbox strong{color:var(--p3);}
+.gbox{background:var(--p2-lt);border:1px solid var(--p2);border-radius:10px;padding:.9rem 1.1rem;margin:.65rem 0;}
+.gbox p{font-size:.87rem;color:var(--ink2);margin:0;line-height:1.6;}
+.gbox strong{color:var(--p2);}
+
+/* ── CAREER CEILING ──────────────────────────────────────────── */
+.ceiling-track{display:flex;flex-direction:column;gap:0;margin:1.2rem 0;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.ct-row{display:flex;align-items:stretch;border-bottom:1px solid var(--border);}
+.ct-row:last-child{border-bottom:none;}
+.ct-time{background:var(--ink);color:var(--surface);font-size:.72rem;font-weight:700;padding:.7rem .9rem;min-width:100px;flex-shrink:0;display:flex;align-items:center;}
+.ct-role{font-size:.88rem;font-weight:600;color:var(--ink);padding:.7rem .9rem;min-width:220px;flex-shrink:0;display:flex;align-items:center;border-right:1px solid var(--border);}
+.ct-sal{font-size:.82rem;color:var(--accent);font-weight:700;padding:.7rem .9rem;min-width:160px;flex-shrink:0;display:flex;align-items:center;border-right:1px solid var(--border);}
+.ct-note{font-size:.8rem;color:var(--ink2);padding:.7rem .9rem;flex:1;display:flex;align-items:center;line-height:1.45;}
+
+/* ── RISK TABLE ──────────────────────────────────────────────── */
+.risk-table{width:100%;border-collapse:collapse;margin:.9rem 0;font-size:.83rem;}
+.risk-table th{background:var(--ink);color:var(--surface);padding:.44rem .7rem;text-align:left;font-weight:600;font-size:.76rem;}
+.risk-table td{padding:.42rem .7rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+.risk-table tr:nth-child(even) td{background:var(--surface2);}
+.risk-table tr:last-child td{border-bottom:none;}
+
+/* ── TIME AUDIT ──────────────────────────────────────────────── */
+.time-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin:1.1rem 0;}
+.time-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;}
+.time-card h3{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;}
+.time-card .tv{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:.2rem;}
+.time-card p{font-size:.79rem;color:var(--ink2);margin:0;line-height:1.5;}
+
+.wk-div{border:none;border-top:1px dashed var(--border);margin:1.2rem 0;}
+@media(max-width:700px){.toc-grid{grid-template-columns:1fr;}.ph-stats{gap:1.1rem;}.stat-grid{grid-template-columns:1fr 1fr;}.cert-grid{grid-template-columns:1fr;}.ct-row{flex-direction:column;}.ct-time,.ct-role,.ct-sal{min-width:unset;border-right:none;border-bottom:1px solid var(--border);}}
+
+/* ── ACCORDION ─────────────────────────────────── */
+.acc-head { cursor: pointer; user-select: none; }
+.acc-chev { margin-left: auto; font-size: 1.05rem; opacity: 0.38; transition: transform .25s ease, opacity .25s ease; flex-shrink: 0; padding-left: .6rem; pointer-events: none; }
+.acc-block.is-collapsed .acc-chev { transform: rotate(-90deg); opacity: 0.65; }
+.acc-block.is-collapsed .acc-body { display: none; }
+
+/* ── Language toggle ── */
+.lang-btn { margin-left: 0.4rem; }
+.lang-pt { display: none !important; }
+[data-lang="pt"] .lang-en { display: none !important; }
+[data-lang="pt"] .lang-pt { display: inline !important; }
+[data-lang="pt"] p.lang-pt,
+[data-lang="pt"] div.lang-pt,
+[data-lang="pt"] li.lang-pt,
+[data-lang="pt"] span.lang-pt.block,
+[data-lang="pt"] td.lang-pt { display: block !important; }
+</style>
+</head>
+<body>
+<nav><a class="nav-brand" href="index.html">Jeremy Trinity</a><div class="nav-links" id="navLinks"><a href="index.html" data-en="Overview" data-pt="Visão Geral">Overview</a><a href="pillar1-bootcamp.html">I. Bootcamp</a><a href="pillar2-degree.html">II. Degree</a><a href="pillar3-languages.html">III. Languages</a><a href="pillar4-courses.html">IV. Courses</a><a href="pillar5-reading.html">V. Reading</a></div><div class="nav-right"><button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><span class="moon">🌙</span><span class="sun">☀️</span><span id="themeLabel">Dark</span></button><button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<section class="page-hero">
+<div class="page-hero-inner">
+  <a class="back-link" href="index.html" data-en="← Back to overview" data-pt="← Voltar à visão geral">← Back to overview</a>
+  <h1 class="ph-title">Return on Investment</h1>
+  <p class="ph-sub">What the Five-Pillar System actually produces: in salary, in credentials, in market access, in career ceiling, and in time. This is the honest accounting. What goes in, what comes out, and what the compounding looks like at Year 1, Year 3, and Year 5. Every number here is grounded in real market data, not aspiration.</p>
+  <div class="ph-stats">
+    <div><div class="ph-stat-val">~EUR 755</div><div class="ph-stat-label">Total exam cost over 18 months</div></div>
+    <div><div class="ph-stat-val">6 certs</div><div class="ph-stat-label">In 18 months</div></div>
+    <div><div class="ph-stat-val">3-5×</div><div class="ph-stat-label">Salary multiplier by Year 5</div></div>
+    <div><div class="ph-stat-val">~14 inst.</div><div class="ph-stat-label">Institutions on CV at completion</div></div>
+    <div><div class="ph-stat-val">Year 5</div><div class="ph-stat-label">senior engineer milestone</div></div>
+  </div>
+</div>
+</section>
+<div class="page-wrap">
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <div class="toc-grid">
+    <a href="#core-argument">The core argument: compounding assets</a>
+    <a href="#cert-roi">Pillar I ROI: certifications and salary</a>
+    <a href="#degree-roi">Pillar II ROI: the degree</a>
+    <a href="#language-roi">Pillar III ROI: languages and market access</a>
+    <a href="#courses-roi">Pillar IV ROI: advanced courses</a>
+    <a href="#reading-roi">Pillar V ROI: reading and mental models</a>
+    <a href="#time-audit">Total time audit</a>
+    <a href="#ceiling">Career ceiling projection: Month 0 to Year 10</a>
+    <a href="#risks">Honest risk register</a>
+  </div>
+</div>
+<div class="anchor" id="core-argument"></div>
+<span class="sec-label">The fundamental case</span>
+<h2 class="sec-title">The core argument, compounding career assets, not a sprint</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.93rem;">Most career development advice treats credentials as isolated events. Pass a certification. Get a job. The Five-Pillar System is designed differently. Every element produces an asset that makes every other element more valuable. The AZ-104 certification makes the UoPeople degree more credible to employers. The UoPeople degree makes the AZ-104 certification more credible to academic institutions. The Harvard CS50 certificates make the IBM Professional Certificate more meaningful because they show breadth. The languages open markets where the certifications operate. The reading program makes the technical work faster because the mental models are already there.</p>
+<div class="hbox"><p><strong>The compounding principle:</strong> A cloud engineer with AZ-104 alone earns a certain salary. A cloud engineer with AZ-104 + AZ-500 + Terraform Associate earns materially more. That same engineer with a UoPeople BSc in progress, four Harvard certificates, IBM Professional Certificate, and a 12-project GitHub portfolio earns significantly more still, not because the individual items are worth proportionally more, but because the combination signals something that no single credential can signal alone: sustained, disciplined, multi-year investment in becoming world-class at a specific thing.</p></div>
+<div class="stat-grid">
+  <div class="stat-card"><div class="stat-val">EUR 755</div><div class="stat-label">Total exam cost 18 months</div><div class="stat-note">6 certifications at current Microsoft and HashiCorp pricing. Less than EUR 42 per month averaged out.</div></div>
+  <div class="stat-card"><div class="stat-val">~EUR 5,940</div><div class="stat-label">UoPeople BSc total (no scholarship)</div><div class="stat-note">approximately EUR 5,940 total in assessment fees. Associate of Science (20 courses) costs ~EUR 3,000. Scholarships can significantly reduce these fees. Apply for every available scholarship from Term 1.</div></div>
+  <div class="stat-card"><div class="stat-val">EUR 0</div><div class="stat-label">4 Harvard certificates</div><div class="stat-note">CS50x, CS50P, CS50 SQL, CS50 AI, all free via cs50.harvard.edu. Never pay edX.</div></div>
+  <div class="stat-card"><div class="stat-val">~EUR 240</div><div class="stat-label">24-month Udemy cost</div><div class="stat-note">If LIRN access through UoPeople covers the key courses, cost drops to EUR 0. EUR 10/month Personal Plan is the fallback.</div></div>
+  <div class="stat-card"><div class="stat-val">EUR 0</div><div class="stat-label">Most Pillar IV programs</div><div class="stat-note">Financial aid covers Stanford, Imperial, Google, IBM Coursera programs. GitHub Skills, IBM SkillsBuild, Cisco NetAcad, MIT OCW all free.</div></div>
+  <div class="stat-card"><div class="stat-val">EUR 100–180</div><div class="stat-label">Reading program, book purchases</div><div class="stat-note">10 books at EUR 12–18 each physical. One book is free (SRE at sre.google/books). Libby app via your library card may have some titles as free digital loans. Reading time costs nothing, the 9:40 PM window already exists.</div></div>
+</div>
+<div class="gbox"><p><strong>Total direct cost of the Five-Pillar System, honest accounting:</strong> EUR 755 (exams) + EUR 0–240 (Udemy Personal Plan or LIRN-free) + EUR 100–180 (books) + EUR 5,940 UoPeople assessment fees at full price, or significantly less with scholarships. The UoPeople fees are the largest cost and the most variable, the scholarship situation determines whether the total system cost is closer to EUR 2,000 or EUR 7,000 over 4 years. Either way, the career ceiling increase from Year 1 salary to Year 5 salary represents hundreds of thousands of euros in cumulative additional earnings, the ROI is positive under any reasonable scholarship scenario.</p></div>
+<div class="anchor" id="cert-roi"></div>
+<div class="pillar-roi acc-block is-collapsed">
+  <div class="pr-header acc-head">
+    <span class="pr-num p1c">Pillar I</span>
+    <div><div class="pr-title">Cloud Engineering Bootcamp</div><div class="pr-subtitle">6 certifications · 12 portfolio projects · EUR 755 total exam cost</div></div>
+  </div>
+  <div class="pr-body acc-body"><p style="color:var(--ink2);font-size:.85rem;line-height:1.65;margin-bottom:1rem;">Certifications are the most immediately measurable ROI in the plan. Every Azure certification has published salary premium data from multiple sources (Foote Research Group, Pearson VUE Value of IT Certification surveys, LinkedIn salary insights). These numbers are international-weighted but the premium percentages apply globally, the base salaries differ by market, the premiums do not.</p>
+
+<div class="cert-grid">
+  <div class="cert-card">
+    <div class="cert-name">AZ-900. Azure Fundamentals</div>
+    <div class="cert-cost">EUR 90 · Target: Month 2</div>
+    <div class="cert-impact">Opens doors at IBM and Deloitte HR screening. Verifies Azure vocabulary before an interview. Signals that you are serious about Azure specifically, not just "cloud." Most junior cloud engineering JDs now list AZ-900 or equivalent as a baseline requirement.</div>
+    <div class="cert-gain">Direct return: passes HR keyword filters · unlocks internship application credibility</div>
+  </div>
+  <div class="cert-card">
+    <div class="cert-name">AZ-104. Azure Administrator</div>
+    <div class="cert-cost">EUR 150 · Target: Month 7 · THE most important certification</div>
+    <div class="cert-impact">AZ-104 adds 15–20% to base salary compared to non-certified peers at the same experience level (Foote Research Group data). It is the entry credential for junior cloud engineering roles at enterprise employers and their competitors. After AZ-104 is earned, the profile moves from "aspiring cloud engineer" to "certified Azure administrator", a category shift in how recruiters filter CVs.</div>
+    <div class="cert-gain">Direct return: +15–20% salary · opens enterprise tech employer junior engineer filter · Junior range EUR 800–1,400/month → EUR 1,200–1,800/month with AZ-104</div>
+  </div>
+  <div class="cert-card">
+    <div class="cert-name">HashiCorp Terraform Associate</div>
+    <div class="cert-cost">EUR 65 · Target: Month 10</div>
+    <div class="cert-impact">Terraform appears in 60%+ of senior Azure cloud engineer job postings. The Terraform Associate certification makes IaC proficiency formally verifiable rather than self-reported. Combined with a GitHub portfolio showing four months of Terraform code, it is one of the most credible junior-level signals available.</div>
+    <div class="cert-gain">Direct return: IaC credibility · differentiates from candidates who list "Terraform" on CV without proof</div>
+  </div>
+  <div class="cert-card">
+    <div class="cert-name">AZ-500. Azure Security Engineer</div>
+    <div class="cert-cost">EUR 150 · Target: Month 13</div>
+    <div class="cert-impact">Security engineers earn 20–25% above standard cloud engineers at equivalent experience levels. AZ-500 is the rarest of the six certifications in this plan at the junior-to-mid transition level, most engineers skip it and do not return. Holding it alongside AZ-104 positions the profile for security-adjacent cloud roles at IBM and Deloitte that pay significantly above standard cloud engineering rates.</div>
+    <div class="cert-gain">Direct return: +20–25% salary premium · access to security-adjacent roles · EUR 1,800–2,800/month at mid level</div>
+  </div>
+  <div class="cert-card">
+    <div class="cert-name">AZ-305. Solutions Architect Expert</div>
+    <div class="cert-cost">EUR 150 · Target: Month 16 · Requires AZ-104 as prerequisite</div>
+    <div class="cert-impact">The "Expert" level certification changes the hiring conversation from "can you administer Azure" to "can you design Azure solutions." At IBM and Deloitte, this is the credential that opens consulting and architecture-adjacent roles. The AZ-305 combined with AZ-500 produces the profile that Deloitte Technology and Transformation hires for mid-level cloud consulting.</div>
+    <div class="cert-gain">Direct return: architecture-level roles open · consulting rate differentiation · senior market positioning begins</div>
+  </div>
+  <div class="cert-card">
+    <div class="cert-name">AZ-400. DevOps Engineer Expert</div>
+    <div class="cert-cost">EUR 150 · Target: Month 18</div>
+    <div class="cert-impact">AZ-400 combined with AZ-305 completes the platform engineer profile. This combination places the holder in the top 5% of Azure-certified professionals globally (fewer than 5% of Azure-certified engineers hold both Expert-level certifications). It is the credential that makes the senior market transition and eventual international career progression viable, because it signals the level of specialized knowledge that visa sponsorship requires.</div>
+    <div class="cert-gain">Direct return: top 5% global positioning · senior market salary EUR 3,500–5,500/month · "specialized knowledge" case strengthened</div>
+  </div>
+</div>
+
+<div class="anchor" style="margin-top:1.5rem;"></div>
+<p style="color:var(--ink2);font-size:.85rem;font-weight:600;margin-bottom:.5rem;">Salary benchmark by market, cloud engineering progression</p>
+<table class="sal-table">
+  <thead><tr><th>Stage</th><th>Certifications held</th><th>Phase 1–2 EUR/month</th><th>Phase 3 EUR/month</th><th>International EUR/year</th></tr></thead>
+  <tbody>
+    <tr><td>Starting. No certs</td><td>None</td><td>600–900</td><td>2,000–2,800</td><td>Not eligible yet</td></tr>
+    <tr><td>Junior. AZ-900 only</td><td>AZ-900</td><td>800–1,200</td><td>2,500–3,500</td><td>Not eligible yet</td></tr>
+    <tr><td>Junior certified. Month 7</td><td>AZ-900 + AZ-104</td><td class="sal-hi">1,200–1,800</td><td>3,000–4,200</td><td></td></tr>
+    <tr><td>Mid. Month 13</td><td>+ Terraform + AZ-500</td><td class="sal-hi">1,800–2,800</td><td>4,000–5,500</td><td></td></tr>
+    <tr><td>Senior. Month 18</td><td>+ AZ-305 + AZ-400</td><td class="sal-hi">2,500–3,800</td><td>5,000–7,000</td><td></td></tr>
+    <tr><td>Phase 3. Year 3-4</td><td>Full stack + BSc near complete</td><td>Remote base</td><td class="sal-hi">5,500–8,000</td><td>EUR 130k–175k</td></tr>
+    <tr><td>US. Year 5</td><td>Full stack + OMSCS in progress</td><td>,</td><td>,</td><td class="sal-hi">+</td></tr>
+  </tbody>
+</table>
+<div class="wbox"><p><strong>Note:</strong> Salary data is based on Glassdoor, LinkedIn Salary Insights, and IT Jobs Watch market data as of early 2026. International data is based on LinkedIn Salary Insights and levels.fyi cloud engineering ranges. Individual results vary significantly by employer, negotiation, and specific role. These are market ranges, not guarantees.</p></div></div>
+</div>
+<!-- STEP 2 appends Pillar II, III, IV ROI sections -->
+
+<div class="anchor" id="degree-roi"></div>
+<div class="pillar-roi acc-block is-collapsed">
+  <div class="pr-header acc-head">
+    <span class="pr-num p2c">Pillar II</span>
+    <div><div class="pr-title">BSc Computer Science</div><div class="pr-subtitle">20 terms · EUR 0 tuition · 4 Harvard certificates · Associate milestone at Term 10</div></div>
+  </div>
+  <div class="pr-body acc-body"><p style="color:var(--ink2);font-size:.85rem;line-height:1.65;margin-bottom:1rem;">The UoPeople degree produces four distinct and separable returns. They are worth accounting separately because they compound differently and on different timescales. The assessment fee structure is the largest cost in the entire plan: approximately EUR 5,940 total for the BSc with no scholarship. The Associate of Science at ~Term 10 requires 20 courses (~EUR 3,000). UoPeople scholarship programs exist and should be applied for from Term 1: high GPA (3.7+) is the primary scholarship qualification criteria, which is exactly the target GPA in this plan.</p>
+
+<div class="stat-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
+  <div class="stat-card"><div class="stat-val">~EUR 5,940</div><div class="stat-label">BSc total assessment fees</div><div class="stat-note">approximately EUR 5,940 total with no scholarship. Associate milestone (20 courses) costs ~EUR 3,000. Apply for scholarships from Term 1: UoPeople has multiple scholarship programs.</div></div>
+  <div class="stat-card"><div class="stat-val">~EUR 0</div><div class="stat-label">4 Harvard certs</div><div class="stat-note">CS50x, CS50P, CS50 SQL, CS50 AI, free at cs50.harvard.edu. Never pay edX EUR 219 per course for the same content.</div></div>
+  <div class="stat-card"><div class="stat-val">~Term 10</div><div class="stat-label">Associate milestone</div><div class="stat-note">At ~60 credits completed, request the Associate of Science in CS from UoPeople. A formally recognized US degree, in hand before the BSc is complete.</div></div>
+  <div class="stat-card"><div class="stat-val">Year 4</div><div class="stat-label">BSc completion</div><div class="stat-note">120 credits, WASC-accredited. The same accreditor as USC, UCLA, and Stanford. Required for Georgia Tech OMSCS application.</div></div>
+</div>
+
+<div class="wk-div"></div>
+<p style="color:var(--ink2);font-size:.85rem;font-weight:600;margin-bottom:.5rem;">What each degree element unlocks</p>
+<table class="sal-table">
+  <thead><tr><th>Element</th><th>When available</th><th>What it unlocks</th><th>Who recognizes it</th></tr></thead>
+  <tbody>
+    <tr><td>LIRN access (Gale/Udemy)</td><td>Term 1, April 9</td><td>Potential EUR 0 bootcamp course cost instead of EUR 240. Test immediately on April 9 before paying for anything.</td><td>UoPeople-connected, internal benefit</td></tr>
+    <tr><td>CS50x certificate (Harvard)</td><td>Term 3</td><td>Harvard brand on LinkedIn before any degree is earned. Demonstrates programming ability independently of the degree.</td><td>enterprise tech employers, every international tech employer</td></tr>
+    <tr><td>Associate of Science in CS</td><td>~Term 10 (~Year 2)</td><td>A formally recognized international 2-year degree. Usable on CV and job applications before the BSc is complete. Must be explicitly requested, not automatic.</td><td>US employers, graduate program admissions</td></tr>
+    <tr><td>BSc Computer Science</td><td>Term 20 (~Year 4)</td><td>WASC-accredited US Bachelor's degree. Required for Georgia Tech OMSCS application. Changes the hiring conversation from "self-taught engineer" to "degreed engineer with certifications."</td><td>Global employers, OMSCS admissions, US visa applications</td></tr>
+    <tr><td>Georgia Tech OMSCS (via BSc)</td><td>Year 3-4 application</td><td>Top-5 CS Master's, same degree as on-campus, under . Dramatically strengthens "specialized knowledge" visa case.</td><td>Every employer globally. Georgia Tech is a globally recognized brand</td></tr>
+  </tbody>
+</table>
+
+<div class="hbox"><p><strong>The degree as a career accelerator:</strong> An intracompany transfer visa requires demonstrating "specialized knowledge." A cloud engineer with 3-5 years of experience at an enterprise employer, six Azure certifications, and a Georgia Tech Master's degree has a substantially stronger "specialized knowledge" case than a cloud engineer with experience and certifications alone. The degree progression is not just academic. It is a component of the long-term international career strategy.</p></div>
+
+<p style="color:var(--ink2);font-size:.85rem;line-height:1.65;margin-top:.9rem;"><strong>The health IT commercial case.</strong> The three Health-Tech capstone projects (Terms 7, 8, 9) produce a profile intersection that most cloud engineers cannot replicate: Azure security expertise plus prior clinical information systems knowledge. Healthcare organizations deploying Azure for regulated workloads need engineers who understand both the technical architecture and the regulatory context (HIPAA, GDPR applied to health data, HL7 FHIR standards). IBM and Deloitte both have active healthcare technology practices. This is the profile that gets selected for healthcare client projects, which consistently pay above standard cloud engineering rates.</p></div>
+</div>
+<div class="anchor" id="language-roi"></div>
+<div class="pillar-roi acc-block is-collapsed">
+  <div class="pr-header acc-head">
+    <span class="pr-num p3c">Pillar III</span>
+    <div><div class="pr-title">Language Acquisition</div><div class="pr-subtitle">3 active languages · 10-language long-term map · EUR 0 for most tools</div></div>
+  </div>
+  <div class="pr-body acc-body"><p style="color:var(--ink2);font-size:.85rem;line-height:1.65;margin-bottom:1rem;">Language ROI is the most underestimated element in the plan and the hardest to calculate precisely, but the market access it unlocks is measurable in terms of jobs accessible, not just salary premiums on existing jobs.</p>
+
+<div class="gbox"><p><strong>The correct way to think about language ROI:</strong> Languages do not add a percentage to an existing salary. They add entire job markets. A French C2 does not give a 10% salary premium on a Portuguese cloud engineering role, it opens the Paris/La Defense corridor, where cloud engineering base salaries are 3-4× higher than Lisbon. That is not a percentage premium. That is a different salary bracket entirely.</p></div>
+
+<div class="wk-div"></div>
+<table class="sal-table">
+  <thead><tr><th>Language</th><th>Current level</th><th>Market unlocked</th><th>Salary differential</th><th>Acquisition cost</th></tr></thead>
+  <tbody>
+    <tr><td>Portuguese C2 (native)</td><td>Already held</td><td>Native language. Azure Brazil South. Brazilian fintech: Nubank, iFood, PicPay. Brazil is one of the fastest-growing cloud markets globally.</td><td>Baseline. EUR 800–2,800/month depending on certs. Brazil potentially higher.</td><td>EUR 0, already held</td></tr>
+    <tr><td>French C2 (native)</td><td>Already held</td><td>Azure enterprise market. Francophone Africa cloud adoption. Quebec AI research cluster.</td><td class="sal-hi">EUR 3,500–8,000/month at cloud engineering mid-senior level.</td><td>EUR 0, already held</td></tr>
+    <tr><td>🇺🇸 English B2→C2</td><td>Active acquisition</td><td>All Microsoft documentation. All certification exams. IBM and Deloitte senior interviews. international market. Every technical conference globally.</td><td>Enables the entire career plan. Without C2 English precision, UoPeople grades suffer and enterprise tech employer interviews are harder to pass.</td><td>~EUR 0, mostly immersion via UoPeople + small Udemy cost</td></tr>
+    <tr><td>🇪🇸 Spanish A0→B2</td><td>Active acquisition</td><td>Azure Mexico, Colombia, Argentina. AWS Mexico Central launched Jan 2025. Strong asset for Latin America client work and international consulting roles.</td><td>Spanish fluency at B2 adds approximately 10-15% to consulting rates for Latin America client work and expands the number of international roles for which you are a strong candidate.</td><td>~EUR 0. Duolingo free, El Método via Udemy Personal Plan, Language Transfer free</td></tr>
+    <tr><td>🇨🇳 Mandarin A0→A2</td><td>Active acquisition from Month 2</td><td>Asia-Pacific client work at IBM and Deloitte. Chinese tech partnerships at Microsoft and IBM. Strong asset for Asia-Pacific enterprise clients and international cloud partnerships.</td><td>Even A2 Mandarin is genuinely unusual in cloud engineering. At IBM and Deloitte it signals a rare combination, cloud security expertise plus Asia-Pacific linguistic reach.</td><td>EUR 0. HelloChinese free, Anki free, Mandarin Corner free</td></tr>
+  </tbody>
+</table>
+
+<div class="wk-div"></div>
+<div class="hbox"><p><strong>The two native languages are a free strategic asset worth hundreds of thousands of euros in career value:</strong> Having French C2 natively, before spending a single euro or a single hour on language study, is a free strategic asset. The French language advantage is worth approximately EUR 42,000 per year in additional earnings compared to English-only cloud engineering roles. Over a 5-year senior career phase: over EUR 200,000 in additional cumulative earnings. This is the value of a native language asset that required zero investment to acquire.</p></div>
+
+<p style="color:var(--ink2);font-size:.85rem;line-height:1.65;margin-top:.9rem;"><strong>The stagger model prevents wasted effort.</strong> Learning two languages at the same proficiency level simultaneously creates cross-linguistic interference and slows both. The staggered model (English always 2-3 levels ahead of Spanish, Spanish always 1-2 levels ahead of Mandarin) is not a preference. It is the methodology that makes the multilingual profile achievable within the schedule constraints of 80-120 minutes per week of dedicated language study. Without the stagger, the time investment would need to be substantially higher to achieve the same milestones.</p></div>
+</div>
+<div class="anchor" id="courses-roi"></div>
+<div class="pillar-roi acc-block is-collapsed">
+  <div class="pr-header acc-head">
+    <span class="pr-num p4c">Pillar IV</span>
+    <div><div class="pr-title">Advanced Courses</div><div class="pr-subtitle">28 programs · 14 institutions · mostly EUR 0 via free tracks and Coursera financial aid</div></div>
+  </div>
+  <div class="pr-body acc-body"><p style="color:var(--ink2);font-size:.85rem;line-height:1.65;margin-bottom:1rem;">The 28 advanced programs serve a specific function that neither the bootcamp certifications nor the degree can serve: they put globally recognized institutional brand names on the CV at zero or near-zero cost. This matters because hiring decisions at enterprise employers and major tech companies are influenced by institutional signals that operate independently of professional certifications.</p>
+
+<div class="stat-grid">
+  <div class="stat-card"><div class="stat-val">14</div><div class="stat-label">Institutions on CV</div><div class="stat-note">Harvard, MIT, Stanford, Imperial, Georgia Tech, IBM, Google, Microsoft, CNCF, Cisco, Meta, freeCodeCamp, CertiProf, DeepLearning.AI</div></div>
+  <div class="stat-card"><div class="stat-val">EUR 0</div><div class="stat-label">Harvard certificates (4)</div><div class="stat-note">CS50x, CS50P, CS50 SQL, CS50 AI, all free via cs50.harvard.edu. Four courses from the most recognized university name in the world.</div></div>
+  <div class="stat-card"><div class="stat-val">Financial aid</div><div class="stat-label">Stanford + Imperial + Google + IBM</div><div class="stat-note">Coursera financial aid: apply at enrollment, ~15 days approval, certificate at zero cost. Same certificate as paid students.</div></div>
+  <div class="stat-card"><div class="stat-val">2 hours</div><div class="stat-label">Scrum SFPC (CertiProf)</div><div class="stat-note">Free certificate in one afternoon. Direct Deloitte hiring signal. Deloitte runs every client project in Agile/Scrum. This is the fastest single credibility addition in the plan.</div></div>
+</div>
+
+<div class="wk-div"></div>
+<p style="color:var(--ink2);font-size:.85rem;font-weight:600;margin-bottom:.5rem;">Institutional brand ROI. What each name does in a hiring context</p>
+<table class="sal-table">
+  <thead><tr><th>Institution</th><th>What it signals to a hiring manager</th><th>Specific role</th></tr></thead>
+  <tbody>
+    <tr><td>Harvard (4 CS50 certificates)</td><td>Ability to complete rigorous computer science coursework at Harvard standard. CS50 is widely known and respected, engineering managers at IBM and Deloitte have often heard of it specifically.</td><td>Demonstrates CS fundamentals breadth beyond the cloud certifications</td></tr>
+    <tr><td>MIT (Missing Semester + 6.006)</td><td>Self-directed learning from one of the world's two most prestigious CS programs. MIT OCW gives no certificate, but mentioning it in a cover letter or LinkedIn About signals the kind of engineer who goes beyond curriculum.</td><td>Signals intellectual depth beyond certification preparation</td></tr>
+    <tr><td>Stanford (Algorithms + ML)</td><td>Two Coursera specialisations from a top-3 CS program. The Stanford brand carries disproportionate weight in enterprise tech. Every senior IBM and Deloitte technology leader knows the Stanford CS reputation.</td><td>Enables specific conversations about algorithmic thinking and ML foundations</td></tr>
+    <tr><td>Imperial College London (Math for ML)</td><td>Top-10 globally, specifically strong in engineering and quantitative disciplines. The Imperial brand is well-recognized in European tech companies and is the prerequisite for the Stanford ML specialisation.</td><td>Signals mathematical depth for data-intensive and ML-adjacent cloud roles</td></tr>
+    <tr><td>Georgia Tech (OMSCS prep + degree)</td><td>The prep courses put Georgia Tech on the profile now. The Master's degree (Year 3-5) puts it there permanently. Georgia Tech OMSCS is the most talked-about online CS Master's globally. It is not obscure.</td><td>Master's degree: changes the hiring category from engineer to senior engineer or above</td></tr>
+    <tr><td>IBM (SkillsBuild + Applied DevOps)</td><td>IBM is one of the primary target employers. IBM-brand credentials on the CV signal that you have engaged with IBM's own learning ecosystem before applying, a direct signal to the IBM hiring team.</td><td>Most direct possible signal to IBM hiring teams</td></tr>
+    <tr><td>Google (Cybersecurity Professional)</td><td>Google Professional Certificate in cybersecurity complements AZ-500. The Google brand on a security credential signals breadth, vendor-neutral foundations alongside the Microsoft-specific AZ-500.</td><td>Security domain differentiation and Google brand recognition</td></tr>
+    <tr><td>CertiProf (Scrum SFPC)</td><td>Deloitte Technology and Transformation runs all client projects in Agile and Scrum. A Scrum certificate signals awareness of the methodology that governs every project at your primary target employer.</td><td>Deloitte-specific methodology signal, 2 hours, free, direct impact</td></tr>
+  </tbody>
+</table>
+
+<div class="hbox"><p><strong>The Coursera financial aid insight:</strong> The financial aid application success rate on Coursera is high when the application is specific and honest. "I am building Azure cloud engineering skills to apply for junior cloud engineering roles and cannot afford the subscription fee" is a compelling application. Apply at the beginning of each month you plan to start a paid program, approval takes approximately 15 days. Apply for multiple programs simultaneously. Once approved, the Stanford Algorithms certificate and the Imperial College Mathematics for Machine Learning certificate are indistinguishable from paid certificates on LinkedIn.</p></div></div>
+</div>
+<!-- STEP 3 appends Pillar V ROI, time audit, career ceiling -->
+
+<div class="anchor" id="reading-roi"></div>
+<div class="pillar-roi acc-block is-collapsed">
+  <div class="pr-header acc-head">
+    <span class="pr-num p5c">Pillar V</span>
+    <div><div class="pr-title">Reading Program</div><div class="pr-subtitle">10 books · 60 min/day window · EUR 0 additional time cost</div></div>
+  </div>
+  <div class="pr-body acc-body"><div class="wbox"><p><strong>Reading program honest cost:</strong> 9 books to buy at approximately EUR 12–18 each physical copy (EUR 100–180 total). Book 9, Site Reliability Engineering, is completely free and legal at <strong>sre.google/books</strong>, download it now. Before buying any book: check <strong>app.libbyapp.com</strong> (Libby) with your local municipal library card. Libby offers free digital borrowing and some titles on this list are available. Portuguese public libraries also have digital access programs. Where a book is not available through a library, buy it. EUR 15 for a book that improves decision-making quality for the next 20 years is not a cost to eliminate.</p></div>
+<p style="color:var(--ink2);font-size:.85rem;line-height:1.65;margin-bottom:1rem;">The reading program is the pillar with the least measurable direct ROI and the most durable indirect ROI. Its return is not in a salary line or a certification. It is in the quality of decisions made under uncertainty, the speed at which new technical contexts are understood, and the professional culture fluency that converts a technically competent junior into someone who fits senior engineering environments.
+
+<div class="wbox"><p><strong>Honest cost of the reading program:</strong> Physical books cost approximately EUR 12–18 each. The full 10-book sequence costs approximately EUR 100–180 at physical book prices. Site Reliability Engineering (Book 9) is completely free at sre.google/books, download it now. For the other 9 books: <strong>check the Libby app first</strong> (app.libbyapp.com): Libby connects to your public library card and offers free digital borrowing of many popular titles including some on this list. The Portuguese Biblioteca Nacional digital service and local municipal library digital access are also worth checking. Where a book is genuinely not available through a library, purchase it, the EUR 15 investment in a book that directly improves the quality of work for the next 20 years is not a cost to optimize away.</p></div></p>
+
+<div class="hbox"><p><strong>The zero additional time cost argument:</strong> The 9:40 PM screens-off rule creates 60 minutes of reading time every single day that already exists in the schedule, the window between screens-off and the 10:00 PM medical meal break and during/after that break. At 25 pages per hour, this produces approximately 375 pages per month, one substantial book per month, without scheduling anything new or taking time from any other pillar. <strong>The reading program costs zero additional hours.</strong> The book purchase cost is real: approximately EUR 100–180 for the full 10-book sequence (9 purchased + 1 free). Check Libby (app.libbyapp.com) and your municipal library before purchasing each title.</p></div>
+
+<div class="stat-grid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));">
+  <div class="stat-card"><div class="stat-val">60 min</div><div class="stat-label">Daily reading window</div><div class="stat-note">From 9:40 PM screens-off. Already in the schedule. No additional time cost.</div></div>
+  <div class="stat-card"><div class="stat-val">~375 pg</div><div class="stat-label">Per month</div><div class="stat-note">At 25 pages/hour × 60 min/day × 30 days. One substantial book per month.</div></div>
+  <div class="stat-card"><div class="stat-val">EUR 0</div><div class="stat-label">Extra time cost</div><div class="stat-note">The 9:40 PM window exists regardless of whether books are read. Reading fills it without adding to the daily schedule. The book purchase cost is separate, approximately EUR 100–180 total for 9 paid books (1 is free).</div></div>
+  <div class="stat-card"><div class="stat-val">10 books</div><div class="stat-label">24-month sequence</div><div class="stat-note">Sequenced by moment of maximum relevance, not publication date.</div></div>
+</div>
+
+<div class="wk-div"></div>
+<p style="color:var(--ink2);font-size:.85rem;font-weight:600;margin-bottom:.5rem;">What each book produces that courses cannot</p>
+<table class="sal-table">
+  <thead><tr><th>Book</th><th>When read</th><th>What it produces that no course produces</th></tr></thead>
+  <tbody>
+    <tr><td>Atomic Habits</td><td>Month 1</td><td>The theoretical framework that explains why the five-pillar system is structured the way it is. Identity-based habits, habit stacking, the compound growth model. Reading this first makes the entire system feel designed rather than arbitrary, which makes it easier to maintain under pressure.</td></tr>
+    <tr><td>The Phoenix Project</td><td>Month 2</td><td>Professional culture fluency before the first internship. Walking into a major enterprise employer knowing what a change advisory board is, what "flow" means to a DevOps team, what a blameless post-mortem is, and what the Three Ways are, means the first observation day is a recognition experience rather than a confusing one. No Udemy course teaches this.</td></tr>
+    <tr><td>The Pragmatic Programr</td><td>Month 3</td><td>Craft habits visible in GitHub commits. DRY principle, rubber duck debugging, tracer bullets, the broken windows habit. IBM and Deloitte senior engineers can tell within five minutes of reviewing a GitHub repository whether the code was written by someone who has absorbed these principles or not.</td></tr>
+    <tr><td>Terraform: Up and Running</td><td>Month 4-5, re-read Month 10</td><td>The deepest available explanation of why Terraform works the way it does, the state model, the provider model, the resource graph. Udemy courses show you how. Brikman explains why. The combination of watching a Udemy instructor build something and reading Brikman explain why it works that way produces understanding that neither alone achieves.</td></tr>
+    <tr><td>Deep Work</td><td>Month 2</td><td>The economic justification for the Pomodoro system and the morning bootcamp blocks. Understanding why interruptions cost 23 minutes of recovery time makes protecting the study blocks feel rationally necessary rather than merely disciplined. This converts the schedule from a constraint into a strategy.</td></tr>
+    <tr><td>The DevOps Handbook</td><td>Month 6-7</td><td>The prescriptive companion to The Phoenix Project. Deployment frequency data, value stream mapping, blameless post-mortem frameworks, the Three Ways applied to specific technical contexts. The AZ-400 exam tests the same content, reading the Handbook alongside the AZ-400 bootcamp material means every exam concept has a cultural and organizational context that makes it stick.</td></tr>
+    <tr><td>Designing Data-Intensive Applications</td><td>Month 10+</td><td>The theoretical foundations of why Azure database and storage services work the way they do. After reading this, every AZ-305 architecture scenario question about choosing between Cosmos DB, Azure SQL, Synapse, and Event Hubs has a principled answer grounded in distributed systems theory, not just Microsoft documentation comparison.</td></tr>
+    <tr><td>The Clean Coder</td><td>Month 3</td><td>Professional conduct before the first internship. How to say no professionally. How to give honest time estimates. How to handle it when you do not know the answer. How to commit to something and then actually do it. These are the behaviors that convert an observation placement into a job offer, technical skills are table stakes, professional conduct is the differentiator at junior level.</td></tr>
+    <tr><td>Site Reliability Engineering</td><td>Month 8+</td><td>The SRE framework that gives the monitoring and observability bootcamp content its purpose. Error budgets, SLOs, toil reduction, on-call culture. Free at sre.google/books. After reading this, Prometheus and Grafana are not just tools, they are the instrumentation layer of a principled reliability practice.</td></tr>
+    <tr><td>The Manager's Path</td><td>Month 18+</td><td>The career navigation framework for what happens after junior cloud engineer. Tech lead, engineering manager, staff engineer, principal engineer. What each step requires, what each step costs, and which path (individual contributor or management) is more aligned with the long-term career targets. Reading this at Month 18 means Year 3 career conversations at IBM and Deloitte are informed rather than reactive.</td></tr>
+  </tbody>
+</table></div>
+</div>
+<div class="anchor" id="time-audit"></div>
+<span class="sec-label">The honest accounting</span>
+<h2 class="sec-title">Total time audit. What the system actually costs per week</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;margin-bottom:1.2rem;">Every hour invested in the five-pillar system comes from somewhere. This is the honest accounting of where it comes from and what it produces per hour invested.</p>
+
+<div class="time-grid">
+  <div class="time-card">
+  <h3>Bootcamp (Version A, before June 16)</h3>
+  <div class="tv">13–15h/week</div>
+  <p>6 Pomodoros morning Mon-Tue-Thu, 6 Pomodoros Saturday, partial Friday. Internship 3 afternoons per week (5h each) is employment-building time, not study time.</p>
+</div>
+  <div class="time-card">
+  <h3>Bootcamp (Version B, after June 16)</h3>
+  <div class="tv">19–20h/week</div>
+  <p>Wednesday and Friday become full deep-work days. The internship constraint lifts. This is the pace at which the 24-month bootcamp actually accelerates to 18 months of effective content.</p>
+</div>
+  <div class="time-card">
+  <h3>UoPeople (normal terms 1-8)</h3>
+  <div class="tv">15–17h/week</div>
+  <p>Per UoPeople's own published study time estimate for 3-credit courses: 15-17 hours per week. This includes reading, assignments, discussion posts, and the proctored exam.</p>
+</div>
+  <div class="time-card">
+  <h3>UoPeople (exam week, Week 9)</h3>
+  <div class="tv">20–25h/week</div>
+  <p>Intensive. All bootcamp time redirected to exam preparation. This is the most demanding single week of each 10-week cycle.</p>
+</div>
+  <div class="time-card">
+  <h3>Languages</h3>
+  <div class="tv">80–120 min/week</div>
+  <p>Saturday English 40 min, Sunday Spanish 40 min, Sunday Mandarin 40 min (from Month 2), plus daily 10-min app sessions Monday-Friday. Integrated into existing weekend schedule.</p>
+</div>
+  <div class="time-card">
+  <h3>Reading program</h3>
+  <div class="tv">60 min/day</div>
+  <p>Already exists in the schedule as the 9:40 PM screens-off window. Zero additional hours. Zero additional scheduling required.</p>
+</div>
+  <div class="time-card">
+  <h3>Advanced courses (Pillar IV)</h3>
+  <div class="tv">40–60 min/week</div>
+  <p>Maximum 1 Pomodoro per week across all Pillar IV programs during heavy bootcamp and UoPeople periods. Some programs (Scrum SFPC, LinkedIn GenAI) are single-afternoon completions.</p>
+</div>
+  <div class="time-card">
+  <h3>Admin and GitHub</h3>
+  <div class="tv">40 min/day</div>
+  <p>9:00 PM–9:40 PM every day without exception. GitHub push, LinkedIn review, email check. This is what builds the contribution graph that IBM and Deloitte recruiters see.</p>
+</div>
+</div>
+
+<div class="wk-div"></div>
+<table class="sal-table">
+  <thead><tr><th>Version / Period</th><th>Bootcamp</th><th>UoPeople</th><th>Languages</th><th>Reading</th><th>Total productive hours</th></tr></thead>
+  <tbody>
+    <tr><td>Version A (normal week)</td><td>13–15h</td><td>15–17h</td><td>2h</td><td>7h</td><td><strong>37–41h/week</strong></td></tr>
+    <tr><td>Version B (normal week)</td><td>19–20h</td><td>15–17h</td><td>2h</td><td>7h</td><td><strong>43–46h/week</strong></td></tr>
+    <tr><td>Exam week (Week 9)</td><td>0h</td><td>20–25h</td><td>0.5h (apps only)</td><td>7h</td><td><strong>27–32h/week</strong></td></tr>
+    <tr><td>Recovery week (Week 10)</td><td>18–22h sprint</td><td>0h (none due)</td><td>2h (full sessions)</td><td>7h</td><td><strong>27–31h/week</strong></td></tr>
+  </tbody>
+</table>
+<div class="hbox"><p><strong>The sustainable design principle:</strong> The total productive hours target is 37-46 hours per week in Version A, comparable to a demanding full-time job. This is sustained for 24 months, not weeks. The design is sustainable because the tasks alternate between different cognitive modes: bootcamp deep work (maximum cognitive load, morning), UoPeople written work (medium cognitive load, various), languages (low-medium cognitive load, weekend), reading (passive absorption, evening). No single cognitive mode runs for more than 3-4 hours without a transition to a different mode. This is the reason the schedule holds up across medical flare days and difficult academic weeks, the variety provides recovery within the system.</p></div>
+<div class="anchor" id="ceiling"></div>
+<span class="sec-label">Where this ends up</span>
+<h2 class="sec-title">Career ceiling projection. Month 0 to Year 10</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;margin-bottom:1.2rem;">This projection is a planning target, not a guarantee. Every number is grounded in current market data for the specific profile being built. The projection assumes: consistent execution of the five-pillar system, successful employment at a target enterprise technology company, and the geographic career progression outlined in the private location roadmap.</p>
+
+<div class="ceiling-track">
+  <div class="ct-row">
+    <div class="ct-time">April 2026<br>Month 0</div>
+    <div class="ct-role">Starting point. No certifications</div>
+    <div class="ct-sal">EUR 0<br>current income</div>
+    <div class="ct-note">UoPeople begins. Bootcamp begins. GitHub profile active. Learning-log commits daily. AZ-900 preparation in progress.</div>
+  </div>
+  <div class="ct-row">
+    <div class="ct-time">Month 7<br>Year 1</div>
+    <div class="ct-role">Junior Azure Administrator. AZ-104 earned</div>
+    <div class="ct-sal">EUR 1,200–1,800<br>/month</div>
+    <div class="ct-note">AZ-104 passed. 4 GitHub projects live. CS50x certificate on LinkedIn. Target employer internship applications sent. First real entry into the labour market with certified credentials.</div>
+  </div>
+  <div class="ct-row">
+    <div class="ct-time">Month 13<br>Year 1-2</div>
+    <div class="ct-role">Cloud Security Engineer. AZ-500 earned</div>
+    <div class="ct-sal">EUR 1,800–2,800<br>/month</div>
+    <div class="ct-note">AZ-500 added. Terraform Associate added. 6 portfolio projects. Security-adjacent cloud roles accessible. enterprise tech employer internship active or full employment beginning.</div>
+  </div>
+  <div class="ct-row">
+    <div class="ct-time">Month 18<br>Year 2</div>
+    <div class="ct-role">Platform Engineer, full 6-cert stack</div>
+    <div class="ct-sal">EUR 2,500–3,800<br>/month</div>
+    <div class="ct-note">AZ-305 + AZ-400 earned. 12 portfolio projects. Capstone live. UoPeople Associate of Science requestable. Top 5% of Azure-certified professionals globally. senior market exploration active.</div>
+  </div>
+  <div class="ct-row">
+    <div class="ct-time">Year 3<br>Phase 3</div>
+    <div class="ct-role">Senior Cloud Engineer</div>
+    <div class="ct-sal">EUR 5,000–7,500<br>/month</div>
+    <div class="ct-note">Enterprise technology employer. Native French a direct asset. UoPeople BSc 50%+ complete. Georgia Tech OMSCS application submitted. Spanish approaching B1.</div>
+  </div>
+  <div class="ct-row">
+    <div class="ct-time">Year 4<br>Phase 3 + OMSCS</div>
+    <div class="ct-role">Senior Platform / Cloud Architect</div>
+    <div class="ct-sal">EUR 6,000–9,000<br>/month</div>
+    <div class="ct-note">UoPeople BSc complete (Term 20). Georgia Tech OMSCS enrolled. career progression building (requires 1 year full-time employment at an an enterprise employer office outside the US, transitioning to US office). OMSCS in progress alongside full-time employment.</div>
+  </div>
+  <div class="ct-row">
+    <div class="ct-time">Year 5<br>International career</div>
+    <div class="ct-role">Cloud Architect / Principal Engineer. International</div>
+    <div class="ct-sal">–220,000<br>USA/year</div>
+    <div class="ct-note">Enterprise technology employer. "Specialized knowledge" case: 6 Azure certs, Georgia Tech OMSCS in progress, 5 years enterprise tech employer experience, 12-project GitHub portfolio. Spanish B2 adds Latin America client access. Mandarin A2 adds Asia-Pacific positioning.</div>
+  </div>
+  <div class="ct-row">
+    <div class="ct-time">Year 7-10<br>Long-term</div>
+    <div class="ct-role">Cloud Security Architect / OMSCS complete</div>
+    <div class="ct-sal">–260,000<br>USA/year</div>
+    <div class="ct-note">Georgia Tech OMSCS Master's complete. 7-10 years enterprise tech employer experience. Principal or Staff Engineer level. Healthcare cloud specialisation differentiates from standard platform engineers. Georgia Tech credential opens research and leadership roles at IBM Research, Google Research, or Microsoft Research if desired.</div>
+  </div>
+</div>
+
+<div class="wk-div" style="margin-top:1.5rem;"></div>
+<div class="gbox"><p><strong>Cumulative earnings comparison, 10-year horizon:</strong> A standard career track without the five-pillar system: approximately EUR 200,000–350,000 cumulative over 10 years at standard cloud engineer salaries. The five-pillar system with Phase 3 transition at Year 3 and international transition at Year 5: approximately EUR 800,000–1,200,000 cumulative over the same 10 years. The differential is EUR 500,000–850,000 over 10 years, produced by an upfront investment of approximately EUR 1,000–1,500 in exam fees and course costs and approximately 37-46 hours of productive work per week for 24 months. No other investment available to a junior cloud engineer generates this kind of return on this kind of capital outlay.</p></div>
+<!-- STEP 4 appends risk register, close, verify -->
+
+<div class="anchor" id="risks"></div>
+<span class="sec-label">The honest assessment</span>
+<h2 class="sec-title">Risk register. What could go wrong and how the system handles it</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;margin-bottom:1.2rem;">Every career plan has failure modes. Identifying them explicitly and building structural mitigations into the system is more effective than ignoring them and hoping for the best. These are the real risks, assessed honestly.</p>
+
+<table class="risk-table">
+  <thead><tr><th>Risk</th><th>Probability</th><th>Impact if it occurs</th><th>Built-in mitigation</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Medical flare disrupts study schedule for 1-2 weeks</strong></td><td>High, this will happen</td><td>Low, the schedule is designed for this. Disruption is planned, not exceptional.</td><td>UoPeople assignments written 3 days early. Bootcamp can compress and expand. Reading fills the 9:40 PM window without cognitive demand. The system has slack built into every week specifically for medical realities. One week lost does not set the certification timeline back, exams are booked when 85%+ is consistent, not on a fixed date.</td></tr>
+    <tr><td><strong>Extended medical period (4+ weeks) disrupts a UoPeople term</strong></td><td>Medium</td><td>Medium, a grade below 3.7 in one term could affect scholarship eligibility.</td><td>UoPeople has a formal Leave of Absence process. Applying for LOA before a term becomes unmanageable preserves the GPA. One term at 3.5 GPA does not end the scholarship, the cumulative GPA is what matters. The scholarship protection strategy (assignments written early, discussions engaged deeply) provides a buffer in most terms.</td></tr>
+    <tr><td><strong>Primary target employers do not offer an internship placement</strong></td><td>Medium, not guaranteed</td><td>Medium, the internship accelerates the career plan but is not essential to it.</td><td>The five-pillar system produces the same certifications, portfolio, and degree regardless of whether an internship placement materialises. Regional cloud-native companies and remote-first EU employers are backup options. Remote internships with target employers are also possible. The career plan does not depend on a single placement, the credentials do the work.</td></tr>
+    <tr><td><strong>Udemy Personal Plan does not cover key courses in this region</strong></td><td>Low-medium, catalogue varies by region</td><td>Low, the fallback is EUR 10/month which is already budgeted</td><td>The April 9 LIRN check (link.gale.com/apps/?userGroupName=lirn17237) determines this immediately. If LIRN covers the key courses: EUR 0 cost. If Personal Plan catalogue is missing key courses: buy individually on sale (typically EUR 12-15 each). The total cost difference between best case (EUR 0) and worst case (~EUR 400 individual purchase) is manageable and budgeted.</td></tr>
+    <tr><td><strong>Microsoft changes AZ-500 to SC-500 before exam booking</strong></td><td>Low-medium. Microsoft announced potential transition</td><td>Low, same knowledge domain, different exam name</td><td>Verify the active exam path at learn.microsoft.com/en-us/certifications/azure-security-engineer/ before booking any security exam. The bootcamp study content (Alan Rodrigues AZ-500 course) remains valid regardless of exam name, the domain knowledge is what matters. Microsoft certifications transition with advance notice and grandfather periods.</td></tr>
+    <tr><td><strong>UoPeople GPA drops below 3.7 (scholarship threshold)</strong></td><td>Low if strategy is followed</td><td>High, scholarship loss significantly increases cost</td><td>The scholarship protection strategy is not optional. It is financial risk management. Writing assignments 3 days early, engaging discussions substantively, reading instructor feedback as language practice, and pausing bootcamp during exam weeks are all designed specifically to keep GPA above 3.7. If GPA approaches 3.5, bootcamp pauses entirely until GPA recovers. No certification exam is worth more than the scholarship.</td></tr>
+    <tr><td><strong>Language acquisition progresses slower than projected</strong></td><td>Medium, individual variation is real</td><td>Low, language timelines are estimates, not critical path items</td><td>The career plan does not depend on Spanish B2 being achieved on schedule. The Phase 3 plan depends on French C2 (already held natively) and English C2 (in progress). Spanish and Mandarin are market expansion assets, not prerequisites. The stagger model adjusts to actual progress. If Spanish is at A1 instead of A2 at Month 18, the career plan is unaffected.</td></tr>
+    <tr><td><strong>Georgia Tech OMSCS application is rejected</strong></td><td>Low-medium (74% admission rate is not 100%)</td><td>Medium, delays the Master's, but does not eliminate it</td><td>OMSCS applications can be resubmitted. A rejection with a 3.7+ GPA, the CS1332 prep course completed, and a 12-project GitHub portfolio is extremely unusual, the admission team explicitly values non-traditional backgrounds with strong portfolios. If rejected: reapply in the next admission window with a stronger statement. Alternative: UIUC MCS program or University of Maryland online CS Master's as backup options with similar quality profiles.</td></tr>
+    <tr><td><strong>international career progression visa is not approved</strong></td><td>Low if criteria are met, but immigration is never certain</td><td>High for the international career phase, but Phase 3 is self-sufficient</td><td>Phase 3 (Year 3-4) is a complete outcome in itself. EUR 5,000-9,000/month at a senior enterprise employer is an excellent career outcome without the international phase. The international career progression is the ceiling, not the floor. If it does not materialise by Year 5, Phase 3 continues while options are reassessed. The five-pillar system produces a world-class profile regardless of which geography it operates in.</td></tr>
+    <tr><td><strong>The Azure cloud market shifts to AWS or GCP dominance</strong></td><td>Very low. Azure has 20%+ global market share and growing</td><td>Medium over a 10-year horizon if it occurred</td><td>The multi-cloud awareness built into the plan (AWS skim at Month 23, GCP optional background) plus the transferable skills (Terraform, Kubernetes, Linux, Python, security principles) all work across cloud platforms. Certifications are Microsoft-specific but the underlying engineering skills are not. A senior cloud engineer with 5 years of deep Azure experience is hireable on AWS or GCP with 3-6 months of platform-specific study.</td></tr>
+  </tbody>
+</table>
+
+<div class="hbox"><p><strong>The overall risk profile:</strong> The five-pillar system is designed to be robust to the most likely failure modes. The highest-probability risk (medical disruption) has the lowest impact because the schedule is built around it. The highest-impact risk (scholarship loss) has the lowest probability because the scholarship protection strategy is structural, not aspirational. The career transition risk is real but the system produces a complete, high-value career outcome at Phase 3 level without requiring international access. The system does not bet everything on a single outcome, it builds compounding assets that produce value at every stage regardless of which terminal outcome is reached.</p></div>
+
+<div class="wk-div" style="margin-top:1.5rem;"></div>
+<div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.5rem;margin:1.5rem 0;">
+  <p style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.7rem;">The one-sentence summary</p>
+  <p style="color:var(--ink2);font-size:.9rem;line-height:1.75;">For an investment of approximately EUR 1,000–1,500 in direct costs, 37-46 hours of productive work per week for 24 months, and the sustained discipline to execute a five-pillar system across medical constraints and competing priorities, the Five-Pillar Development System produces: six Microsoft and HashiCorp certifications, a WASC-accredited BSc in Computer Science with four free Harvard certificates embedded, a 12-project GitHub portfolio demonstrating enterprise-grade Azure platform engineering, working proficiency in five languages with a 10-language map in progress, and a career ceiling that runs from EUR 1,200/month in Month 7 to –260,000/year at Year 7-10: a 20-30× earnings multiple on the starting point, produced entirely by time, discipline, and a well-designed system.</p>
+</div>
+</div><!-- end .page-wrap -->
+<footer><div class="footer-brand">Jeremy Trinity</div><div class="footer-meta">Five-Pillar Development System &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp;<a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a> &nbsp;|&nbsp;<a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a> &nbsp;|&nbsp;<a href="https://jeremytrinity.com">jeremytrinity.com</a> &nbsp;|&nbsp;</div></footer>
+<script>
+const html=document.documentElement;
+const btn=document.getElementById('themeBtn');
+const label=document.getElementById('themeLabel');
+function applyTheme(t){html.setAttribute('data-theme',t);if(label)label.textContent=t==='dark'?'Light':'Dark';}
+const saved=localStorage.getItem('jt-theme');
+if(saved){applyTheme(saved);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){applyTheme('dark');localStorage.setItem('jt-theme','dark');}
+if(btn)btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(next);localStorage.setItem('jt-theme',next);});
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+</script>
+
+<script>
+/* ── ACCORDION ── */
+(function () {
+  document.querySelectorAll('.acc-block').forEach(function (block) {
+    var head = block.querySelector('.acc-head');
+    if (!head) return;
+    // Inject chevron as last flex child
+    var chev = document.createElement('span');
+    chev.className = 'acc-chev';
+    chev.setAttribute('aria-hidden', 'true');
+    chev.textContent = '▾';
+    head.appendChild(chev);
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    function toggle(e) {
+      if (e.target && (e.target.tagName === 'A' || (e.target.closest && e.target.closest('a')))) return;
+      var collapsed = block.classList.toggle('is-collapsed');
+      head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
+  });
+})();
+</script>
+<script>
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

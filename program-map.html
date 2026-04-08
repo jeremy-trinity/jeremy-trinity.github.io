@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program Map: Private | Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F9F8F5;--surface:#FFFFFF;--surface2:#F2F1EE;--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--ink:#1A1A18;--ink2:#52514E;--ink3:#8A8880;--accent:#2A5F8F;--accent-lt:#EBF2F9;--accent2:#1D4A70;--p1:#2A5F8F;--p2:#0F6E56;--p3:#854F0B;--p4:#534AB7;--p5:#A32D2D;--p1-lt:#EBF2F9;--p2-lt:#E1F5EE;--p3-lt:#FAEEDA;--p4-lt:#EEEDFE;--p5-lt:#FCEBEB;}
+[data-theme="dark"]{--bg:#111110;--surface:#1C1C1A;--surface2:#252523;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--ink:#EEECEA;--ink2:#AAAAAA;--ink3:#777775;--accent:#5B9BD5;--accent-lt:#1A2A3A;--accent2:#7AB3E0;--p1:#5B9BD5;--p2:#4ecdb4;--p3:#FAC775;--p4:#AFA9EC;--p5:#F09595;--p1-lt:#1A2A3A;--p2-lt:#0A2820;--p3-lt:#2A1E0A;--p4-lt:#1A1830;--p5-lt:#2A1010;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;padding-top:60px;}
+a{color:var(--accent);text-decoration:none;}a:hover{color:var(--accent2);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-btn{background:none;border:1px solid var(--border2);border-radius:20px;padding:.25rem .75rem;cursor:pointer;font-size:.75rem;font-weight:500;color:var(--ink2);display:flex;align-items:center;gap:.35rem;font-family:'Inter',sans-serif;}
+.sun{color:#F5A623;font-size:.85rem;display:none;}.moon{font-size:.85rem;}
+[data-theme="dark"] .sun{display:inline;}[data-theme="dark"] .moon{display:none;}
+.page-hero{background:var(--surface);border-bottom:1px solid var(--border);padding:2.5rem 2rem 2rem;}
+.page-hero-inner,.page-wrap{max-width:900px;margin:0 auto;}
+.page-wrap{padding:2rem 2rem 5rem;}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:.5rem;}
+.ph-sub{font-size:.88rem;color:var(--ink2);max-width:680px;line-height:1.7;margin-bottom:1.2rem;}
+
+/* PRIVATE BADGE */
+.private-badge{display:inline-block;background:#FCEBEB;color:#A32D2D;font-size:.7rem;font-weight:700;padding:.28rem .85rem;border-radius:20px;letter-spacing:.05em;margin-bottom:.8rem;}
+
+/* PHASE BANNER */
+.phase-banner{border-radius:12px;padding:1rem 1.3rem;margin:2.5rem 0 1rem;border-left:5px solid;}
+.pb1{background:var(--p1-lt);border-color:var(--p1);}
+.pb2{background:var(--p2-lt);border-color:var(--p2);}
+.pb3{background:var(--p3-lt);border-color:var(--p3);}
+.pb4{background:var(--p4-lt);border-color:var(--p4);}
+.phase-banner h2{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:.2rem;}
+.pb1 h2{color:var(--p1);}.pb2 h2{color:var(--p2);}.pb3 h2{color:var(--p3);}.pb4 h2{color:var(--p4);}
+.phase-banner p{font-size:.84rem;color:var(--ink2);margin:0;line-height:1.5;}
+
+/* CLUSTER (grouped steps by topic) */
+.cluster{margin:1.2rem 0 1.8rem;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.cluster-header{background:var(--surface);border-bottom:1px solid var(--border);padding:.65rem 1.1rem;display:flex;align-items:center;gap:.7rem;}
+.cluster-icon{font-size:1rem;flex-shrink:0;}
+.cluster-title{font-size:.86rem;font-weight:700;color:var(--ink);}
+.cluster-meta{font-size:.74rem;color:var(--ink3);margin-left:auto;}
+
+/* STEP ROW */
+.step{display:flex;align-items:flex-start;gap:.8rem;padding:.5rem 1.1rem;border-bottom:1px solid rgba(0,0,0,.04);}
+.step:last-child{border-bottom:none;}
+.step-num{font-family:'Playfair Display',serif;font-size:.82rem;font-weight:700;color:var(--accent);min-width:36px;flex-shrink:0;padding-top:.15rem;}
+.step-body{flex:1;}
+.step-action{font-size:.84rem;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:.15rem;}
+.step-detail{font-size:.77rem;color:var(--ink2);line-height:1.5;}
+.step-url{font-size:.72rem;color:var(--ink3);margin-top:.2rem;}
+.step-url a{color:var(--accent);}
+.step-tag{display:inline-block;font-size:.64rem;font-weight:700;padding:.1rem .5rem;border-radius:5px;margin-right:.3rem;margin-bottom:.15rem;vertical-align:middle;}
+.tag-boot{background:#EBF2F9;color:#1D4A70;}
+.tag-uni{background:#E1F5EE;color:#0A4F3B;}
+.tag-lang{background:#E0F4F8;color:#0A3D4F;}
+.tag-read{background:#FCEBEB;color:#7A1F1F;}
+.tag-cert{background:#FAEEDA;color:#633806;}
+.tag-lab{background:#EEEDFE;color:#3A3480;}
+.tag-now{background:#FFF3CD;color:#856404;border:1px solid #FBBF24;}
+.tag-free{background:#E1F5EE;color:#0F6E56;}
+
+/* NOTE BOX */
+.note-box{background:var(--accent-lt);border:1px solid var(--accent);border-radius:8px;padding:.75rem 1rem;margin:.7rem 0;}
+.note-box p{font-size:.83rem;color:var(--ink2);margin:0;line-height:1.55;}
+.note-box strong{color:var(--accent);}
+.warn-box{background:var(--p3-lt);border:1px solid var(--p3);border-radius:8px;padding:.75rem 1rem;margin:.7rem 0;}
+.warn-box p{font-size:.83rem;color:var(--ink2);margin:0;line-height:1.55;}
+.warn-box strong{color:var(--p3);}
+
+/* ANCHOR */
+.anchor{display:block;height:72px;margin-top:-72px;visibility:hidden;}
+
+/* SEC TITLES */
+.sec-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.3rem;margin-top:2.5rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--ink);margin-bottom:.25rem;}
+.title-rule{width:32px;height:2px;background:var(--accent);margin-bottom:1.1rem;}
+
+footer{background:var(--surface2);border-top:1px solid var(--border);padding:2rem;text-align:center;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
+.footer-meta{font-size:.78rem;color:var(--ink3);}
+.footer-meta a{color:var(--accent);}
+@media(max-width:700px){.page-wrap,.page-hero-inner{padding-left:1rem;padding-right:1rem;}.cluster-meta{display:none;}}
+
+/* ── ACCORDION ─────────────────────────────────── */
+.acc-head { cursor: pointer; user-select: none; }
+.acc-chev { margin-left: auto; font-size: 1.05rem; opacity: 0.38; transition: transform .25s ease, opacity .25s ease; flex-shrink: 0; padding-left: .6rem; pointer-events: none; }
+.acc-block.is-collapsed .acc-chev { transform: rotate(-90deg); opacity: 0.65; }
+.acc-block.is-collapsed .acc-body { display: none; }
+.cluster.is-collapsed .step,
+.cluster.is-collapsed .note-box,
+.cluster.is-collapsed .warn-box { display: none; }
+.back-link { font-size: .78rem; color: var(--ink3); display: inline-flex; align-items: center; gap: .35rem; margin-bottom: 1.2rem; text-decoration: none; transition: color .2s; }
+.back-link:hover { color: var(--accent); }
+
+/* ── Language toggle ── */
+.lang-btn { margin-left: 0.4rem; }
+.lang-pt { display: none !important; }
+[data-lang="pt"] .lang-en { display: none !important; }
+[data-lang="pt"] .lang-pt { display: inline !important; }
+[data-lang="pt"] p.lang-pt,
+[data-lang="pt"] div.lang-pt,
+[data-lang="pt"] li.lang-pt,
+[data-lang="pt"] span.lang-pt.block,
+[data-lang="pt"] td.lang-pt { display: block !important; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="index.html">Jeremy Trinity</a>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+      <span class="moon">🌙</span><span class="sun">☀️</span>
+      <span id="themeLabel">Dark</span>
+    </button>
+  </div>
+</nav>
+
+<section class="page-hero">
+<div class="page-hero-inner">
+  <a class="back-link" href="index.html" data-en="← Back to overview" data-pt="← Voltar à visão geral">← Back to overview</a>
+  <span class="private-badge">🔒 PRIVATE. Not linked from public site</span>
+  <h1 class="ph-title">Program Map. Step by Step</h1>
+  <p class="ph-sub">Every individual step of the cloud engineering program, in exact order. Each step is one specific action: one Udemy section, one YouTube playlist, one lab, one exam booking. Follow this sequentially. Use the weekly schedule to plan how many steps to complete per pomodoro session. This document is the "what", the schedule is the "when".</p>
+  <p style="font-size:.8rem;color:var(--ink3);">Steps that are parallel are marked clearly. Everything else is sequential. Do not skip ahead.</p>
+</div>
+</section>
+
+<div class="page-wrap">
+
+<!-- ══════════════════════════════════════════════════════════
+     PHASE 1. FOUNDATION
+════════════════════════════════════════════════════════════ -->
+<div class="anchor" id="phase1"></div>
+<div class="phase-banner pb1">
+  <h2>Phase 1: Foundation</h2>
+  <p>Linux, networking, Git, Python basics, Azure account live, first certification (AZ-900), first Terraform project deployed. Do not move to Phase 2 until every step in Phase 1 is complete.</p>
+</div>
+
+<!-- PRE-START SETUP -->
+<span class="sec-label">Before your first study session</span>
+<h2 class="sec-title">Setup. Do these once, in order</h2>
+<div class="title-rule"></div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">⚙️</div>
+    <div class="cluster-title">Account and environment setup</div>
+    <div class="cluster-meta">~2 hours total · Do before opening any course</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">S1</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-now">DO FIRST</span> Test LIRN library access for free Udemy courses</div>
+      <div class="step-detail">Go to link.gale.com/apps/?userGroupName=lirn17237 after your UoPeople Moodle login is active. Search for: "Complete Linux Training Course 2026 Imran Afzal", "AZ-104 Scott Duffy", "AKS Azure DevOps Terraform Kalyan Reddy", "Docker Absolute Beginners Mumshad", "Kubernetes Absolute Beginners Mumshad", "AZ-500 Alan Rodrigues". If all 6 appear. Do not pay for Udemy. If any are missing, subscribe to Udemy Personal Plan (~€10/month).</div>
+      <div class="step-url"><a href="https://link.gale.com/apps/?userGroupName=lirn17237" target="_blank">link.gale.com/apps/?userGroupName=lirn17237</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">S2</div>
+    <div class="step-body">
+      <div class="step-action">Create Azure free account</div>
+      <div class="step-detail">Go to azure.microsoft.com/free. You get $200 credit for 30 days + 12 months free services. Immediately after creating the account: go to Cost Management → set a budget alert at €20/month. This prevents unexpected charges from lab resources left running. The always-free tier includes one B1s Linux VM, App Service F1, Azure SQL 250GB, Blob Storage 5GB, AKS management layer.</div>
+      <div class="step-url"><a href="https://azure.microsoft.com/free" target="_blank">azure.microsoft.com/free</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">S3</div>
+    <div class="step-body">
+      <div class="step-action">Create 3 GitHub repositories on github.com/jeremy-trinity</div>
+      <div class="step-detail">Repository 1: <strong>learning-log</strong>, daily study notes, commit every single day even one line. Repository 2: <strong>azure-project-01</strong>, first Terraform portfolio project (built in Phase 1, Step 35). Repository 3: <strong>cloud-engineering</strong>, scratch pad for all code experiments. Read conventionalcommits.org now and apply from commit #1: feat:, fix:, docs:, chore: prefixes.</div>
+      <div class="step-url"><a href="https://conventionalcommits.org" target="_blank">conventionalcommits.org</a> · <a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">S4</div>
+    <div class="step-body">
+      <div class="step-action">Bookmark 5 permanent free resources</div>
+      <div class="step-detail">Bookmark all 5 now. You will return to these throughout all 24 months: (1) youtube.com/@NTFAQGuy (John Savill. AZ-104, AZ-305, AZ-400 study crams), (2) learn.microsoft.com (official Azure learning paths + free practice assessments), (3) shell.azure.com (Azure Cloud Shell. CLI, PowerShell, Terraform pre-installed, free), (4) kodekloud.com (interactive labs for Docker, Kubernetes, Terraform, Linux), (5) overthewire.org/wargames/bandit (Linux CLI practice, levels 0-33).</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<!-- MONTH 1 -->
+<span class="sec-label">Month 1</span>
+<h2 class="sec-title">Linux · Networking · Git · Python kickoff</h2>
+<div class="title-rule"></div>
+
+<div class="note-box"><p><strong>How Month 1 works:</strong> Linux is your primary track (Weeks 1-2, then Weeks 3-4 finish it in Month 2). Networking is parallel, targeted sections only, not the full course. Git starts Week 3. Python runs across all 4 weeks in the background, 1-2 days per study session. Do not try to run all 4 at full intensity simultaneously. Linux is primary, everything else is secondary.</p></div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🐧</div>
+    <div class="cluster-title">🐧 Linux. Imran Afzal · <a href="https://www.udemy.com/course/complete-linux-training-course-to-get-your-dream-it-job/" target="_blank">Complete Linux Training Course</a></div>
+    <div class="cluster-meta">Weeks 1-2 primary · Sections 1-8 this month</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 1: Download and Install Linux</div>
+      <div class="step-detail">Install Ubuntu on an Azure VM, not a local VM. You practice on cloud from day one. Follow the section, but substitute VirtualBox with an Azure B1s VM (free tier). SSH into it from your local terminal after setup.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/complete-linux-training-course-to-get-your-dream-it-job/" target="_blank">udemy.com → Complete Linux Training Course (Imran Afzal)</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 2: System Access and File System</div>
+      <div class="step-detail">SSH access, file system hierarchy (/etc, /var, /home, /tmp), absolute vs relative paths. Practice every command in your Azure VM, not just watch.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 3: Linux Fundamentals</div>
+      <div class="step-detail">Navigation commands: ls, cd, pwd, mkdir, rmdir, cp, mv, rm, find. Hard links vs soft links. Everything you learn here: practice it live in your Azure VM before moving to the next section.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 4: File and Directory Permissions</div>
+      <div class="step-detail">chmod, chown, chgrp, umask, setuid/setgid/sticky bit. This is critical. You will use permission concepts every single day in production cloud work. Do not rush this section. Test every permission combination in your Azure VM.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 5: Linux File Maintenance Commands</div>
+      <div class="step-detail">tar, gzip, find with exec, locate, updatedb, df, du. Compress and extract a folder. Find all files modified in the last 24 hours. Practice in Azure VM.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 6: Text Processing: grep, awk, sed</div>
+      <div class="step-detail">grep with -r, -i, -n, regex patterns. awk for column extraction. sed for find-and-replace in files. These are critical for log analysis and will feed directly into KQL (Kusto Query Language) in Azure Monitor later. Practice on a real log file from your Azure VM (/var/log/syslog).</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">7</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 7: Linux System Administration</div>
+      <div class="step-detail">User management (adduser, passwd, usermod, userdel), group management, sudo and sudoers file, cron jobs (crontab -e). Schedule a cron job that writes a timestamp to a file every minute, verify it works.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">8</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 8: Boot Process</div>
+      <div class="step-detail">BIOS/UEFI → bootloader (GRUB) → kernel → init system (systemd) → runlevels/targets. Understand the concept and order. You do not need to memorise every detail. This builds systems thinking that feeds Kubernetes later (containers also have startup sequences).</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">9</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-lab">LAB</span> OverTheWire Bandit. Levels 0 through 15</div>
+      <div class="step-detail">Do 2-3 Bandit levels per study day alongside the Udemy sections. This is a Linux security wargame where each level requires finding a password using Linux commands. By level 15 you will navigate the command line automatically without thinking. Do levels 0-15 across Month 1. Levels 16-33 are optional in Month 2.</div>
+      <div class="step-url"><a href="https://overthewire.org/wargames/bandit" target="_blank">overthewire.org/wargames/bandit</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🌐</div>
+    <div class="cluster-title">🌐 Networking. David Bombal · <a href="https://www.udemy.com/course/complete-networking-fundamentals-course-ccna-start/" target="_blank">Complete Networking Fundamentals Course</a> (targeted sections only)</div>
+    <div class="cluster-meta">Weeks 1-2 parallel · ~6-8 hours total across months 1-2</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">10</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> IP Addressing section. IPv4, CIDR, subnetting</div>
+      <div class="step-detail">This is the most critical networking section for Azure. Every Azure VNet address space and subnet calculation uses CIDR. Practice subnetting: given 10.0.0.0/16, carve out 4 subnets of /24. Understand why /24 gives you 254 usable hosts. This directly feeds Azure VNet design in Month 3.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/complete-networking-fundamentals-course-ccna-start/" target="_blank">udemy.com → Complete Networking Fundamentals Course (David Bombal)</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">11</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> DNS section, records, resolution, forwarders</div>
+      <div class="step-detail">A records, CNAME, MX, NS, TTL. How a DNS query resolves from root servers down. This feeds Azure DNS zones and Private DNS zones in Phase 2. Understand what a forwarder is. Azure Private DNS uses conditional forwarders for hybrid setups.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">12</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Firewalls and ACLs section, rule ordering</div>
+      <div class="step-detail">How firewall rules are evaluated in order (first match wins). Stateful vs stateless firewalls. This directly feeds Azure NSG (Network Security Group) rule priority. NSGs use the exact same first-match logic. A common AZ-104 exam question is about NSG rule priority.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">13</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Routing section, static and dynamic routing basics</div>
+      <div class="step-detail">Default gateway, routing tables, static routes. This feeds Azure User Defined Routes (UDRs), how you force traffic through an NVA (Network Virtual Appliance) or Azure Firewall. You do not need OSPF or BGP depth at this stage.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">14</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> TCP/IP section, ports, protocols, connection establishment</div>
+      <div class="step-detail">TCP 3-way handshake, common ports (22 SSH, 80 HTTP, 443 HTTPS, 3389 RDP, 3306 MySQL, 5432 PostgreSQL). This feeds NSG rule writing. You need to know which port to open for which service. Also feeds security group troubleshooting.</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🐙</div>
+    <div class="cluster-title">🐙 Git. Colt Steele · <a href="https://www.udemy.com/course/git-and-github-bootcamp/" target="_blank">The Git and GitHub Bootcamp</a></div>
+    <div class="cluster-meta">Weeks 3-4 primary</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">15</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Sections 1-3. Introduction, Installation, The Very Basics</div>
+      <div class="step-detail">Install Git, configure name and email (git config --global), understand what a repository is. Make your first commit in the learning-log repository you created in S3. Use the Conventional Commits format from day one.</div>
+      <div class="step-url">Udemy: "The Git and GitHub Bootcamp" by Colt Steele · <a href="https://www.udemy.com/course/git-and-github-bootcamp/" target="_blank">udemy.com/course/git-and-github-bootcamp/</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">16</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Sections 4-6. Commits in Detail, Branches, Merging</div>
+      <div class="step-detail">git log, git diff, amend, HEAD, detached HEAD. Branches: git branch, git switch, git checkout. Merging: fast-forward vs 3-way merge. Resolving merge conflicts. Practice: create a feature branch in learning-log, make commits, merge back to main.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">17</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Sections 9-11. Undoing Changes, GitHub Basics, Fetching and Pulling</div>
+      <div class="step-detail">git restore, git reset, git revert. GitHub: pushing, cloning, remote, origin. Pull requests workflow. After completing: push your learning-log repository to GitHub and verify the contribution graph shows your first green square.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">18</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-lab">HABIT</span> Daily GitHub commit, start now, never stop</div>
+      <div class="step-detail">From today until the end of the program, commit something to GitHub every single day. Even a single line added to a study note in learning-log counts. The contribution graph is the first thing any technical recruiter looks at on your profile. A green graph with 300+ consecutive days tells more than any certification.</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🐍</div>
+    <div class="cluster-title">🐍 Python. Angela Yu · <a href="https://www.udemy.com/course/100-days-of-code/" target="_blank">100 Days of Code</a> (already in your library)</div>
+    <div class="cluster-meta">Parallel throughout months 1-4 · 1-2 days per study session</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">19</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Days 1-5. Variables, strings, input, conditionals, loops</div>
+      <div class="step-detail">Print, input(), string formatting, if/elif/else, for loops. Complete all 5 daily projects, they are small (calculator, BMI calculator, band name generator). Commit each project file to github.com/jeremy-trinity/cloud-engineering even when small.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/100-days-of-code/" target="_blank">udemy.com → 100 Days of Code (Angela Yu)</a>, already in your library</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">20</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Days 6-10. Functions, while loops, Caesar cipher, Blackjack</div>
+      <div class="step-detail">Define functions, parameters, return values. While loops. Escape characters. The Day 8 (Caesar cipher) and Day 10 (calculator) projects are the first ones worth keeping in your GitHub portfolio, they show function design.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">21</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Days 11-15. Scope, debugging, string methods, file I/O</div>
+      <div class="step-detail">Global vs local scope. Debugging workflow. String methods (split, strip, join, format). Reading and writing files. Day 15 introduces coffee machine OOP. This is the bridge to the next section.</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<!-- MONTH 2 -->
+<span class="sec-label">Month 2</span>
+<h2 class="sec-title">PowerShell · Linux completion · AZ-900</h2>
+<div class="title-rule"></div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🐧</div>
+    <div class="cluster-title">🐧 Linux. Imran Afzal · <a href="https://www.udemy.com/course/complete-linux-training-course-to-get-your-dream-it-job/" target="_blank">Complete Linux Training Course</a>. Sections 9-12 (completion)</div>
+    <div class="cluster-meta">Week 1 · Finish the Linux track before PowerShell starts</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">22</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 9: Network Services and File Sharing</div>
+      <div class="step-detail">NFS, Samba, SSH configuration, FTP. Configure SSH key-based authentication on your Azure VM (disable password auth). This is production practice. No production cloud VM uses password authentication.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">23</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 10: Shell Scripting</div>
+      <div class="step-detail">Write a bash script that: creates a directory, downloads a file, changes permissions, logs the result to a file with a timestamp. This exact pattern is what CI/CD pipelines and Terraform provisioners do. Keep the script in your cloud-engineering repo.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">24</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 11: Networking Commands</div>
+      <div class="step-detail">ifconfig/ip, netstat, ss, ping, traceroute, nslookup, dig, curl, wget. On your Azure VM: run ip addr, dig google.com, curl a URL. These are the diagnostic tools you will use when a cloud service is unreachable.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">25</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 12: System Monitoring and Logs</div>
+      <div class="step-detail">top, htop, ps, kill, journalctl, /var/log/. Monitor your Azure VM CPU and memory usage. Tail the auth.log file and observe SSH login attempts. This directly feeds Azure Monitor and Log Analytics in Phase 2.</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">💙</div>
+    <div class="cluster-title">💙 PowerShell. John Savill · <a href="https://www.udemy.com/course/powershell-master-class/" target="_blank">PowerShell Master Class</a> (Sections 1-6) · Alt: <a href="https://www.udemy.com/course/powershell-master-class-jason-yoder/" target="_blank">Jason Yoder</a></div>
+    <div class="cluster-meta">Weeks 1-2 · ~5 hours total</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">26</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Section 1-2. Introduction + Core Cmdlets</div>
+      <div class="step-detail">PowerShell vs CMD vs Bash. Get-Help, Get-Command, Get-Member, these three cmdlets are the foundation of everything. Use Get-Help on every new cmdlet you encounter instead of Googling first. This habit makes you self-sufficient with PowerShell at any level.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/powershell-master-class/" target="_blank">udemy.com → PowerShell Master Class (John Savill)</a> · Alt: <a href="https://www.udemy.com/course/powershell-master-class-jason-yoder/" target="_blank">Jason Yoder version</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">27</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Sections 3-4. Variables, Data Types, Pipeline</div>
+      <div class="step-detail">$variables, arrays, hashtables. The pipeline (|). PowerShell passes objects, not text strings. This is PowerShell's superpower over Bash. Example: Get-Process | Where-Object CPU -gt 50 | Sort-Object CPU -Descending.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">28</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Sections 5-6. Conditionals, Loops, Functions, Scripts</div>
+      <div class="step-detail">if/elseif/else, for/foreach/while. Write a function that accepts a resource group name, lists all VMs in it, and outputs their names and status. Save to cloud-engineering repo. This is the kind of script that appears in AZ-104 exam questions.</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">📜</div>
+    <div class="cluster-title">📜 CS50P. Harvard · <a href="https://cs50.harvard.edu/python" target="_blank">Introduction to Programming with Python</a> · Free certificate</div>
+    <div class="cluster-meta">Weeks 2-3 parallel · ~20-25 hours total · Free certificate</div>
+  </div>
+
+  <div class="note-box"><p><strong>Note on CS50P vs CS50x:</strong> CS50P is the Python-specific Harvard course. It is shorter, more directly relevant (Python is in 49% of cloud job postings), and reinforces Angela Yu's 100 Days simultaneously. CS50x (the general CS course) is deprioritized until Month 5-6: once Azure foundations are solid, the Harvard CS certificate becomes a signal amplifier rather than a distraction.</p></div>
+
+  <div class="step">
+    <div class="step-num">29</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">UNIVERSITY</span> <span class="step-tag tag-free">FREE CERT</span> CS50P. Problem Set 0: Functions, Variables</div>
+      <div class="step-detail">Watch Lecture 0, complete Problem Set 0. Submit via cs50.harvard.edu/python. The certificate is free, score 70%+ on all 10 problem sets and complete the final project. This is the second free Harvard certificate at zero cost.</div>
+      <div class="step-url"><a href="https://cs50.harvard.edu/python" target="_blank">cs50.harvard.edu/python</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">30</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">UNIVERSITY</span> CS50P. Problem Sets 1-4: Conditionals, Loops, Exceptions, Libraries</div>
+      <div class="step-detail">Complete one problem set per study session. Libraries problem set (PS4) introduces third-party packages, this feeds Boto3 and Azure SDK for Python in Phase 2. Submit every problem set to CS50's grader before moving on.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">31</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">UNIVERSITY</span> CS50P. Problem Sets 5-9: Unit Tests, File I/O, Regular Expressions, OOP, Et Cetera</div>
+      <div class="step-detail">Unit tests (PS5) and OOP (PS8) are the most important for cloud engineering. Unit testing your Python automation scripts is a professional skill that separates junior from mid-level engineers. Complete all, then submit the final project.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">32</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">UNIVERSITY</span> CS50P. Final Project submission + certificate claim</div>
+      <div class="step-detail">Build something related to cloud automation, a simple Python script that calls the Azure SDK (azure-identity + azure-mgmt-resource) to list your resource groups. This is both the CS50P final project and your first Python cloud automation code. Claim the free certificate at cs50.harvard.edu/python.</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">☁️</div>
+    <div class="cluster-title">☁️ AZ-900, <a href="https://www.udemy.com/course/az900-azure/" target="_blank">Scott Duffy course (Udemy)</a> · Free alt: <a href="https://www.youtube.com/watch?v=NhDYbskXRgc" target="_blank">FreeCodeCamp AZ-900 (YouTube)</a></div>
+    <div class="cluster-meta">Weeks 3-4 · Exam at end of Month 2 · €80</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">33</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> AZ-900 study. Scott Duffy course (all sections)</div>
+      <div class="step-detail">This is a foundational certification course covering cloud concepts, Azure architecture, Azure services, security, compliance, pricing, and SLAs. Watch all sections at 1.5x speed. For each service mentioned, open the Azure portal and find it. The course is ~8-9 hours. Complete in one focused week.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/az900-azure/" target="_blank">udemy.com → AZ-900 Azure Fundamentals (Scott Duffy)</a> · Free alt: <a href="https://www.youtube.com/watch?v=NhDYbskXRgc" target="_blank">FreeCodeCamp AZ-900 (YouTube)</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">34</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> AZ-900. Microsoft Learn official practice assessment</div>
+      <div class="step-detail">Go to learn.microsoft.com and search "AZ-900 practice assessment". This is free and written by the same team that writes the real exam. Do it once, note your weak areas, review those specific topics, then do it again. Score 80%+ consistently before booking the real exam.</div>
+      <div class="step-url"><a href="https://learn.microsoft.com" target="_blank">learn.microsoft.com</a> → search "AZ-900 practice assessment"</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">35</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> John Savill AZ-900 Study Cram (YouTube)</div>
+      <div class="step-detail">Watch youtube.com/@NTFAQGuy: search "AZ-900 study cram". Watch in full the week before your exam. This is a dense 3-4 hour walkthrough of every exam topic. Take notes on anything you have not yet encountered in the Scott Duffy course.</div>
+      <div class="step-url"><a href="https://youtube.com/@NTFAQGuy" target="_blank">youtube.com/@NTFAQGuy</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">36</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> Book and pass AZ-900 exam</div>
+      <div class="step-detail">Book at certiport.com or pearsonvue.com/microsoft. Choose online proctored (no travel needed). Cost: ~€80. Pass score: 700/1000. This is your first Microsoft certification, add it to LinkedIn immediately after receiving the badge. Once passed, your LinkedIn headline becomes: "Cloud Engineering Student | AZ-900 Certified | IBM Softinsa".</div>
+      <div class="step-url"><a href="https://certiport.com" target="_blank">certiport.com</a> or <a href="https://pearsonvue.com/microsoft" target="_blank">pearsonvue.com/microsoft</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">37</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Python Days 16-30 (parallel across month 2)</div>
+      <div class="step-detail">Continue Angela Yu at 1-2 days per session. Days 16-20: OOP, classes, objects, inheritance, abstraction. Days 21-25: Turtle graphics (skip if time is short, the OOP concepts matter more than turtle). Days 26-30: list comprehension, dictionary comprehension, NATO alphabet project. Commit all projects to cloud-engineering repo.</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<!-- MONTH 3 -->
+<span class="sec-label">Month 3</span>
+<h2 class="sec-title">Azure deep dive · Core services · First labs</h2>
+<div class="title-rule"></div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🔵</div>
+    <div class="cluster-title">🔵 AZ-104. Scott Duffy · <a href="https://www.udemy.com/course/70533-azure/" target="_blank">Microsoft Azure Administrator (Udemy)</a> · Runs Months 3-7</div>
+    <div class="cluster-meta">Full month · This course runs Months 3-7</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">38</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> AZ-104. Section: Manage Azure Identities and Governance</div>
+      <div class="step-detail">Azure AD users, groups, service principals, managed identities. RBAC roles: Owner, Contributor, Reader, and custom roles. Management groups, subscriptions, resource groups. Create a user, assign a role, test the permission. Delete the user after. Lab: create a service principal with Contributor role on a resource group. This is how Terraform authenticates to Azure.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/70533-azure/" target="_blank">udemy.com → AZ-104 Microsoft Azure Administrator (Scott Duffy)</a>, check LIRN first</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">39</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> AZ-104. Section: Implement and Manage Storage</div>
+      <div class="step-detail">Storage accounts, blob storage, Azure Files, storage tiers (Hot, Cool, Archive), SAS tokens, Azure AD authentication for storage, lifecycle management policies. Lab: upload a file to blob storage, generate a SAS token, access the file with the token, then revoke the SAS.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">40</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> AZ-104. Section: Deploy and Manage Azure Compute Resources</div>
+      <div class="step-detail">VMs: sizes, availability sets, availability zones. VM scale sets. Azure App Service plans and web apps. Azure Container Instances. Lab: deploy a Linux VM, SSH in, install Nginx, verify it serves a webpage. This is the same B1s VM you set up in Linux training, now you manage it as Azure compute.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">41</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> AZ-104. Section: Configure and Manage Virtual Networking</div>
+      <div class="step-detail">VNets, subnets, NSGs, Application Security Groups, VNet peering, VPN Gateway, Azure DNS. Lab: create a VNet with two subnets, deploy a VM in each, create an NSG that allows traffic between subnets but blocks internet. This is the most-tested section in AZ-104 and feeds directly into Terraform in Month 4.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">42</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> AZ-104. Section: Monitor and Backup Azure Resources</div>
+      <div class="step-detail">Azure Monitor, Log Analytics workspace, KQL basics, Azure Alerts, Azure Backup, Recovery Services vault. Lab: enable diagnostic logs on your VM, send them to a Log Analytics workspace, write a KQL query that filters logs for SSH connections from the last hour.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">43</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Python Days 31-45 (parallel)</div>
+      <div class="step-detail">Days 31-36: flash card app, NATO phonetic alphabet, password manager, these are real application projects. Days 37-40: Tkinter GUI (optional, skip if pressed for time). Days 41-45: web scraping with BeautifulSoup (useful for automating data collection tasks). Commit all projects.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">44</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> MIT Missing Semester. Lectures 1-5</div>
+      <div class="step-detail">Shell and scripting, shell tools, editors (Vim), data wrangling, command-line environment. Watch at missing.csail.mit.edu: no signup required. Do this on a light study day or a Saturday afternoon after bootcamp blocks. The Vim lecture alone is worth 2 hours. You will SSH into servers that have Vim and nothing else.</div>
+      <div class="step-url"><a href="https://missing.csail.mit.edu" target="_blank">missing.csail.mit.edu</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<!-- MONTH 4 -->
+<span class="sec-label">Month 4</span>
+<h2 class="sec-title">Terraform · First portfolio project deployed</h2>
+<div class="title-rule"></div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🟣</div>
+    <div class="cluster-title">🟣 Terraform, <a href="https://developer.hashicorp.com/terraform/tutorials/azure-get-started" target="_blank">HashiCorp Official Azure Tutorials (free)</a> + <a href="https://www.udemy.com/course/hashicorp-certified-terraform-associate-step-by-step/" target="_blank">Zeal Vora (Udemy)</a></div>
+    <div class="cluster-meta">Full month · This is your highest-value Month 4 activity</div>
+  </div>
+
+  <div class="note-box"><p><strong>Why Terraform is the most important skill in Month 4:</strong> Terraform appeared in 30% of cloud job postings in the expert analysis. More importantly, every expert video independently stated that engineers who manually click in the Azure console ("ClickOps") are not competitive. Terraform is the skill that converts your Azure knowledge into infrastructure-as-code, the way professional companies actually work. Start it now, not later.</p></div>
+
+  <div class="step">
+    <div class="step-num">45</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Terraform. HashiCorp official "Get Started. Azure" tutorial series</div>
+      <div class="step-detail">Do all 8 tutorials at developer.hashicorp.com/terraform/tutorials/azure-get-started in order: Install, Quick Start, Build Infrastructure, Change Infrastructure, Destroy Infrastructure, Define Input Variables, Query Data with Outputs, Store State Remotely. This is free and takes ~4-6 hours. Do it before the Udemy course, it gives you the mental model.</div>
+      <div class="step-url"><a href="https://developer.hashicorp.com/terraform/tutorials/azure-get-started" target="_blank">developer.hashicorp.com/terraform/tutorials/azure-get-started</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">46</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Terraform. Zeal Vora course, Sections 1-6</div>
+      <div class="step-detail">Providers, resources, variables, outputs, locals, data sources, state management. For each concept: write the code yourself, run terraform plan, review the plan output, run terraform apply, verify in Azure portal, run terraform destroy. Never copy-paste Terraform code, type it yourself.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/hashicorp-certified-terraform-associate-step-by-step/" target="_blank">udemy.com → Terraform Associate (Zeal Vora)</a> · Alt: <a href="https://www.udemy.com/course/terraform-beginner-to-advanced/" target="_blank">Ned Bellavance version</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">47</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Terraform. Zeal Vora course, Sections 7-10</div>
+      <div class="step-detail">Modules, workspaces, remote state with Azure Blob Storage backend, terraform.tfvars and variable validation. Learn to structure a Terraform project directory: /modules, /environments/dev, /environments/prod. This structure is what every professional Terraform project uses.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">48</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-lab">PROJECT</span> Portfolio Project 1. Terraform VNet + VM + NSG on Azure</div>
+      <div class="step-detail">Build this entirely in Terraform (no console clicking): (1) Resource Group, (2) VNet with 2 subnets (public/private), (3) NSG with SSH allow rule on public subnet only, (4) Linux VM in public subnet, (5) Storage Account for remote state. Push to github.com/jeremy-trinity/azure-project-01 with a professional README that includes: architecture diagram (draw.io or Excalidraw), what it does, how to deploy it, what you learned. This is the first item on your portfolio.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">49</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Python Days 46-60 (parallel)</div>
+      <div class="step-detail">Days 46-50: Selenium web automation (directly applicable to testing). Days 51-55: REST APIs, making API call with requests library. Days 56-60: Authentication, OAuth, API tokens. Day 57 (Twitter bot) shows OAuth flow, the same flow used by Azure service principals and managed identities.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">50</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> GitHub Actions, skills.github.com learning path</div>
+      <div class="step-detail">Complete the "GitHub Actions" learning path at skills.github.com. It awards a badge that appears directly on your public GitHub profile, the first CI/CD credential visible to recruiters. Takes one afternoon. Then add a simple GitHub Actions workflow to azure-project-01 that runs terraform plan on every pull request.</div>
+      <div class="step-url"><a href="https://skills.github.com" target="_blank">skills.github.com</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PHASE 2. DIFFERENTIATION
+════════════════════════════════════════════════════════════ -->
+<div class="anchor" id="phase2"></div>
+<div class="phase-banner pb2">
+  <h2>Phase 2: Differentiation (Months 5-10)</h2>
+  <p>AZ-104, Docker, Kubernetes on Azure (AKS), CI/CD pipelines, Terraform Associate certification, Security+ fundamentals. This is where your profile becomes competitive for junior cloud engineer roles. By Month 7 you have your first major certification. By Month 10 you have two.</p>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🔵</div>
+    <div class="cluster-title">🔵 Month 5: AZ-104 remaining sections · <a href="https://www.udemy.com/course/70533-azure/" target="_blank">Scott Duffy (Udemy)</a> + <a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/" target="_blank">Microsoft Learn official path</a></div>
+    <div class="cluster-meta">Full month · Exam booked for end of Month 7</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">51</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> AZ-104. Complete all remaining exam domain sections</div>
+      <div class="step-detail">Work through all AZ-104 domains you have not yet covered in Month 3: Load Balancers (ALB vs NLB equivalent in Azure), Application Gateway, Azure Firewall, ExpressRoute concepts, Azure AD Connect, Conditional Access policies. For each section: lab it in Azure portal first, then recreate in Terraform.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">52</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> AZ-104. Microsoft Learn practice assessment (target 80%+ before booking)</div>
+      <div class="step-detail">learn.microsoft.com → search "AZ-104 practice assessment". Take it, note failures, review those topics, take again. Repeat until consistently above 80%.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">53</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Python. Boto3 equivalent: Azure SDK for Python</div>
+      <div class="step-detail">Install azure-identity and azure-mgmt-compute. Write a Python script that: authenticates using a service principal, lists all VMs in a subscription, prints their name, location, and status. This is the "automator" role the YouTube expert described. Python as glue for cloud services.</div>
+      <div class="step-url"><a href="https://learn.microsoft.com/en-us/azure/developer/python/" target="_blank">learn.microsoft.com → Azure for Python developers</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🐳</div>
+    <div class="cluster-title">🐳 Month 6: Docker: <a href="https://www.udemy.com/course/learn-docker/" target="_blank">Mumshad Docker (Udemy)</a> + Kubernetes: <a href="https://www.udemy.com/course/learn-kubernetes/" target="_blank">Mumshad K8s (Udemy)</a></div>
+    <div class="cluster-meta">Docker first, Kubernetes second, in this exact order</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">54</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Docker. Mumshad Mannambeth · "Docker for Absolute Beginners"</div>
+      <div class="step-detail">What containers are vs VMs. Docker Hub. docker run, docker build, Dockerfile, docker-compose. Lab: containerise a simple Python Flask app. Build the image, run it locally, push to Docker Hub. This container becomes the app you deploy to Kubernetes in the next step.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/learn-docker/" target="_blank">udemy.com → Docker for Absolute Beginners (Mumshad Mannambeth)</a>, check LIRN first</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">55</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Kubernetes. Mumshad Mannambeth · "Kubernetes for Absolute Beginners"</div>
+      <div class="step-detail">Pods, ReplicaSets, Deployments, Services (ClusterIP, NodePort, LoadBalancer), ConfigMaps, Secrets, Namespaces. Lab: deploy your Docker container from Step 54 to a local kind or minikube cluster. Then expose it with a LoadBalancer Service. Focus on the 20% of kubectl commands you will use 80% of the time: apply, get, describe, logs, exec, delete.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/learn-kubernetes/" target="_blank">udemy.com → Kubernetes for Absolute Beginners (Mumshad Mannambeth)</a>, check LIRN first</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">56</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> KodeKloud free labs. Docker and Kubernetes tracks</div>
+      <div class="step-detail">kodekloud.com free tier includes interactive Docker and Kubernetes labs. Do these in parallel with the Udemy courses, they run in a browser, no local setup needed. Complete all labs in the "Docker Labs" and "Kubernetes Labs" free tracks.</div>
+      <div class="step-url"><a href="https://kodekloud.com" target="_blank">kodekloud.com</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🏆</div>
+    <div class="cluster-title">🏆 Month 7: AZ-104 exam · <a href="https://home.pearsonvue.com/microsoft" target="_blank">Book via Pearson VUE</a> + Terraform: <a href="https://developer.hashicorp.com/terraform/tutorials/certification-003" target="_blank">HashiCorp Cert Guide</a></div>
+    <div class="cluster-meta">Two certifications within 30 days of each other</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">57</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> John Savill AZ-104 Study Cram (YouTube)</div>
+      <div class="step-detail">Watch the full AZ-104 study cram on youtube.com/@NTFAQGuy: typically 4-6 hours. Do this the week before your AZ-104 exam. Take notes on everything you are not confident about and review those Azure portal demos before exam day.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">58</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> Book and pass AZ-104 exam</div>
+      <div class="step-detail">Book at pearsonvue.com/microsoft. Cost: ~€165. Pass score: 700/1000. This is your primary marketable certification. Update LinkedIn immediately after the badge arrives. AZ-104 on your LinkedIn profile opens applications to junior Azure administrator and junior cloud engineer roles.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">59</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> Terraform Associate. HashiCorp official study guide + practice exam</div>
+      <div class="step-detail">developer.hashicorp.com/terraform/tutorials/certification-003, official study guide, free. Study this in the 2 weeks after AZ-104. Take the official practice exam at hashicorp.com. Book and pass the Terraform Associate 003 exam (~€70). The combination of AZ-104 + Terraform Associate is what the YouTube expert specifically called "the multiplier".</div>
+      <div class="step-url"><a href="https://developer.hashicorp.com/terraform/tutorials/certification-003" target="_blank">developer.hashicorp.com/terraform/tutorials/certification-003</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🚀</div>
+    <div class="cluster-title">🚀 Months 8-10: AKS: <a href="https://www.udemy.com/course/azure-kubernetes-service-with-azure-devops-and-terraform/" target="_blank">Kalyan Reddy (Udemy)</a> · Security+: <a href="https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/" target="_blank">Professor Messer (free)</a></div>
+    <div class="cluster-meta">Expanding into containers-on-cloud and security fundamentals</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">60</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> AKS. Kalyan Reddy · "AKS with Azure DevOps and Terraform"</div>
+      <div class="step-detail">Deploy a Kubernetes cluster on Azure Kubernetes Service using Terraform. Set up Azure DevOps pipelines or GitHub Actions to deploy your containerised app to AKS on every push. This is a complete end-to-end cloud engineering workflow: code → CI/CD → containers → orchestration → cloud.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/azure-kubernetes-service-with-azure-devops-and-terraform/" target="_blank">udemy.com → AKS with Azure DevOps and Terraform (Kalyan Reddy)</a>, check LIRN first</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">61</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-lab">PROJECT</span> Portfolio Project 2. Full CI/CD pipeline to AKS</div>
+      <div class="step-detail">Build: Python Flask app → Docker image → pushed to Azure Container Registry → deployed to AKS → exposed via Azure Load Balancer → GitHub Actions pipeline that automates the entire deploy on every push to main. Infrastructure provisioned entirely with Terraform. GitHub README with architecture diagram, deployment instructions, and a Loom video walkthrough explaining every decision.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">62</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> CompTIA Security+. Professor Messer free course (all domains)</div>
+      <div class="step-detail">professormesser.com: full Security+ course is free. Study one domain per week: Threats/Attacks/Vulnerabilities, Architecture and Design, Implementation, Operations and Incident Response, Governance/Risk/Compliance. Security+ provides the security vocabulary that feeds AZ-500 (Azure Security) in Phase 3.</div>
+      <div class="step-url"><a href="https://professormesser.com" target="_blank">professormesser.com</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PHASE 3. EXPERT LAYER
+════════════════════════════════════════════════════════════ -->
+<div class="anchor" id="phase3"></div>
+<div class="phase-banner pb3">
+  <h2>Phase 3: Expert Layer (Months 11-18)</h2>
+  <p>AZ-500, AZ-305, CKA, Ansible, DevSecOps, GitHub Actions mastery. By the end of Phase 3 you are competitive for mid-level cloud engineer and cloud security engineer roles. This is where salary jumps from entry-level to €55-75k range.</p>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🔐</div>
+    <div class="cluster-title">🔐 Months 11-13: AZ-500, <a href="https://www.udemy.com/course/az-500-azure-security/" target="_blank">Alan Rodrigues (Udemy)</a> · Cram: <a href="https://www.youtube.com/@NTFAQGuy" target="_blank">John Savill YouTube</a></div>
+    <div class="cluster-meta">Highest-value cert in Phase 3 · Opens cloud security engineer track</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">63</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> AZ-500. Alan Rodrigues course (all sections)</div>
+      <div class="step-detail">Microsoft Defender for Cloud, Azure Sentinel/SIEM, Key Vault, managed identities, RBAC advanced, network security (Firewall, WAF, DDoS), container security, storage encryption. Lab every section. Security engineers are the highest-paid entry point in cloud, $200k+ according to the career tier list analysis.</div>
+      <div class="step-url"><a href="https://www.udemy.com/course/az-500-azure-security/" target="_blank">udemy.com → AZ-500 Azure Security Technologies (Alan Rodrigues)</a>, check LIRN first</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">64</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> Book and pass AZ-500 exam (~€165)</div>
+      <div class="step-detail">John Savill AZ-500 study cram the week before. Microsoft Learn practice assessment. Book via Pearson VUE. This certification combined with AZ-104 and Terraform Associate is the combination that the 6-figure roadmap video specifically identified as the winning stack.</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🏗️</div>
+    <div class="cluster-title">🏗️ Months 14-16: AZ-305: <a href="https://www.youtube.com/@NTFAQGuy" target="_blank">John Savill YouTube</a> + CKA: <a href="https://kodekloud.com/courses/cka-certification-course-certified-kubernetes-administrator/" target="_blank">KodeKloud CKA course</a></div>
+    <div class="cluster-meta">Two tracks running simultaneously, architect knowledge + Kubernetes certification</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">65</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> AZ-305. John Savill course + Microsoft Learn path</div>
+      <div class="step-detail">Identity solutions, data storage, business continuity, infrastructure, migrations, network architecture, application architecture. This is the architect-level Azure exam. Prerequisite: AZ-104 must be passed first (Microsoft requirement). Study via John Savill's AZ-305 content on YouTube (free) supplemented by Microsoft Learn official path.</div>
+      <div class="step-url"><a href="https://www.youtube.com/@NTFAQGuy" target="_blank">youtube.com/@NTFAQGuy</a>, search "AZ-305" · Official path: <a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-solutions-architect/" target="_blank">Microsoft Learn AZ-305</a></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">66</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> CKA. Certified Kubernetes Administrator</div>
+      <div class="step-detail">KodeKloud CKA course (Mumshad Mannambeth). The CKA is 100% hands-on, 17 tasks in 2 hours, entirely in kubectl. Practice on killer.sh (included with exam registration). Book at training.linuxfoundation.org. Cost: ~€370. This certification signals Kubernetes production competency to every cloud and DevOps employer.</div>
+      <div class="step-url"><a href="https://training.linuxfoundation.org" target="_blank">training.linuxfoundation.org</a> · <a href="https://kodekloud.com" target="_blank">kodekloud.com</a> CKA course</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">67</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">BOOTCAMP</span> Ansible. Introduction and Azure integration</div>
+      <div class="step-detail">Ansible playbooks, inventory, roles, Azure dynamic inventory. Write a playbook that configures a fleet of Azure VMs: install Nginx, configure firewall rules, deploy a config file. Ansible + Terraform is the combination used in the real tools section of the expert interview (Steps 60-70 in the YouTube analysis). Add to portfolio.</div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PHASE 4, 1% POSITIONING
+════════════════════════════════════════════════════════════ -->
+<div class="anchor" id="phase4"></div>
+<div class="phase-banner pb4">
+  <h2>Phase 4: 1% Positioning (Months 17-24)</h2>
+  <p>AZ-400 (DevOps Expert), Terraform deep mastery, capstone multi-service project, multi-cloud exposure (AWS basics), Georgia Tech OMSCS application. At this point you are competitive for senior cloud engineer, DevSecOps engineer, and solutions architect track roles.</p>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">⚡</div>
+    <div class="cluster-title">⚡ Months 17-18: AZ-400, <a href="https://www.youtube.com/@NTFAQGuy" target="_blank">John Savill YouTube</a> + <a href="https://learn.microsoft.com/en-us/credentials/certifications/devops-engineer/" target="_blank">Microsoft Learn official path</a></div>
+    <div class="cluster-meta">Requires AZ-104 as prerequisite · The rarest certification in the stack</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">68</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">CERTIFICATION</span> AZ-400. Azure DevOps Engineering Expert</div>
+      <div class="step-detail">CI/CD pipelines with Azure DevOps and GitHub Actions, infrastructure as code at enterprise scale, dependency management, security in DevOps pipelines, monitoring and feedback. John Savill has extensive AZ-400 content on YouTube. This is the rarest certification in the five-pillar stack, very few junior engineers have it, which is precisely why it matters.</div>
+      <div class="step-url"><a href="https://www.youtube.com/@NTFAQGuy" target="_blank">youtube.com/@NTFAQGuy</a>, search "AZ-400" · Official: <a href="https://learn.microsoft.com/en-us/credentials/certifications/devops-engineer/" target="_blank">Microsoft Learn AZ-400</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🎯</div>
+    <div class="cluster-title">🎯 Months 19-22: Capstone project + <a href="https://cs50.harvard.edu/x" target="_blank">CS50x (cs50.harvard.edu/x)</a>. Free Harvard certificate</div>
+    <div class="cluster-meta">CS50x returns here as a signal amplifier, not a foundation course</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">69</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-lab">PROJECT</span> Capstone: Full enterprise-grade cloud architecture on GitHub</div>
+      <div class="step-detail">Build a complete production-like environment entirely in Terraform: multi-region AKS cluster, Azure Front Door, Azure Container Registry, GitHub Actions multi-environment pipeline (dev/staging/prod), Azure Monitor + Log Analytics with KQL dashboards, Azure Key Vault for secrets, Microsoft Defender for Cloud enabled. Document it like a professional proposal with architecture diagrams and recorded walkthrough.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">70</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">UNIVERSITY</span> <span class="step-tag tag-free">FREE CERT</span> CS50x. Complete remaining weeks (now as signal amplifier)</div>
+      <div class="step-detail">By Month 19 your Azure and Terraform portfolio is solid. CS50x now amplifies the narrative rather than competing with it. Complete all problem sets, submit the final project (build something cloud-related, a web app deployed to Azure). Claim the free certificate at cs50.harvard.edu/x.</div>
+      <div class="step-url"><a href="https://cs50.harvard.edu/x" target="_blank">cs50.harvard.edu/x</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🎓</div>
+    <div class="cluster-title">🎓 Months 23-24: AWS: <a href="https://www.youtube.com/watch?v=NhDYbskXRgc" target="_blank">FreeCodeCamp AWS (YouTube)</a> + <a href="https://omscs.gatech.edu" target="_blank">Georgia Tech OMSCS application</a></div>
+    <div class="cluster-meta">The long-term academic credential that opens international market doors</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">71</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">UNIVERSITY</span> AWS Cloud Practitioner. FreeCodeCamp free course + exam</div>
+      <div class="step-detail">Multi-cloud exposure. AWS core services: EC2, S3, IAM, VPC, identical conceptually to Azure. FreeCodeCamp has a free full AWS Cloud Practitioner prep course on YouTube. Book the exam (~€100). Add to LinkedIn. The combination of AZ-900 + AWS Cloud Practitioner signals multi-cloud awareness without requiring deep AWS expertise.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">72</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">UNIVERSITY</span> Georgia Tech OMSCS. Application preparation</div>
+      <div class="step-detail">Review admission requirements at omscs.gatech.edu. Requirements: bachelor's degree (UoPeople on track), background in CS (CS50x, CS50P, UoPeople CS courses cover this), statement of purpose, 3 letters of recommendation, GPA. Application deadline typically in February for fall admission. Cost: under EUR 7,000 total for the full Master's degree, the most affordable accredited online CS Master's in the world.</div>
+      <div class="step-url"><a href="https://omscs.gatech.edu" target="_blank">omscs.gatech.edu</a></div>
+    </div>
+  </div>
+</div><!-- /cluster -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PILLAR IV. ADVANCED COURSES (PARALLEL TRACK)
+════════════════════════════════════════════════════════════ -->
+<div class="anchor" id="advanced"></div>
+
+<span class="sec-label" style="margin-top:3rem;">Pillar IV: Parallel track alongside the bootcamp</span>
+<h2 class="sec-title">Advanced Courses Roadmap</h2>
+<div class="title-rule"></div>
+
+<div class="note-box"><p><strong>How this section works:</strong> These 28 programs run <em>in parallel</em> with the bootcamp steps above, they are never the primary focus. Each has a suggested timing window. When a bootcamp pomodoro session finishes early, or a study day is lighter than usual, pick the course that matches your current bootcamp phase and chip away at it. None of these are commitments, they are the ideal path. Opportunities (internships, mentorships, jobs) will shift your bandwidth unpredictably. That is fine. Follow the bootcamp steps first; come back to these whenever you have room.</p></div>
+
+<!-- ── PHASE A1: Start now → Month 3 ───────────────────── -->
+<div class="phase-banner pb1" style="margin-top:2rem;">
+  <h2>Phase A1: Start now through Month 3</h2>
+  <p>Free credentials that take hours not weeks. Complete before or alongside the first bootcamp certifications. Most are single-afternoon tasks. The IBM SkillsBuild badges should be done before sending any IBM internship application.</p>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🎓</div>
+    <div class="cluster-title">🎓 <a href="https://cs50.harvard.edu/x" target="_blank">CS50x. Harvard · Introduction to Computer Science</a></div>
+    <div class="cluster-meta">Months 1-3 · Free certificate</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A1</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">HARVARD</span> <span class="step-tag tag-free">FREE CERT</span> CS50x, every Saturday, 2.5 hours, commit problem sets same day</div>
+      <div class="step-detail">C, Python, SQL, JavaScript, algorithms, data structures. Already started. Score 70%+ on all problem sets + final project → free certificate at cs50.harvard.edu/x (not edX). Final project: build something cloud-related and deploy it to Azure. Add certificate to LinkedIn the same day it arrives.</div>
+      <div class="step-url"><a href="https://cs50.harvard.edu/x" target="_blank">cs50.harvard.edu/x</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🐍</div>
+    <div class="cluster-title">🐍 <a href="https://cs50.harvard.edu/python" target="_blank">CS50P. Harvard · Introduction to Programming with Python</a></div>
+    <div class="cluster-meta">Months 1-2 · Free certificate · Run parallel with CS50x</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A2</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">HARVARD</span> <span class="step-tag tag-free">FREE CERT</span> CS50P, take during lighter UoPeople weeks alongside CS50x</div>
+      <div class="step-detail">Pure Python: functions, OOP, unit testing, file I/O, regular expressions, third-party libraries. Score 70%+ → free certificate at cs50.harvard.edu/python. Reinforces Angela Yu 100 Days and UoPeople CS 1101 simultaneously. Second free Harvard certificate at zero cost.</div>
+      <div class="step-url"><a href="https://cs50.harvard.edu/python" target="_blank">cs50.harvard.edu/python</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🐧</div>
+    <div class="cluster-title">🐧 <a href="https://linuxfoundation.org/LFS101" target="_blank">LFS101 + LFS151. Linux Foundation · Linux & Cloud Infrastructure</a></div>
+    <div class="cluster-meta">Months 1-3 · Free audit (no certificate required)</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A3</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> LFS101, alongside Imran Afzal Linux Udemy course in Months 1-2</div>
+      <div class="step-detail">Bash, file system, permissions, processes, package managers, networking tools. Audit free. No certificate needed. Add to LinkedIn About: "studying Linux with Imran Afzal on Udemy and the Linux Foundation LFS101 program." The Linux Foundation owns Kubernetes and the CKA, mentioning them before you hold the CKA signals awareness of the ecosystem.</div>
+      <div class="step-url"><a href="https://linuxfoundation.org/LFS101" target="_blank">linuxfoundation.org/LFS101</a></div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">A4</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> LFS151, alongside Azure bootcamp Months 2-3</div>
+      <div class="step-detail">IaaS, PaaS, SaaS, containers, orchestration, cloud storage, cloud networking. Direct AZ-104 conceptual companion, the vendor-neutral theory underneath the Azure-specific bootcamp content. Linux Foundation officially lists it as CKA preparation. Audit free on edX.</div>
+      <div class="step-url"><a href="https://linuxfoundation.org/LFS151" target="_blank">linuxfoundation.org/LFS151</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">💼</div>
+    <div class="cluster-title">💼 <a href="https://skillsbuild.org" target="_blank">IBM Cloud Fundamentals + DevOps Essentials. IBM SkillsBuild</a></div>
+    <div class="cluster-meta">Month 1: complete before any IBM internship application · Free Credly badges</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A5</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> <span class="step-tag tag-now">DO EARLY</span> IBM SkillsBuild. Cloud Fundamentals + DevOps Essentials learning paths</div>
+      <div class="step-detail">IBM-branded Credly badges visible on LinkedIn, verifiable by IBM hiring managers directly. Cloud fundamentals, DevOps culture, Agile, containerisation basics. Already registered at skillsbuild.org. Complete both before sending the IBM Softinsa internship application. This is the most direct possible signal to IBM that you engaged with their own platform.</div>
+      <div class="step-url"><a href="https://skillsbuild.org" target="_blank">skillsbuild.org</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">⚙️</div>
+    <div class="cluster-title">⚙️ <a href="https://skills.github.com" target="_blank">GitHub Actions + Core Learning Paths. GitHub Skills</a></div>
+    <div class="cluster-meta">Week 1: do this immediately · Free achievement badges on public profile</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A6</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> <span class="step-tag tag-now">WEEK 1</span> GitHub Actions learning path, one afternoon, badge appears on github.com/jeremy-trinity immediately</div>
+      <div class="step-detail">GitHub Actions CI/CD pipelines, code review workflows, security scanning. Achievement badges appear directly on the public GitHub profile, the profile IBM and Deloitte recruiters see before reading the CV. Fastest credibility signal available. Do it in Week 1 before any other course.</div>
+      <div class="step-url"><a href="https://skills.github.com" target="_blank">skills.github.com</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🌐</div>
+    <div class="cluster-title">🌐 <a href="https://netacad.com" target="_blank">Cisco Networking Academy. Cybersecurity + CCNA Intro to Networks</a></div>
+    <div class="cluster-meta">Months 1-2 · Free Cisco digital badges</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A7</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> Cisco NetAcad, alongside David Bombal networking Udemy sections</div>
+      <div class="step-detail">TCP/IP, subnetting, routing, VLANs, threat landscape, basic security. Free Cisco digital badges on LinkedIn. Reinforces the same material as Bombal networking from two angles, one brand-neutral (Bombal), one Cisco-badged. Complete both Cisco courses during Months 1-2 alongside bootcamp networking steps 10-14.</div>
+      <div class="step-url"><a href="https://netacad.com" target="_blank">netacad.com</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🖥️</div>
+    <div class="cluster-title">🖥️ <a href="https://missing.csail.mit.edu" target="_blank">The Missing Semester of Your CS Education. MIT CSAIL</a></div>
+    <div class="cluster-meta">Months 2-3 · Free · No certificate. MIT-quality professional tool fluency</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A8</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> MIT Missing Semester. Watch on Saturday afternoons alongside bootcamp Linux work</div>
+      <div class="step-detail">Shell scripting, Vim, SSH, debugging, profiling, Git internals, the daily tools no degree explicitly teaches. MIT created this because their own CS graduates were inefficient with basic professional tools. No certificate. Use selectively: the Vim lecture alone is worth 2 hours. You will SSH into servers that have Vim and nothing else.</div>
+      <div class="step-url"><a href="https://missing.csail.mit.edu" target="_blank">missing.csail.mit.edu</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PHASE A2: Months 4-10 ───────────────────────────── -->
+<div class="phase-banner pb2" style="margin-top:2rem;">
+  <h2>Phase A2: Months 4 to 10</h2>
+  <p>Official Microsoft Learn paths alongside certification study. Vendor-neutral cloud and DevOps credentials from CNCF and Linux Foundation. The IBM DevOps Professional Certificate is the single highest-priority credential in this phase. It is addressed directly to your primary internship target.</p>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">☁️</div>
+    <div class="cluster-title">☁️ <a href="https://learn.microsoft.com" target="_blank">AZ-900 + AZ-104 Microsoft Learn Official Paths. Microsoft</a></div>
+    <div class="cluster-meta">Month 2 (AZ-900) · Month 5 (AZ-104) · Free learning paths + free practice assessments</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A9</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">MICROSOFT</span> AZ-900 Microsoft Learn path. Run alongside Scott Duffy Udemy in Month 2</div>
+      <div class="step-detail">Complete the free official AZ-900 learning path at learn.microsoft.com in parallel with the Scott Duffy course. The official AZ-900 practice assessment (free, written by exam team) is the most accurate readiness gauge before booking. Completing it earns a free Microsoft Learn digital badge for LinkedIn.</div>
+      <div class="step-url"><a href="https://learn.microsoft.com" target="_blank">learn.microsoft.com</a> → search "AZ-900 learning path"</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">A10</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-boot">MICROSOFT</span> AZ-104 Microsoft Learn all six official paths. Run alongside Scott Duffy Udemy Month 5</div>
+      <div class="step-detail">Complete all six AZ-104 learning paths at learn.microsoft.com in parallel with bootcamp study. Every exercise in real Azure (not sandboxes). Official AZ-104 practice assessment: score below 75% = two more weeks study; 75%+ combined with 85%+ Duffy practice tests = book the exam. Introduces KQL which feeds AZ-500 and Azure Monitor work.</div>
+      <div class="step-url"><a href="https://learn.microsoft.com" target="_blank">learn.microsoft.com</a> → search "AZ-104 learning paths"</div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">☸️</div>
+    <div class="cluster-title">☸️ <a href="https://linuxfoundation.org/LFS158" target="_blank">LFS158 + LFS162. CNCF / Linux Foundation · Kubernetes + DevOps/SRE</a></div>
+    <div class="cluster-meta">LFS158: Month 4-5 · LFS162: Month 5-6 · Both free · LFS158 includes free certificate</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A11</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE CERT</span> LFS158, alongside Mumshad Kubernetes Udemy course Month 6</div>
+      <div class="step-detail">Pods, deployments, services, persistent volumes, scaling, namespaces. CNCF, the organization that owns Kubernetes, created LFS158. Free certificate included. Run in parallel with Mumshad Kubernetes Absolute Beginners (bootcamp Step 55), both cover the same material. CNCF certificate is more credible for Kubernetes knowledge than a third-party cert because it comes from the organization that maintains Kubernetes.</div>
+      <div class="step-url"><a href="https://linuxfoundation.org/LFS158" target="_blank">linuxfoundation.org/LFS158</a></div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">A12</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> LFS162 DevOps + SRE, alongside Azure DevOps bootcamp content Month 5-6</div>
+      <div class="step-detail">CI/CD, GitOps, SRE principles (error budgets, SLOs, toil reduction), monitoring, incident response, IaC basics. Direct AZ-400 companion from a vendor-neutral perspective. The SRE theory here feeds the Prometheus + Grafana monitoring work in bootcamp Phase 2. Audit free, no application required.</div>
+      <div class="step-url"><a href="https://linuxfoundation.org/LFS162" target="_blank">linuxfoundation.org/LFS162</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🤖</div>
+    <div class="cluster-title">🤖 <a href="https://linkedin.com/learning" target="_blank">Career Essentials in Generative AI. Microsoft + LinkedIn Learning</a></div>
+    <div class="cluster-meta">Any light day · 4-5 hours total · Free LinkedIn + Microsoft co-branded certificate</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A13</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE CERT</span> Microsoft + LinkedIn AI certificate, do on any weekday with lighter than usual load</div>
+      <div class="step-detail">Generative AI fundamentals, responsible AI, Microsoft Copilot. Certificate appears permanently on LinkedIn under the Microsoft + LinkedIn co-brand. 4-5 hours total. Directly relevant for Deloitte T&T AI-facing consulting roles and IBM Azure OpenAI Service integration conversations. One of the fastest credibility additions available.</div>
+      <div class="step-url"><a href="https://linkedin.com/learning" target="_blank">linkedin.com/learning</a> → search "Career Essentials in Generative AI"</div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🧠</div>
+    <div class="cluster-title">🧠 <a href="https://cs50.harvard.edu/ai" target="_blank">CS50 AI. Harvard · Introduction to Artificial Intelligence with Python</a></div>
+    <div class="cluster-meta">Months 6-8 · Free certificate · Take after CS50x is complete</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A14</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">HARVARD</span> <span class="step-tag tag-free">FREE CERT</span> CS50 AI, fourth and final free Harvard certificate</div>
+      <div class="step-detail">Search algorithms, knowledge representation, machine learning, neural networks, NLP. Aligns with UoPeople CS 2401 Artificial Intelligence in Term 6: both courses reinforce each other. Uses Python throughout, ties directly to Azure AI Services. Score 70%+ → free certificate at cs50.harvard.edu/ai. Four Harvard certificates total, all at zero cost.</div>
+      <div class="step-url"><a href="https://cs50.harvard.edu/ai" target="_blank">cs50.harvard.edu/ai</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">📡</div>
+    <div class="cluster-title">📡 <a href="https://deeplearning.ai/short-courses" target="_blank">Short Courses. DeepLearning.AI · Andrew Ng</a></div>
+    <div class="cluster-meta">Month 3 onwards · 1-3 hours each · Free certificates · Pick relevant ones only</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A15</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> DeepLearning.AI short courses, background enrichment, never compete with bootcamp time</div>
+      <div class="step-detail">LLMs, prompt engineering for developers, LangChain, MLOps, vector databases. Each 1-3 hours. Andrew Ng co-founded Google Brain, my name is recognized everywhere in ML. Pick by relevance to current bootcamp phase: for Azure OpenAI integration → ChatGPT API course + LangChain. For ML monitoring → MLOps course. Background only. Never at the expense of bootcamp or UoPeople time.</div>
+      <div class="step-url"><a href="https://deeplearning.ai/short-courses" target="_blank">deeplearning.ai/short-courses</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">📐</div>
+    <div class="cluster-title">📐 <a href="https://coursera.org/specializations/mathematics-machine-learning" target="_blank">Mathematics for Machine Learning Specialisation. Imperial College London</a></div>
+    <div class="cluster-meta">Months 5-8 · Apply Coursera financial aid immediately · 3 courses</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A16</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">FINANCIAL AID</span> Imperial College London. Apply Coursera financial aid now, study from Month 5</div>
+      <div class="step-detail">Linear algebra, multivariate calculus, PCA. Imperial College London is top-10 globally. Prerequisite for Stanford ML Specialisation in Phase A4. Apply financial aid at coursera.org/specializations/mathematics-machine-learning immediately, approval takes ~15 days. State: "building cloud engineering and ML infrastructure skills targeting enterprise cloud engineering roles." Three courses, one per mathematical domain.</div>
+      <div class="step-url"><a href="https://coursera.org/specializations/mathematics-machine-learning" target="_blank">coursera.org/specializations/mathematics-machine-learning</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🏢</div>
+    <div class="cluster-title">🏢 <a href="https://coursera.org/professional-certificates/ibm-applied-devops-engineering" target="_blank">Applied DevOps Engineering Professional Certificate. IBM (14 courses)</a></div>
+    <div class="cluster-meta">Months 6-10 · Apply Coursera financial aid immediately · Highest-priority credential in Phase A2</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A17</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">FINANCIAL AID</span> <span class="step-tag tag-now">HIGH PRIORITY</span> IBM Professional Certificate. Apply financial aid now, study from Month 6</div>
+      <div class="step-detail">CI/CD, TDD, containers, Kubernetes, OpenShift, Terraform, monitoring, SRE. 14 courses under the IBM Professional Certificate badge. An IBM Professional Certificate on the CV is the most direct possible signal to IBM hiring teams. Apply financial aid at coursera.org/professional-certificates/ibm-applied-devops-engineering immediately. Explicitly mention IBM as your target employer in the application. This is the single highest-strategic-value credential in all 28 programs.</div>
+      <div class="step-url"><a href="https://coursera.org/professional-certificates/ibm-applied-devops-engineering" target="_blank">coursera.org/professional-certificates/ibm-applied-devops-engineering</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PHASE A3: Months 11-18 ──────────────────────────── -->
+<div class="phase-banner pb3" style="margin-top:2rem;">
+  <h2>Phase A3: Months 11 to 18</h2>
+  <p>Stanford algorithms, Google cybersecurity, Harvard SQL, Georgia Tech OMSCS prep series. These deepen the technical foundations at the same time as the bootcamp expert layer (AZ-500, AZ-305, CKA). The Stanford certificate and Google Professional Certificate are the two highest-credibility additions in this phase for US employer recognition.</p>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🗄️</div>
+    <div class="cluster-title">🗄️ <a href="https://cs50.harvard.edu/sql" target="_blank">CS50 SQL. Harvard · Introduction to Databases</a></div>
+    <div class="cluster-meta">Months 5-6 · Free certificate · Aligns with UoPeople CS 2203 Databases 1</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A18</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">HARVARD</span> <span class="step-tag tag-free">FREE CERT</span> CS50 SQL, study alongside UoPeople CS 2203 Databases in Term 4</div>
+      <div class="step-detail">SQL, database design, querying, optimisation, PostgreSQL, MySQL, SQLite. Third free Harvard certificate. SQL is tested in AZ-104 monitoring (KQL is a SQL dialect), in AZ-500 security operations, and in every IBM and Deloitte technical interview. Score 70%+ → free certificate at cs50.harvard.edu/sql. Most directly applicable Harvard certificate to the Azure cloud engineering path.</div>
+      <div class="step-url"><a href="https://cs50.harvard.edu/sql" target="_blank">cs50.harvard.edu/sql</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🔒</div>
+    <div class="cluster-title">🔒 <a href="https://coursera.org/professional-certificates/google-cybersecurity" target="_blank">Cybersecurity Professional Certificate. Google (8 courses)</a></div>
+    <div class="cluster-meta">Months 7-10 · Apply Coursera financial aid at start of Month 7 · 8 courses</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A19</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">FINANCIAL AID</span> Google Professional Certificate. Apply financial aid at start of Month 7, complements AZ-500</div>
+      <div class="step-detail">Network security, Linux for security, Python automation, SIEM with Splunk and Chronicle, intrusion detection, incident response, threat analysis. 8 courses under the Google Professional Certificate badge. Directly complements AZ-500 study in bootcamp Phase 3 (Months 11-13). Google Professional Certificate recognized by US tech employers. Apply financial aid the moment Month 7 starts, 15-day approval window means applying early gives access right when you need it.</div>
+      <div class="step-url"><a href="https://coursera.org/professional-certificates/google-cybersecurity" target="_blank">coursera.org/professional-certificates/google-cybersecurity</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🔢</div>
+    <div class="cluster-title">🔢 <a href="https://coursera.org/specializations/algorithms" target="_blank">Algorithms Specialisation. Stanford University (4 courses)</a></div>
+    <div class="cluster-meta">Months 8-12 · Apply Coursera financial aid at Month 8 start · Stanford certificate</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A20</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">FINANCIAL AID</span> Stanford Algorithms. Apply financial aid at start of Month 8, run alongside UoPeople CS 3304</div>
+      <div class="step-detail">Divide and conquer, graph search, dynamic programming, shortest paths, greedy algorithms, NP-completeness. Taught by Tim Roughgarden, Stanford CS Professor. Stanford brand on CV at zero cost. Reinforces UoPeople CS 3304 Analysis of Algorithms, studying both simultaneously means each course explains the concepts the other leaves implicit. Also direct preparation for Georgia Tech OMSCS admission assessment.</div>
+      <div class="step-url"><a href="https://coursera.org/specializations/algorithms" target="_blank">coursera.org/specializations/algorithms</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🏫</div>
+    <div class="cluster-title">🏫 <a href="https://omscs.gatech.edu/preparing-yourself-omscs" target="_blank">OMSCS Prep Series: CS1301 + CS1331 + CS1332. Georgia Tech</a></div>
+    <div class="cluster-meta">Months 9-12 · Audit free · Pay for CS1332 certificate only if budget allows</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A21</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE AUDIT</span> Georgia Tech campus course materials, direct OMSCS admission preparation</div>
+      <div class="step-detail">CS1301 Python, CS1331 OOP with Java, CS1332 Data Structures and Algorithms, these are the actual Georgia Tech campus course materials. Georgia Tech officially recommends this series for OMSCS preparation. CS1332 (Data Structures) is the course OMSCS admission assessors reference. Audit all three free on edX. Pay for CS1332 certificate if budget allows, the one certificate that most clearly signals OMSCS admission readiness. Puts Georgia Tech on the profile now, years before applying.</div>
+      <div class="step-url"><a href="https://omscs.gatech.edu/preparing-yourself-omscs" target="_blank">omscs.gatech.edu/preparing-yourself-omscs</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">⚡</div>
+    <div class="cluster-title">⚡ <a href="https://ocw.mit.edu" target="_blank">6.006 Introduction to Algorithms. MIT OpenCourseWare</a></div>
+    <div class="cluster-meta">Months 10-12 · Free · No certificate · Use selectively as reference</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A22</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> MIT 6.006. Use as reference alongside Stanford Algorithms, not as a standalone sprint</div>
+      <div class="step-detail">Sorting, graph algorithms, dynamic programming, shortest paths, intractability. MIT campus level, no certificate. Do not attempt to complete 6.006 in full. Watch MIT lectures when you want a second high-quality explanation of something covered in Stanford Algorithms or UoPeople CS 3304. Stanford Algorithms (certificate) + MIT 6.006 (quality enrichment) + UoPeople CS 3304 (academic credit) together cover algorithms at an unusually deep level for a junior engineer.</div>
+      <div class="step-url"><a href="https://ocw.mit.edu" target="_blank">ocw.mit.edu</a> → search "6.006 Introduction to Algorithms"</div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🏃</div>
+    <div class="cluster-title">🏃 <a href="https://certiprof.com" target="_blank">Scrum Foundations Professional Certificate (SFPC). CertiProf</a></div>
+    <div class="cluster-meta">Any week · 2 hours total · Free certificate · Deloitte-specific signal</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A23</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE CERT</span> Scrum SFPC, do in any single afternoon, free, takes 2 hours</div>
+      <div class="step-detail">Scrum framework, sprints, backlog management, daily standups, sprint planning, retrospectives, Product Owner, Scrum Master roles. Deloitte Technology and Transformation runs all client projects using Agile and Scrum, this certificate is a direct Deloitte hiring signal. Register and complete at certiprof.com in any lighter afternoon. Fastest Deloitte-specific credibility addition available in the entire plan.</div>
+      <div class="step-url"><a href="https://certiprof.com" target="_blank">certiprof.com</a> → "Scrum Foundations Professional Certificate"</div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🐘</div>
+    <div class="cluster-title">🐘 <a href="https://freecodecamp.org/learn/relational-database" target="_blank">Relational Database Certification, freeCodeCamp</a></div>
+    <div class="cluster-meta">Months 10-18 · 1-2 hours/week background · Free certification · ~300 hours total</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A24</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE CERT</span> freeCodeCamp Relational DB, long-term background project, 1-2 hours per week</div>
+      <div class="step-detail">PostgreSQL, Bash scripting, advanced SQL, Git, all in an interactive browser Linux terminal. ~300 hours total. Do 1-2 hours per week in parallel with Phase 3 study rather than as a focused sprint. PostgreSQL reinforces CS50 SQL and UoPeople Databases. The interactive Linux terminal environment reinforces command-line skills daily. freeCodeCamp certifications carry real weight with US employers, including IBM and Google. Completely free, no application required.</div>
+      <div class="step-url"><a href="https://freecodecamp.org/learn/relational-database" target="_blank">freecodecamp.org/learn/relational-database</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PHASE A4: Year 2+ ───────────────────────────────── -->
+<div class="phase-banner pb4" style="margin-top:2rem;">
+  <h2>Phase A4: Year 2 and beyond</h2>
+  <p>Stanford Machine Learning, Meta Back-End Engineering, Georgia Tech OMSCS Master's, CMU systems enrichment. These belong to the period after core cloud certifications are earned and you are in or approaching employment. They are not rushed, they are the long game that takes the profile from junior engineer to architect-level candidate over Years 2-5.</p>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🧮</div>
+    <div class="cluster-title">🧮 <a href="https://coursera.org/specializations/machine-learning-introduction" target="_blank">Machine Learning Specialisation. Stanford University · Andrew Ng (3 courses)</a></div>
+    <div class="cluster-meta">Year 2 · Requires Imperial Math for ML first · Apply Coursera financial aid when ready</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A25</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">FINANCIAL AID</span> Stanford ML, prerequisite: Imperial Math for ML (A16) must be complete first</div>
+      <div class="step-detail">Supervised learning, unsupervised learning, neural networks, recommender systems, reinforcement learning. Taught by Andrew Ng, the definitive ML foundation course globally, recognized by every major US tech company. Without the Imperial College London math foundations, this becomes memorisation rather than understanding. Apply financial aid at coursera.org/specializations/machine-learning-introduction when starting Year 2. Positions for Azure Machine Learning, Azure OpenAI Service, and ML-adjacent cloud infrastructure roles.</div>
+      <div class="step-url"><a href="https://coursera.org/specializations/machine-learning-introduction" target="_blank">coursera.org/specializations/machine-learning-introduction</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">⚙️</div>
+    <div class="cluster-title">⚙️ <a href="https://coursera.org/professional-certificates/meta-back-end-developer" target="_blank">Back-End Developer Professional Certificate. Meta (9 courses)</a></div>
+    <div class="cluster-meta">Year 2 · After core cloud certifications are complete · Apply Coursera financial aid</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A26</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-cert">FINANCIAL AID</span> Meta Back-End, adds backend engineering depth to cloud infrastructure profile</div>
+      <div class="step-detail">Django, REST APIs, SQL, cloud deployment, API design, version control, testing. 9 courses under Meta Professional Certificate. The combination of cloud platform engineering (bootcamp) and backend application development (this) is what full-platform engineers hold. Meta brand carries strong recognition in US tech. Django and REST API skills apply directly to Azure App Service and Azure API Management work from the bootcamp. Apply financial aid at coursera.org/professional-certificates/meta-back-end-developer in Year 2.</div>
+      <div class="step-url"><a href="https://coursera.org/professional-certificates/meta-back-end-developer" target="_blank">coursera.org/professional-certificates/meta-back-end-developer</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🎓</div>
+    <div class="cluster-title">🎓 <a href="https://omscs.gatech.edu" target="_blank">Online Master of Science in Computer Science. Georgia Tech OMSCS</a></div>
+    <div class="cluster-meta">Year 3-5 target · Apply after UoPeople BSc ~60% complete + GPA 3.7+ · Under  total</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A27</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-uni">MASTER'S</span> Georgia Tech OMSCS, the long-game credential that opens the international market</div>
+      <div class="step-detail">Same degree as on-campus Georgia Tech MSCS, 100% online, under EUR 7,000 total. Top-5 CS globally. Strongest specialisations for this career: Machine Learning (Azure AI work, Azure OpenAI infrastructure) or Computing Systems (deepens infrastructure knowledge). Apply after UoPeople BSc is ~60% complete and GPA 3.7+. Target: Year 3-4 application window. The OMSCS prep series (A21) builds the admission case now. Georgia Tech OMSCS significantly strengthens the international career profile.</div>
+      <div class="step-url"><a href="https://omscs.gatech.edu" target="_blank">omscs.gatech.edu</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster acc-block is-collapsed">
+  <div class="cluster-header acc-head">
+    <div class="cluster-icon">🖥️</div>
+    <div class="cluster-title">🖥️ <a href="https://csapp.cs.cmu.edu" target="_blank">15-213 Introduction to Computer Systems. Carnegie Mellon University</a></div>
+    <div class="cluster-meta">Year 2+ · Free · No certificate · Optional depth enrichment only</div>
+  </div>
+  <div class="step">
+    <div class="step-num">A28</div>
+    <div class="step-body">
+      <div class="step-action"><span class="step-tag tag-free">FREE</span> CMU 15-213. Use selectively as reference, never as a primary track</div>
+      <div class="step-detail">Memory, caching, virtual memory, networking at the systems level, the internals of how computers actually work that most engineers never study. Referenced constantly in systems engineering communities. No certificate, no enrolment, no cost. Use when container isolation, memory management, or network stack internals arise in other work, the 15-213 lectures provide the deepest explanation available anywhere. Not required for the career plan. The optional ceiling for intellectual depth.</div>
+      <div class="step-url"><a href="https://csapp.cs.cmu.edu" target="_blank">csapp.cs.cmu.edu</a> · Textbook: "Computer Systems: A Programr's Perspective"</div>
+    </div>
+  </div>
+</div>
+
+<div class="note-box" style="margin-top:2rem;"><p><strong>How to use this document day-to-day:</strong> Each morning, identify which step you are on. Look at how many bootcamp pomodoros you have today (from the weekly schedule). One focused pomodoro typically covers one step, or part of a longer step. Do not skip steps. Do not attempt to run more than 2 steps in parallel unless they are explicitly marked parallel. When you finish a step, mark it done. When you start a new step, write it in your learning-log GitHub commit for that day.</p></div>
+
+</div><!-- /page-wrap -->
+
+<footer>
+  <div class="footer-brand">Jeremy Trinity. Private</div>
+  <div class="footer-meta">Program Map · Step-by-step curriculum · Not linked from public site &nbsp;|&nbsp; <a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a></div>
+</footer>
+
+<script>
+const btn=document.getElementById('themeBtn');
+const lbl=document.getElementById('themeLabel');
+const root=document.documentElement;
+function applyTheme(t){root.setAttribute('data-theme',t);lbl.textContent=t==='dark'?'Light':'Dark';try{localStorage.setItem('theme_pm',t);}catch(e){}}
+try{const s=localStorage.getItem('theme_pm');if(s)applyTheme(s);}catch(e){}
+btn.addEventListener('click',()=>{applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+</script>
+
+<script>
+/* ── ACCORDION ── */
+(function () {
+  document.querySelectorAll('.acc-block').forEach(function (block) {
+    var head = block.querySelector('.acc-head');
+    if (!head) return;
+    // Inject chevron as last flex child
+    var chev = document.createElement('span');
+    chev.className = 'acc-chev';
+    chev.setAttribute('aria-hidden', 'true');
+    chev.textContent = '▾';
+    head.appendChild(chev);
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    function toggle(e) {
+      if (e.target && (e.target.tagName === 'A' || (e.target.closest && e.target.closest('a')))) return;
+      var collapsed = block.classList.toggle('is-collapsed');
+      head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
+  });
+})();
+</script>
+<script>
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

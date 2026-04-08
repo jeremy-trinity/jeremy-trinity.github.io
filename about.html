@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who I Am, Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F9F8F5; --surface: #FFFFFF; --surface2: #F2F1EE;
+  --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.14);
+  --ink: #1A1A18; --ink2: #52514E; --ink3: #8A8880;
+  --accent: #2A5F8F; --accent-lt: #EBF2F9; --accent2: #1D4A70;
+  --ch1: #2A5F8F; --ch1-lt: #EBF2F9;
+  --ch2: #0F6E56; --ch2-lt: #E1F5EE;
+  --ch3: #854F0B; --ch3-lt: #FAEEDA;
+  --ch4: #534AB7; --ch4-lt: #EEEDFE;
+  --ch5: #A32D2D; --ch5-lt: #FAEAEA;
+  --ch6: #0F7B63; --ch6-lt: #E2F5EF;
+  --warn: #7B2D00; --warn-bg: #FFF4ED;
+}
+[data-theme="dark"] {
+  --bg: #111110; --surface: #1C1C1A; --surface2: #242422;
+  --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+  --ink: #F0EFEB; --ink2: #A8A7A3; --ink3: #6B6A67;
+  --accent: #5B9FD4; --accent-lt: #1A2A38; --accent2: #7BBDE8;
+  --ch1-lt: #1A2A38; --ch2-lt: #0D2A22; --ch3-lt: #2A1A08;
+  --ch4-lt: #1E1A38; --ch5-lt: #2A1010; --ch6-lt: #0D2820; --warn-bg: #2A1208;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; padding-top: 60px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent2); }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 1.5rem; gap: 1.5rem; z-index: 100; }
+.nav-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--ink); }
+.nav-links { display: flex; gap: 1.2rem; margin-left: auto; align-items: center; }
+.nav-links a { font-size: 0.8rem; font-weight: 500; color: var(--ink2); text-transform: uppercase; letter-spacing: 0.05em; }
+.nav-links a:hover { color: var(--accent); }
+button#themeBtn { background: none; border: 1px solid var(--border2); border-radius: 20px; padding: 5px 12px; font-size: .8rem; cursor: pointer; color: var(--ink2); }
+
+/* HERO */
+.hero { max-width: 780px; margin: 0 auto; padding: 3.5rem 1.5rem 2rem; }
+.hero-eyebrow { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink3); margin-bottom: .6rem; }
+.hero-name { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: .5rem; }
+.hero-sub { font-size: 1.05rem; color: var(--ink2); margin-bottom: 1.5rem; max-width: 580px; line-height: 1.6; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+.hero-tag { font-size: .73rem; font-weight: 600; padding: 4px 11px; border-radius: 20px; border: 1px solid var(--border2); color: var(--ink2); background: var(--surface); }
+
+/* TIMELINE STRIP */
+.timeline-strip { max-width: 780px; margin: 0 auto 2.5rem; padding: 0 1.5rem; }
+.ts-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink3); margin-bottom: .8rem; }
+.ts-row { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: .3rem; }
+.ts-item { flex-shrink: 0; min-width: 110px; padding: .7rem .9rem; border: 1px solid var(--border); background: var(--surface); font-size: .75rem; }
+.ts-item:first-child { border-radius: 8px 0 0 8px; }
+.ts-item:last-child { border-radius: 0 8px 8px 0; }
+.ts-item + .ts-item { border-left: none; }
+.ts-item.active { border-color: var(--accent); background: var(--accent-lt); }
+.ts-year { font-size: .68rem; color: var(--ink3); margin-bottom: .15rem; }
+.ts-what { font-weight: 600; color: var(--ink); line-height: 1.3; }
+
+/* SECTION */
+.section { max-width: 780px; margin: 0 auto 1.5rem; padding: 0 1.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: .9rem; padding-bottom: .5rem; border-bottom: 2px solid var(--border); }
+
+/* CHAPTER BANNER */
+.ch-banner { border-radius: 10px; padding: 1.1rem 1.4rem; margin-bottom: 1.1rem; border: 1px solid var(--border); }
+.ch-banner h2 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: .25rem; }
+.ch-banner p { font-size: .86rem; color: var(--ink2); line-height: 1.6; }
+.ch1 { background: var(--ch1-lt); border-color: rgba(42,95,143,.2); }
+.ch1 h2 { color: var(--ch1); }
+.ch2 { background: var(--ch2-lt); border-color: rgba(15,110,86,.2); }
+.ch2 h2 { color: var(--ch2); }
+.ch3 { background: var(--ch3-lt); border-color: rgba(133,79,11,.2); }
+.ch3 h2 { color: var(--ch3); }
+.ch4 { background: var(--ch4-lt); border-color: rgba(83,74,183,.2); }
+.ch4 h2 { color: var(--ch4); }
+.ch5 { background: var(--ch5-lt); border-color: rgba(163,45,45,.2); }
+.ch5 h2 { color: var(--ch5); }
+.ch6 { background: var(--ch6-lt); border-color: rgba(15,123,99,.2); }
+.ch6 h2 { color: var(--ch6); }
+
+/* CARD */
+.card { border: 1px solid var(--border); border-radius: 10px; background: var(--surface); overflow: hidden; margin: .8rem 0; }
+.card-head { display: flex; align-items: flex-start; gap: .8rem; padding: 1rem 1.2rem; cursor: pointer; user-select: none; }
+.card-head:hover { background: var(--surface2); }
+.card-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.card-title { font-size: .92rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.card-sub { font-size: .75rem; color: var(--ink3); margin-top: .12rem; }
+.card-body { padding: 0 1.2rem 1.2rem; }
+
+/* PROSE */
+.prose { font-size: .88rem; color: var(--ink2); line-height: 1.75; margin-bottom: .85rem; }
+.prose:last-child { margin-bottom: 0; }
+.prose strong { color: var(--ink); font-weight: 600; }
+
+/* PULL QUOTE */
+.pull { border-left: 3px solid var(--accent); padding: .7rem 1rem; margin: 1rem 0; background: var(--accent-lt); border-radius: 0 6px 6px 0; font-size: .87rem; color: var(--ink2); font-style: italic; line-height: 1.6; }
+
+/* TRAIT ROW */
+.trait-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin: .8rem 0; }
+@media(max-width:520px){ .trait-grid { grid-template-columns: 1fr; } }
+.trait-card { border: 1px solid var(--border); border-radius: 8px; padding: .75rem 1rem; background: var(--surface2); }
+.trait-name { font-size: .8rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+.trait-desc { font-size: .78rem; color: var(--ink2); line-height: 1.5; }
+
+/* FACT ROW */
+.fact-row { display: flex; gap: .6rem; padding: .45rem 0; border-bottom: 1px solid var(--border); font-size: .84rem; color: var(--ink2); align-items: flex-start; }
+.fact-row:last-child { border-bottom: none; }
+.fact-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ink3); min-width: 110px; flex-shrink: 0; padding-top: 2px; }
+.fact-val { line-height: 1.5; }
+
+/* LESSON BOX */
+.lesson { background: var(--surface2); border-radius: 8px; padding: .85rem 1rem; margin: .8rem 0; font-size: .84rem; color: var(--ink2); line-height: 1.6; border: 1px solid var(--border); }
+.lesson-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--ink3); margin-bottom: .3rem; }
+
+/* ACCORDION */
+.card.is-collapsed .card-body { display: none; }
+.acc-chev { margin-left: auto; font-size: .85rem; color: var(--ink3); transition: transform .2s; flex-shrink: 0; }
+.card.is-collapsed .acc-chev { transform: rotate(-90deg); opacity: .65; }
+
+/* FOOTER */
+footer { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem; border-top: 1px solid var(--border); text-align: center; font-size: .78rem; color: var(--ink3); }
+.back-link { font-size: .78rem; color: var(--ink3); display: inline-flex; align-items: center; gap: .35rem; margin-bottom: 1.2rem; text-decoration: none; transition: color .2s; }
+.back-link:hover { color: var(--accent); }
+
+/* ── Language toggle ── */
+.lang-btn { margin-left: 0.4rem; }
+.lang-pt { display: none !important; }
+[data-lang="pt"] .lang-en { display: none !important; }
+[data-lang="pt"] .lang-pt { display: inline !important; }
+[data-lang="pt"] p.lang-pt,
+[data-lang="pt"] div.lang-pt,
+[data-lang="pt"] li.lang-pt,
+[data-lang="pt"] span.lang-pt.block,
+[data-lang="pt"] td.lang-pt { display: block !important; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Jeremy Trinity</span>
+  <div class="nav-links">
+    <a href="index.html" data-en="Overview" data-pt="Visão Geral">Overview</a>
+        <button class="theme-btn lang-btn" id="langBtn" aria-label="Toggle language"><span>🌐</span><span id="langLabel">PT</span></button>
+    <button id="themeBtn" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'">◑ Theme</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <a class="back-link" href="index.html" data-en="← Back to overview" data-pt="← Voltar à visão geral">← Back to overview</a>
+  <div class="hero-eyebrow">Professional background &amp; career context</div>
+  <h1 class="hero-name">Jeremy Trinity</h1>
+  <p class="hero-sub">Born in Portugal. Raised in a family business. Educated by necessity. Formed in France. Currently building a cloud engineering career through the five-pillar system while enrolled in a BSc Computer Science at UoPeople.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">Portuguese and French native</span>
+    <span class="hero-tag">Working since age 9</span>
+    <span class="hero-tag">Self-financed education</span>
+    <span class="hero-tag">Physiotherapy trained</span>
+    <span class="hero-tag">Fast food operations manager</span>
+    <span class="hero-tag">IT network administrator</span>
+    <span class="hero-tag">6 service brands under one company</span>
+    <span class="hero-tag">UoPeople BSc CS, active</span>
+    <span class="hero-tag">Azure cloud engineering, in training</span>
+    <span class="hero-tag">Fernando Pessoa volunteer, admin and international relations</span>
+    <span class="hero-tag">55 kg lost since May 2025, and counting</span>
+  </div>
+</div>
+
+<!-- TIMELINE STRIP -->
+<div class="timeline-strip">
+  <div class="ts-label">Life chapters in order</div>
+  <div class="ts-row">
+    <div class="ts-item">
+      <div class="ts-year">Age 9 onwards</div>
+      <div class="ts-what">Family business</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">IT + Health courses</div>
+      <div class="ts-what">Level 3, 4, 5</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">University attempt 1</div>
+      <div class="ts-what">CS Engineering PT</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">First internship</div>
+      <div class="ts-what">IT network mgmt</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">Health training</div>
+      <div class="ts-what">Physiotherapy</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">France</div>
+      <div class="ts-what">Clinic + Burger King</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">Fernando Pessoa</div>
+      <div class="ts-what">Volunteer + 2nd degree</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">Entrepreneur</div>
+      <div class="ts-what">tdoc · tlegal · etc.</div>
+    </div>
+    <div class="ts-item active">
+      <div class="ts-year">Now</div>
+      <div class="ts-what">UoPeople + Five Pillars</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 1 ═══════════════════════ -->
+<div class="section">
+  <div class="ch-banner ch1">
+    <h2 data-en="Chapter 1: The foundation. Work before school." data-pt="Capítulo 1: A base. O trabalho antes da escola.">Chapter 1: The foundation. Work before school.</h2>
+    <p data-en="From age 9, working full-time in the family business. Unpaid. This chapter explains where the work ethic comes from and why formal education kept getting interrupted." data-pt="Desde os 9 anos, a trabalhar a tempo inteiro no negócio familiar. Sem salário. Este capítulo explica de onde vem a ética de trabalho e por que razão a educação formal foi sendo interrompida.">From age 9, working full-time in the family business. Unpaid. This chapter explains where the work ethic comes from and why formal education kept getting interrupted.</p>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🏪</div>
+      <div>
+        <div class="card-title" data-en="The family business" data-pt="O negócio familiar">The family business</div>
+        <div class="card-sub" data-en="Café, bakery, pastry shop, multiple bars. Full operations from age 9." data-pt="Café, padaria, pastelaria, vários bares. Operações completas desde os 9 anos.">Café, bakery, pastry shop, multiple bars. Full operations from age 9.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">I started working at age 9, helping my parents run a business that evolved from a café-bakery-pastry shop into a multi-venue operation with several bars running simultaneously. This was not occasional weekend help. It was full operational involvement across every role the business required: front of house, stock management, customer service, logistics, and anything else that needed doing.</p>
+      <p class="prose">The critical detail is that this was entirely unpaid. I was a full-time worker in a family business who received no wage, which meant I could not save money, could not fund my own studies, and could not take a paid job elsewhere because the family business already occupied that time.</p>
+      <p class="prose">By the time I was old enough to pursue university education seriously, the financial trap was already set. I could work full-time, or I could study. I could not do both and pay my own way, because the full-time work that should have given me savings was unpaid family labour.</p>
+      <div class="lesson">
+        <div class="lesson-label" data-en="What this chapter reveals" data-pt="O que este capítulo revela">What this chapter reveals</div>
+        <span data-en="Work ethic is not something I developed. It is something I was raised inside. The instinct to show up, take on whatever role is needed, and operate at full effort regardless of the recognition or compensation is not a professional skill for me. It is the default mode I have operated in since childhood." data-pt="A ética de trabalho não é algo que desenvolvi. É algo no qual cresci. O instinto de aparecer, assumir qualquer papel necessário e operar com esforço máximo independentemente do reconhecimento ou compensação não é uma competência profissional para mim. É o modo predefinido em que operei desde a infância.">Work ethic is not something I developed. It is something I was raised inside. The instinct to show up, take on whatever role is needed, and operate at full effort regardless of the recognition or compensation is not a professional skill for me. It is the default mode I have operated in since childhood.
+      </div>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🎓</div>
+      <div>
+        <div class="card-title" data-en="The education attempts, Portugal, first round" data-pt="As tentativas de educação em Portugal, primeira ronda">The education attempts, Portugal, first round</div>
+        <div class="card-sub" data-en="IT Level 3, Health Level 4, Fernando Pessoa Level 5, English course, physiotherapy, CS Engineering" data-pt="TI Nível 3, Saúde Nível 4, Fernando Pessoa Nível 5, curso de inglês, fisioterapia, Engenharia Informática">IT Level 3, Health Level 4, Fernando Pessoa Level 5, English course, physiotherapy, CS Engineering</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">I completed a Level 3 certificate in IT, then a Level 4 in health, then a Level 5 at Universidade Fernando Pessoa, alongside an English course. I then enrolled in physiotherapy and, separately, in a Computer Science in Engineering degree.</p>
+      <p class="prose">The engineering degree ended when my parents separated. With both parents no longer running the household together, the financial structure that had enabled me to at least get to university collapsed. I faced a concrete choice: pay for transport to reach the university, or pay tuition fees. There was not enough money for both.</p>
+      <p class="prose">The situation became physically gruelling. I was required to make the daily round trip regardless, effectively to prove I was at home, which meant I was commuting full-time to a university where I could not be graded because I had not paid tuition. I was sleeping for a few hours, then leaving again before the next day started. I describe arriving home, showering, and leaving immediately to begin another day. The commute itself became the occupation, and the degree became a formality I was attending but could not complete.</p>
+      <div class="pull" data-en="I waited until my younger brother's First Communion before leaving. I did not want to disrupt that for the family. Then I left for France." data-pt="Esperei pela Primeira Comunhão do meu irmão mais novo antes de partir. Não queria perturbar isso para a família. Depois parti para França.">I waited until my younger brother's First Communion before leaving. I did not want to disrupt that for the family. Then I left for France.
+      </div>
+      <div class="lesson">
+        <div class="lesson-label">What this chapter reveals</div>
+        The decision to leave was not impulsive. I identified a point of personal meaning, my brother's First Communion, and waited for it before making the move. That pattern, recognising a right moment rather than acting on frustration alone, appears repeatedly in my decisions.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 2 ═══════════════════════ -->
+<div class="section">
+  <div class="ch-banner ch2">
+    <h2 data-en="Chapter 2: The first internship and the health chapter" data-pt="Capítulo 2: O primeiro estágio e o capítulo da saúde">Chapter 2: The first internship and the health chapter</h2>
+    <p data-en="Before France: an IT internship that finished in two days, and a physiotherapy training placement that almost became a career." data-pt="Antes de França: um estágio de TI que terminou em dois dias, e um estágio de fisioterapia que quase se tornou uma carreira.">Before France: an IT internship that finished in two days, and a physiotherapy training placement that almost became a career.</p>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">💻</div>
+      <div>
+        <div class="card-title" data-en="The IT internship" data-pt="O estágio de TI">The IT internship</div>
+        <div class="card-sub" data-en="Finished 60 days of planned work on day 2. Ended up managing the network for an entire business group." data-pt="Terminou 60 dias de trabalho planeado no dia 2. Acabou a gerir a rede de todo um grupo empresarial.">Finished 60 days of planned work on day 2. Ended up managing the network for an entire business group.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">For my first IT internship, I deliberately chose a company I believed was technically advanced, specifically because I wanted to be challenged and gain maximum experience. By day 2, I had completed everything the company had planned for me across the entire 30 or 60 day placement. They were, in my words, shocked by how efficient I was. They had nothing else planned for me.</p>
+      <p class="prose">Rather than treating this as a failed placement, I absorbed the situation and moved into managing the IT network for the company group. The business operated across two or three physically adjacent companies, so when a problem arose at one location I moved between them on foot to resolve it. I became the de facto IT administrator for the entire group without that role ever being formally assigned.</p>
+      <div class="lesson">
+        <div class="lesson-label">What this chapter reveals</div>
+        When the environment cannot keep up with me, I expand the scope of the role myself rather than waiting for someone to assign me more work. This is not arrogance. It is an inability to be idle when there is clearly useful work available.
+      </div>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🏥</div>
+      <div>
+        <div class="card-title" data-en="The physiotherapy chapter" data-pt="O capítulo da fisioterapia">The physiotherapy chapter</div>
+        <div class="card-sub" data-en="Opening the clinic alone. Patients returning after discharge just to say thank you. A director who offered me a job at the director's salary." data-pt="A abrir a clínica sozinho. Pacientes que regressavam após a alta apenas para agradecer. Um diretor que me ofereceu um emprego ao salário do diretor.">Opening the clinic alone. Patients returning after discharge just to say thank you. A director who offered me a job at the director's salary.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">During my health course training, I reached a point where I was opening the clinic independently and running most treatments autonomously. The physiotherapy director would come in at the end of a treatment to add a final touch, rather than leading the session. I was effectively practicing at a clinical level while technically still a student.</p>
+      <p class="prose">I describe this as where I first understood that helping people and being recognized for that help was something that genuinely fulfillled me. Patients came back after completing their treatment cycles, not because they needed anything, but specifically to say thank you and to tell me how much better they felt. I treated a wide range of people, including foreigners, judges, and various professionals who came through the clinic.</p>
+      <p class="prose">At the end of my second-year placement, the director offered me a permanent position and asked what I would need to stay. I told him not to say no before hearing the number, and then named the director's own salary. I said it with a laugh when retelling the story, but the logic was serious: I had no interest in finishing my education at the high school level and wanted to continue studying, ideally to the same level as the director, who held a licenciatura and was simultaneously completing a master's degree, teaching, managing some pensions, and running the clinic. That person was my inspiration at that point in my life.</p>
+      <div class="pull" data-en="I treated everybody the same regardless of status. Judges and foreigners received the same care as anyone else. The patients noticed and came back to say so." data-pt="Tratei toda a gente da mesma forma independentemente do estatuto. Juízes e estrangeiros receberam os mesmos cuidados que qualquer outro. Os pacientes notaram e voltaram para o dizer.">I treated everybody the same regardless of status. Judges and foreigners received the same care as anyone else. The patients noticed and came back to say so.
+      </div>
+      <div class="lesson">
+        <div class="lesson-label">What this chapter reveals</div>
+        I am most motivated when the work is visible and the impact on the person in front of me is direct. Abstract outcomes do not drive me the same way immediate, human-level recognition does. This is worth understanding when thinking about what kind of cloud engineering work will keep me engaged long-term.
+      </div>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🔗</div>
+      <div>
+        <div class="card-title" data-en="The IT and health combined course" data-pt="O curso combinado de TI e saúde">The IT and health combined course</div>
+        <div class="card-sub" data-en="A systems project helping a clinic move from paper to digital" data-pt="Um projeto de sistemas a ajudar uma clínica a passar do papel para o digital">A systems project helping a clinic move from paper to digital</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">Between the two main chapters, I completed a course that combined IT and health. As part of it, I built a system to help a clinic transition from paper-based records to a digital operation. This was not a theoretical project. It was a working tool deployed into a real clinic environment.</p>
+      <p class="prose">This is the origin of a recurring pattern: I see a manual process, I understand it from the inside because I have worked inside it, and I build something to replace it. The Burger King loss-reduction system later follows the same logic. So does the student services platform I built in Portugal. The approach is consistent across domains.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 3 ═══════════════════════ -->
+<div class="section">
+  <div class="ch-banner ch3">
+    <h2 data-en="Chapter 3: France. The clinic, the opening, and the system I built." data-pt="Capítulo 3: França. A clínica, a abertura e o sistema que construí.">Chapter 3: France. The clinic, the opening, and the system I built.</h2>
+    <p data-en="A physiotherapy clinic with an ethics problem I could not overlook, a Burger King restaurant that needed opening, a team managed through multiple operational crises, and a loss-reduction system designed from scratch that generated real savings." data-pt="Uma clínica de fisioterapia com um problema ético que não consegui ignorar, um restaurante Burger King que precisava de ser aberto, uma equipa gerida através de múltiplas crises operacionais, e um sistema de redução de perdas concebido do zero que gerou poupanças reais.">A physiotherapy clinic with an ethics problem I could not overlook, a Burger King restaurant that needed opening, a team managed through multiple operational crises, and a loss-reduction system designed from scratch that generated real savings.</p>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🏥</div>
+      <div>
+        <div class="card-title" data-en="The physiotherapy clinic in France" data-pt="A clínica de fisioterapia em França">The physiotherapy clinic in France</div>
+        <div class="card-sub" data-en="Left because the ethics of what was happening there were not acceptable to me" data-pt="Saí porque a ética do que se passava lá não era aceitável para mim">Left because the ethics of what was happening there were not acceptable to me</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">When I arrived in France, one of the first opportunities was working in a physiotherapy clinic. Given my training in Portugal, this was a natural fit. I had clinical-level experience, had worked with patients autonomously, and understood the environment well enough to be useful from day one.</p>
+      <p class="prose">What I found inside the clinic was a set of practices I considered ethically wrong. The details are my to share or withhold at my discretion, but the conclusion was clear: I could not continue working in that environment and remain someone I respected. I left.</p>
+      <div class="lesson">
+        <div class="lesson-label">What this chapter reveals</div>
+        I have a line. When a situation crosses it, I do not rationalise or wait to see if it improves. I exit cleanly. The trait that made me leave the clinic is the same trait that makes me reliable once trust is established.
+      </div>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🍔</div>
+      <div>
+        <div class="card-title" data-en="Burger King, from the opening through to operations manager" data-pt="Burger King, desde a abertura até gerente de operações">Burger King, from the opening through to operations manager</div>
+        <div class="card-sub" data-en="Normandy. Full team management. Multiple accidents handled. P&amp;L responsibility." data-pt="Normandia. Gestão completa da equipa. Múltiplos acidentes geridos. Responsabilidade P&amp;L.">Normandy. Full team management. Multiple accidents handled. P&amp;L responsibility.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">I joined Burger King as a new restaurant was being opened in Normandy. I went through the full opening training process, learning every station and every system the company used to launch a new location. From there I moved through the operational structure until I was managing the restaurant as operations manager, responsible for the full team and the financial results.</p>
+      <p class="prose">The management role was not ceremonial. I dealt with workplace accidents, which in French labour law carry specific notification, documentation, and liability-reduction obligations. I handled these from the operational side, making sure the right steps were taken correctly and on time. Managing incidents at this level requires someone who can keep their head when the environment is disrupted, follow a defined process under pressure, and produce paperwork that holds up later.</p>
+      <p class="prose">I ran a team working across shifts in a fast food operation, managing staffing gaps, equipment failures, peak-hour pressure, customer flow, and food cost control simultaneously. In a second language. In a country I had moved to as an adult.</p>
+      <div class="lesson">
+        <div class="lesson-label">What this chapter reveals</div>
+        Operations management at this level is constant triage in an environment where the margin for error is tight and the team is looking to the manager to set the tone. I ran this operation in French, in Normandy, and kept it functional across multiple incidents.
+      </div>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">📉</div>
+      <div>
+        <div class="card-title">The loss-reduction system</div>
+        <div class="card-sub">Observed the waste. Built a tracking system. Generated measurable savings.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">Running the restaurant day to day, I noticed patterns in where money was being lost. Not fraud, not dramatic waste, but the slow consistent leakage that happens when a system has no visibility over its own numbers. Product prepared and not sold. Inventory mismatches. Small discrepancies compounding across dozens of daily transactions.</p>
+      <p class="prose">I built a system to track it. The system gave the operation visibility over where losses were occurring, at what time of day, and for which product categories. Once the loss points were visible, they were addressable. The savings were real and measurable.</p>
+      <p class="prose">This is the third time the same pattern appears in my record. The clinic digitisation project during my IT-health course. The loss-reduction system at Burger King. The student services companies built later from the same logic. I see a broken process from the inside and I build the fix. The domain changes. The method does not.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 4 ═══════════════════════ -->
+<div class="section">
+  <div class="ch-banner ch4">
+    <h2>Chapter 4: Fernando Pessoa, the volunteer years, and the companies they created</h2>
+    <p>Multiple years working without pay at Universidade Fernando Pessoa, helping with administration, international relations, and student families. The problems I watched students struggle with became the brief. Six service brands under one company were the answer.</p>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🏫</div>
+      <div>
+        <div class="card-title">The volunteer work at Fernando Pessoa</div>
+        <div class="card-sub">Administration, international relations, and direct support for students and families, unpaid, for multiple years</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">After returning from France, I became deeply involved with Universidade Fernando Pessoa as a volunteer. Not as a student helping other students informally, but in the institutional work of the university itself: administration, and the international relations function that handles how the university connects with foreign students, partner institutions, and the bureaucratic machinery that international enrolment requires.</p>
+      <p class="prose">I also worked directly with students and their families. This meant sitting with people trying to navigate a system: Portuguese bureaucracy, healthcare access, legal paperwork, documentation. Navigating it is genuinely difficult even for people who grew up inside it. For international students and families arriving without that context, it was frequently overwhelming.</p>
+      <p class="prose">I did this work without pay, for years. The university gained a volunteer who understood both the institutional side and the human side. The students gained someone who would sit with them and work through the problem. I gained a detailed, ground-level understanding of every specific way the system was failing the people inside it.</p>
+      <p class="prose">What came out of those years was not a single business idea. It was a full enterprise: a complex of six service brands operating under the same company, each one a direct answer to a specific failure I had watched the system produce. Tdoc for medical consultations, Tlegal backed by practising lawyers for legal matters, Europamedical for healthcare consulting, Tdental focused on recruitment, PortugalDelivery handling logistics, and Ttrad providing translation services. I had not just seen the gaps. I had mapped each one and built a dedicated solution for it.</p>
+      <div class="lesson">
+        <div class="lesson-label">What this chapter reveals</div>
+        I am not someone who observed a problem and thought about building a business. I am someone who lived inside the problem for years, at no personal benefit, and then built six separate operational structures to address it. By the time the complex existed, I already knew exactly what each brand needed to do.
+      </div>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🏢</div>
+      <div>
+        <div class="card-title">The six service brands: Tdoc, Tlegal, Europamedical, Tdental, PortugalDelivery, Ttrad</div>
+        <div class="card-sub">Six operational brands under one company umbrella, each built around a completely different service area</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">Each brand addressed one specific failure I had watched the system produce during my years at Fernando Pessoa.</p>
+      <div class="fact-row">
+        <span class="fact-label">Tdoc</span>
+        <span class="fact-val">Medical consultations. Connecting students and families with the right medical contacts and helping them navigate the consultation process in a foreign healthcare system.</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">Tlegal</span>
+        <span class="fact-val">Legal services backed by practising lawyers. Real legal representation and guidance for students and families dealing with Portuguese legal and administrative processes.</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">Europamedical</span>
+        <span class="fact-val">Healthcare consulting. Broader advisory on navigating European medical systems, referrals, and access to the right care pathways across borders.</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">Tdental</span>
+        <span class="fact-val">Recruitment. Matching students and professionals with opportunities, filling a specific gap in how international arrivals connected with the local job and services market.</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">PortugalDelivery</span>
+        <span class="fact-val">Logistics. Delivery and movement of goods for students and families who needed something transported but lacked the local infrastructure to arrange it themselves.</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">Ttrad</span>
+        <span class="fact-val">Translation services. Professional translation for documents, communications, and legal or medical materials, removing the language barrier at every point where it cost people the most.</span>
+      </div>
+      <p class="prose" style="margin-top:.9rem;">These were real operations, not paper entities. Each brand had its own structure and service logic, all operating under the same company umbrella. They had clients, they had revenue, and they were generating traction. The problems were real, the solutions were functional, and the market existed.</p>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">📛</div>
+      <div>
+        <div class="card-title">The collapse</div>
+        <div class="card-sub">Approximately 100,000 euros in losses. What I take from it.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">The companies failed. The total loss across the portfolio was approximately 100,000 euros. This is not a small figure for someone operating without external investment or a safety net.</p>
+      <p class="prose">The businesses had identified real problems and built functional answers to them. The failure was not at the level of concept or individual execution. It was at the level of building a business infrastructure capable of scaling what was working, while managing the financial pressure that growth-stage operations generate before they become self-sustaining.</p>
+      <p class="prose">I take full responsibility for it. I do not distribute blame across external conditions. The companies were mine, the decisions were mine, and the outcome was mine.</p>
+      <div class="lesson">
+        <div class="lesson-label">What this chapter reveals</div>
+        A 100,000 euro loss that someone absorbs without externalising it is data about their relationship with accountability. I know what went wrong. I do not need to be managed around it. And building six real operational service brands from a volunteer role, with no initial capital, is a different kind of data entirely.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 5 ═══════════════════════ -->
+<div class="section">
+  <div class="ch-banner ch5">
+    <h2>Chapter 5: What the record actually shows</h2>
+    <p>Six chapters of evidence. Three patterns that appear consistently, regardless of the domain or the circumstances.</p>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">⚖️</div>
+      <div>
+        <div class="card-title">Commitment as a measurable output</div>
+        <div class="card-sub">55 kg lost since May 8, 2025, and still going</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">Since May 8, 2025, I have been following a strict, structured healthy meal plan. No breaks, no "I'll restart Monday", no renegotiation with myself when it became inconvenient. As of writing, I have lost 55 kilograms and is continuing.</p>
+      <p class="prose">This is not mentioned here as a personal detail. It is mentioned as a proxy for every other discipline in my life. Weight loss at this scale, sustained for this long, without external accountability structures like a trainer or a check-in program, requires the same thing that the five-pillar system requires, and the same thing that a multi-year unpaid volunteer role required: the ability to show up at full effort on a timeline longer than motivation lasts.</p>
+      <div class="pull">The people who lose 55 kilograms and keep going are not the people who were "really motivated" for a few weeks. They are the people who have a different relationship with commitment than most.</div>
+      <div class="lesson">
+        <div class="lesson-label">Why this matters for what comes next</div>
+        If you are evaluating whether I will follow through on a training plan, a shadowing program, or a structured development track, this is your reference point. I do not abandon things that matter to me.
+      </div>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🔁</div>
+      <div>
+        <div class="card-title">The pattern: I build what I see from the inside</div>
+        <div class="card-sub">IT clinic digitisation. BK loss-reduction system. Five student services companies. The same logic every time.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">Three times across completely different industries and contexts, I have watched a broken or absent system operate, understood it from the inside because I was working inside it, and then built something to fix it. The IT-health course project that digitised a clinic. The loss-reduction system at Burger King. The six service brands built directly from years of watching international students navigate a failing system.</p>
+      <p class="prose">Cloud engineering is a natural continuation of this. The skill is seeing where the system fails and building the thing that fixes it. The domain changes. The method does not.</p>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🔧</div>
+      <div>
+        <div class="card-title">The operating mode: scope expands, recognition not required</div>
+        <div class="card-sub">The internship finished in two days. The clinic opened independently. The network managed without being formally assigned.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">In the IT internship, the company had planned 60 days of work for me. I completed it in two. Rather than wait, I absorbed the environment and started managing the group's full network infrastructure without anyone formally assigning me to that role.</p>
+      <p class="prose">In physiotherapy, I was opening the clinic independently and running treatments without supervision before my placement was formally complete. The director came in at the end of sessions to add a final touch, not to lead them.</p>
+      <p class="prose">When the scope of what I have been asked to do falls short of what is available and useful, I expand the scope myself. I do not wait for permission, and I do not require recognition to continue. The work gets done because it needs to be done.</p>
+      <div class="lesson">
+        <div class="lesson-label">The practical implication</div>
+        In a shadowing or observational context, this means I will bring more than passive attendance. I will arrive having done background reading, I will notice things, and I will connect what I am seeing to what I already know.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 6 ═══════════════════════ -->
+<div class="section">
+  <div class="ch-banner ch6">
+    <h2>Chapter 6: Now. What is different this time.</h2>
+    <p>UoPeople removes every logistical obstacle that blocked the previous university attempts. The five-pillar system replaces unfocused effort with a structured plan. The institutional track is defined. The question is no longer what to do. It is how fast to execute it.</p>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🎓</div>
+      <div>
+        <div class="card-title">Why UoPeople works when the others did not</div>
+        <div class="card-sub">No transport costs. No fixed schedule. No tuition-or-commute dilemma. Fully English, internationally recognized.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">Every previous university attempt failed for the same reason: the physical and financial requirements of attending a Portuguese university on-site were incompatible with the financial situation I was in. Transport cost money. Fixed schedules conflicted with work. Tuition and commuting competed for the same insufficient budget. The academic ability was there. The logistics were not.</p>
+      <p class="prose">University of the People operates asynchronously, online, and in English. There is no transport cost. There is no fixed lecture schedule that collides with shift work. The obstacles that ended every previous attempt do not exist here. This is not a different I trying harder. It is the same I with a format that does not actively fight me.</p>
+      <p class="prose">The degree is a BSc Computer Science, taught in English, recognized internationally. For someone targeting cloud engineering careers at enterprise level, an English-language degree carries direct international relevance.</p>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🏛️</div>
+      <div>
+        <div class="card-title">The five-pillar system</div>
+        <div class="card-sub">A self-designed curriculum running alongside the degree. Not assigned. Built and executed voluntarily.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">Alongside the UoPeople degree, I have designed and is executing a five-pillar development system. The pillars cover cloud engineering certification training, the academic degree program, language skills, structured coursework in adjacent technical areas, and a knowledge program. Each pillar has a roadmap, a schedule, and a tracking system.</p>
+      <p class="prose">This is not something a course or institution asked me to build. I designed it because the degree alone does not produce the profile I am targeting, and unfocused self-study does not either. The system exists because I saw the gap and built the structure to close it. The same pattern, in a different domain.</p>
+      <p class="prose">The weekly schedule allocates 100 or more hours per month across the five pillars, running alongside work and the UoPeople coursework. This is not aspirational planning. It is an operating system I am currently inside.</p>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🎯</div>
+      <div>
+        <div class="card-title">The target</div>
+        <div class="card-sub">Cloud engineering at enterprise level. The right institution, real work, and long-term growth.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">My immediate target is a cloud engineering role at enterprise level, at a company where the work is real, the environment is professional, and there is genuine room to grow within the same organization over the long term.</p>
+      <p class="prose">My approach to career development is not about chasing the next company. It is about finding the right institution, contributing at a level that earns trust, and growing within that structure over multiple years.</p>
+      <p class="prose">The five-pillar system is calibrated toward the certifications, academic credentials, and language skills that an enterprise cloud engineering role requires. Everything is sequenced to arrive at that position as prepared as possible.</p>
+      <div class="pull">The plan is specific, sequenced, and rooted in what I can actually execute. That precision is itself part of the profile.</div>
+    </div>
+  </div>
+
+  <div class="card is-collapsed">
+    <div class="card-head">
+      <div class="card-icon">🏠</div>
+      <div>
+        <div class="card-title">Why remote is a structural requirement, not a preference</div>
+        <div class="card-sub">A medical situation that has interrupted multiple careers. Cloud engineering solves the problem permanently.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="prose">I have a medical condition that periodically makes it impossible for me to leave my home or get out of bed. I am not disclosing the specifics here and is not seeking sympathy. What matters practically is the consequence: every career I have built that required physical presence at a fixed location has eventually been disrupted or ended by it.</p>
+      <p class="prose">The physiotherapy path ended. The Burger King operations role in France ended. The ability to sustain any career that requires me to be physically present at a specific location on a predictable schedule is directly undermined by a condition I cannot always predict or control. I am tired of rebuilding from scratch each time this happens.</p>
+      <p class="prose">Cloud engineering, delivered remotely, is the first career path where this stops being a structural problem. On a day when I cannot get out of bed, I can still open a terminal. The work does not require me to be anywhere specific. This is not a convenience preference. It is the difference between a career that can sustain and one that eventually collapses again for the same reason.</p>
+      <div class="lesson">
+        <div class="lesson-label">What this means in practice</div>
+        This is not a weakness disclosure. It is context for understanding why remote-first is not optional for me. Any employer or partner who understands this is not taking on a risk. They are taking on someone who has a very clear reason to make the remote model work, and who has built every element of my current plan around that constraint.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Jeremy Trinity · <a href="index.html">Five-Pillar Overview</a> &nbsp;|&nbsp; <a href="location-roadmap.html">Location Map</a> &nbsp;|&nbsp; <a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a></p>
+</footer>
+
+<script>
+(function () {
+  document.querySelectorAll('.card').forEach(function (card) {
+    var head = card.querySelector('.card-head');
+    if (!head) return;
+    var chev = document.createElement('span');
+    chev.className = 'acc-chev';
+    chev.textContent = '▾';
+    head.appendChild(chev);
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    function toggle(e) {
+      if (e.target && (e.target.tagName === 'A' || (e.target.closest && e.target.closest('a')))) return;
+      card.classList.toggle('is-collapsed');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
+  });
+})();
+</script>
+<script>
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

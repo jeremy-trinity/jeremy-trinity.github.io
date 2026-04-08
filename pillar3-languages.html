@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar III: Language Acquisition | Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F9F8F5;--surface:#FFFFFF;--surface2:#F2F1EE;--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--ink:#1A1A18;--ink2:#52514E;--ink3:#8A8880;--accent:#2A5F8F;--accent-lt:#EBF2F9;--accent2:#1D4A70;--p1:#2A5F8F;--p2:#0F6E56;--p3:#854F0B;--p4:#534AB7;--p5:#A32D2D;--p1-lt:#EBF2F9;--p2-lt:#E1F5EE;--p3-lt:#FAEEDA;--p4-lt:#EEEDFE;--p5-lt:#FCEBEB;}
+[data-theme="dark"]{--bg:#111110;--surface:#1C1C1A;--surface2:#252523;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--ink:#EEECEA;--ink2:#AAAAAA;--ink3:#777775;--accent:#5B9BD5;--accent-lt:#1A2A3A;--accent2:#7AB3E0;--p1:#5B9BD5;--p2:#4ecdb4;--p3:#FAC775;--p4:#AFA9EC;--p5:#F09595;--p1-lt:#1A2A3A;--p2-lt:#0A2820;--p3-lt:#2A1E0A;--p4-lt:#1A1830;--p5-lt:#2A1010;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;transition:background .3s,color .3s;padding-top:60px;}
+a{color:var(--accent);text-decoration:none;}a:hover{color:var(--accent2);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:background .3s,border-color .3s;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:0.8rem;font-weight:500;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-btn{background:none;border:1px solid var(--border2);border-radius:20px;padding:.25rem .75rem;cursor:pointer;font-size:.75rem;font-weight:500;color:var(--ink2);display:flex;align-items:center;gap:.35rem;font-family:'Inter',sans-serif;transition:all .2s;}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);}
+.sun{color:#F5A623;font-size:.85rem;display:none;}.moon{font-size:.85rem;}
+[data-theme="dark"] .sun{display:inline;}[data-theme="dark"] .moon{display:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:20px;height:1.5px;background:var(--ink);display:block;}
+section{padding:4rem 2rem;}
+.si{max-width:920px;margin:0 auto;}
+table{width:100%;border-collapse:collapse;margin:1rem 0 1.4rem;font-size:.84rem;}
+th{background:var(--ink);color:var(--surface);padding:.5rem .7rem;text-align:left;font-weight:600;font-size:.79rem;}
+td{padding:.42rem .7rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:var(--surface2);}
+footer{background:var(--surface2);border-top:1px solid var(--border);padding:2rem;text-align:center;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
+.footer-meta{font-size:.78rem;color:var(--ink3);}
+.footer-meta a{color:var(--accent);}
+@media(max-width:900px){.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem;z-index:199;}.hamburger{display:flex;}}
+
+.page-hero{background:var(--surface);border-bottom:1px solid var(--border);padding:3.5rem 2rem 2.5rem;}
+.page-hero-inner,.page-wrap{max-width:960px;margin:0 auto;}
+.page-wrap{padding:2.5rem 2rem 5rem;}
+.back-link{font-size:.78rem;color:var(--ink3);display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1.2rem;}
+.back-link:hover{color:var(--accent);}
+.pillar-badge{display:inline-block;font-size:.7rem;font-weight:700;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem;background:#FAEEDA;color:#633806;}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:.8rem;}
+.ph-sub{font-size:.95rem;color:var(--ink2);max-width:720px;line-height:1.7;margin-bottom:1.5rem;}
+.ph-flags{font-size:1.6rem;letter-spacing:.3rem;margin-bottom:1.5rem;}
+.ph-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.ph-stat-val{font-size:1.35rem;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;}
+.ph-stat-label{font-size:.7rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;}
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2.5rem;}
+.toc-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:.8rem;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.2rem .5rem;}
+.toc-grid a{font-size:.82rem;color:var(--accent);padding:.12rem 0;}
+.anchor{display:block;height:72px;margin-top:-72px;visibility:hidden;}
+.sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;margin-top:3rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:600;color:var(--ink);margin-bottom:.35rem;}
+.title-rule{width:36px;height:2px;background:var(--accent);margin-bottom:1.5rem;}
+/* Track blocks */
+.track-block{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:1.8rem 0;}
+.track-header{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.4rem;border-bottom:1px solid var(--border);}
+.track-flag{font-size:1.8rem;flex-shrink:0;}
+.track-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--ink);}
+.track-level{font-size:.76rem;font-weight:600;color:var(--accent);margin-top:.15rem;}
+.track-body{padding:1.3rem;}
+/* Phase rows inside track */
+.phase-row{margin:.9rem 0 1.3rem;}
+.phase-lbl{display:inline-block;font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);background:var(--accent-lt);padding:.18rem .6rem;border-radius:10px;margin-bottom:.6rem;}
+.phase-desc{font-size:.85rem;color:var(--ink2);line-height:1.6;margin-bottom:.6rem;}
+/* Course card */
+.ccard{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.95rem 1.1rem;margin:.5rem 0;}
+.ccard-title{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;}
+.ccard-meta{font-size:.73rem;color:var(--ink3);margin-bottom:.4rem;}
+.ccard-body{font-size:.83rem;color:var(--ink2);line-height:1.55;}
+.ccard-url{font-size:.74rem;color:var(--ink3);margin-top:.4rem;}
+.ccard-url a{color:var(--accent);}
+/* Section list */
+.slist{margin:.4rem 0 .7rem;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:.2rem;}
+.slist li{font-size:.83rem;color:var(--ink2);padding:.26rem .6rem .26rem .9rem;border-left:2px solid var(--border);line-height:1.5;}
+.slist li.hi{border-left-color:var(--accent);color:var(--ink);font-weight:500;}
+/* Boxes */
+.hbox{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:.9rem 1.1rem;margin:.65rem 0;}
+.hbox p{font-size:.87rem;color:var(--ink2);margin:0;line-height:1.6;}
+.hbox strong{color:var(--accent);}
+.wbox{background:var(--p3-lt);border:1px solid var(--p3);border-radius:10px;padding:.85rem 1.1rem;margin:.65rem 0;}
+.wbox p{font-size:.83rem;color:var(--ink2);margin:0;line-height:1.6;}
+.wbox strong{color:var(--p3);}
+.abox{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:.9rem 1.1rem;margin:.65rem 0;}
+.abox h4{font-size:.77rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:.35rem;}
+.abox ul{padding-left:1.1rem;margin:.2rem 0;}
+.abox li{font-size:.83rem;color:var(--ink2);margin:.16rem 0;line-height:1.5;}
+.abox p{font-size:.83rem;color:var(--ink2);margin:.12rem 0;line-height:1.55;}
+.fres{display:flex;gap:.7rem;padding:.65rem .85rem;background:var(--p2-lt);border:1px solid var(--p2);border-radius:8px;margin:.4rem 0;}
+.fres .fi{font-size:.9rem;flex-shrink:0;margin-top:2px;}
+.fres p{font-size:.82rem;color:var(--ink2);margin:0;line-height:1.5;}
+.fres a{color:var(--p2);}
+/* Stagger table */
+.stagger-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.82rem;}
+.stagger-table th{background:var(--ink);color:var(--surface);padding:.44rem .65rem;text-align:left;font-weight:600;font-size:.76rem;}
+.stagger-table td{padding:.38rem .65rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+.stagger-table tr:nth-child(even) td{background:var(--surface2);}
+.stagger-table tr:last-child td{border-bottom:none;}
+/* Weekly schedule */
+.schedule-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.8rem;margin:1.1rem 0;}
+.schedule-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;}
+.schedule-card h3{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;}
+.schedule-card p{font-size:.8rem;color:var(--ink2);margin:0;line-height:1.5;}
+/* Milestone timeline */
+.milestone{display:flex;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);}
+.milestone:last-child{border-bottom:none;}
+.ms-month{font-size:.72rem;font-weight:700;color:var(--accent);min-width:72px;padding-top:2px;flex-shrink:0;}
+.ms-body{flex:1;}
+.ms-title{font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;}
+.ms-detail{font-size:.81rem;color:var(--ink2);line-height:1.5;}
+.milestone-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;padding:.85rem 1.1rem;margin:1.2rem 0;}
+/* Language cards for 10-language map */
+.lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.85rem;margin:1.2rem 0;}
+.lang-card{border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;background:var(--surface);}
+.lang-card:hover{border-color:var(--accent);}
+.lc-top{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:.6rem;}
+.lc-flag{font-size:1.6rem;flex-shrink:0;line-height:1;}
+.lc-name{font-size:.95rem;font-weight:600;color:var(--ink);}
+.lc-tier{font-size:.68rem;font-weight:700;padding:.15rem .55rem;border-radius:6px;margin-top:.2rem;display:inline-block;}
+.tier1{background:var(--p1-lt);color:var(--p1);}
+.tier2{background:var(--p3-lt);color:var(--p3);}
+.lc-level{font-size:.76rem;color:var(--accent);font-weight:600;margin-bottom:.4rem;}
+.lc-body{font-size:.82rem;color:var(--ink2);line-height:1.55;}
+/* App reference table */
+.app-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.82rem;}
+.app-table th{background:var(--ink);color:var(--surface);padding:.44rem .65rem;font-weight:600;font-size:.75rem;text-align:left;}
+.app-table td{padding:.38rem .65rem;border-bottom:1px solid var(--border);color:var(--ink2);}
+.app-table tr:nth-child(even) td{background:var(--surface2);}
+.app-table tr:last-child td{border-bottom:none;}
+.free-pill{font-size:.65rem;font-weight:600;padding:.12rem .5rem;border-radius:5px;background:var(--p2-lt);color:var(--p2);}
+/* divider */
+.wk-div{border:none;border-top:1px dashed var(--border);margin:1.1rem 0;}
+@media(max-width:700px){.toc-grid{grid-template-columns:1fr;}.ph-stats{gap:1.1rem;}.lang-grid{grid-template-columns:1fr;}.schedule-grid{grid-template-columns:1fr 1fr;}}
+
+/* ── ACCORDION ─────────────────────────────────── */
+.acc-head { cursor: pointer; user-select: none; }
+.acc-chev { margin-left: auto; font-size: 1.05rem; opacity: 0.38; transition: transform .25s ease, opacity .25s ease; flex-shrink: 0; padding-left: .6rem; pointer-events: none; }
+.acc-block.is-collapsed .acc-chev { transform: rotate(-90deg); opacity: 0.65; }
+.acc-block.is-collapsed .acc-body { display: none; }
+
+/* ── Language toggle ── */
+.lang-btn { margin-left: 0.4rem; }
+.lang-pt { display: none !important; }
+[data-lang="pt"] .lang-en { display: none !important; }
+[data-lang="pt"] .lang-pt { display: inline !important; }
+[data-lang="pt"] p.lang-pt,
+[data-lang="pt"] div.lang-pt,
+[data-lang="pt"] li.lang-pt,
+[data-lang="pt"] span.lang-pt.block,
+[data-lang="pt"] td.lang-pt { display: block !important; }
+</style>
+</head>
+<body>
+<nav><a class="nav-brand" href="index.html">Jeremy Trinity</a><div class="nav-links" id="navLinks"><a href="index.html" data-en="Overview" data-pt="Visão Geral">Overview</a><a href="pillar1-bootcamp.html">I. Bootcamp</a><a href="pillar2-degree.html">II. Degree</a><a href="pillar3-languages.html" style="color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:2px;">III. Languages</a><a href="pillar4-courses.html">IV. Courses</a><a href="pillar5-reading.html">V. Reading</a></div><div class="nav-right"><button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><span class="moon">🌙</span><span class="sun">☀️</span><span id="themeLabel">Dark</span></button><button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+
+<section class="page-hero">
+<div class="page-hero-inner">
+  <a class="back-link" href="index.html" data-en="← Back to overview" data-pt="← Voltar à visão geral">← Back to overview</a>
+  <span class="pillar-badge">Pillar III</span>
+  <h1 class="ph-title">Language Acquisition</h1>
+  <p class="ph-sub">10 languages across a 10-year career plan. Portuguese and French native. English from confirmed B2 to C2. Spanish from A0 to B2. Mandarin from A0 to A2. Then German, Hindi, Japanese, Korean, Arabic in a structured rotation, each language unlocking a new cloud engineering market and career territory. This page tells you exactly what to do each week, which courses to take, which free tools to use, and why the stagger between languages is the most important thing you can get right.</p>
+  <div class="ph-flags">🇵🇹 🇫🇷 🇺🇸 🇪🇸 🇨🇳 🇩🇪 🇮🇳 🇯🇵 🇰🇷 🇦🇪</div>
+  <div class="ph-stats">
+    <div><div class="ph-stat-val">10</div><div class="ph-stat-label">Languages in the map</div></div>
+    <div><div class="ph-stat-val">2 native</div><div class="ph-stat-label">Portuguese and French</div></div>
+    <div><div class="ph-stat-val">5</div><div class="ph-stat-label">Working languages by year 5</div></div>
+    <div><div class="ph-stat-val">80-120 min</div><div class="ph-stat-label">Per week dedicated study</div></div>
+    <div><div class="ph-stat-val">EF SET 58</div><div class="ph-stat-label">English confirmed B2 baseline</div></div>
+  </div>
+</div>
+</section>
+<div class="page-wrap">
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <div class="toc-grid">
+    <a href="#why">Why languages are career infrastructure</a>
+    <a href="#starting">Your starting point: honest assessment</a>
+    <a href="#stagger">The stagger model, why it prevents failure</a>
+    <a href="#schedule">Weekly schedule and time budget</a>
+    <a href="#english">English track: B2 to C2</a>
+    <a href="#spanish">Spanish track: A0 to B2</a>
+    <a href="#mandarin">Mandarin track: A0 to A2</a>
+    <a href="#milestones">Month-by-month milestones</a>
+    <a href="#apps">Free apps: master reference</a>
+    <a href="#certs">Language certifications, when and whether</a>
+    <a href="#ten-map">10-language career map</a>
+    <a href="#tier2">Tier 2: the rotation system</a>
+  </div>
+</div>
+<div class="anchor" id="why"></div>
+<span class="sec-label">The strategic case</span>
+<h2 class="sec-title">Why languages are career infrastructure, not a hobby</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;">Most cloud engineers treat language as a soft skill afterthought. This is a strategic error that costs them market access, learning speed, and salary ceiling. For an internationally competitive career, languages are as structural as certifications.</p>
+<div class="schedule-grid">
+  <div class="schedule-card"><h3>Learning velocity</h3><p>Studying Udemy courses in Portuguese, English, and French means access to three times the instructional content. A problem with no English Stack Overflow answer often has one in Portuguese. This is a direct speed advantage every single day.</p></div>
+  <div class="schedule-card"><h3>Market access</h3><p>Portuguese covers Portugal and Brazil (fastest-growing LatAm cloud market). French covers Paris/La Defense, Francophone Africa, Quebec. Spanish covers Latin America and the international domestic market. Each language adds a new salary benchmark.</p></div>
+  <div class="schedule-card"><h3>international career progression strategy</h3><p>The intracompany transfer requires a multi-year employer relationship with offices in both Europe and the international. French opens the Paris corridor at IBM and Deloitte. Spanish adds the international domestic client base and makes the transfer significantly more viable.</p></div>
+  <div class="schedule-card"><h3>Certification quality</h3><p>Every Azure certification exam is in English. Every Microsoft architecture document is in English. Every IBM and Deloitte senior interview is in English. English precision is not optional. It is the operating system of the entire career plan.</p></div>
+  <div class="schedule-card"><h3>Professional culture</h3><p>Technical communities have national registers. The Portuguese AWS and Azure user group meetups, the French cloud engineering LinkedIn posts, the Spanish-language IBM SkillsBuild materials, being able to participate in these natively rather than in translation is a form of professional socialisation that creates opportunities.</p></div>
+  <div class="schedule-card"><h3>Salary differentiation</h3><p>Multilingual engineers at IBM and Deloitte are disproportionately selected for international client projects and cross-regional roles, which consistently pay 15-25% above base. A five-language profile at Year 5 is not common among cloud engineers. It is genuinely unusual and commercially valued.</p></div>
+</div>
+<div class="anchor" id="starting"></div>
+<span class="sec-label">Where you are now</span>
+<h2 class="sec-title">Your starting point: honest assessment</h2>
+<div class="title-rule"></div>
+<table class="stagger-table">
+  <thead><tr><th>Language</th><th>Current level</th><th>Evidence</th><th>What this means</th></tr></thead>
+  <tbody>
+    <tr><td>🇵🇹 Portuguese</td><td>C2 native</td><td>Native speaker, born in France to Portuguese parents</td><td>Zero acquisition cost. Career-ready in Portugal and Brazil immediately.</td></tr>
+    <tr><td>🇫🇷 French</td><td>C1-C2 native</td><td>Born and raised in France, legal language (I Da Trindade)</td><td>Zero acquisition cost. Senior market immediately accessible.</td></tr>
+    <tr><td>🇺🇸 English</td><td>B1 writing / C1 comprehension, confirmed B2 overall</td><td>EF SET 58/100</td><td>Comprehension is already C1. The gap is formal writing accuracy and professional register under pressure. UoPeople closes this automatically.</td></tr>
+    <tr><td>🇪🇸 Spanish</td><td>A0 pre-beginner</td><td>No formal study, some passive recognition from Portuguese</td><td>Fastest acquisition in the portfolio due to Portuguese proximity. Already ~60-70% passive comprehension of written Spanish.</td></tr>
+    <tr><td>🇨🇳 Mandarin</td><td>A0 zero</td><td>No prior exposure</td><td>Longest timeline. Starts Month 2 after Spanish habit is established. Daily micro-exposure is mandatory for tonal ear training.</td></tr>
+  </tbody>
+</table>
+<div class="anchor" id="stagger"></div>
+<span class="sec-label">The core methodology</span>
+<h2 class="sec-title">The stagger model, why maintaining gaps between languages prevents failure</h2>
+<div class="title-rule"></div>
+<div class="hbox"><p><strong>The polyglot research finding:</strong> Learning two languages at the same proficiency level simultaneously creates cross-linguistic interference, the brain confuses similar structures. When languages are at meaningfully different levels, each occupies a distinct cognitive space and interference drops significantly. The stagger must be maintained deliberately. Never allow Spanish to catch up to English. Never allow Mandarin to catch up to Spanish. The moment the gaps close, interference starts costing you progress in both.</p></div>
+<table class="stagger-table">
+  <thead><tr><th>Timepoint</th><th>🇺🇸 English</th><th>🇪🇸 Spanish</th><th>🇨🇳 Mandarin</th><th>Gap maintained?</th></tr></thead>
+  <tbody>
+    <tr><td>April 2026 start</td><td>B2 active</td><td>A0 start</td><td>Not started</td><td>Yes, 3 CEFR levels between EN and ES</td></tr>
+    <tr><td>Month 2</td><td>B2 → C1</td><td>A1 confirmed</td><td>A0 begins</td><td>Yes. EN 2 levels ahead, ES 1 ahead of ZH</td></tr>
+    <tr><td>Month 12</td><td>C1 confirmed</td><td>A1 → A2</td><td>A1 begins</td><td>Yes, correct stagger maintained</td></tr>
+    <tr><td>Month 24</td><td>C1 → C2</td><td>A2 confirmed</td><td>A1 confirmed</td><td>Yes</td></tr>
+    <tr><td>Month 36</td><td>C2</td><td>B1</td><td>A2</td><td>Yes, correct stagger throughout</td></tr>
+  </tbody>
+</table>
+<div class="anchor" id="schedule"></div>
+<span class="sec-label">The weekly system</span>
+<h2 class="sec-title">Weekly schedule and time budget, exactly what to do and when</h2>
+<div class="title-rule"></div>
+<table class="stagger-table">
+  <thead><tr><th>Day and time slot</th><th>Language</th><th>Format</th><th>Duration</th><th>Tool</th></tr></thead>
+  <tbody>
+    <tr><td>Saturday (morning or afternoon)</td><td>🇺🇸 English</td><td>Structured grammar course on Udemy</td><td>1 Pomodoro, 40 min</td><td>Rupert Walsh Perfect English Grammar (B2 then C1 sections)</td></tr>
+    <tr><td>Sunday (morning)</td><td>🇪🇸 Spanish</td><td>Structured course on Udemy</td><td>1 Pomodoro, 40 min</td><td>Peter Hanley El Método Level 1 then Level 2</td></tr>
+    <tr><td>Sunday (afternoon, from Month 2)</td><td>🇨🇳 Mandarin</td><td>App-based structured study</td><td>1 Pomodoro, 40 min</td><td>HelloChinese primary, Anki HSK1 deck</td></tr>
+    <tr><td>Daily Monday-Friday (optional)</td><td>🇪🇸 Spanish + 🇺🇸 English</td><td>App micro-sessions</td><td>10 min each</td><td>Duolingo (Spanish), BBC Learning English (English)</td></tr>
+  </tbody>
+</table>
+<div class="wbox"><p><strong>Note:</strong> The daily 10-minute Spanish sessions are not optional decoration. At 40 minutes/week structured study only: 34 hours/year. With daily 10-minute sessions added: 90 minutes/week, 78 hours/year. A1 moves from 14 months to 9 months. A2 moves from 28 months to 18 months. Add the 10 minutes. It takes less discipline than brushing teeth and the compounding effect over 36 months is one full CEFR level.</p></div>
+<div class="anchor" id="english"></div>
+<span class="sec-label">Track 1</span>
+<h2 class="sec-title">English: B2 to C2, closing the gap that costs marks and credibility</h2>
+<div class="title-rule"></div>
+
+<div class="track-block acc-block is-collapsed">
+<div class="track-header acc-head">
+  <div class="track-flag">🇺🇸</div>
+  <div>
+    <div class="track-name">English</div>
+    <div class="track-level">Confirmed B2 (EF SET 58/100) → Target C2 by Month 36</div>
+  </div>
+</div>
+<div class="track-body acc-body">
+
+<div class="hbox"><p><strong>What the EF SET result actually means:</strong> B1 writing, C1 comprehension, confirmed B2 overall at 58/100. Comprehension is already at C1. You understand virtually everything you read and hear. The bottleneck is formal writing register and grammatical accuracy under academic pressure. This is precisely what costs marks at UoPeople and what costs credibility in IBM and Deloitte written communications. C2 in English is not about vocabulary size. It is about: zero grammatical errors under pressure, idiomatic fluency, register flexibility between technical documentation and academic writing, and reading architecture documents without looking anything up.</p></div>
+
+<div class="phase-row">
+<span class="phase-lbl">Phase 1: Months 1-8: B2 → C1 confirmed</span>
+<div class="ccard"><div class="ccard-title">Perfect English Grammar For Every Level (A1 to C2). Rupert Walsh</div><div class="ccard-meta">University Senior Lecturer, 25 years teaching, former Head of English Language Programs · Start directly at B2 sections, not A1</div><div class="ccard-body">This is not a beginner course. Start directly at the B2 sections, the A1 and B1 content is below your current level and wastes study time. Each section combines grammar explanation with conversation practice tasks. Work through one section per 40-minute Saturday session.</div><div class="ccard-url">Search Personal Plan: "Perfect English Grammar Rupert Walsh"</div></div>
+<p style="color:var(--ink2);font-size:.84rem;font-weight:500;margin-bottom:.35rem;">B2 sections. Complete across months 1-6, one per Saturday session:</p>
+<ul class="slist"><li class="hi">Advanced verb tenses: perfect aspects used precisely, future forms, conditional structures</li><li class="hi">Passive voice at advanced level: complex passive constructions used correctly</li><li class="">Reported speech: complex cases and register differences</li><li class="hi">Articles: the advanced usage patterns non-native speakers consistently get wrong</li><li class="hi">Modal verbs at precision level: subtle differences between should, ought, may, might</li><li class="">Relative clauses: defining, non-defining, reduced forms</li><li class="hi">Inversion and emphasis structures: critical for academic writing</li><li class="hi">Cleft sentences: "It was the networking section that I found most challenging"</li><li class="hi">Academic vocabulary: hedging, cautious language, citation register. UoPeople requires these</li></ul>
+<p style="color:var(--ink2);font-size:.84rem;font-weight:500;margin-top:.8rem;margin-bottom:.35rem;">C1 sections. Complete across months 7-12:</p>
+<ul class="slist"><li class="hi">Ellipsis and substitution: how native speakers omit repetition</li><li class="hi">Discourse markers at advanced level: academic and professional register</li><li class="hi">Complex conditional forms: mixed conditionals, implied conditionals</li><li class="hi">Nominalisation: converting verbs to noun phrases, critical for academic writing</li><li class="">Concession and contrast at advanced level</li><li class="">Advanced punctuation: semicolons, colons used correctly in formal English</li></ul>
+<div class="fres"><span class="fi">📻</span><p>BBC Learning English (bbc.co.uk/learningenglish): Free. The 6-Minute Grammar series and The English We Speak (idioms) series are excellent for B2-C1. Use as the daily 10-minute English supplement Monday-Friday instead of an app. Better content than Duolingo for this specific gap.</p></div>
+<div class="fres"><span class="fi">📝</span><p>UoPeople itself is your best English teacher. Every assignment, every discussion post, every grade below 90% is a language signal. Read instructor feedback specifically for language issues, not just content issues. Every feedback point is C2 practice the course cannot replicate.</p></div>
+</div>
+
+<div class="wk-div"></div>
+
+<div class="phase-row">
+<span class="phase-lbl">Phase 2: Months 9-18: C1 → C1 consolidated</span>
+<p class="phase-desc">At this point UoPeople coursework and cloud engineering technical writing are doing most of the English practice. Reduce Udemy English sessions to every other Saturday. Use the freed 40 minutes for Spanish acceleration instead. The shift now is to active production, writing GitHub READMEs at C1 register, LinkedIn articles in English, reading Microsoft architecture documentation without simplification, watching Azure Ignite conference talks without subtitles.</p>
+</div>
+
+<div class="wk-div"></div>
+
+<div class="phase-row">
+<span class="phase-lbl">Phase 3: Months 19-24: C1 → C2</span>
+<div class="ccard"><div class="ccard-title">Training in English Grammar's Problematic Topics. Barry Leach MA</div><div class="ccard-meta">Specifically targets grammar points that keep learners stuck below C2 · Use C1-C2 sections only (~4-5 hours of relevant content)</div><div class="ccard-body">Barry Leach targets the specific points that B2 speakers get roughly right but C2 speakers handle with precision: subjunctive mood in English (rarely taught, frequently misused), perfect aspect nuances (the subtle present perfect vs past simple register differences), complex inversion patterns (conditional inversion without "if"), advanced relative clauses, collocations at native-speaker level.</div><div class="ccard-url">Search Personal Plan: "English Grammar B1 B2 C1 Barry Leach"</div></div>
+</div>
+
+</div>
+</div>
+<div class="anchor" id="spanish"></div>
+<span class="sec-label">Track 2</span>
+<h2 class="sec-title">Spanish: A0 to B2, using your Portuguese superpower</h2>
+<div class="title-rule"></div>
+
+<div class="track-block acc-block is-collapsed">
+<div class="track-header acc-head">
+  <div class="track-flag">🇪🇸</div>
+  <div>
+    <div class="track-name">Spanish</div>
+    <div class="track-level">A0 pre-beginner → Target B2 by Month 48-60 (A1 by Month 9, A2 by Month 18 with daily sessions)</div>
+  </div>
+</div>
+<div class="track-body acc-body">
+
+<div class="hbox"><p><strong>Your structural advantage:</strong> As a native Portuguese speaker you are not starting Spanish from zero. You already have approximately 60-70% passive comprehension of written Spanish because Portuguese and Spanish share roughly 89% of vocabulary and very similar grammar. What you are actually learning is: where Spanish diverges phonologically from Portuguese (no nasal vowels, different vowel reduction), where grammar differs (ser vs estar usage, object pronoun placement), and Spanish-specific vocabulary. Your A1 phase will feel surprisingly easy. Your A2 phase is where the real work begins, because that is when you shift from recognising input to producing it.</p></div>
+
+<p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin:.7rem 0;"><strong>Timeline reality check.</strong> Standard hours to Spanish A2 from zero for an English speaker: 150-200 hours. Your Portuguese adjustment: approximately 50% reduction. Your target: 75-100 hours to A2. At 40 minutes/week structured study only: A1 in 14 months, A2 in 28 months. With daily 10-minute Duolingo sessions added (90 min/week total): A1 in 9 months, A2 in 18 months. This is the maths that makes the daily 10-minute session non-optional.</p>
+
+<div class="wk-div"></div>
+
+<div class="phase-row">
+<span class="phase-lbl">Phase 1: Months 1-10: A0 → A1 confirmed</span>
+<div class="ccard"><div class="ccard-title">Spanish for Beginners: The Complete Spanish Course Level 1. El Método</div><div class="ccard-meta">Peter Hanley · ⭐ 4.8 · 60,000+ students · Bestselling beginner Spanish on Udemy · ~8h total · 1 section per 40-minute Sunday session</div><div class="ccard-body">Speaking-first method, from lesson one you are producing Spanish sentences, not memorising lists. For someone who already passively understands much of written Spanish from Portuguese, a speaking-first method is exactly correct: it activates what you already passively know rather than drilling vocabulary you already recognize. Reviews specifically note being able to say things after 2 hours that impress native speakers.</div><div class="ccard-url">URL: <a href="https://www.udemy.com/course/el-metodo-spanish-1/" target="_blank">udemy.com/course/el-metodo-spanish-1/</a> · Search Personal Plan: "Spanish Beginners El Método Peter Hanley" · Instructor: <a href="https://www.udemy.com/user/peter-hanley-5/" target="_blank">udemy.com/user/peter-hanley-5/</a></div></div>
+<p style="color:var(--ink2);font-size:.84rem;font-weight:500;margin-bottom:.35rem;">All 8 lessons of El Método Level 1, one per Sunday session:</p>
+<ul class="slist"><li class="hi">Lesson 1: Core sentence structure, subject, verb, object in Spanish</li><li class="hi">Lesson 2: Key verbs, ser, estar, tener, ir, the four highest-frequency verbs in the language</li><li class="">Lesson 3: Numbers, time, dates</li><li class="hi">Lesson 4: Questions, how to ask anything with who, what, where, when, why</li><li class="hi">Lesson 5: Present tense regular verbs (-ar, -er, -ir conjugations)</li><li class="hi">Lesson 6: Adjectives and agreement, notice every point where Spanish diverges from Portuguese</li><li class="hi">Lesson 7: Common irregular verbs</li><li class="">Lesson 8: Everyday phrases and expressions</li></ul>
+<p style="color:var(--ink2);font-size:.83rem;margin:.6rem 0;">After Level 1 is complete, move directly to El Método Level 2, same instructor, same method, A1 consolidation into A1+/A2 preparation. Search Personal Plan: "El Método Spanish Level 2 Peter Hanley".</p>
+<div class="fres"><span class="fi">🎧</span><p>Language Transfer. Complete Spanish: languagetransfer.org: Completely free. 40 audio tracks of 5-10 minutes each. Michel Thomas-style audio course designed specifically for speakers of other Romance languages. Teaches you to derive Spanish from what you already know in Portuguese and French. Listen one track per day during meal breaks or commute, it does not require full attention. This is the most efficient free tool for a Portuguese speaker learning Spanish. Zero cost.</p></div>
+<div class="fres"><span class="fi">📱</span><p>Duolingo Spanish: 10 minutes daily Monday-Friday. Use specifically for: vocabulary drilling (Duolingo excels here), daily habit formation, listening recognition. Do not rely on Duolingo alone, it will not get you to A2 by itself. Use it alongside El Método as the daily micro-session supplement.</p></div>
+</div>
+
+<div class="wk-div"></div>
+
+<div class="phase-row">
+<span class="phase-lbl">Phase 2: Months 11-24: A1 → A2 confirmed</span>
+<div class="ccard"><div class="ccard-title">Complete Spanish Course: Spanish Language Intermediate</div><div class="ccard-meta">Native Spanish teacher series · ~10h total · 1-2 sections per 40-minute Sunday session</div><div class="ccard-body">Past tense (pretérito indefinido and pretérito imperfecto, note the differences from Portuguese), future tense (Spanish simple future vs ir + infinitive), object pronouns direct and indirect (a key point where Spanish diverges from Portuguese), reflexive verbs (Spanish uses them more extensively than Portuguese), subjunctive introduction at A2 level.</div><div class="ccard-url">URL: <a href="https://www.udemy.com/course/spanish-course-intermediate/" target="_blank">udemy.com/course/spanish-course-intermediate/</a> · Search: "Complete Spanish Course Intermediate B1"</div></div>
+<div class="fres"><span class="fi">🎬</span><p>Dreaming Spanish (dreamingspanish.com, free on YouTube). Comprehensible input videos at beginner and elementary level. After confirming A1, spend 15-20 minutes per week watching beginner content. Comprehensible input (hearing language slightly above your level but still mostly understandable) is how natural acquisition happens. Add this at Month 10-11.</p></div>
+<div class="fres"><span class="fi">🎙️</span><p>SpanishPod101 (free tier). Short audio lessons with transcripts. Good for pronunciation and natural speech patterns at A1-A2. The free tier is sufficient for this purpose.</p></div>
+</div>
+
+<div class="wk-div"></div>
+
+<div class="phase-row">
+<span class="phase-lbl">Phase 3: Month 25+: A2 → B1 → B2 (beyond this plan's 24-month window)</span>
+<p class="phase-desc">B1 is realistic at approximately months 30-36 with consistent 90 minutes per week. B2, where Spanish becomes professionally usable, is approximately months 48-60 (4-5 years from start). B2 is not something to rush. It is the target for Year 4-5, not Year 1-2. Maintain the daily Duolingo habit and the Sunday structured session throughout this period. Add native Spanish podcasts at B1. Coffee Break Spanish and Español con Juan are widely recommended.</p>
+</div>
+
+</div>
+</div>
+<div class="anchor" id="mandarin"></div>
+<span class="sec-label">Track 3</span>
+<h2 class="sec-title">Mandarin: A0 to A2, start Month 2, build the foundation right</h2>
+<div class="title-rule"></div>
+
+<div class="track-block acc-block is-collapsed">
+<div class="track-header acc-head">
+  <div class="track-flag">🇨🇳</div>
+  <div>
+    <div class="track-name">Mandarin Chinese</div>
+    <div class="track-level">A0 zero → Target A1 by Month 18-24, A2 by Month 36-42</div>
+  </div>
+</div>
+<div class="track-body acc-body">
+
+<div class="wbox"><p><strong>Note:</strong> Do not start Mandarin in Month 1. Month 1 already adds Linux, networking, Git, Python, Spanish, and UoPeople orientation simultaneously. Wait until Month 2 when the other habits are established and Spanish A0 baseline is confirmed. Adding Mandarin too early risks breaking the habits you just built.</p></div>
+
+<div class="hbox"><p><strong>The honest difficulty picture:</strong> Mandarin is Foreign Service Institute Category 4, the hardest category for English speakers, requiring approximately 2,200 hours to reach C1. At 40 minutes per week: A1 (HSK1, ~150 vocabulary items) takes approximately 18-24 months. A2 (HSK2, ~300 items) takes approximately 36-42 months. These are long timelines. The goal is achievable with consistency. The key insight: Mandarin requires daily micro-exposure for tonal ear training that only happens through repeated listening, once-a-week study is not enough alone.</p></div>
+
+<div class="wk-div"></div>
+
+<div class="phase-row">
+<span class="phase-lbl">Before starting: three things that cannot be skipped</span>
+<div class="abox"><h4>Non-negotiable foundations, understand these before opening any app</h4><ul><li>TONES: Mandarin has four tones plus a neutral tone. The same syllable means completely different things in different tones. Mā (flat) = mother. Má (rising) = hemp. Mǎ (falling-rising) = horse. Mà (falling) = scold. You cannot skip tones, they are the phonological foundation. Every minute of early study includes tone practice.</li><li>PINYIN: The romanised spelling system for Mandarin. It looks like it should sound like English but several letters sound completely different: x = sh-sound, q = ch-sound, zh = j-sound, c = ts-sound. Learn the pinyin system completely before memorising any vocabulary.</li><li>CHARACTERS vs SPEAKING FIRST: For A0-A1, focus on speaking and listening. Do not attempt to write characters in the first 6 months. Learn to recognize the most frequent ~150 characters visually, use pinyin for reading, and prioritize understanding what you hear and say. Character writing is a separate skill added at A1 once speaking has a foundation.</li></ul></div>
+</div>
+
+<div class="wk-div"></div>
+
+<div class="phase-row">
+<span class="phase-lbl">Month 2-12: A0 → A1. HelloChinese primary, Anki HSK1 deck</span>
+<div class="ccard"><div class="ccard-title">HelloChinese app, primary structured tool for A0-A1</div><div class="ccard-meta">Free (premium optional) · iOS and Android · 40-minute Sunday Mandarin session from Month 2</div><div class="ccard-body">Specifically designed for Mandarin beginners. Far superior to Duolingo for Chinese because it handles tones correctly (with tone marking visual feedback), builds natural sentence structure rather than drilling disconnected words, and teaches character writing properly. Covers HSK1 vocabulary, basic grammar, tones, and conversational patterns systematically. The free tier covers A0-A1 completely.</div><div class="ccard-url">Available on iOS App Store and Google Play Store</div></div>
+
+<p style="color:var(--ink2);font-size:.84rem;font-weight:500;margin:.7rem 0 .35rem;">Week-by-week Mandarin structure. Month 2:</p>
+<ul class="slist"><li class="hi">Week 1-4, 40-min Sunday session: HelloChinese pronunciation module ONLY. Do not touch vocabulary until tones are understood. Tones first, every time.</li><li class="hi">Daily 10 min: Anki HSK1 deck at 10 new cards per day from day one. apps.ankiweb.net: free. Search "HSK1 2.0 vocabulary" to find the deck.</li></ul>
+
+<p style="color:var(--ink2);font-size:.84rem;font-weight:500;margin:.7rem 0 .35rem;">Month 3-6:</p>
+<ul class="slist"><li class="hi">40-min Sunday session: HelloChinese. HSK1 vocabulary and grammar units in sequence. Do not skip ahead.</li><li class="hi">Daily 10 min: Anki review (15 cards per day as deck builds) + 1 Mandarin Corner YouTube video per week for listening input.</li><li class="">Weekly addition: Language Transfer Chinese (languagetransfer.org): 1 audio track during meals. Free. Teaches the logic of Mandarin grammar for learners from other language families.</li></ul>
+
+<p style="color:var(--ink2);font-size:.84rem;font-weight:500;margin:.7rem 0 .35rem;">Month 7-12:</p>
+<ul class="slist"><li class="hi">40-min Sunday session: HelloChinese, completing HSK1 content systematically.</li><li class="">Daily 10 min: Anki maintenance deck + Chinese Grammar Wiki (allsetlearning.com/chinese-grammar-wiki) for any confusion points. Never read it linearly. Use it as a reference.</li><li class="hi">Target by Month 12: HSK1 vocabulary confirmed (150 words), greetings and self-introduction in correct tones, numbers and time expressions reliable.</li></ul>
+
+<div class="fres"><span class="fi">🃏</span><p>Anki with HSK1 deck: apps.ankiweb.net: Free. Download the HSK1 vocabulary deck (search "HSK1 2.0"). Set to 10 new cards per day. 5-10 minutes daily builds all 150 HSK1 words over approximately 6 months. Anki's spaced repetition algorithm means you review each word exactly when you are about to forget it.</p></div>
+<div class="fres"><span class="fi">📺</span><p>Mandarin Corner YouTube (youtube.com/@MandarinCorner): Free. Graded Mandarin listening at beginner level with subtitles. Native speaker, clear speech. After Month 6 (when A0 is solid), 1-2 short videos per week for tonal ear training. The ear for tones only develops through repeated listening exposure.</p></div>
+<div class="fres"><span class="fi">📚</span><p>Pleco (iOS/Android, free core version). The best Mandarin dictionary available. Install it immediately and use it for every word you encounter. Free core version is sufficient throughout A0-A1.</p></div>
+</div>
+
+<div class="wk-div"></div>
+
+<div class="phase-row">
+<span class="phase-lbl">Month 13-24: A1 → A2, structured course addition</span>
+<div class="ccard"><div class="ccard-title">Yoyo Chinese. Beginner Conversational Mandarin</div><div class="ccard-meta">Yangyang Cheng · YouTube free content first, then Udemy if needed · Start Month 12 after HelloChinese A1</div><div class="ccard-body">Structured specifically for adult learners approaching through pinyin rather than native-speaker character immersion. The instructor explains exactly where English intuitions help and where they mislead, more efficient than a course that assumes no prior language learning framework. Use the free YouTube content first.</div><div class="ccard-url">YouTube: <a href="https://www.youtube.com/@YoyoChinese" target="_blank">youtube.com/@YoyoChinese</a> · Search Udemy: "Yoyo Chinese Beginner Conversational"</div></div>
+<div class="fres"><span class="fi">📖</span><p>Du Chinese (duchinese.net, free tier). Graded reading app for Mandarin learners. Beginner-level stories with pinyin support and character toggle. After HSK1 vocabulary is complete, 10 minutes per week of reading to start building character recognition beyond vocabulary drilling.</p></div>
+<div class="fres"><span class="fi">🎓</span><p>Chinese for Beginners. Peking University on Coursera (free to audit). Structured academic course. Audit all content free at coursera.org/learn/learn-chinese. Only pay for certificate if you want the credential. Good for structured grammar progression from A1 to A2.</p></div>
+</div>
+
+</div>
+</div>
+<div class="anchor" id="milestones"></div>
+<span class="sec-label">Progress tracker</span>
+<h2 class="sec-title">Month-by-month language milestones</h2>
+<div class="title-rule"></div>
+<div class="milestone-wrap">
+<div class="milestone"><div class="ms-month">Month 1</div><div class="ms-body"><div class="ms-title">English B2 sections begun, Spanish Day 1</div><div class="ms-detail">Rupert Walsh course started at B2 sections. El Método Level 1 Lesson 1 complete. Daily Duolingo Spanish streak begun Monday-Friday. Language Transfer Complete Spanish, first 3 audio tracks listened during meals.</div></div></div>
+<div class="milestone"><div class="ms-month">Month 2</div><div class="ms-body"><div class="ms-title">Mandarin A0 begins</div><div class="ms-detail">HelloChinese app installed. Pinyin system fully learned before any vocabulary. Four tones understood with examples. Anki HSK1 deck at 10 new cards per day. Spanish Day 30: Duolingo streak maintained, El Método Lesson 4-5 reached.</div></div></div>
+<div class="milestone"><div class="ms-month">Month 3</div><div class="ms-body"><div class="ms-title">Spanish A1 approaching</div><div class="ms-detail">El Método Level 1 complete. El Método Level 2 begun. Language Transfer Spanish: tracks 1-15 complete. Mandarin: first 30 HSK1 words in Anki, HelloChinese pronunciation module complete.</div></div></div>
+<div class="milestone"><div class="ms-month">Month 6</div><div class="ms-body"><div class="ms-title">English C1 sections begun</div><div class="ms-detail">Rupert Walsh B2 sections complete. Begin C1 sections. Reduce Udemy English to every other Saturday. UoPeople is now primary English practice vehicle. Mandarin: Anki HSK1 at 90 words, first Mandarin Corner videos watched weekly.</div></div></div>
+<div class="milestone"><div class="ms-month">Month 9</div><div class="ms-body"><div class="ms-title">Spanish A1 confirmed</div><div class="ms-detail">El Método Level 2 complete. Begin intermediate Spanish course. Self-assessment: can you introduce yourself, describe your work, ask basic questions, understand simple responses from a native speaker without switching to Portuguese? Yes = A1 confirmed. Dreaming Spanish comprehensible input started.</div></div></div>
+<div class="milestone"><div class="ms-month">Month 12</div><div class="ms-body"><div class="ms-title">English C1 confirmed, Mandarin HSK1 approaching</div><div class="ms-detail">UoPeople grades reflect C1 written English. GitHub READMEs written at C1 register. Mandarin: HSK1 vocabulary complete (150 words), greetings and self-introduction in correct tones. Begin HelloChinese HSK2 content.</div></div></div>
+<div class="milestone"><div class="ms-month">Month 18</div><div class="ms-body"><div class="ms-title">Spanish A2 approaching, Mandarin A1 approaching</div><div class="ms-detail">Intermediate Spanish course in progress. Dreaming Spanish 20 min/week. Mandarin: Yoyo Chinese supplement started. Du Chinese beginner reading 10 min/week. Anki HSK2 deck begun alongside HSK1 maintenance.</div></div></div>
+<div class="milestone"><div class="ms-month">Month 24</div><div class="ms-body"><div class="ms-title">English C1→C2 started, Spanish A2 confirmed, Mandarin A1 solid</div><div class="ms-detail">Barry Leach C2 sections started on Saturdays. Spanish: A2 self-assessed with intermediate course complete and SpanishPod101 for pronunciation. Mandarin: HSK1 fully confirmed, HSK2 approximately 50% in progress. Tier 2 German A0 consideration begins.</div></div></div>
+<div class="milestone"><div class="ms-month">Month 36</div><div class="ms-body"><div class="ms-title">English C2, Spanish B1, Mandarin A2</div><div class="ms-detail">All Tier 1 active language targets achieved within the plan window. Spanish B1 is professionally conversational. Mandarin A2 is basic communicative. Tier 2 rotation Phase A begins with German A0.</div></div></div>
+</div>
+<div class="anchor" id="apps"></div>
+<span class="sec-label">Free tools</span>
+<h2 class="sec-title">Free apps: master reference, these all run alongside structured courses</h2>
+<div class="title-rule"></div>
+<table class="app-table">
+  <thead><tr><th>App</th><th>Language</th><th>Specific use</th><th>When</th><th>Cost</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Duolingo</strong></td><td>🇪🇸 Spanish</td><td>Daily vocabulary drilling, habit maintenance, listening recognition exercises</td><td>From Month 1, daily 10 min Monday-Friday</td><td><span class="free-pill">Free</span></td></tr>
+    <tr><td><strong>Language Transfer (Spanish)</strong></td><td>🇪🇸 Spanish</td><td>Audio course for Romance language speakers, derives Spanish from Portuguese logic</td><td>From Month 1, 1 track per day during meals</td><td><span class="free-pill">Free</span></td></tr>
+    <tr><td><strong>Dreaming Spanish</strong></td><td>🇪🇸 Spanish</td><td>Comprehensible input videos at beginner/elementary level on YouTube</td><td>From Month 10 (after A1 confirmed), 15-20 min/week</td><td><span class="free-pill">Free</span></td></tr>
+    <tr><td><strong>SpanishPod101</strong></td><td>🇪🇸 Spanish</td><td>Short audio lessons with transcripts, natural speech patterns and pronunciation</td><td>From Month 12, as supplement</td><td><span class="free-pill">Free tier</span></td></tr>
+    <tr><td><strong>HelloChinese</strong></td><td>🇨🇳 Mandarin</td><td>Primary structured Mandarin course. Handles tones and character writing properly.</td><td>From Month 2, 40-min Sunday session + daily 10 min</td><td><span class="free-pill">Free (premium optional)</span></td></tr>
+    <tr><td><strong>Anki + HSK1 deck</strong></td><td>🇨🇳 Mandarin</td><td>Spaced repetition vocabulary, 10 new cards per day builds 150 words in 6 months</td><td>From Month 2, daily 5-10 min</td><td><span class="free-pill">Free</span></td></tr>
+    <tr><td><strong>Pleco</strong></td><td>🇨🇳 Mandarin</td><td>Best Mandarin dictionary available. Install immediately. Every word encountered goes here.</td><td>From Month 2, always-on reference</td><td><span class="free-pill">Free core</span></td></tr>
+    <tr><td><strong>Language Transfer (Chinese)</strong></td><td>🇨🇳 Mandarin</td><td>Teaches the logic of Mandarin grammar, listen during meals, no full attention required</td><td>From Month 3, 1 track per day</td><td><span class="free-pill">Free</span></td></tr>
+    <tr><td><strong>Mandarin Corner</strong></td><td>🇨🇳 Mandarin</td><td>Graded listening input with subtitles. Native speaker, clear speech. Tonal ear training.</td><td>From Month 6, 1-2 videos/week</td><td><span class="free-pill">Free (YouTube)</span></td></tr>
+    <tr><td><strong>Du Chinese</strong></td><td>🇨🇳 Mandarin</td><td>Graded reading with pinyin toggle. Beginner stories after HSK1 vocabulary complete.</td><td>From Month 13, 10 min/week</td><td><span class="free-pill">Free tier</span></td></tr>
+    <tr><td><strong>BBC Learning English</strong></td><td>🇺🇸 English</td><td>6-Minute Grammar series and The English We Speak (idioms). Better than Duolingo for this gap.</td><td>From Month 1, daily 10 min English supplement</td><td><span class="free-pill">Free</span></td></tr>
+    <tr><td><strong>Chinese Grammar Wiki</strong></td><td>🇨🇳 Mandarin</td><td>Reference for grammar confusion points, organized by HSK level. Use as a lookup, not a textbook.</td><td>As needed from Month 3</td><td><span class="free-pill">Free</span></td></tr>
+  </tbody>
+</table>
+<div class="anchor" id="certs"></div>
+<span class="sec-label">Optional credentials</span>
+<h2 class="sec-title">Language certifications, when they matter and when they do not</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;margin-bottom:1rem;">Unlike cloud certifications, language certifications are not required for IBM and Deloitte applications. They become relevant for specific use cases: US Master's degree applications (IELTS Academic), formal US job applications where Spanish B2 signals are valuable, and future visa documentation. None of these are urgent in the first 24 months.</p>
+<table class="stagger-table">
+  <thead><tr><th>Certification</th><th>Language</th><th>When to target it</th><th>Why</th><th>Preparation</th></tr></thead>
+  <tbody>
+    <tr><td>IELTS Academic</td><td>🇺🇸 English</td><td>Year 3-4: when applying for US Master's program (Georgia Tech OMSCS)</td><td>Required for most US university Master's applications. Target 7.0+ overall (C1). Self-assessable through practice tests before sitting.</td><td>Free preparation at ielts.org. IELTS Cambridge preparation books. Practice tests available free online.</td></tr>
+    <tr><td>DELE B2</td><td>🇪🇸 Spanish</td><td>Year 4-5: when Spanish reaches confirmed B2</td><td>Instituto Cervantes official exam, internationally recognized. Internationally recognized proficiency signal. Available internationally.</td><td>Cervantes exam preparation guides at cervantes.es. Practice exams available via Instituto Cervantes centers internationally.</td></tr>
+    <tr><td>HSK 1</td><td>🇨🇳 Mandarin</td><td>Month 18-24: when A1 is confirmed</td><td>Official Chinese proficiency exam. Low cost, available online. Useful career signal for Asia-Pacific positioning at IBM and Deloitte. HSK1 confirms 150-word vocabulary level formally.</td><td>The Anki HSK1 deck and HelloChinese are full preparation for the exam. No additional study required if both are completed systematically.</td></tr>
+    <tr><td>HSK 2</td><td>🇨🇳 Mandarin</td><td>Month 36-42: when A2 is confirmed</td><td>Confirms 300-word vocabulary level. Relevant for Asia-Pacific roles at IBM, Microsoft, and consulting firms with China or Taiwan exposure.</td><td>HelloChinese HSK2 content plus Du Chinese reading practice are sufficient preparation.</td></tr>
+    <tr><td>DELF B1 / B2</td><td>🇫🇷 French</td><td>Not needed. French is C2 native</td><td>No certification needed. French C2 is demonstrated through native speaker background. If ever formally needed, a simple statutory declaration suffices.</td><td>N/A</td></tr>
+  </tbody>
+</table>
+<div class="anchor" id="ten-map"></div>
+<span class="sec-label">The full picture</span>
+<h2 class="sec-title">10-language career map, every language has a cloud engineering market case</h2>
+<div class="title-rule"></div>
+<div class="lang-grid">
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇵🇹</div><div><div class="lc-name">Portuguese</div><span class="lc-tier tier1">Tier 1. Native</span></div></div>
+    <div class="lc-level">C2. Career-ready now</div>
+    <div class="lc-body">Covers the Portugal internship and early-career market immediately. Brazilian Portuguese opens the largest tech market in South America. Azure Brazil South (São Paulo), AWS Brazil, major fintech clients Nubank, iFood, and PicPay. Brazil is one of the fastest-growing cloud markets globally. Held natively, this is a free strategic asset that most international cloud engineers do not have.</div>
+  </div>
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇫🇷</div><div><div class="lc-name">French</div><span class="lc-tier tier1">Tier 1. Native</span></div></div>
+    <div class="lc-level">C2. Career-ready for Phase 3</div>
+    <div class="lc-body">Language of the Phase 3 career market. Dedicated Azure cloud regions. Francophone Africa cloud adoption. Quebec AI research cluster (Mila, Element AI). French is also the language of EU institutions where cloud compliance consulting is a growing niche. Opens paths to enterprise technology employers including IBM and Deloitte.</div>
+  </div>
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇺🇸</div><div><div class="lc-name">English</div><span class="lc-tier tier1">Tier 1. Active acquisition</span></div></div>
+    <div class="lc-level">B2 confirmed → C2 target by Month 36</div>
+    <div class="lc-body">Every Azure and AWS certification exam. All Microsoft and AWS documentation. IBM and Deloitte senior-level interviews. international market via international career progression. The career operating system, without C2 English, every other element of the plan is limited. The good news: daily immersion through UoPeople, bootcamp technical reading, and project README writing does most of the work automatically.</div>
+  </div>
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇪🇸</div><div><div class="lc-name">Spanish</div><span class="lc-tier tier1">Tier 1. Active acquisition</span></div></div>
+    <div class="lc-level">A0 → B2 target by Year 4-5</div>
+    <div class="lc-body">Second most spoken language in the United States and the dominant language of Latin America. Azure Mexico, Colombia, Argentina cloud markets. AWS Mexico Central region launched January 2025. US domestic tech workplaces have significant Spanish-speaking colleague and client populations. With Portuguese and French already held natively, Spanish acquisition cost is approximately 50% of the standard estimate.</div>
+  </div>
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇨🇳</div><div><div class="lc-name">Mandarin Chinese</div><span class="lc-tier tier1">Tier 1. Active acquisition</span></div></div>
+    <div class="lc-level">A0 → A2 target by Month 36-42</div>
+    <div class="lc-body">Asia-Pacific client work at IBM and Deloitte. Chinese tech partnerships at Microsoft, IBM, and Google. Large Mandarin-speaking professional communities in US tech companies, at IBM, Microsoft, and major consulting firms, Mandarin fluency creates working relationships that English alone cannot replicate. A French-Portuguese-English-Spanish-Mandarin profile is genuinely exceptional in cloud engineering.</div>
+  </div>
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇩🇪</div><div><div class="lc-name">German</div><span class="lc-tier tier2">Tier 2. Rotation Phase A</span></div></div>
+    <div class="lc-level">A0 → B1 target (highest-priority Tier 2)</div>
+    <div class="lc-body">Germany is the largest Azure enterprise market in continental Europe. SAP runs heavily on Azure in the German market. SAP on Azure is one of the highest-value European cloud consulting niches and commands significantly higher rates. Azure Germany West Central and North regions active. Paris proximity makes German geographically adjacent. French reduces acquisition cost through shared Latin vocabulary and grammar logic.</div>
+  </div>
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇮🇳</div><div><div class="lc-name">Hindi</div><span class="lc-tier tier2">Tier 2. Rotation Phase A</span></div></div>
+    <div class="lc-level">A0 → A2 target</div>
+    <div class="lc-body">India is the single largest source of engineering talent in international tech. In any international Azure or AWS team, a significant share of colleagues will have Indian backgrounds. Hindi builds working relationships and management rapport that English alone cannot replicate, most critical at lead and principal engineer level. India is among AWS's highest-growth global markets and Microsoft operates major engineering centers in Hyderabad and Bengaluru.</div>
+  </div>
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇯🇵</div><div><div class="lc-name">Japanese</div><span class="lc-tier tier2">Tier 2. Rotation, pair with Korean</span></div></div>
+    <div class="lc-level">A0 → A1 awareness then pair with Korean</div>
+    <div class="lc-body">Japan punches above its weight on both cloud platforms, three dedicated Azure regions, three dedicated AWS regions, and a corporate culture that strongly prefers vendors who communicate in Japanese. An Azure-certified engineer who also speaks Japanese is genuinely rare globally. Japanese grammar shares deep structural overlap with Korean: learning Korean first reduces Japanese acquisition cost significantly, which is why Korean comes first in the rotation.</div>
+  </div>
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇰🇷</div><div><div class="lc-name">Korean</div><span class="lc-tier tier2">Tier 2. Rotation, pair with Japanese</span></div></div>
+    <div class="lc-level">A0 → A1 before Japanese</div>
+    <div class="lc-body">Korean is placed before Japanese in the rotation because Korean grammar is essentially Japanese grammar with a significantly simpler writing system. Hangul (the Korean alphabet) is alphabetic and can typically be learned in one to two weeks, a fast win before tackling Japanese script complexity. Samsung, SK Hynix, and LG maintain significant Azure and AWS enterprise workloads. Korea South Azure region is active.</div>
+  </div>
+  <div class="lang-card">
+    <div class="lc-top"><div class="lc-flag">🇦🇪</div><div><div class="lc-name">Arabic</div><span class="lc-tier tier2">Tier 2. Long-term play</span></div></div>
+    <div class="lc-level">A0 → A1 long-term</div>
+    <div class="lc-body">Gulf sovereign wealth investment in cloud infrastructure is substantial and accelerating. The Middle East is one of the fastest-growing cloud adoption regions globally. Microsoft has UAE North, UAE Central, and Qatar regions active plus Saudi Arabia investments. AWS has Bahrain and UAE regions. Francophone Africa markets (Morocco, Tunisia, Algeria) are French-Arabic bilingual, the existing French C2 covers the French side; Arabic A1 adds the Arabic side of that growing market.</div>
+  </div>
+</div>
+<div class="anchor" id="tier2"></div>
+<span class="sec-label">The rotation system</span>
+<h2 class="sec-title">Tier 2: the structured rotation model, building breadth without sacrificing depth</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;margin-bottom:1rem;">Once English is at C1, Spanish at A2, and Mandarin at A1 (approximately Month 24-36), Tier 2 begins with a structured rotation approach. All six Tier 2 languages are taken to A1 before any is taken to A2. This prevents over-investment in any single language before the commercial return is clear and uses each language to reinforce the others where grammatical overlap exists.</p>
+<div class="hbox"><p><strong>The rotation logic:</strong> German uses French-adjacent vocabulary. Korean grammar prepares and reinforces Japanese grammar. Learning them in pairs (German alongside Hindi, then Korean before Japanese) maximizes transfer effects and reduces total study hours across the six languages by approximately 20-30% compared to sequential isolated acquisition.</p></div>
+<div class="phase-row">
+<span class="phase-lbl">Rotation Phase A. First pass: A1 across all six Tier 2 languages</span>
+<ul class="slist"><li class="hi">German: core grammar cases (nominative, accusative, dative), workplace vocabulary, basic cloud terminology. French proximity accelerates this phase, shared Latin vocabulary means A1 comes faster than for English-only speakers.</li><li class="">Hindi: Devanagari script basics and verb-final sentence structure. Daily workplace phrases and team communication scenarios for an Indian tech office context.</li><li class="hi">Korean: Hangul acquisition first, the Korean alphabet is alphabetic and typically learned in 1-2 weeks. Then Korean grammar basics, which simultaneously prepares Japanese grammar understanding.</li><li class="">Japanese: hiragana and katakana only. No kanji at this stage. Basic greetings and relationship phrases for a corporate context. Japanese grammar now reinforced by the Korean work.</li><li class="">Arabic: Modern Standard Arabic script (right-to-left) and phonology. Gulf business register phrases. Script familiarity before vocabulary.</li><li class="">Mandarin (in Tier 2 sense): if not already at A2 from Tier 1 work, this pass deepens it. Pinyin and tones to A1 awareness if starting from zero here.</li></ul>
+</div>
+<div class="phase-row">
+<span class="phase-lbl">Rotation Phase B. Second pass: A2 across all six Tier 2 languages</span>
+<ul class="slist"><li class="hi">German: A2, past tense, professional email phrases, cloud and enterprise vocabulary, SAP and data governance terminology. This is where German starts opening European consulting conversations.</li><li class="">Hindi: A2 conversational Hindi. Team meeting phrases, basic management expressions, Indian tech workplace cultural context.</li><li class="">Korean: A2 grammar patterns. Business Korean register introduction. Semiconductor and electronics vocabulary as relevant (Samsung, SK Hynix).</li><li class="">Japanese: Introduce basic kanji (JLPT N5 set, approximately 100 characters). Simple business introduction and meeting phrases. Politeness levels awareness.</li><li class="">Arabic: A2 Gulf dialect awareness alongside Modern Standard Arabic. Business meeting phrases for consultant-level interactions.</li></ul>
+</div>
+<div class="phase-row">
+<span class="phase-lbl">After Phase B. Tier 1 reassessment checkpoint</span>
+<p class="phase-desc">Before continuing Tier 2 Phase C, assess: Is English technical communication at C2 level (architecture decisions to executive stakeholders, clear ADRs)? Is French at the level required for Paris/La Defense working environment, client meetings and technical presentations comfortable? Is Spanish B2 maintained or improved during the Tier 2 rotation (if it has slipped below B1, Spanish takes priority over continued Tier 2 work)? Only after all Tier 1 checks pass does Tier 2 Phase C proceed. German is the highest-priority Tier 2 candidate for B1 investment given the Azure enterprise consulting market.</p>
+</div>
+</div>
+
+<footer><div class="footer-brand">Jeremy Trinity</div><div class="footer-meta">Five-Pillar Development System &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp;<a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a> &nbsp;|&nbsp;<a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a> &nbsp;|&nbsp;<a href="https://jeremytrinity.com">jeremytrinity.com</a> &nbsp;|&nbsp;</div></footer>
+<script>
+const html=document.documentElement;
+const btn=document.getElementById('themeBtn');
+const label=document.getElementById('themeLabel');
+function applyTheme(t){html.setAttribute('data-theme',t);if(label)label.textContent=t==='dark'?'Light':'Dark';}
+const saved=localStorage.getItem('jt-theme');
+if(saved){applyTheme(saved);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){applyTheme('dark');localStorage.setItem('jt-theme','dark');}
+if(btn)btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(next);localStorage.setItem('jt-theme',next);});
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+</script>
+
+<script>
+/* ── ACCORDION ── */
+(function () {
+  document.querySelectorAll('.acc-block').forEach(function (block) {
+    var head = block.querySelector('.acc-head');
+    if (!head) return;
+    // Inject chevron as last flex child
+    var chev = document.createElement('span');
+    chev.className = 'acc-chev';
+    chev.setAttribute('aria-hidden', 'true');
+    chev.textContent = '▾';
+    head.appendChild(chev);
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    function toggle(e) {
+      if (e.target && (e.target.tagName === 'A' || (e.target.closest && e.target.closest('a')))) return;
+      var collapsed = block.classList.toggle('is-collapsed');
+      head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
+  });
+})();
+</script>
+<script>
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

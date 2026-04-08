@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar II: BSc Computer Science | Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F9F8F5;--surface:#FFFFFF;--surface2:#F2F1EE;--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--ink:#1A1A18;--ink2:#52514E;--ink3:#8A8880;--accent:#2A5F8F;--accent-lt:#EBF2F9;--accent2:#1D4A70;--p1:#2A5F8F;--p2:#0F6E56;--p3:#854F0B;--p4:#534AB7;--p5:#A32D2D;--p1-lt:#EBF2F9;--p2-lt:#E1F5EE;--p3-lt:#FAEEDA;--p4-lt:#EEEDFE;--p5-lt:#FCEBEB;}
+[data-theme="dark"]{--bg:#111110;--surface:#1C1C1A;--surface2:#252523;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--ink:#EEECEA;--ink2:#AAAAAA;--ink3:#777775;--accent:#5B9BD5;--accent-lt:#1A2A3A;--accent2:#7AB3E0;--p1:#5B9BD5;--p2:#4ecdb4;--p3:#FAC775;--p4:#AFA9EC;--p5:#F09595;--p1-lt:#1A2A3A;--p2-lt:#0A2820;--p3-lt:#2A1E0A;--p4-lt:#1A1830;--p5-lt:#2A1010;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;transition:background .3s,color .3s;padding-top:60px;}
+a{color:var(--accent);text-decoration:none;}a:hover{color:var(--accent2);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:background .3s,border-color .3s;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:0.8rem;font-weight:500;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-btn{background:none;border:1px solid var(--border2);border-radius:20px;padding:.25rem .75rem;cursor:pointer;font-size:.75rem;font-weight:500;color:var(--ink2);display:flex;align-items:center;gap:.35rem;font-family:'Inter',sans-serif;transition:all .2s;}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);}
+.sun{color:#F5A623;font-size:.85rem;display:none;}.moon{font-size:.85rem;}
+[data-theme="dark"] .sun{display:inline;}[data-theme="dark"] .moon{display:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:20px;height:1.5px;background:var(--ink);display:block;}
+section{padding:4rem 2rem;}
+.si{max-width:920px;margin:0 auto;}
+table{width:100%;border-collapse:collapse;margin:1rem 0 1.4rem;font-size:.84rem;}
+th{background:var(--ink);color:var(--surface);padding:.5rem .7rem;text-align:left;font-weight:600;font-size:.79rem;}
+td{padding:.42rem .7rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:var(--surface2);}
+footer{background:var(--surface2);border-top:1px solid var(--border);padding:2rem;text-align:center;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
+.footer-meta{font-size:.78rem;color:var(--ink3);}
+.footer-meta a{color:var(--accent);}
+@media(max-width:900px){.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem;z-index:199;}.hamburger{display:flex;}}
+
+.page-hero{background:var(--surface);border-bottom:1px solid var(--border);padding:3.5rem 2rem 2.5rem;}
+.page-hero-inner,.page-wrap{max-width:960px;margin:0 auto;}
+.page-wrap{padding:2.5rem 2rem 5rem;}
+.back-link{font-size:.78rem;color:var(--ink3);display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1.2rem;}
+.back-link:hover{color:var(--accent);}
+.pillar-badge{display:inline-block;font-size:.7rem;font-weight:700;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem;background:#E1F5EE;color:#0F6E56;}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:.8rem;}
+.ph-sub{font-size:.95rem;color:var(--ink2);max-width:720px;line-height:1.7;margin-bottom:1.5rem;}
+.ph-logos{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-bottom:1.5rem;}
+.ph-logo{height:26px;width:auto;object-fit:contain;}
+.ph-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.ph-stat-val{font-size:1.35rem;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;}
+.ph-stat-label{font-size:.7rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;}
+/* TOC */
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2.5rem;}
+.toc-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:.8rem;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.2rem .5rem;}
+.toc-grid a{font-size:.82rem;color:var(--accent);padding:.12rem 0;}
+/* Section headings */
+.anchor{display:block;height:72px;margin-top:-72px;visibility:hidden;}
+.sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;margin-top:3rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:600;color:var(--ink);margin-bottom:.35rem;}
+.title-rule{width:36px;height:2px;background:var(--accent);margin-bottom:1.5rem;}
+/* Phase banners */
+.phase-banner{border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0 1.5rem;border-left:4px solid;}
+.ph1-b{background:var(--p1-lt);border-color:var(--p1);}
+.ph2-b{background:var(--p2-lt);border-color:var(--p2);}
+.ph3-b{background:var(--p3-lt);border-color:var(--p3);}
+.ph4-b{background:var(--p4-lt);border-color:var(--p4);}
+.phase-banner h2{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:.3rem;}
+.ph1-b h2{color:var(--p1);}.ph2-b h2{color:var(--p2);}.ph3-b h2{color:var(--p3);}.ph4-b h2{color:var(--p4);}
+.phase-banner p{font-size:.87rem;color:var(--ink2);margin:0;line-height:1.6;}
+.phase-meta{font-size:.73rem;font-weight:600;margin-top:.4rem;color:var(--ink3);}
+/* Term blocks */
+.term-block{margin:1.8rem 0;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.term-header{display:flex;align-items:center;gap:.85rem;padding:1rem 1.4rem;background:var(--surface);border-bottom:1px solid var(--border);}
+.term-num{font-size:.68rem;font-weight:700;color:#fff;padding:.26rem .8rem;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.t1,.t2,.t3{background:#2A5F8F;}.t4,.t5,.t6{background:#0F6E56;}
+.t7,.t8,.t9{background:#854F0B;}.t10,.t11{background:#534AB7;}
+.term-title{font-size:.98rem;font-weight:600;color:var(--ink);}
+.term-goal{font-size:.78rem;color:var(--ink3);margin-top:.1rem;}
+.term-body{padding:1.3rem;}
+/* Week sub-headers */
+.wk{display:flex;align-items:center;gap:.6rem;margin:.9rem 0 .5rem;}
+.wk-lbl{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);background:var(--accent-lt);padding:.18rem .6rem;border-radius:10px;white-space:nowrap;}
+.wk-desc{font-size:.84rem;font-weight:600;color:var(--ink);}
+/* Section lists */
+.slist{margin:.4rem 0 .8rem;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:.22rem;}
+.slist li{font-size:.83rem;color:var(--ink2);padding:.28rem .6rem .28rem .9rem;border-left:2px solid var(--border);line-height:1.5;}
+.slist li.hi{border-left-color:var(--accent);color:var(--ink);font-weight:500;}
+/* Boxes */
+.hbox{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:.9rem 1.1rem;margin:.65rem 0;}
+.hbox p{font-size:.87rem;color:var(--ink2);margin:0;line-height:1.6;}
+.hbox strong{color:var(--accent);}
+.wbox{background:var(--p3-lt);border:1px solid var(--p3);border-radius:10px;padding:.85rem 1.1rem;margin:.65rem 0;}
+.wbox p{font-size:.84rem;color:var(--ink2);margin:0;line-height:1.6;}
+.wbox strong{color:var(--p3);}
+.abox{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:.9rem 1.1rem;margin:.65rem 0;}
+.abox h4{font-size:.77rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:.35rem;}
+.abox ul{padding-left:1.1rem;margin:.2rem 0;}
+.abox li{font-size:.83rem;color:var(--ink2);margin:.16rem 0;line-height:1.5;}
+.abox p{font-size:.83rem;color:var(--ink2);margin:.12rem 0;line-height:1.55;}
+.fres{display:flex;gap:.7rem;padding:.65rem .85rem;background:var(--p2-lt);border:1px solid var(--p2);border-radius:8px;margin:.4rem 0;}
+.fres .fi{font-size:.9rem;flex-shrink:0;margin-top:2px;}
+.fres p{font-size:.82rem;color:var(--ink2);margin:0;line-height:1.5;}
+.fres a{color:var(--p2);}
+/* Skills grid */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:.8rem;margin:1.1rem 0;}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;}
+.skill-card h3{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;}
+.skill-card p{font-size:.8rem;color:var(--ink2);margin:0;line-height:1.5;}
+/* CS50 card grid */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:.85rem;margin:1rem 0;}
+.ccard{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.95rem 1.1rem;}
+.ccard-logo{height:24px;width:auto;object-fit:contain;margin-bottom:.5rem;display:block;}
+.ccard-title{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.2rem;}
+.ccard-meta{font-size:.73rem;color:var(--ink3);margin-bottom:.4rem;}
+.ccard-body{font-size:.83rem;color:var(--ink2);line-height:1.55;}
+/* Mini stats strip */
+.mini{display:flex;gap:1.5rem;flex-wrap:wrap;padding:.8rem 0;border-top:1px solid var(--border);margin-top:.9rem;}
+.mini-v{font-size:.95rem;font-weight:700;color:var(--accent);font-family:'Playfair Display',serif;}
+.mini-l{font-size:.64rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;}
+/* Matrix table */
+.mtable{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.8rem;}
+.mtable th{background:var(--ink);color:var(--surface);padding:.45rem .65rem;text-align:left;font-weight:600;font-size:.76rem;}
+.mtable td{padding:.38rem .65rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+.mtable tr:nth-child(even) td{background:var(--surface2);}
+.mtable tr:last-child td{border-bottom:none;}
+/* Divider */
+.wk-div{border:none;border-top:1px dashed var(--border);margin:1.1rem 0;}
+@media(max-width:700px){.toc-grid{grid-template-columns:1fr;}.ph-stats{gap:1.1rem;}.card-grid{grid-template-columns:1fr;}.skill-grid{grid-template-columns:1fr 1fr;}}
+
+/* ── ACCORDION ─────────────────────────────────── */
+.acc-head { cursor: pointer; user-select: none; }
+.acc-chev { margin-left: auto; font-size: 1.05rem; opacity: 0.38; transition: transform .25s ease, opacity .25s ease; flex-shrink: 0; padding-left: .6rem; pointer-events: none; }
+.acc-block.is-collapsed .acc-chev { transform: rotate(-90deg); opacity: 0.65; }
+.acc-block.is-collapsed .acc-body { display: none; }
+
+/* ── Language toggle ── */
+.lang-btn { margin-left: 0.4rem; }
+.lang-pt { display: none !important; }
+[data-lang="pt"] .lang-en { display: none !important; }
+[data-lang="pt"] .lang-pt { display: inline !important; }
+[data-lang="pt"] p.lang-pt,
+[data-lang="pt"] div.lang-pt,
+[data-lang="pt"] li.lang-pt,
+[data-lang="pt"] span.lang-pt.block,
+[data-lang="pt"] td.lang-pt { display: block !important; }
+</style>
+</head>
+<body>
+<nav><a class="nav-brand" href="index.html">Jeremy Trinity</a><div class="nav-links" id="navLinks"><a href="index.html" data-en="Overview" data-pt="Visão Geral">Overview</a><a href="pillar1-bootcamp.html">I. Bootcamp</a><a href="pillar2-degree.html" style="color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:2px;">II. Degree</a><a href="pillar3-languages.html">III. Languages</a><a href="pillar4-courses.html">IV. Courses</a><a href="pillar5-reading.html">V. Reading</a></div><div class="nav-right"><button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><span class="moon">🌙</span><span class="sun">☀️</span><span id="themeLabel">Dark</span></button><button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<section class="page-hero">
+<div class="page-hero-inner">
+  <a class="back-link" href="index.html" data-en="← Back to overview" data-pt="← Voltar à visão geral">← Back to overview</a>
+  <span class="pillar-badge">Pillar II</span>
+  <h1 class="ph-title">BSc Computer Science</h1>
+  <p class="ph-sub">University of the People, starting April 9, 2026. WASC-accredited, 100% English, 100% online, built around medical constraints. Four Harvard CS50 free certificates embedded across the four years. The degree runs for 20 terms (4 years) to BSc completion. The Associate of Science milestone is requestable at approximately Term 10 (halfway). This page covers Terms 1-11 in bootcamp-aligned detail; Terms 12-20 continue the BSc beyond the bootcamp period. The degree provides the credential, the scholarship mechanism, the LIRN access that may cut the entire bootcamp cost to zero, and academic foundations that reinforce every step.</p>
+  <div class="ph-logos"><img class="ph-logo" src="https://upload.wikimedia.org/wikipedia/en/2/22/University_of_the_People_seal.png" style="height:32px;" alt="uopeople"> <img class="ph-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" style="height:36px;" alt="harvard"> <img class="ph-logo" src="https://cdn.simpleicons.org/python/3776AB" style="height:24px;" alt="python"> <img class="ph-logo" src="https://cdn.simpleicons.org/github/181717" style="height:24px;" alt="github"> <img class="ph-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" style="height:24px;" alt="azure"></div>
+  <div class="ph-stats">
+    <div><div class="ph-stat-val">4 years</div><div class="ph-stat-label">Degree duration</div></div>
+    <div><div class="ph-stat-val">20 terms</div><div class="ph-stat-label">4 years to BSc completion</div></div>
+    <div><div class="ph-stat-val">4</div><div class="ph-stat-label">Free Harvard certificates</div></div>
+    <div><div class="ph-stat-val">~Term 10</div><div class="ph-stat-label">Associate degree requestable</div></div>
+    <div><div class="ph-stat-val">3.7+</div><div class="ph-stat-label">Target GPA (scholarship)</div></div>
+    <div><div class="ph-stat-val">C210874684</div><div class="ph-stat-label">Your student ID</div></div>
+  </div>
+</div>
+</section>
+<div class="page-wrap">
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <div class="toc-grid">
+    <a href="#why">Why UoPeople, why restart</a>
+    <a href="#lirn">April 9: LIRN access check</a>
+    <a href="#scholarship">Scholarship protection strategy</a>
+    <a href="#cs50">Harvard CS50: 4 free certificates</a>
+    <a href="#phase1">Phase 1: Terms 1-3 (Foundation)</a>
+    <a href="#phase2">Phase 2: Terms 4-6 (Differentiation)</a>
+    <a href="#phase3">Phase 3: Terms 7-9 (Expert)</a>
+    <a href="#phase4">Phase 4: Terms 10-11 (Bootcamp completion)</a>
+    <a href="#health-it">Health IT as commercial asset</a>
+    <a href="#matrix">Skills progression matrix</a>
+    <a href="#portfolio">Portfolio summary, all 12 projects</a>
+    <a href="#omscs">Path to Georgia Tech OMSCS</a>
+  </div>
+</div>
+<div class="anchor" id="why"></div>
+<span class="sec-label">The decision</span>
+<h2 class="sec-title">Why UoPeople, and why restart instead of claiming equivalences</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;">Two prior IT qualifications exist. EQF Level 3 in IT Systems Installation and Operation from Aveiro Professional School: hardware, OS, networking, IT support. EQF Level 5 in Health Information Systems from Fernando Pessoa University: clinical information systems, HL7 standards, health data management, database design, IT project management in healthcare. A BSc in Computer Science at Fernando Pessoa was paused due to medical circumstances.</p>
+<div class="hbox"><p><strong>Why not claim equivalences from the paused BSc?</strong> Technologies, cloud platforms, and software practices evolved substantially between that enrolment and 2026. Claiming equivalences would mean presenting credentials built on outdated coursework to IBM and Deloitte who operate on current standards. Starting again ensures every qualification reflects what the industry looks like now. This is precision, not modesty, and IBM and Deloitte understand and respect this argument when it is framed correctly.</p></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;margin-top:.9rem;">UoPeople was chosen for four specific reasons: WASC accreditation (same body as USC, UCLA, Stanford), scholarship that may reduce tuition to zero for high-GPA students, LIRN library access that may reduce the entire bootcamp course cost to EUR 0, and 100% online format meaning medical flare days do not cause missed classes or lost deadlines.</p>
+<div class="anchor" id="lirn"></div>
+<span class="sec-label">April 9, first thing</span>
+<h2 class="sec-title">LIRN access check, do this before paying for anything</h2>
+<div class="title-rule"></div>
+<div class="abox"><h4>The LIRN test. Run the moment Moodle access activates on April 9</h4><ul><li>Go to link.gale.com/apps/?userGroupName=lirn17237: the UoPeople LIRN group URL.</li><li>Search for: Scott Duffy AZ-104, Imran Afzal Complete Linux Training, Kalyan Reddy AKS with Azure DevOps, Alan Rodrigues AZ-500, Mumshad Docker, Mumshad Kubernetes.</li><li>All six present: do NOT subscribe to Udemy Personal Plan. Bootcamp course cost = EUR 0.</li><li>Any missing: subscribe to Personal Plan at EUR 10/month. Total fallback cost: EUR 240 over 24 months.</li><li>LIRN creates a separate Udemy Business account, it does not connect to existing Udemy history. Owned courses (100 Days of Code) stay in the personal account unaffected.</li></ul></div>
+
+<div class="anchor" id="associate"></div>
+<span class="sec-label">The two-milestone structure</span>
+<h2 class="sec-title">BSc vs Associate of Science, understanding the two-degree structure</h2>
+<div class="title-rule"></div>
+<div class="hbox"><p><strong>The correct degree structure:</strong> The UoPeople BSc Computer Science is a 120-credit, 20-term, 4-year program. At approximately Term 10 (halfway, 60 credits, ~20 courses completed), you become eligible to request the Associate of Science in Computer Science, a formally recognized 2-year degree in its own right. This is not an automatic award; it must be explicitly requested from UoPeople once the 60-credit threshold and all Associate-level requirements are met. The Degree Handbook in these documents covers Terms 1-11 in detail because that period aligns with the 24-month Azure bootcamp. The BSc degree itself continues through Term 20.</p></div>
+<div class="skill-grid" style="margin-top:1rem;">
+  <div class="skill-card"><h3>Associate of Science (AS-CS)</h3><p><strong>~60 credits, ~20 courses, ~10 terms, ~2 years.</strong> Request this explicitly from UoPeople when the 60-credit threshold is reached. It is a formally recognized degree and adds an official US credential to the CV before the BSc is complete. Useful for job applications in Years 2-3 that ask for a degree qualification.</p></div>
+  <div class="skill-card"><h3>BSc Computer Science (BS-CS)</h3><p><strong>120 credits, ~40 courses, 20 terms, 4 years.</strong> The full degree. WASC-accredited. The target for Georgia Tech OMSCS admission. Terms 1-20. This document covers Terms 1-11 in bootcamp-aligned detail; Terms 12-20 continue with advanced CS coursework including theory, systems, security, and specialisation electives.</p></div>
+  <div class="skill-card"><h3>Why 11 terms are detailed here</h3><p>Terms 1-11 are covered in depth because they run in parallel with the 24-month Azure Cloud Engineering bootcamp. After Term 11, the bootcamp is complete and the career plan enters active employment, but UoPeople continues alongside work at a sustainable pace through Terms 12-20, targeting BSc completion in Year 4.</p></div>
+  <div class="skill-card"><h3>Terms 12-20: continuing alongside work</h3><p>After the bootcamp ends (Term 11), UoPeople continues at 1-2 courses per term. Advanced CS coursework: Theory of Computation, Computer Architecture, Advanced Algorithms, Software Engineering, Machine Learning, Capstone project. These terms are not detailed in this document because the bootcamp plan is the priority focus, they are studied alongside full employment at a target enterprise employer.</p></div>
+</div>
+<table class="mtable" style="margin-top:1.2rem;">
+  <thead><tr><th>Milestone</th><th>When</th><th>Credits</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td>Associate of Science in CS (AS-CS)</td><td>~Term 10, ~Year 2</td><td>60 credits completed</td><td>Explicitly request from UoPeople administration, not automatic</td></tr>
+    <tr><td>BSc Computer Science (BS-CS)</td><td>Term 20, Year 4</td><td>120 credits completed</td><td>Apply for graduation. WASC-accredited US Bachelor's degree</td></tr>
+    <tr><td>Georgia Tech OMSCS application</td><td>Year 3-4</td><td>BSc 60%+ complete, GPA 3.7+</td><td>Apply for the Master's while finishing the BSc</td></tr>
+  </tbody>
+</table>
+
+<div class="anchor" id="scholarship"></div>
+<span class="sec-label">Money mechanics</span>
+<h2 class="sec-title">Scholarship protection. GPA is a financial lever, not just an academic one</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;">The UoPeople scholarship is GPA-dependent. Maintaining 3.7+ keeps it active. Losing it means paying tuition that scholarship students do not pay. The bootcamp always slows down when UoPeople grades are at risk. Never the other way around.</p>
+<div class="skill-grid">
+  <div class="skill-card"><h3>Write early, not on deadline</h3><p>Every assignment: first draft three days before the deadline. Revise the day before. Submit with 24 hours spare. A medical flare on deadline day then costs nothing.</p></div>
+  <div class="skill-card"><h3>Discussion posts: depth over volume</h3><p>Discussion posts are typically 20-30% of each grade. Three substantive posts that genuinely engage with the material beat ten superficial ones. Read what peers wrote. Respond to the actual argument.</p></div>
+  <div class="skill-card"><h3>Double-count study time</h3><p>Write Python assignments as cloud-adjacent scripts wherever the topic allows. A loops exercise can parse Azure cost export CSV files. This double-counts study time and produces portfolio-adjacent work from academic work.</p></div>
+  <div class="skill-card"><h3>Read feedback as language practice</h3><p>Every grade below 90% includes feedback. Read it specifically for language issues, not just content. At B2 English, the gap to 90%+ on written work is often register and precision, not understanding.</p></div>
+  <div class="skill-card"><h3>Know the UoPeople cycle</h3><p>Terms are 8 weeks normal study, week 9 exams only, week 10 recovery and planning. Accelerate bootcamp in week 10. Slow bootcamp in week 9. Build this into the weekly calendar now.</p></div>
+  <div class="skill-card"><h3>Grades always beat bootcamp speed</h3><p>Any week where UoPeople assignments are at risk: bootcamp pauses until grades are secured. The bootcamp can compress or expand. The scholarship, once lost, cannot be recovered.</p></div>
+</div>
+<div class="anchor" id="cs50"></div>
+<span class="sec-label">Harvard integration</span>
+<h2 class="sec-title">Harvard CS50, four free certificates at exactly the right moments</h2>
+<div class="title-rule"></div>
+<div class="wbox"><p><strong>Note:</strong> Never pay edX for CS50 content. edX charges EUR 219 per course for the verified certificate. The Harvard OCW free certificate at cs50.harvard.edu costs EUR 0 and is academically identical. Always use cs50.harvard.edu: never edx.org: for CS50 certificate claims.</p></div>
+<div class="card-grid">
+  <div class="ccard">
+    <img class="ccard-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard">
+    <div class="ccard-title">CS50x. Introduction to Computer Science</div>
+    <div class="ccard-meta">Terms 1-3 · Free cert · cs50.harvard.edu/x · Score 70%+ on all problem sets</div>
+    <div class="ccard-body">C, Python, SQL, JavaScript, algorithms, data structures. Already started, continue every Saturday at 2.5 hours. Commit every problem set to github.com/jeremy-trinity/cs50x-jeremy the same day it is completed. CS50 Week 6 Python reinforces UoPeople CS 1101 directly. Week 4 memory management builds systems thinking that feeds container understanding later.</div>
+  </div>
+  <div class="ccard">
+    <img class="ccard-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard">
+    <div class="ccard-title">CS50P. Introduction to Python</div>
+    <div class="ccard-meta">Terms 1-2 · Free cert · cs50.harvard.edu/python</div>
+    <div class="ccard-body">OOP, unit testing, file I/O, regex, third-party libraries. Run in parallel with CS50x during lighter UoPeople weeks. Reinforces UoPeople CS 1101 and the bootcamp Python track simultaneously. Second free Harvard certificate at zero cost.</div>
+  </div>
+  <div class="ccard">
+    <img class="ccard-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard">
+    <div class="ccard-title">CS50 SQL. Introduction to Databases</div>
+    <div class="ccard-meta">Terms 4-5 · Free cert · cs50.harvard.edu/sql</div>
+    <div class="ccard-body">SQL, database design, querying, optimisation, PostgreSQL, MySQL, SQLite. Aligns with UoPeople CS 2203 Databases 1 in Term 4. SQL is tested in AZ-104 monitoring (KQL is a SQL dialect) and in every IBM and Deloitte technical interview. Third free Harvard certificate.</div>
+  </div>
+  <div class="ccard">
+    <img class="ccard-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard">
+    <div class="ccard-title">CS50 AI. Introduction to AI with Python</div>
+    <div class="ccard-meta">Terms 5-6 · Free cert · cs50.harvard.edu/ai</div>
+    <div class="ccard-body">Search, ML, neural networks, NLP. Aligns with UoPeople CS 2401 Artificial Intelligence in Term 6. Fourth free Harvard certificate. Positions the profile for Azure AI services conversations in interviews and for future AI-adjacent cloud roles.</div>
+  </div>
+</div>
+<!-- STEP 2 appends Phase 1 terms -->
+
+<div class="anchor" id="phase1"></div>
+<div class="phase-banner ph1-b">
+  <h2>Phase 1: Foundation: Terms 1 to 3</h2>
+  <p>Linux, networking, Python, Git, Azure account live, AZ-900 passed, first portfolio project on GitHub. CS50x and CS50P running in parallel every Saturday. GPA habit established from the very first assignment.</p>
+  <div class="phase-meta">Goal: AZ-900 passed · CS50x complete · Projects 1-2 live · GPA 3.7+ established · English B2→C1 begun · Spanish A0→A1 begun</div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-1">
+  <div class="term-header acc-head">
+    <span class="term-num t1">Term 1</span>
+    <div><div class="term-title">Orientation + Programming Fundamentals</div><div class="term-goal">8-10 weeks starting April 9, 2026</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses, both mandatory this term</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">UNIV 1001: Online Education Strategies, mandatory orientation, cannot be waived. First discussion posts due within 48 hours of enrolment. Grade counts from day one. Do not underestimate it.</li><li class="hi">CS 1101: Programming Fundamentals. Python introduction: variables, conditionals, loops, functions, basic data structures. Write every assignment as a cloud-adjacent script wherever the topic allows.</li></ul><div class="wk"><span class="wk-lbl">CS50x parallel</span><span class="wk-desc">Continue from Lecture 0 started in March, every Saturday 2.5 hours</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.7rem;">Complete CS50 Weeks 0-4 across this term. Commit every problem set to github.com/jeremy-trinity/cs50x-jeremy the same day it is completed, this contribution graph is what IBM and Deloitte recruiters see before reading the CV. CS50 Week 4 memory management feeds container and Kubernetes understanding later.</p><div class="wk"><span class="wk-lbl">Azure technical focus</span><span class="wk-desc">First deployments, both CLI and PowerShell</span></div><div class="abox"><h4>What to deploy in Term 1</h4><ul><li>Azure free account at portal.azure.com. Set a budget alert at EUR 20/month immediately after creating the account.</li><li>Azure Cloud Shell at shell.azure.com: your primary terminal, no local install required. PowerShell and Azure CLI both pre-installed.</li><li>First resource group via Azure CLI: az group create --name rg-lab-01 --location westeurope</li><li>Same resource group via PowerShell: New-AzResourceGroup -Name rg-lab-01 -Location westeurope</li><li>Both methods for every resource throughout the bootcamp. AZ-104 tests both, and fluency with both is visible in interview answers.</li></ul></div><div class="wk"><span class="wk-lbl">Linux and networking foundations</span><span class="wk-desc">Alongside UoPeople and Azure</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.5rem;">Imran Afzal Complete Linux Training Course (bootcamp CAT replaces thin course 371): Sections 1-8 this term covering installation, file system, permissions, text processing, and system administration. OverTheWire Bandit levels 0-15 for command-line fluency. David Bombal networking targeted sections: IP addressing, CIDR notation, DNS, TCP/IP, firewall ACLs, these underpin every Azure VNet and NSG decision in later terms.</p><div class="wk"><span class="wk-lbl">Portfolio deliverable</span><span class="wk-desc">azure-project-01 begins</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;">Repository: github.com/jeremy-trinity/azure-project-01. Terraform code: resource group, VNet with two subnets, NSG with SSH and HTTP rules, Linux VM with public IP. README references the Azure Architecture Center. Architecture diagram included. This is what IBM and Deloitte engineers look at first, make it look like it was written by someone who knows what they are doing.</p><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: Begin Rupert Walsh Perfect English Grammar at B2 sections. First 40-min Saturday session. Topic: advanced verb tenses and perfect aspects.</li><li class="hi">Spanish: Week 1 of Peter Hanley El Método Level 1. First 40-min Sunday session. Topic: core sentence structure, ser/estar/tener/ir.</li><li class="">Mandarin: Not yet. Confirm Spanish is progressing before adding the third language track in Term 2.</li></ul><div class="abox"><h4>Career actions this term</h4><ul><li>LinkedIn profile: headline "Junior Azure Cloud Engineer in Training | UoPeople BSc CS | AZ-900 candidate". Professional photo.</li><li>GitHub profile at github.com/jeremy-trinity: professional bio, pinned repositories, learning-log commits daily even if just one line.</li><li>Draft internship observation letters for your target enterprise employers. Do not send yet, wait until AZ-900 is passed in Term 2.</li></ul></div><div class="mini"><div><div class="mini-v">2 courses</div><div class="mini-l">UoPeople this term</div></div><div><div class="mini-v">CS50x W0-4</div><div class="mini-l">Harvard parallel</div></div><div><div class="mini-v">Project 1</div><div class="mini-l">Portfolio starts</div></div></div></div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-2">
+  <div class="term-header acc-head">
+    <span class="term-num t2">Term 2</span>
+    <div><div class="term-title">Python + College Algebra + AZ-900 exam</div><div class="term-goal">8-10 weeks</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">CS 1102: Programming 1 (Python). OOP, modules, file handling, exceptions. CS50 Python week aligns directly. Use CS50 problem sets as supplementary practice for UoPeople assignments.</li><li class="">MATH 1201: College Algebra, functions, linear equations, quadratics. Gateway to later statistics courses and the mathematics required for Georgia Tech OMSCS application.</li></ul><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">PowerShell foundations + AZ-900 exam preparation</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">PowerShell Master Class (John Savill): complete sections 1-6. After each section, apply immediately in Azure Cloud Shell, create a resource group, list VMs, assign an RBAC role. Zero PowerShell existed in the 774-course catalogue, making this addition non-negotiable. Scott Duffy AZ-900 (CAT #88): all 15 sections. Practice tests (CAT #190): target 85%+ before booking the real exam.</p><div class="abox"><h4>AZ-900 exam booking checklist</h4><ul><li>Check microsoft.com/en-us/trainingdays for a free AZ-900 voucher from a Microsoft Virtual Training Day before paying full price.</li><li>Score 85%+ on Scott Duffy practice tests consistently across multiple sittings.</li><li>Watch John Savill AZ-900 study cram on YouTube the week before booking: youtube.com/@NTFAQGuy</li><li>Book through learn.microsoft.com/en-us/certifications/azure-fundamentals/</li></ul></div><div class="wk"><span class="wk-lbl">Portfolio</span><span class="wk-desc">azure-project-01 enhancement, add PowerShell scripts</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;">Add PowerShell deployment scripts alongside the existing Terraform code. Every resource now deployable three ways: portal (understanding all options), Azure CLI (automation), PowerShell (AZ-104 exam requirement). Document all three methods in the README, this triple-method documentation proves you understand the tooling rather than following a tutorial.</p><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: Complete B2 sections of Rupert Walsh, advanced verb tenses, passive voice, reported speech, articles, modal verbs at precision level, relative clauses.</li><li class="hi">Spanish: Complete El Método Level 1. Begin Level 2. Duolingo daily 10-minute sessions established Monday-Friday.</li><li class="hi">Mandarin: Week 1. Install HelloChinese. Learn the pinyin system fully before any vocabulary. Understand four tones before starting Anki HSK1 deck.</li></ul><div class="mini"><div><div class="mini-v">AZ-900 ✓</div><div class="mini-l">First Microsoft certification</div></div><div><div class="mini-v">CS50x W5-8</div><div class="mini-l">Algorithms and Python</div></div><div><div class="mini-v">3 tracks active</div><div class="mini-l">EN B2, ES A0, ZH beginning</div></div></div></div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-3">
+  <div class="term-header acc-head">
+    <span class="term-num t3">Term 3</span>
+    <div><div class="term-title">Programming 2 + Statistics + Azure deep dive</div><div class="term-goal">8-10 weeks</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">CS 1103: Programming 2, data structures, recursion, searching and sorting, OOP at intermediate level. Feeds every portfolio project from Term 4 onwards.</li><li class="">MATH 1280: Introduction to Statistics, probability, distributions, hypothesis testing. Feeds the Health-Tech Capstone 2 analytics platform and the monitoring dashboards built in Phase 3.</li></ul><div class="wk"><span class="wk-lbl">CS50x</span><span class="wk-desc">Complete and claim the free certificate, submit at cs50.harvard.edu/x, not edX</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Weeks 9-10 (web programming, Flask) plus the final project. Make the final project cloud-adjacent: a Flask app that calls the Azure SDK, or a dashboard visualising Azure cost data from your lab subscription. Certificate claimed at cs50.harvard.edu/x immediately upon completion and added to LinkedIn the same day.</p><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">Memi Lavi Azure deep dive + Terraform foundations</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Microsoft Azure: From Zero to Hero (Memi Lavi, CAT #633): sections 1-20 across this term. Deploy every resource type manually first: VNet, NSG, VM, App Service, Azure SQL with managed identity authentication, Key Vault. Then rebuild all of it with Terraform 101 (CAT #52). Two-step approach, manual first, then automated, creates genuine understanding rather than following templates. Every resource deployed both ways.</p><div class="abox"><h4>Lab discipline: the three-deploy rule</h4><p>For every Azure resource type studied this term, deploy it three ways: via the portal (see all options), via Azure CLI (understand all parameters), via Terraform (understand the IaC representation). Portal-only deployment is a certification risk because AZ-104 tests CLI and PowerShell parameters specifically.</p></div><div class="wk"><span class="wk-lbl">Portfolio</span><span class="wk-desc">azure-project-02, three-tier web application</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;">App Service frontend, Azure SQL backend with managed identity authentication (no connection string passwords in code), Blob Storage for static assets. Terraform deployed. GitHub Actions basic pipeline: lint, test, deploy on push to main. Note the Health IT connection explicitly in the README: this three-tier architecture is the same pattern used in healthcare SaaS platforms for regulated data storage, and the managed identity approach addresses a common HIPAA audit finding.</p><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: Begin C1 sections of Rupert Walsh, ellipsis, discourse markers, complex conditionals, nominalisation for academic writing. UoPeople assignments now written deliberately at C1 register.</li><li class="hi">Spanish: El Método Level 2 complete. Dreaming Spanish comprehensible input videos started (free on YouTube), 15 min per week.</li><li class="">Mandarin: HSK1 vocabulary at approximately 80 words. First HelloChinese grammar unit complete.</li></ul><div class="mini"><div><div class="mini-v">CS50x ✓</div><div class="mini-l">First Harvard certificate earned</div></div><div><div class="mini-v">Project 2 ✓</div><div class="mini-l">Three-tier app live on GitHub</div></div></div></div>
+</div>
+<!-- STEP 3 appends Phase 2 terms -->
+
+<div class="anchor" id="phase2"></div>
+<div class="phase-banner ph2-b">
+  <h2>Phase 2: Differentiation: Terms 4 to 6</h2>
+  <p>The credentials that open doors. AZ-104 and Terraform Associate earned. Docker and Kubernetes fluency built. Projects 3, 4, and 5 live on GitHub. CS50 SQL and CS50 AI running in parallel. First internship applications sent to IBM and Deloitte.</p>
+  <div class="phase-meta">Goal: AZ-104 passed · Terraform Associate passed · Container fluency built · Projects 3-5 live · First applications sent · English C1 confirmed</div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-4">
+  <div class="term-header acc-head">
+    <span class="term-num t4">Term 4</span>
+    <div><div class="term-title">Databases 1 + Web Programming 1 + AZ-104 exam</div><div class="term-goal">8-10 weeks. THE most important academic term</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses, both directly feed Azure work</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">CS 2203: Databases 1, relational design, SQL queries, normalisation. Aligns directly with CS50 SQL starting this term. Write UoPeople SQL assignments using Azure SQL in your lab environment wherever the topic allows.</li><li class="hi">CS 2205: Web Programming 1. HTML, CSS, JavaScript, HTTP, REST principles. Feeds Azure App Service and Azure API Management understanding in later terms.</li></ul><div class="wk"><span class="wk-lbl">CS50 SQL</span><span class="wk-desc">Third free Harvard certificate, runs in parallel with CS 2203</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">CS50 SQL (cs50.harvard.edu/sql) runs in parallel with CS 2203 Databases 1, the topics reinforce each other exactly. Complete the problem sets at cs50.harvard.edu/sql to earn the third free Harvard certificate. SQL is tested in AZ-104 monitoring (KQL is a SQL dialect) and in every enterprise cloud engineering technical interview.</p><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">AZ-104 full study, the most critical certification in the plan</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Scott Duffy AZ-104 Complete Exam Prep: all domains in full. Identity and Governance gets 20% of study time. It is the foundation for AZ-500 and AZ-305. Networking is the hardest domain and the most tested, the David Bombal networking foundation from Term 1 pays dividends here. After each topic, write a PowerShell script that automates what you just did manually. By end of Term 4, provision a full 3-tier environment via PowerShell without reference material.</p><div class="abox"><h4>AZ-104 exam preparation sequence, four gates before booking</h4><ul><li>Scott Duffy practice tests: all four tests, target 85%+ consistently across multiple sittings.</li><li>Joel Palmer case study tests: six full exams with Fabrikam, Northwind, Adventure Works scenarios. Case study questions fail candidates who only use MCQ-format tests, this set fixes that gap specifically.</li><li>Microsoft Learn official AZ-104 practice assessment (free at learn.microsoft.com): written by the same team as the real exam. Score below 75%: study two more weeks. Score 75%+ combined with 85%+ on Duffy and Palmer: book the exam.</li><li>Watch John Savill AZ-104 study cram on YouTube the week before booking: youtube.com/@NTFAQGuy</li><li>Book at learn.microsoft.com/en-us/certifications/azure-administrator/</li></ul></div><div class="wk"><span class="wk-lbl">Portfolio</span><span class="wk-desc">azure-project-03. AZ-104 breadth demonstration</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;">Multi-tier VNet with NSG rules, VM Scale Set with load balancer, Azure SQL with managed identity, storage account with lifecycle policy, Log Analytics workspace with diagnostic settings from all resources. Architecture Decision Record for each design choice: "I chose managed identity over connection strings because managed identity eliminates the credential rotation risk that is the most common cause of database downtime in production Azure environments."</p><div class="abox"><h4>Send first internship applications this term</h4><ul><li>Primary target employer: letter-ibm.html and cv-jeremy-trinity.html. LinkedIn outreach to relevant contacts. Reference AZ-900 and AZ-104 both as earned.</li><li>Secondary target employer: letter-deloitte.html. Check the internship program deadline. This is time-sensitive.</li><li>Regional tech targets: letter-a regional cloud-native employer.html. Attend local tech community meetups to warm up applications.</li><li>jeremytrinity.com: update with projects 1-4 and all certifications earned.</li></ul></div><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: Academic writing precision focus. Writing every UoPeople assignment deliberately at C1 register. Reading every grade below 90% as a language signal, not just a content signal.</li><li class="hi">Spanish: A1 confirmed by self-assessment. Begin intermediate Spanish course. Duolingo streak maintained daily.</li><li class="">Mandarin: HSK1 vocabulary complete (150 words). Begin HelloChinese HSK2 content.</li></ul><div class="mini"><div><div class="mini-v">AZ-104 ✓</div><div class="mini-l">Most important certification earned</div></div><div><div class="mini-v">CS50 SQL ✓</div><div class="mini-l">Third Harvard certificate</div></div><div><div class="mini-v">Apply now</div><div class="mini-l">target employer applications sent</div></div></div></div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-5">
+  <div class="term-header acc-head">
+    <span class="term-num t5">Term 5</span>
+    <div><div class="term-title">Operating Systems + Data Structures + Terraform Associate exam</div><div class="term-goal">8-10 weeks</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">CS 2301: Operating Systems, process management, memory, file systems, synchronisation. OS content reinforces CS50 Week 4 memory management and directly feeds container understanding (containers are process isolation at the OS level).</li><li class="hi">CS 3305: Data Structures and Algorithms 1, arrays, linked lists, trees, sorting, time and space complexity. Georgia Tech OMSCS preparation territory, study it as OMSCS preparation from the beginning.</li></ul><div class="wk"><span class="wk-lbl">CS50 AI</span><span class="wk-desc">Fourth and final free Harvard certificate</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">CS50 AI (cs50.harvard.edu/ai) begins this term alongside UoPeople CS 2401 Artificial Intelligence in Term 6. Search algorithms, ML, neural networks, NLP. Complete problem sets on cs50.harvard.edu/ai for the fourth free Harvard certificate. Positions the profile for Azure AI services conversations and future ML-adjacent cloud roles.</p><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">Docker + Kubernetes + Terraform Associate exam</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Mumshad Docker for Absolute Beginners (CAT #25): all 10 sections in one week, KodeKloud free labs at kodekloud.com after each section. Mumshad Kubernetes for Absolute Beginners (CAT #34): all 11 sections, Killercoda browser-based labs at killercoda.com. HashiCorp Terraform Associate exam: use Zeal Vora CAT #61 as a revision checklist (not primary study. You have been writing Terraform since Term 1), then book and sit the exam by end of Term 5.</p><div class="abox"><h4>Terraform Associate exam booking</h4><ul><li>This is not new learning. It is formal verification of Terraform knowledge built since Term 1.</li><li>Use Zeal Vora CAT #61 as a checklist only. Exam topics to verify: state files, modules, backends, workspaces, HCP Terraform features.</li><li>Book at hashicorp.com/certification/terraform-associate, approximately EUR 65.</li><li>After earning: ask IBM HR about the Microsoft ESI program. IBM is a Microsoft Gold Partner and ESI vouchers can cover future Azure exam costs.</li></ul></div><div class="wk"><span class="wk-lbl">Portfolio</span><span class="wk-desc">azure-project-04, containerised application</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;">Dockerfile, Docker Compose locally, deployed to Azure Container Instances via Terraform. GitHub Actions pipeline: build Docker image, push to Azure Container Registry, deploy to ACI on merge to main. README includes architecture diagram and cost analysis.</p><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: C1 confirmed. UoPeople grades reflect improvement in written English accuracy. Reduce Udemy English to every other Saturday. UoPeople is now the primary English practice vehicle.</li><li class="hi">Spanish: A2 approaching with daily Duolingo supplement. Dreaming Spanish comprehensible input videos established at 15-20 min per week.</li><li class="">Mandarin: HSK1 confirmed. HSK2 content progressing via HelloChinese.</li></ul><div class="mini"><div><div class="mini-v">Terraform ✓</div><div class="mini-l">HashiCorp Associate earned</div></div><div><div class="mini-v">CS50 AI ✓</div><div class="mini-l">Fourth Harvard certificate</div></div><div><div class="mini-v">3 certs</div><div class="mini-l">AZ-900, AZ-104, Terraform</div></div></div></div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-6">
+  <div class="term-header acc-head">
+    <span class="term-num t6">Term 6</span>
+    <div><div class="term-title">Data Structures 2 + AI Introduction + AKS and Azure DevOps</div><div class="term-goal">8-10 weeks</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">CS 3303: Data Structures and Algorithms 2, advanced trees (AVL, red-black), graphs, dynamic programming. Georgia Tech OMSCS territory, study it as OMSCS preparation, not just as a course to pass.</li><li class="hi">CS 2401: Introduction to Artificial Intelligence, search, constraint satisfaction, logic, probabilistic inference. CS50 AI running in parallel reinforces this content directly.</li></ul><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">AKS with Azure DevOps, the highest-value course in the entire bootcamp</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Kalyan Reddy AKS with Azure DevOps and Terraform (CAT #7, 28h): sections 1-20 this term, sections 21-34 carrying into Term 7. AKS architecture, deployments, services, ingress, persistent volumes, Azure DevOps CI/CD pipelines for AKS, Terraform for AKS provisioning, Helm, autoscaling, and workload identity. This course is the reason Month 8-9 exists as a dedicated block in the bootcamp, the AKS + Azure DevOps + Terraform combination is what IBM and Deloitte senior cloud engineer postings list as requirements.</p><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Houssem Dellai Azure DevOps CI/CD Pipelines (CAT #36): YAML pipelines, multi-stage pipelines, pipeline variables and secrets, Azure Key Vault integration in pipelines, Docker and container builds in pipelines.</p><div class="wk"><span class="wk-lbl">Portfolio</span><span class="wk-desc">azure-project-05. AKS with full CI/CD</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;">Containerised microservice on AKS via Terraform. Azure DevOps multi-stage pipeline: build, test, staging deploy, production deploy with manual approval gate. Helm chart deployment. Prometheus and Grafana monitoring stack. README references the AKS baseline architecture at learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks.</p><div class="abox"><h4>Career action this term: make first physical contact</h4><ul><li>First in-person or virtual visit to your primary target employer if an internship placement has not yet been arranged.</li><li>LinkedIn: connect with cloud engineering managers at your target companies, personalized connection requests, not generic invitations.</li><li>Attend Microsoft and cloud community events in your region. Local tech meetups are the fastest way to convert a cold application into a warm referral.</li></ul></div><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: Begin C2 preparation. Complex inversion, advanced collocations, academic register fully consistent across all UoPeople assignments.</li><li class="hi">Spanish: A2 confirmed by self-assessment. Begin intermediate Spanish course.</li><li class="">Mandarin: HSK2 approximately 50% complete. Mandarin Corner YouTube listening sessions weekly for tonal ear training.</li></ul><div class="mini"><div><div class="mini-v">Project 5 ✓</div><div class="mini-l">AKS portfolio project live</div></div><div><div class="mini-v">5 projects</div><div class="mini-l">GitHub portfolio total</div></div><div><div class="mini-v">AKS fluent</div><div class="mini-l">Container orchestration demonstrated</div></div></div></div>
+</div>
+<!-- STEP 4 appends Phase 3 and Phase 4 terms -->
+
+<div class="anchor" id="phase3"></div>
+<div class="phase-banner ph3-b">
+  <h2>Phase 3: Expert Layer: Terms 7 to 9</h2>
+  <p>AZ-500 security. AZ-305 architecture. Three Health-Tech capstone projects that combine cloud engineering with prior Health IT domain knowledge. The Landing Zone. CKA preparation. By Term 9 the profile is senior cloud engineer, not junior candidate.</p>
+  <div class="phase-meta">Goal: AZ-500 passed · AZ-305 passed · Health-Tech capstones 1-3 live · CKA preparation depth · English C2 · Spanish B1</div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-7">
+  <div class="term-header acc-head">
+    <span class="term-num t7">Term 7</span>
+    <div><div class="term-title">Analysis of Algorithms + Computer Networks + AZ-500 exam</div><div class="term-goal">8-10 weeks</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">CS 3304: Analysis of Algorithms, algorithm design paradigms, graph algorithms, NP-completeness. Reinforced by the Stanford Algorithms specialisation in Pillar 4 which runs in parallel with a Stanford certificate via Coursera financial aid.</li><li class="hi">CS 4402: Computer Networks. OSI model, TCP/IP, routing protocols, network security, wireless. The David Bombal networking foundation from Term 1 is now academically formalised. Content reinforces the AZ-500 network security domain directly.</li></ul><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">AZ-500, the highest-paying Azure specialisation</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Alan Rodrigues AZ-500 (completely absent from all 774 catalogue courses, external addition): all four domains. Identity and Access Management (25-30% of exam): Entra ID Protection, MFA, Conditional Access, PIM just-in-time access, RBAC custom roles at management group scope. Platform Protection: Azure Firewall, Bastion, DDoS, Key Vault with RBAC, Private Endpoints at scale. Data Security: SQL Always Encrypted, storage SAS. Security Operations: Defender for Cloud, Sentinel workspaces, analytics rules, playbooks.</p><div class="fres"><span class="fi">📡</span><p>Microsoft Sentinel Ninja Training L100-L200: techcommunity.microsoft.com: Free, written by the Sentinel product team. Deeper Sentinel coverage than any Udemy course. Complete L100 in Term 7, L200 in Term 8.</p></div><div class="abox"><h4>AZ-500 exam sequence</h4><ul><li>Microsoft Learn AZ-500 practice assessment (free, learn.microsoft.com): target 75%+ before booking.</li><li>Check before booking: Microsoft may transition AZ-500 to SC-500 in H2 2026, verify the current active exam at learn.microsoft.com/en-us/certifications/azure-security-engineer/ before booking.</li><li>Book at learn.microsoft.com/en-us/certifications/azure-security-engineer/</li><li>After earning: AZ-500 adds 20-25% to base salary and opens security-adjacent cloud roles at IBM and Deloitte.</li></ul></div><div class="wk"><span class="wk-lbl">Portfolio</span><span class="wk-desc">azure-project-06. Zero Trust security + Health-Tech Capstone 1</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.5rem;"><strong>azure-project-06:</strong> Zero Trust security on AKS from Project 5. Key Vault RBAC (not legacy access policies). Private endpoints for all PaaS services. Defender for Cloud secure score above 80%. Sentinel workspace with three custom analytics rules. Threat model documentation.</p><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;"><strong>Health-Tech Capstone 1. Secure Clinical Data Platform:</strong> Design and partially deploy Azure architecture for a fictional clinical records system. HIPAA and GDPR-aligned Azure SQL with TDE and Always Encrypted. Entra ID Conditional Access for clinical staff. Audit logs in Log Analytics. Defender for Cloud configured. Private endpoints only. No public database access. Document with compliance mapping. This demonstrates that Health IT regulatory knowledge and Azure security engineering combine into a profile that most cloud engineers cannot replicate.</p><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: C2 preparation advanced. Reading Microsoft architecture documentation with zero lookups.</li><li class="hi">Spanish: B1 approaching with consistent daily practice.</li><li class="">Mandarin: HSK2 complete. Reading basic Chinese text with Du Chinese graded reader app.</li></ul><div class="mini"><div><div class="mini-v">AZ-500 ✓</div><div class="mini-l">Security credential earned</div></div><div><div class="mini-v">4 certs</div><div class="mini-l">AZ-900, AZ-104, Terraform, AZ-500</div></div><div><div class="mini-v">Health-Tech 1</div><div class="mini-l">Capstone live</div></div></div></div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-8">
+  <div class="term-header acc-head">
+    <span class="term-num t8">Term 8</span>
+    <div><div class="term-title">Operating Systems 2 + Software Engineering + AZ-305 exam</div><div class="term-goal">8-10 weeks</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">CS 4403: Operating Systems 2, advanced process management, distributed systems, virtualisation. Virtualisation concepts feed directly into Azure VM and container architecture understanding.</li><li class="hi">CS 4404: Software Engineering. SDLC models, requirements, design patterns, testing, project management. The software engineering discipline separates engineers who can maintain systems from those who can only build them. Study it seriously.</li></ul><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">AZ-305 architecture + Azure Landing Zones</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Alan Rodrigues AZ-305 (CAT #658): all 7 sections. This exam tests architecture design, not administration. Questions present business scenarios, "Contoso needs 99.99% availability with DR in a different region at under EUR 2,000 per month", and require choosing between valid options. Section 4 (Infrastructure Design: compute selection, Hub-and-Spoke vs Virtual WAN, Azure Landing Zone architecture) is the most critical, spend proportionally more study time here. Cloud Adoption Framework at learn.microsoft.com/en-us/azure/cloud-adoption-framework alongside the course. John Savill AZ-305 study cram on YouTube the week before booking.</p><div class="abox"><h4>AZ-305 exam booking</h4><ul><li>Prerequisite: AZ-104 must already be passed, verify before booking.</li><li>Microsoft Learn AZ-305 practice assessment (free): target 80%+ consistently.</li><li>Book at learn.microsoft.com/en-us/certifications/azure-solutions-architect/</li><li>AZ-305 combined with AZ-500 produces the profile that Deloitte Technology and Transformation consulting roles require.</li></ul></div><div class="wk"><span class="wk-lbl">Portfolio</span><span class="wk-desc">azure-project-07. Landing Zone + Health-Tech Capstone 2</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.5rem;"><strong>azure-project-07:</strong> Azure Landing Zone, management group hierarchy (Root, Platform, Workloads, Sandbox), Azure Policy initiatives, Hub-and-Spoke VNet with Azure Firewall, custom RBAC at management group scope. All Terraform. Architecture Decision Records for every design choice. Reference: learn.microsoft.com/en-us/azure/architecture/networking/architecture/hub-spoke</p><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;"><strong>Health-Tech Capstone 2. Health Analytics Platform:</strong> Architecture document and partial deployment. Azure Data Factory for HL7 FHIR data ingestion (direct application of Level 5 Health Information Systems knowledge). Azure Synapse Analytics for population health queries. Power BI embedded for clinical dashboards. Entra ID groups for role-based data access. Presented as proof that cloud skills and domain expertise combine into a commercially distinct profile that standard cloud engineers cannot replicate.</p><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: C2 confirmed by IELTS practice test self-assessment at 7.5+ band equivalent.</li><li class="hi">Spanish: B1 confirmed.</li><li class="">Mandarin: A1 approaching, conversational greetings and introductions in correct tones.</li></ul><div class="mini"><div><div class="mini-v">AZ-305 ✓</div><div class="mini-l">Architect credential earned</div></div><div><div class="mini-v">5 certs</div><div class="mini-l">AZ-900, AZ-104, Terraform, AZ-500, AZ-305</div></div><div><div class="mini-v">Health-Tech 2</div><div class="mini-l">Analytics platform live</div></div></div></div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-9">
+  <div class="term-header acc-head">
+    <span class="term-num t9">Term 9</span>
+    <div><div class="term-title">Theory of Computation + Computer Graphics + CKA + FinOps</div><div class="term-goal">8-10 weeks</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses</span><span class="wk-desc"></span></div><ul class="slist"><li class="">CS 4405: Theory of Computation, automata, formal languages, computability, complexity theory. Abstract but important for Georgia Tech OMSCS application and for understanding algorithm complexity claims.</li><li class="">CS 4406: Computer Graphics, rendering, transformations, shaders. Lighter cognitive load this term, which creates more bandwidth for the AZ-305 follow-up work and CKA preparation.</li></ul><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">CKA preparation + GitHub Actions + FinOps project</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Mumshad CKA with Practice Tests (CAT #110, 26h): production Kubernetes depth. Priority sections 1-12: core concepts and API architecture, scheduling (node affinity, taints, tolerations), application lifecycle management (rolling updates, rollbacks), cluster maintenance, security (ServiceAccounts, RBAC, NetworkPolicies, directly relevant to AKS hardening), storage (PVs, PVCs, storage classes), networking, troubleshooting (the most practically useful section for interviews), and JSON path for kubectl output parsing.</p><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">GitHub Actions complete course: reusable workflows, matrix builds, composite actions, deployment environments, Azure integration. Platform engineering patterns: Azure Deployment Environments and Azure Developer CLI.</p><div class="wk"><span class="wk-lbl">Portfolio</span><span class="wk-desc">azure-project-08 FinOps + Health-Tech Capstone 3</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.5rem;"><strong>azure-project-08:</strong> FinOps and observability dashboard. Consistent resource tagging across all subscriptions. Cost Management exports to Storage Account. Grafana visualisation by service and environment. Prometheus alerting for cost anomalies. Written FinOps report: "Identified 15% monthly waste through unattached disks and oversized VMs. Autoscaling and reserved instance strategy reduced simulated spend by approximately 20%."</p><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;"><strong>Health-Tech Capstone 3. Patient Monitoring IoT Platform:</strong> Azure IoT Hub receiving simulated patient vital sign data. Azure Stream Analytics for real-time anomaly detection. Azure Functions for alert triggering. Cosmos DB for low-latency data access. Sentinel integration for security monitoring of the IoT infrastructure. Demonstrates cloud-native architecture for a regulated IoT use case, a profile intersection that standard cloud engineers cannot produce.</p><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: C2 in practical use. All documentation written at professional native-speaker register.</li><li class="hi">Spanish: B1 to B2 transition.</li><li class="">Mandarin: A1 confirmed.</li></ul><div class="mini"><div><div class="mini-v">8 projects</div><div class="mini-l">GitHub portfolio</div></div><div><div class="mini-v">3 Health-Tech</div><div class="mini-l">Capstone series complete</div></div><div><div class="mini-v">Spanish B1</div><div class="mini-l">Professionally conversational</div></div></div></div>
+</div>
+<div class="anchor" id="phase4"></div>
+<div class="phase-banner ph4-b">
+  <h2>Phase 4: Bootcamp Completion. Terms 10 to 11</h2>
+  <p>AZ-400 DevOps Expert. The capstone project that integrates everything. Interview preparation. Profile polish. All applications active. The end of the 24-month bootcamp plan and the transition into active interviewing.</p>
+  <div class="phase-meta">Goal: AZ-400 passed · Capstone complete · All applications submitted · Positioning statement rehearsed · senior market exploration begun · Degree continues to Term 20</div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-10">
+  <div class="term-header acc-head">
+    <span class="term-num t10">Term 10</span>
+    <div><div class="term-title">Advanced Python + AI in Practice + AZ-400 exam</div><div class="term-goal">8-10 weeks</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">CS 4407: Advanced Python, decorators, generators, async/await, metaclasses, advanced OOP. Feeds Azure Functions Python development and future ML/AI integration work.</li><li class="hi">CS 4408: Artificial Intelligence in Practice. ML applications, NLP tools, ethical AI. Positions the profile for Azure AI services and Azure OpenAI Service conversations in interviews.</li></ul><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">AZ-400 full study + advanced Terraform patterns</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-bottom:.6rem;">Alan Rodrigues AZ-400 (CAT #325, 13,000 reviews): all 10 sections. By Term 10 every section is revision, not new learning, source control strategy, build and release pipelines, security compliance plan (integrates AZ-500), instrumentation with KQL (integrates AZ-104 monitoring), IaC management (integrates all Terraform work from Term 1). Advanced Terraform: Kalyan Reddy 50 Practical Demos (CAT #67, highest-rated Terraform in catalogue at 4.8 stars) and 70 Demos (CAT #59): policy as code, HashiCorp Sentinel policy integration, module registry design, advanced state management, Terratest concepts.</p><div class="abox"><h4>AZ-400 exam booking</h4><ul><li>Microsoft Learn AZ-400 practice assessment (free): target 80%+ before booking.</li><li>Watch John Savill AZ-400 study cram on YouTube the week before: youtube.com/@NTFAQGuy</li><li>Book at learn.microsoft.com/en-us/certifications/devops-engineer/</li><li>AZ-400 combined with AZ-305 completes the platform engineer profile. Six certifications total. Top 5% of Azure-certified professionals globally.</li></ul></div><div class="wk"><span class="wk-lbl">Portfolio</span><span class="wk-desc">Capstone: azure-platform-capstone</span></div><p style="color:var(--ink2);font-size:.84rem;line-height:1.6;">End-to-end platform engineering environment: Landing Zone governance, AKS cluster, GitOps with ArgoCD, multi-stage Azure DevOps and GitHub Actions pipelines, Terraform modules with proper registry structure, Prometheus and Grafana monitoring, Sentinel security analytics, FinOps tagging and cost reporting. Architecture Decision Records for every component. Operational runbook. Video walkthrough on jeremytrinity.com. This is the project presented at enterprise cloud engineering interviews, the one that demonstrates senior-level platform engineering thinking.</p><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: C2 in all registers, academic, technical, and professional.</li><li class="hi">Spanish: B2 approaching.</li><li class="">Mandarin: A1 to A2 transition beginning.</li></ul><div class="mini"><div><div class="mini-v">AZ-400 ✓</div><div class="mini-l">DevOps Expert earned</div></div><div><div class="mini-v">6 certs</div><div class="mini-l">Complete certification portfolio</div></div><div><div class="mini-v">Capstone ✓</div><div class="mini-l">Platform engineering demonstrated</div></div></div></div>
+</div>
+<div class="term-block acc-block is-collapsed" id="term-11">
+  <div class="term-header acc-head">
+    <span class="term-num t11">Term 11</span>
+    <div><div class="term-title">Cloud Computing + Cybersecurity Essentials + profile polish</div><div class="term-goal">8-10 weeks, final term of the 24-month bootcamp plan (degree continues to Term 20)</div></div>
+  </div>
+  <div class="term-body acc-body"><div class="wk"><span class="wk-lbl">UoPeople courses</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">CS 4409: Cloud Computing. IaaS, PaaS, SaaS models, distributed systems, cloud economics. Write every assignment using actual Azure deployments as case studies. This formalises and provides academic grounding for everything built in the bootcamp with theoretical frameworks.</li><li class="hi">CS 4410: Cybersecurity Essentials, network security, cryptography, application security, incident response. Reinforces AZ-500 content with academic framing and adds formal security theory vocabulary.</li></ul><div class="wk"><span class="wk-lbl">Azure focus</span><span class="wk-desc">Multi-cloud awareness + interview self-assessment</span></div><ul class="slist"><li class="">AWS Cloud Practitioner (CAT #76, skim 3-4 hours only): EC2 vs Azure VM, VPC vs VNet, S3 vs Blob, IAM vs Entra ID. Multi-cloud conversational fluency, not full study.</li><li class="hi">bregman-arie/devops-exercises (GitHub, free, 2,600+ questions): Azure, Kubernetes, Docker, Terraform, and Linux sections as interview self-assessment. These are actual questions asked in cloud engineering technical interviews at IBM and Deloitte.</li></ul><div class="abox"><h4>Final profile polish checklist</h4><ul><li>All GitHub project READMEs reviewed: architecture diagrams current, technology decisions documented, cost analysis included, Health IT connections noted where relevant.</li><li>jeremytrinity.com: structured project portfolio page with technology stacks, architecture summaries, links to deployed resources.</li><li>LinkedIn: all 6 certifications with verification links, 4 Harvard certificates, UoPeople in-progress transcript, 8+ projects listed with descriptions.</li><li>Published article on jeremytrinity.com: "Designing Health Data Platforms on Azure: A Cloud Engineer's Perspective."</li><li>Positioning statement memorised: "I am an Azure Cloud Engineer specialising in cloud security and infrastructure automation. I design and deploy secure Azure environments using Terraform, implement Zero Trust with Sentinel and Defender for Cloud, and automate delivery with Azure DevOps and GitHub Actions. I hold AZ-104, AZ-500, Terraform Associate, AZ-305, and AZ-400. French, Portuguese, and English natively. Work at github.com/jeremy-trinity."</li></ul></div><div class="wk"><span class="wk-lbl">Language milestones</span><span class="wk-desc"></span></div><ul class="slist"><li class="hi">English: C2 maintained across all UoPeople assignments and professional writing.</li><li class="hi">Spanish: B1-B2, conversational in technical contexts.</li><li class="">Mandarin: A2 beginning, beyond the 24-month bootcamp window.</li></ul><div class="mini"><div><div class="mini-v">Year 2 of BSc</div><div class="mini-l">Bootcamp complete, degree continues</div></div><div><div class="mini-v">All 6 certs</div><div class="mini-l">Full portfolio</div></div><div><div class="mini-v">senior market</div><div class="mini-l">Paris/La Defense exploration begins</div></div></div></div>
+</div>
+<!-- STEP 5 appends matrix, portfolio table, health-IT, OMSCS, closes HTML -->
+
+<div class="anchor" id="health-it"></div>
+<span class="sec-label">Strategic asset</span>
+<h2 class="sec-title">Why Health IT is a commercial asset, not a detour</h2>
+<div class="title-rule"></div>
+<div class="hbox"><p><strong>The core argument:</strong> Health data is one of the most regulated, security-sensitive domains in cloud infrastructure. Organisations deploying Azure for healthcare workloads need engineers who understand both the technical architecture and the regulatory context. HIPAA, GDPR applied to health data, HL7 FHIR standards, clinical database design. These cannot be quickly taught to a standard cloud engineer. They are already held. This combination is rare and commercially valuable at enterprise employers, including major consulting firms,, and every organization running healthcare workloads on Azure.</p></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;margin-top:.9rem;">The three Health-Tech capstone projects (Terms 7, 8, 9) directly leverage this background. No junior cloud engineer without Health IT training can produce a clinically accurate architecture for a FHIR-integrated health analytics platform or an IoT patient monitoring system with appropriate regulatory compliance mapping. These projects position the profile for healthcare cloud consulting at enterprise employers and major consulting firms, organizations that have active healthcare technology practices.</p>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;margin-top:.8rem;">In any Deloitte Technology and Transformation interview about regulated industries, the Health IT background converts a technically competent junior cloud engineer into a candidate who already understands the client's world before walking through the door. The Level 5 Health Information Systems qualification is not a prior career detour. It is a commercial differentiator that most cloud engineers cannot replicate regardless of how many certifications they hold.</p>
+<div class="anchor" id="matrix"></div>
+<span class="sec-label">Progress tracker</span>
+<h2 class="sec-title">Skills progression across all 20 terms</h2>
+<div class="title-rule"></div>
+<table class="mtable">
+  <thead><tr><th>Domain</th><th>Terms 1-3</th><th>Terms 4-6</th><th>Terms 7-9</th><th>Terms 10-11</th></tr></thead>
+  <tbody>
+    <tr><td>Linux and command line</td><td>Install, navigate, permissions, scripting</td><td>Advanced bash, system monitoring</td><td>Security hardening, audit logging</td><td>Production-grade administration</td></tr>
+    <tr><td>Networking</td><td>CIDR, DNS, routing, firewalls</td><td>Azure VNet, NSG, Load Balancer, DNS</td><td>Hub-and-Spoke, Private Endpoints, Firewall</td><td>Network architecture design</td></tr>
+    <tr><td>Python</td><td>Fundamentals, OOP, file handling</td><td>Azure SDK scripting, APIs</td><td>Automation scripts, Azure Functions</td><td>Advanced Python, AI/ML integration</td></tr>
+    <tr><td>Terraform</td><td>Resources, variables, state</td><td>Modules, CI/CD integration, AKS</td><td>Policy as code, SRE patterns</td><td>Module registries, Terratest</td></tr>
+    <tr><td>Containers</td><td>Docker basics, Dockerfile</td><td>AKS deployment, Helm</td><td>Production security hardening</td><td>GitOps, platform engineering</td></tr>
+    <tr><td>Security</td><td>Basic Entra ID, RBAC</td><td>AZ-104 security domains</td><td>Zero Trust, Sentinel, Defender for Cloud</td><td>Security architecture design</td></tr>
+    <tr><td>DevOps</td><td>Git, GitHub Actions basics</td><td>Azure DevOps pipelines, multi-stage</td><td>DevSecOps, advanced pipelines</td><td>Platform engineering, AZ-400</td></tr>
+    <tr><td>Architecture</td><td>Single-service deployment</td><td>Three-tier and microservices</td><td>Landing Zones, enterprise governance</td><td>End-to-end platform design</td></tr>
+    <tr><td>Health IT integration</td><td>Context only</td><td>Azure SQL and HIPAA patterns</td><td>Clinical data platform capstone</td><td>IoT health monitoring capstone</td></tr>
+  </tbody>
+</table>
+<div class="anchor" id="portfolio"></div>
+<span class="sec-label">What IBM and Deloitte will see</span>
+<h2 class="sec-title">Portfolio summary, 12 projects spanning the bootcamp period (Terms 1-11)</h2>
+<div class="title-rule"></div>
+<table class="mtable">
+  <thead><tr><th>Project</th><th>Term</th><th>Focus</th><th>Key technologies</th></tr></thead>
+  <tbody>
+    <tr><td>azure-project-01</td><td>1</td><td>IaC foundations</td><td>Terraform, Azure CLI, PowerShell, VNet, NSG, Linux VM</td></tr>
+    <tr><td>azure-project-02</td><td>3</td><td>Three-tier web application</td><td>App Service, Azure SQL, Blob Storage, Managed Identity, GitHub Actions</td></tr>
+    <tr><td>azure-project-03</td><td>4</td><td>AZ-104 breadth demonstration</td><td>VM Scale Set, Load Balancer, Log Analytics, KQL, Lifecycle Policy</td></tr>
+    <tr><td>azure-project-04</td><td>5</td><td>Containerisation</td><td>Docker, ACI, ACR, Terraform, GitHub Actions</td></tr>
+    <tr><td>azure-project-05</td><td>6</td><td>AKS and full CI/CD</td><td>AKS, Azure DevOps, Helm, Prometheus, Grafana</td></tr>
+    <tr><td>azure-project-06</td><td>7</td><td>Zero Trust security</td><td>Key Vault RBAC, Private Endpoints, Sentinel, Defender for Cloud</td></tr>
+    <tr><td>Health-Tech Capstone 1</td><td>7</td><td>Secure clinical data platform</td><td>Azure SQL Always Encrypted, Entra ID Conditional Access, Audit Logs, HIPAA/GDPR compliance mapping</td></tr>
+    <tr><td>azure-project-07</td><td>8</td><td>Azure Landing Zone</td><td>Management Groups, Azure Policy, Hub-and-Spoke VNet, Azure Firewall, Bicep/Terraform</td></tr>
+    <tr><td>Health-Tech Capstone 2</td><td>8</td><td>Health analytics platform</td><td>Azure Data Factory, HL7 FHIR, Synapse Analytics, Power BI, Entra ID RBAC</td></tr>
+    <tr><td>azure-project-08</td><td>9</td><td>FinOps and observability</td><td>Grafana, Prometheus, Cost Management, resource tagging strategy</td></tr>
+    <tr><td>Health-Tech Capstone 3</td><td>9</td><td>IoT patient monitoring</td><td>Azure IoT Hub, Stream Analytics, Azure Functions, Cosmos DB, Sentinel</td></tr>
+    <tr><td>azure-platform-capstone</td><td>10</td><td>End-to-end platform engineering</td><td>All technologies combined. Landing Zone, AKS, GitOps, CI/CD, monitoring, security, FinOps</td></tr>
+  </tbody>
+</table>
+<div class="anchor" id="omscs"></div>
+<span class="sec-label">Long-term target</span>
+<h2 class="sec-title">Path from UoPeople BSc to Georgia Tech OMSCS</h2>
+<div class="title-rule"></div>
+<div class="hbox"><p><strong>Why Georgia Tech OMSCS specifically:</strong> The same degree as the on-campus program, 100% online, for under  total. Ranked top-5 CS globally. 74% admission rate. Apply after UoPeople BSc is near completion (Year 3-4) with GPA 3.7+. Admission requirements: Bachelor's degree, demonstrated CS knowledge including algorithms and data structures (the OMSCS prep courses satisfy this), evidence of programming ability (the 12-project GitHub portfolio satisfies this).</p></div>
+<div class="abox"><h4>OMSCS preparation checklist, begin in Term 7 alongside Phase 3 bootcamp work</h4><ul><li>CS1301 Introduction to Python Programming (Georgia Tech on edX): the actual campus course material. Audit free.</li><li>CS1331 Introduction to OOP with Java (Georgia Tech on edX): Java OOP at campus standard. Georgia Tech officially recommends this for OMSCS preparation.</li><li>CS1332 Data Structures and Algorithms (Georgia Tech on edX): the actual course used for OMSCS admission assessment. Audit free.</li><li>Specialisation choice: Machine Learning or Computing Systems, both align with Azure cloud engineering direction.</li><li>Target application: Year 3-4, after UoPeople BSc is at least 60% complete and GPA is 3.7+.</li><li>Total cost: under  for the full Master's degree, the same degree as on-campus, ranked top-5 CS in the international.</li><li>international connection: a Georgia Tech Master's significantly strengthens the "specialized knowledge" case under the intracompany transfer visa category.</li></ul></div>
+<div class="anchor" id="no-equiv"></div>
+<span class="sec-label">Interview and cover letter asset</span>
+<h2 class="sec-title">The "why no equivalences" statement, memorise and use it</h2>
+<div class="title-rule"></div>
+<div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin:1rem 0;">
+  <p style="color:var(--ink2);font-size:.88rem;line-height:1.7;font-style:italic;">"I hold a Level 5 qualification in Health Information Systems from Fernando Pessoa University and have prior IT systems education at Level 3. I made the decision to pursue my Bachelor of Computer Science at UoPeople from the first course, without claiming equivalences for prior work. This was not the easiest path. It was the right one. The cloud engineering landscape changed substantially between my previous enrolment and 2026. Claiming equivalences would have meant presenting credentials built on coursework that no longer reflects the state of the industry. Starting again ensures that every qualification on my profile represents current knowledge and current standards. The discipline required to make that choice is the same discipline I bring to every project and every role."</p>
+</div>
+<p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-top:.7rem;">Use this in IBM and Deloitte cover letters, in LinkedIn About sections, and in any interview question about the academic background. The argument is both honest and strategically strong, it demonstrates self-awareness, current knowledge, and professional integrity simultaneously.</p>
+</div><!-- end .page-wrap -->
+<footer><div class="footer-brand">Jeremy Trinity</div><div class="footer-meta">Five-Pillar Development System &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp;<a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a> &nbsp;|&nbsp;<a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a> &nbsp;|&nbsp;<a href="https://jeremytrinity.com">jeremytrinity.com</a> &nbsp;|&nbsp;</div></footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const html=document.documentElement;
+const btn=document.getElementById('themeBtn');
+const label=document.getElementById('themeLabel');
+function applyTheme(t){html.setAttribute('data-theme',t);if(label)label.textContent=t==='dark'?'Light':'Dark';}
+const saved=localStorage.getItem('jt-theme');
+if(saved){applyTheme(saved);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){applyTheme('dark');localStorage.setItem('jt-theme','dark');}
+if(btn)btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(next);localStorage.setItem('jt-theme',next);});
+function toggleMenu(){document.getElementById("navLinks").classList.toggle("open");}
+document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>document.getElementById("navLinks").classList.remove("open")));
+</script>
+
+<script>
+/* ── ACCORDION ── */
+(function () {
+  document.querySelectorAll('.acc-block').forEach(function (block) {
+    var head = block.querySelector('.acc-head');
+    if (!head) return;
+    // Inject chevron as last flex child
+    var chev = document.createElement('span');
+    chev.className = 'acc-chev';
+    chev.setAttribute('aria-hidden', 'true');
+    chev.textContent = '▾';
+    head.appendChild(chev);
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    function toggle(e) {
+      if (e.target && (e.target.tagName === 'A' || (e.target.closest && e.target.closest('a')))) return;
+      var collapsed = block.classList.toggle('is-collapsed');
+      head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
+  });
+})();
+</script>
+<script>
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

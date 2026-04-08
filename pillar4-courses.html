@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar IV: Advanced Courses | Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F9F8F5;--surface:#FFFFFF;--surface2:#F2F1EE;--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--ink:#1A1A18;--ink2:#52514E;--ink3:#8A8880;--accent:#2A5F8F;--accent-lt:#EBF2F9;--accent2:#1D4A70;--p1:#2A5F8F;--p2:#0F6E56;--p3:#854F0B;--p4:#534AB7;--p5:#A32D2D;--p1-lt:#EBF2F9;--p2-lt:#E1F5EE;--p3-lt:#FAEEDA;--p4-lt:#EEEDFE;--p5-lt:#FCEBEB;}
+[data-theme="dark"]{--bg:#111110;--surface:#1C1C1A;--surface2:#252523;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--ink:#EEECEA;--ink2:#AAAAAA;--ink3:#777775;--accent:#5B9BD5;--accent-lt:#1A2A3A;--accent2:#7AB3E0;--p1:#5B9BD5;--p2:#4ecdb4;--p3:#FAC775;--p4:#AFA9EC;--p5:#F09595;--p1-lt:#1A2A3A;--p2-lt:#0A2820;--p3-lt:#2A1E0A;--p4-lt:#1A1830;--p5-lt:#2A1010;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;transition:background .3s,color .3s;padding-top:60px;}
+a{color:var(--accent);text-decoration:none;}a:hover{color:var(--accent2);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:background .3s,border-color .3s;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:0.8rem;font-weight:500;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-btn{background:none;border:1px solid var(--border2);border-radius:20px;padding:.25rem .75rem;cursor:pointer;font-size:.75rem;font-weight:500;color:var(--ink2);display:flex;align-items:center;gap:.35rem;font-family:'Inter',sans-serif;transition:all .2s;}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);}
+.sun{color:#F5A623;font-size:.85rem;display:none;}.moon{font-size:.85rem;}
+[data-theme="dark"] .sun{display:inline;}[data-theme="dark"] .moon{display:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:20px;height:1.5px;background:var(--ink);display:block;}
+section{padding:4rem 2rem;}
+.si{max-width:920px;margin:0 auto;}
+table{width:100%;border-collapse:collapse;margin:1rem 0 1.4rem;font-size:.84rem;}
+th{background:var(--ink);color:var(--surface);padding:.5rem .7rem;text-align:left;font-weight:600;font-size:.79rem;}
+td{padding:.42rem .7rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:var(--surface2);}
+footer{background:var(--surface2);border-top:1px solid var(--border);padding:2rem;text-align:center;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
+.footer-meta{font-size:.78rem;color:var(--ink3);}
+.footer-meta a{color:var(--accent);}
+@media(max-width:900px){.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem;z-index:199;}.hamburger{display:flex;}}
+
+.page-hero{background:var(--surface);border-bottom:1px solid var(--border);padding:3.5rem 2rem 2.5rem;}
+.page-hero-inner,.page-wrap{max-width:960px;margin:0 auto;}
+.page-wrap{padding:2.5rem 2rem 5rem;}
+.back-link{font-size:.78rem;color:var(--ink3);display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1.2rem;}
+.back-link:hover{color:var(--accent);}
+.pillar-badge{display:inline-block;font-size:.7rem;font-weight:700;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem;background:#EEEDFE;color:#534AB7;}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:.8rem;}
+.ph-sub{font-size:.95rem;color:var(--ink2);max-width:720px;line-height:1.7;margin-bottom:1.5rem;}
+.ph-logos{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-bottom:1.5rem;}
+.ph-logo{height:26px;width:auto;object-fit:contain;}
+.ph-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.ph-stat-val{font-size:1.35rem;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;}
+.ph-stat-label{font-size:.7rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;}
+/* TOC */
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2.5rem;}
+.toc-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:.8rem;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.2rem .5rem;}
+.toc-grid a{font-size:.82rem;color:var(--accent);padding:.12rem 0;}
+/* Section headings */
+.anchor{display:block;height:72px;margin-top:-72px;visibility:hidden;}
+.sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;margin-top:3rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:600;color:var(--ink);margin-bottom:.35rem;}
+.title-rule{width:36px;height:2px;background:var(--accent);margin-bottom:1.5rem;}
+/* Phase banners */
+.phase-banner{border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0 1.5rem;border-left:4px solid;}
+.ph1-b{background:var(--p1-lt);border-color:var(--p1);}
+.ph2-b{background:var(--p2-lt);border-color:var(--p2);}
+.ph3-b{background:var(--p3-lt);border-color:var(--p3);}
+.ph4-b{background:var(--p4-lt);border-color:var(--p4);}
+.phase-banner h2{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:.3rem;}
+.ph1-b h2{color:var(--p1);}.ph2-b h2{color:var(--p2);}.ph3-b h2{color:var(--p3);}.ph4-b h2{color:var(--p4);}
+.phase-banner p{font-size:.87rem;color:var(--ink2);margin:0;line-height:1.6;}
+.phase-meta{font-size:.73rem;font-weight:600;margin-top:.4rem;color:var(--ink3);}
+/* Program cards */
+.prog-card{border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;margin:.9rem 0;background:var(--surface);transition:border-color .2s;}
+.prog-card:hover{border-color:var(--accent);}
+.pc-top{display:flex;align-items:flex-start;gap:.9rem;margin-bottom:.7rem;}
+.pc-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:36px;line-height:1;flex-shrink:0;}
+.pc-meta{flex:1;}
+.pc-title{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;}
+.pc-inst{font-size:.76rem;color:var(--ink3);margin-bottom:.35rem;}
+.pc-cert{display:inline-block;font-size:.67rem;font-weight:700;padding:.15rem .6rem;border-radius:6px;margin-right:.35rem;}
+.cert-free{background:#E1F5EE;color:#0F6E56;}
+.cert-aid{background:#EEEDFE;color:#534AB7;}
+.cert-audit{background:#FAEEDA;color:#633806;}
+.cert-none{background:var(--surface2);color:var(--ink3);border:1px solid var(--border);}
+.pc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:.35rem;}
+.pc-tag{font-size:.66rem;padding:2px 6px;border-radius:5px;background:var(--surface2);border:1px solid var(--border);color:var(--ink3);}
+.pc-logo{height:22px;width:auto;object-fit:contain;flex-shrink:0;margin-top:3px;}
+.pc-body{font-size:.84rem;color:var(--ink2);line-height:1.6;}
+.pc-url{font-size:.75rem;color:var(--ink3);margin-top:.45rem;}
+.pc-url a{color:var(--accent);}
+/* Boxes */
+.hbox{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:.9rem 1.1rem;margin:.65rem 0;}
+.hbox p{font-size:.87rem;color:var(--ink2);margin:0;line-height:1.6;}
+.hbox strong{color:var(--accent);}
+.wbox{background:var(--p3-lt);border:1px solid var(--p3);border-radius:10px;padding:.85rem 1.1rem;margin:.65rem 0;}
+.wbox p{font-size:.84rem;color:var(--ink2);margin:0;line-height:1.6;}
+.wbox strong{color:var(--p3);}
+.abox{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:.9rem 1.1rem;margin:.65rem 0;}
+.abox h4{font-size:.77rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:.35rem;}
+.abox ul{padding-left:1.1rem;margin:.2rem 0;}
+.abox li{font-size:.83rem;color:var(--ink2);margin:.16rem 0;line-height:1.5;}
+.abox p{font-size:.83rem;color:var(--ink2);margin:.12rem 0;line-height:1.55;}
+/* Synthesis table */
+.synth-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.82rem;}
+.synth-table th{background:var(--ink);color:var(--surface);padding:.44rem .65rem;text-align:left;font-weight:600;font-size:.76rem;}
+.synth-table td{padding:.38rem .65rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+.synth-table tr:nth-child(even) td{background:var(--surface2);}
+.synth-table tr:last-child td{border-bottom:none;}
+/* Institutions wall */
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin:1.2rem 0;}
+.inst-card{border:1px solid var(--border);border-radius:10px;padding:.85rem 1rem;background:var(--surface);display:flex;flex-direction:column;gap:.35rem;}
+.inst-logo{height:22px;width:auto;object-fit:contain;}
+.inst-name{font-size:.83rem;font-weight:600;color:var(--ink);}
+.inst-what{font-size:.77rem;color:var(--ink2);}
+/* divider */
+.wk-div{border:none;border-top:1px dashed var(--border);margin:1.1rem 0;}
+@media(max-width:700px){.toc-grid{grid-template-columns:1fr;}.ph-stats{gap:1.1rem;}.inst-grid{grid-template-columns:1fr 1fr;}}
+
+/* ── ACCORDION ─────────────────────────────────── */
+.acc-head { cursor: pointer; user-select: none; }
+.acc-chev { margin-left: auto; font-size: 1.05rem; opacity: 0.38; transition: transform .25s ease, opacity .25s ease; flex-shrink: 0; padding-left: .6rem; pointer-events: none; }
+.acc-block.is-collapsed .acc-chev { transform: rotate(-90deg); opacity: 0.65; }
+.acc-block.is-collapsed .acc-body { display: none; }
+
+/* ── Language toggle ── */
+.lang-btn { margin-left: 0.4rem; }
+.lang-pt { display: none !important; }
+[data-lang="pt"] .lang-en { display: none !important; }
+[data-lang="pt"] .lang-pt { display: inline !important; }
+[data-lang="pt"] p.lang-pt,
+[data-lang="pt"] div.lang-pt,
+[data-lang="pt"] li.lang-pt,
+[data-lang="pt"] span.lang-pt.block,
+[data-lang="pt"] td.lang-pt { display: block !important; }
+</style>
+</head>
+<body>
+<nav><a class="nav-brand" href="index.html">Jeremy Trinity</a><div class="nav-links" id="navLinks"><a href="index.html" data-en="Overview" data-pt="Visão Geral">Overview</a><a href="pillar1-bootcamp.html">I. Bootcamp</a><a href="pillar2-degree.html">II. Degree</a><a href="pillar3-languages.html">III. Languages</a><a href="pillar4-courses.html" style="color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:2px;">IV. Courses</a><a href="pillar5-reading.html">V. Reading</a></div><div class="nav-right"><button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><span class="moon">🌙</span><span class="sun">☀️</span><span id="themeLabel">Dark</span></button><button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<section class="page-hero">
+<div class="page-hero-inner">
+  <a class="back-link" href="index.html" data-en="← Back to overview" data-pt="← Voltar à visão geral">← Back to overview</a>
+  <span class="pillar-badge">Pillar IV</span>
+  <h1 class="ph-title">Advanced Courses</h1>
+  <p class="ph-sub">28 programs from Harvard, MIT, Stanford, Imperial College London, Georgia Tech, IBM, Google, Microsoft, CNCF, Cisco, Meta, LinkedIn, and freeCodeCamp. Built through a documented multi-AI synthesis process. Every program has a specific reason to be here. Every institution has a career case. This page tells you exactly when to take each program, what to do first, and how to get the certificates for free through Coursera financial aid.</p>
+  <div class="ph-logos">
+    <img class="ph-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard" style="height:28px;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354 200" style="height:22px;width:auto;vertical-align:middle;" aria-label="MIT"><path fill="#A31F34" d="M187.268 187.268h41.615V62.423H187.268Zm62.423-145.653H353.728V0H249.691ZM187.268 0h41.615V41.615H187.268ZM124.845 187.268H166.46V0H124.845ZM62.423 145.653h41.615V0H62.423ZM0 187.268H41.615V0H0Zm249.691 0h41.615V62.423H249.691Z"/></svg>
+    <img class="ph-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Stanford_Cardinal_logo.svg" alt="Stanford">
+    <img class="ph-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Imperial%20logo.svg" alt="Imperial">
+    <img class="ph-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Georgia%20Tech%20logo%202021.svg" alt="Georgia Tech">
+    <img class="ph-logo" src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/google/4285F4" alt="Google">
+    <img class="ph-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="Cisco">
+    <img class="ph-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta">
+  </div>
+  <div class="ph-stats">
+    <div><div class="ph-stat-val">28</div><div class="ph-stat-label">Programs mapped</div></div>
+    <div><div class="ph-stat-val">4</div><div class="ph-stat-label">Free Harvard certificates</div></div>
+    <div><div class="ph-stat-val">14</div><div class="ph-stat-label">Institutions represented</div></div>
+    <div><div class="ph-stat-val">EUR 0</div><div class="ph-stat-label">Cost for most programs via aid or OCW</div></div>
+    <div><div class="ph-stat-val">Under EUR 7k</div><div class="ph-stat-label">Georgia Tech OMSCS total</div></div>
+  </div>
+</div>
+</section>
+<div class="page-wrap">
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <div class="toc-grid">
+    <a href="#synthesis">Multi-AI synthesis: how this list was built</a>
+    <a href="#financial-aid">Coursera financial aid: step by step</a>
+    <a href="#phase1">Phase 1: Foundation (start now, months 1-3)</a>
+    <a href="#phase2">Phase 2: Cloud focus (months 3-6)</a>
+    <a href="#phase3">Phase 3: Academic prestige (months 6-12)</a>
+    <a href="#phase4">Phase 4: Long-term specialisation (year 2+)</a>
+    <a href="#institutions">Institutions on your CV at full completion</a>
+    <a href="#omscs-deep">Georgia Tech OMSCS: the full picture</a>
+    <a href="#timeline">Key milestone timeline</a>
+  </div>
+</div>
+<div class="anchor" id="synthesis"></div>
+<span class="sec-label">The methodology</span>
+<h2 class="sec-title">Multi-AI synthesis, how this list was built and why it is trustworthy</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;">Three AI systems (Claude, ChatGPT, Gemini) were asked the same questions about university programs, free courses, and institution reputation from a US employer perspective. Their outputs were compared for agreements, disagreements, and unique additions. The result was filtered through analyst judgment calibrated to one specific target: junior Azure cloud engineer with international ambitions, using Georgia Tech OMSCS as the Master's pathway.</p>
+<table class="synth-table">
+  <thead><tr><th>Finding type</th><th>Content</th><th>Action taken</th></tr></thead>
+  <tbody>
+    <tr><td><strong>High confidence, all three agreed</strong></td><td>MIT, Stanford, CMU, and UC Berkeley are the correct Big Four for CS. Harvard's value is the CS50 free certificate ecosystem, not research rank. Princeton gives no certificates by policy. MIT OCW gives content only, no certificate. GitHub portfolio matters more to recruiters than course names. Georgia Tech OMSCS is the best affordable online Master's globally.</td><td>Included as settled facts. No further analysis required</td></tr>
+    <tr><td><strong>Disagreements resolved by analyst judgment</strong></td><td>CS106B (Stanford C++) recommended by Gemini. C++ not required for Azure cloud path, deprioritized. CS61A (Berkeley) overlaps heavily with CS50x and CS50P, excluded. CMU 15-213 too heavy for junior level, placed in Phase 4 optional. Elements of AI (Helsinki) superseded by CS50 AI and DeepLearning.AI, excluded. Full Stack Open: career target is cloud, not full-stack, deprioritized.</td><td>Excluded or deprioritized with documented reasoning listed here</td></tr>
+    <tr><td><strong>Unique additions validated and retained</strong></td><td>Imperial College London Math for ML, top-10 globally, US company recognized. IBM Applied DevOps, 14-course Professional Certificate, direct IBM hiring signal. MIT Missing Semester, practical daily skills no CS degree covers. Scrum SFPC. Deloitte runs all projects in Agile, 2-hour free certificate worth getting. DeepLearning.AI short courses. Andrew Ng, free, 1-3 hours each.</td><td>Included with explicit rationale documented in each program entry below</td></tr>
+  </tbody>
+</table>
+<div class="anchor" id="financial-aid"></div>
+<span class="sec-label">Getting the certificates free</span>
+<h2 class="sec-title">Coursera financial aid, step-by-step, approval rate is high</h2>
+<div class="title-rule"></div>
+<div class="abox"><h4>The four steps, follow exactly for every Coursera paid program</h4><ul><li>Step 1: Find the course or specialisation on Coursera. Click Enroll. On the enrollment page, look for "Financial aid available" below the price. Click it. This link is present on virtually all university courses on Coursera.</li><li>Step 2: Fill the financial aid application. State clearly: your approximate annual income, the reason you cannot afford the fee, what you will do with the knowledge, and how it connects to your career goals. Be specific, "I am building Azure cloud engineering skills to apply for junior cloud engineering roles" is far more compelling than "I want to learn this topic." Write 2-3 clear paragraphs. Longer applications that show genuine intent have higher approval rates.</li><li>Step 3: Wait approximately 15 days. Coursera reviews manually. Apply as soon as you decide you want a course, before you are ready to start studying it. Do not wait until you need it. Apply now and study when it is approved.</li><li>Step 4: Certificate unlocked at zero cost. Once approved, you have full access including graded assignments and the certificate. The certificate carries the university name (Stanford, Imperial, Google), not Coursera's name. It is indistinguishable from a paid certificate on LinkedIn and CV. Valid permanently.</li></ul></div>
+<div class="wbox"><p><strong>Note:</strong> Never pay for Coursera audit access. Audit is always free without any application, just click "Audit this course" on the enrollment page. Financial aid gives you the graded assignments and the certificate on top of the free audit content. If a course has financial aid available and you cannot comfortably afford the fee, apply. Do not skip the application and audit without a certificate, the certificate is the point for career positioning.</p></div>
+<div class="anchor" id="phase1"></div>
+<div class="phase-banner ph1-b">
+  <h2>Phase 1: Foundation: Start now, Months 1 to 3</h2>
+  <p>These programs run in the background alongside the bootcamp. Maximum 1 Pomodoro (40 minutes) per week across all Phase 1 programs combined during bootcamp-heavy months. Bootcamp and UoPeople always take priority. Several Phase 1 programs take only a few hours and should be completed in a single weekend.</p>
+  <div class="phase-meta">Time investment: 40-60 min/week total across all Phase 1 programs · Bootcamp and UoPeople always take priority</div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-1">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="harvard" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">01</span> CS50x. Introduction to Computer Science</div>
+      <div class="pc-inst">Harvard University · <em style="color:var(--ink3);font-size:.72rem;">Months 1-3, Saturday parallel track</em></div>
+      <span class="pc-cert cert-free">Free certificate via cs50.harvard.edu/x</span>
+      <div class="pc-tags"><span class="pc-tag">C</span><span class="pc-tag">Python</span><span class="pc-tag">SQL</span><span class="pc-tag">Algorithms</span><span class="pc-tag">Data structures</span><span class="pc-tag">Already started</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">C, Python, SQL, JavaScript, algorithms, data structures. Already started in March, continue every Saturday at 2.5 hours. Commit every problem set to github.com/jeremy-trinity/cs50x-jeremy the same day it is completed. This contribution graph is what IBM and Deloitte recruiters see before reading the CV. Do not pay edX for this certificate, claim it free at cs50.harvard.edu/x by scoring 70%+ on all problem sets and completing the final project.</div>
+  <div class="pc-url"><a href="https://cs50.harvard.edu/x" target="_blank">cs50.harvard.edu/x</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-2">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="harvard" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">02</span> CS50P. Introduction to Programming with Python</div>
+      <div class="pc-inst">Harvard University · <em style="color:var(--ink3);font-size:.72rem;">Months 1-2, run in parallel with CS50x</em></div>
+      <span class="pc-cert cert-free">Free certificate via cs50.harvard.edu/python</span>
+      <div class="pc-tags"><span class="pc-tag">Python</span><span class="pc-tag">OOP</span><span class="pc-tag">Unit testing</span><span class="pc-tag">File I/O</span><span class="pc-tag">Regex</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Pure Python: functions, OOP, unit testing, file I/O, regular expressions, third-party libraries. Take in parallel with CS50x during lighter UoPeople weeks. Reinforces UoPeople CS 1101 and the bootcamp Python track simultaneously. Claim the free certificate at cs50.harvard.edu/python: score 70%+ on all problem sets. This is the second free Harvard certificate at zero cost.</div>
+  <div class="pc-url"><a href="https://cs50.harvard.edu/python" target="_blank">cs50.harvard.edu/python</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-3">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://cdn.simpleicons.org/linux/FCC624" alt="lf" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">03</span> LFS101. Introduction to Linux</div>
+      <div class="pc-inst">Linux Foundation · <em style="color:var(--ink3);font-size:.72rem;">Month 1-2, alongside Imran Afzal Linux Udemy course</em></div>
+      <span class="pc-cert cert-audit">Audit free on edX. No certificate in free track</span>
+      <div class="pc-tags"><span class="pc-tag">Bash</span><span class="pc-tag">File system</span><span class="pc-tag">Permissions</span><span class="pc-tag">Processes</span><span class="pc-tag">Package management</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Bash, file system, permissions, processes, package managers, networking tools. Run in parallel with Imran Afzal's Complete Linux Training Course (bootcamp Pillar I) in Months 1-2. The Linux Foundation brand adds credibility to the learning narrative even without a certificate, mention it in the LinkedIn About section: "studying Linux with both Imran Afzal on Udemy and the Linux Foundation LFS101 program." The Linux Foundation is the organization behind the Linux kernel, Kubernetes (CNCF), and the CKA certification.</div>
+  <div class="pc-url"><a href="https://linuxfoundation.org/LFS101" target="_blank">linuxfoundation.org/LFS101</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-4">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://cdn.simpleicons.org/linux/FCC624" alt="lf" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">04</span> LFS151. Introduction to Cloud Infrastructure Technologies</div>
+      <div class="pc-inst">Linux Foundation · <em style="color:var(--ink3);font-size:.72rem;">Month 2-3, alongside Azure bootcamp</em></div>
+      <span class="pc-cert cert-audit">Audit free on edX. No certificate in free track</span>
+      <div class="pc-tags"><span class="pc-tag">IaaS</span><span class="pc-tag">PaaS</span><span class="pc-tag">Containers</span><span class="pc-tag">Cloud storage</span><span class="pc-tag">Cloud networking</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">IaaS, PaaS, SaaS, containers, orchestration, cloud storage, cloud networking. A direct AZ-104 companion, the conceptual layer that the Azure-specific bootcamp content sits on top of. The Linux Foundation officially lists LFS151 as recommended preparation for the CKA certification that comes later in the bootcamp. Complete alongside the Azure bootcamp in Months 2-3.</div>
+  <div class="pc-url"><a href="https://linuxfoundation.org/LFS151" target="_blank">linuxfoundation.org/LFS151</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-5">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="ibm" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">05</span> Cloud Fundamentals and DevOps Essentials</div>
+      <div class="pc-inst">IBM SkillsBuild · <em style="color:var(--ink3);font-size:.72rem;">Month 1: complete before sending IBM applications</em></div>
+      <span class="pc-cert cert-free">Free Credly badges (employer-verifiable)</span>
+      <div class="pc-tags"><span class="pc-tag">Cloud fundamentals</span><span class="pc-tag">DevOps culture</span><span class="pc-tag">Agile</span><span class="pc-tag">Credly badge</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">IBM-branded Credly badges that appear on LinkedIn and are verifiable by employers including IBM itself. Cloud fundamentals, DevOps culture, Agile methodologies, containerisation basics. Already registered at skillsbuild.org. Complete both learning paths before sending your IBM internship application, the IBM brand badges are a direct signal to the IBM hiring team that you have engaged with their own learning platform. IBM hiring managers can verify Credly badges directly from LinkedIn.</div>
+  <div class="pc-url"><a href="https://skillsbuild.org" target="_blank">skillsbuild.org</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-6">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://cdn.simpleicons.org/github/181717" alt="github" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">06</span> GitHub Actions and Core Learning Paths</div>
+      <div class="pc-inst">GitHub · <em style="color:var(--ink3);font-size:.72rem;">Week 1: do this immediately</em></div>
+      <span class="pc-cert cert-free">Free GitHub Achievement badges visible on public profile</span>
+      <div class="pc-tags"><span class="pc-tag">GitHub Actions</span><span class="pc-tag">CI/CD</span><span class="pc-tag">Code review</span><span class="pc-tag">Security scanning</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">GitHub Actions CI/CD pipelines, code review workflows, security scanning, GitHub Pages. Achievement badges appear directly on the public GitHub profile at github.com/jeremy-trinity: the profile that IBM and Deloitte recruiters see before reading the CV. Do the Actions learning path in Week 1 of the plan. The badge is awarded immediately upon completion and is permanently visible on the recruiter-facing profile. This is the fastest credibility signal available, it takes one afternoon.</div>
+  <div class="pc-url"><a href="https://skills.github.com" target="_blank">skills.github.com</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-7">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="cisco" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">07</span> Cybersecurity and CCNA Introduction to Networks</div>
+      <div class="pc-inst">Cisco Networking Academy · <em style="color:var(--ink3);font-size:.72rem;">Month 1-2, alongside David Bombal networking Udemy sections</em></div>
+      <span class="pc-cert cert-free">Free Cisco digital badges</span>
+      <div class="pc-tags"><span class="pc-tag">TCP/IP</span><span class="pc-tag">Routing</span><span class="pc-tag">VLANs</span><span class="pc-tag">Security fundamentals</span><span class="pc-tag">Cisco badge</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">TCP/IP, subnetting, routing, VLANs, threat landscape, basic security. Cisco digital badges appear on LinkedIn. The Cisco brand alongside Azure certifications signals networking fundamentals competency to IBM and Deloitte network infrastructure teams. Complete both courses alongside the Bombal networking Udemy content in Months 1-2: they reinforce the same material from two perspectives, one brand-neutral (Bombal) and one Cisco-badged.</div>
+  <div class="pc-url"><a href="https://netacad.com" target="_blank">netacad.com</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-8">
+  <div class="pc-top acc-head">
+    <div style="margin-top:3px;flex-shrink:0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354 200" style="height:22px;width:auto;vertical-align:middle;" aria-label="MIT"><path fill="#A31F34" d="M187.268 187.268h41.615V62.423H187.268Zm62.423-145.653H353.728V0H249.691ZM187.268 0h41.615V41.615H187.268ZM124.845 187.268H166.46V0H124.845ZM62.423 145.653h41.615V0H62.423ZM0 187.268H41.615V0H0Zm249.691 0h41.615V62.423H249.691Z"/></svg></div>
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">08</span> The Missing Semester of Your CS Education</div>
+      <div class="pc-inst">MIT CSAIL · <em style="color:var(--ink3);font-size:.72rem;">Month 2-3, alongside Linux bootcamp work</em></div>
+      <span class="pc-cert cert-none">No certificate, knowledge only</span>
+      <div class="pc-tags"><span class="pc-tag">Shell scripting</span><span class="pc-tag">Vim</span><span class="pc-tag">SSH</span><span class="pc-tag">Debugging</span><span class="pc-tag">Git internals</span><span class="pc-tag">Daily professional tools</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Shell scripting, Vim, SSH, debugging tools, profiling, version control internals, the tools every working engineer uses every single day that no CS degree or bootcamp explicitly teaches. MIT CSAIL created this curriculum specifically because they noticed their own computer science graduates were inefficient with basic professional tools. No certificate, no graded assignments, pure knowledge. Complete in Month 2-3 alongside the bootcamp Linux work. The productivity gains are immediate: faster terminal navigation, better debugging habits, understanding what Git is actually doing under the hood.</div>
+  <div class="pc-url"><a href="https://missing.csail.mit.edu" target="_blank">missing.csail.mit.edu</a></div>
+</div>
+<!-- STEP 2 appends Phase 2 programs 09-17 -->
+
+<div class="anchor" id="phase2"></div>
+<div class="phase-banner ph2-b">
+  <h2>Phase 2: Cloud Focus: Months 3 to 6</h2>
+  <p>These programs run alongside the bootcamp Phase 2 content. They reinforce and extend what is being studied in the Udemy courses. Several require Coursera financial aid applications. Apply at the start of the month you plan to begin, not when you are ready to study. Approval takes approximately 15 days.</p>
+  <div class="phase-meta">Apply Coursera financial aid for programs 16 and 17 immediately. Do not wait until you need them</div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-9">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">09</span> AZ-900 Azure Fundamentals. Microsoft Learn official path</div>
+      <div class="pc-inst">Microsoft · <em style="color:var(--ink3);font-size:.72rem;">Month 2, in parallel with Scott Duffy Udemy course</em></div>
+      <span class="pc-cert cert-free">Free badge on Microsoft Learn + exam approx. EUR 90</span>
+      <div class="pc-tags"><span class="pc-tag">Azure fundamentals</span><span class="pc-tag">Cloud concepts</span><span class="pc-tag">SLAs</span><span class="pc-tag">Pricing</span><span class="pc-tag">Free badge</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Complete the official Microsoft Learn AZ-900 learning path (free) at learn.microsoft.com in parallel with the Scott Duffy AZ-900 Udemy course. The Microsoft Learn exercises give you hands-on access to the Azure portal alongside the conceptual content. More importantly, completing the Microsoft Learn path earns a free digital badge that appears on your Microsoft Learn profile, a URL you can add to your LinkedIn profile and CV before the paid exam is booked. The official AZ-900 practice assessment on Microsoft Learn (also free) is written by the same team that writes the real exam and is the most accurate exam readiness gauge available.</div>
+  <div class="pc-url"><a href="https://learn.microsoft.com" target="_blank">learn.microsoft.com</a>, search "AZ-900 learning path"</div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-10">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">10</span> AZ-104 Azure Administrator. Microsoft Learn official paths</div>
+      <div class="pc-inst">Microsoft · <em style="color:var(--ink3);font-size:.72rem;">Month 5, in parallel with Scott Duffy AZ-104 Udemy course</em></div>
+      <span class="pc-cert cert-free">Free learning paths + official practice assessment, exam approx. EUR 150</span>
+      <div class="pc-tags"><span class="pc-tag">Azure administration</span><span class="pc-tag">Identity</span><span class="pc-tag">Networking</span><span class="pc-tag">Storage</span><span class="pc-tag">Monitoring</span><span class="pc-tag">KQL</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Complete all six official Microsoft Learn AZ-104 learning paths in parallel with the bootcamp AZ-104 study. Every exercise should be run in the Azure free account, not just watched. The Microsoft Learn official AZ-104 practice assessment (free, written by the exam team) is the single most accurate readiness gauge before booking. Use it two weeks before booking the exam: score below 75% means two more weeks of study; score 75%+ combined with 85%+ on the Scott Duffy practice tests means book the exam. The AZ-104 learning paths also introduce KQL (Kusto Query Language) which is used in Azure Monitor, Log Analytics, and later in Microsoft Sentinel for AZ-500.</div>
+  <div class="pc-url"><a href="https://learn.microsoft.com" target="_blank">learn.microsoft.com</a>, search "AZ-104 learning paths"</div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-11">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cloud%20Native%20Computing%20Foundation%202023%20logo.svg" alt="cncf" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">11</span> LFS158. Introduction to Kubernetes</div>
+      <div class="pc-inst">CNCF / Linux Foundation · <em style="color:var(--ink3);font-size:.72rem;">Month 4-5, in parallel with Mumshad Kubernetes Udemy course</em></div>
+      <span class="pc-cert cert-free">Free certificate included in the course</span>
+      <div class="pc-tags"><span class="pc-tag">Pods</span><span class="pc-tag">Deployments</span><span class="pc-tag">Services</span><span class="pc-tag">Persistent volumes</span><span class="pc-tag">Scaling</span><span class="pc-tag">CNCF certificate</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Pods, deployments, services, persistent volumes, scaling, namespaces. CNCF, the Cloud Native Computing Foundation, created both Kubernetes and the CKA certification exam. The LFS158 free certificate is the stepping stone before the paid CKA exam. Run in parallel with Mumshad Mannambeth's Kubernetes for Absolute Beginners Udemy course in Month 6: both cover the same material from two perspectives. The CNCF certificate has the added advantage of coming from the organization that owns Kubernetes, which makes it more credible than a third-party certificate for Kubernetes knowledge.</div>
+  <div class="pc-url"><a href="https://linuxfoundation.org/LFS158" target="_blank">linuxfoundation.org/LFS158</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-12">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://cdn.simpleicons.org/linux/FCC624" alt="lf" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">12</span> LFS162. DevOps and Site Reliability Engineering</div>
+      <div class="pc-inst">Linux Foundation · <em style="color:var(--ink3);font-size:.72rem;">Month 5-6, alongside Azure DevOps bootcamp content</em></div>
+      <span class="pc-cert cert-audit">Audit free on edX. No certificate in free track</span>
+      <div class="pc-tags"><span class="pc-tag">CI/CD</span><span class="pc-tag">GitOps</span><span class="pc-tag">SRE principles</span><span class="pc-tag">Monitoring</span><span class="pc-tag">Incident response</span><span class="pc-tag">IaC basics</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">CI/CD, GitOps, SRE principles, monitoring, incident response, IaC basics. A direct AZ-400 preparation companion, covers the same DevOps culture and practices that the AZ-400 exam tests but from a vendor-neutral perspective. The SRE concepts introduced here (error budgets, SLOs, toil reduction) are the theoretical foundation for the Prometheus and Grafana monitoring work in bootcamp Phase 2 and the Terraform SRE course in Month 13. Complete after AZ-104 is registered in Term 4. The LFS162 audit track is free with no application required.</div>
+  <div class="pc-url"><a href="https://linuxfoundation.org/LFS162" target="_blank">linuxfoundation.org/LFS162</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-13">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="linkedin" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">13</span> Career Essentials in Generative AI</div>
+      <div class="pc-inst">Microsoft and LinkedIn Learning · <em style="color:var(--ink3);font-size:.72rem;">Any day with light schedule, 4-5 hours total</em></div>
+      <span class="pc-cert cert-free">Free certificate, appears on LinkedIn profile permanently</span>
+      <div class="pc-tags"><span class="pc-tag">Generative AI</span><span class="pc-tag">Responsible AI</span><span class="pc-tag">Microsoft Copilot</span><span class="pc-tag">LinkedIn credential</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Generative AI fundamentals, responsible AI principles, Microsoft Copilot. The certificate appears permanently on your LinkedIn profile under the Microsoft and LinkedIn co-brand, two of the most recognized brands in tech. Total time commitment: 4-5 hours, completable in a single light study day. Directly relevant for Deloitte Technology and Transformation AI-facing consulting roles and for IBM client conversations about Azure OpenAI Service integration. Do this on any weekday when UoPeople or bootcamp load is lighter than usual. It is one of the fastest credibility additions available.</div>
+  <div class="pc-url"><a href="https://linkedin.com/learning" target="_blank">linkedin.com/learning</a>, search "Career Essentials in Generative AI"</div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-14">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="harvard" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">14</span> CS50 AI. Introduction to Artificial Intelligence with Python</div>
+      <div class="pc-inst">Harvard University · <em style="color:var(--ink3);font-size:.72rem;">Month 6-8, after CS50x is complete</em></div>
+      <span class="pc-cert cert-free">Free certificate via cs50.harvard.edu/ai</span>
+      <div class="pc-tags"><span class="pc-tag">Search algorithms</span><span class="pc-tag">Machine learning</span><span class="pc-tag">Neural networks</span><span class="pc-tag">NLP</span><span class="pc-tag">Harvard certificate</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Search algorithms, knowledge representation, machine learning, neural networks, NLP. The fourth and final free Harvard certificate in the plan. Take after CS50x is complete. Aligns with UoPeople CS 2401 Artificial Intelligence in Term 6: studying them together at the same time means the two courses reinforce each other. CS50 AI use Python throughout, which ties directly to the bootcamp Python track and to Azure AI services work. Claim the certificate free at cs50.harvard.edu/ai by scoring 70%+ on problem sets and completing the final project. Do not pay edX for this.</div>
+  <div class="pc-url"><a href="https://cs50.harvard.edu/ai" target="_blank">cs50.harvard.edu/ai</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-15">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://cdn.simpleicons.org/python/3776AB" alt="deeplearning" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">15</span> Short Courses, multiple, 1 to 3 hours each</div>
+      <div class="pc-inst">DeepLearning.AI (Andrew Ng) · <em style="color:var(--ink3);font-size:.72rem;">Any month from Month 3 onwards, pick relevant ones</em></div>
+      <span class="pc-cert cert-free">Free certificates, 1-3 hours each</span>
+      <div class="pc-tags"><span class="pc-tag">LLMs</span><span class="pc-tag">Prompt engineering</span><span class="pc-tag">LangChain</span><span class="pc-tag">MLOps</span><span class="pc-tag">Vector databases</span><span class="pc-tag">Andrew Ng</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">DeepLearning.AI publish short courses at deeplearning.ai/short-courses, each is 1 to 3 hours and each earns a free certificate. They cover: LLMs and how they work, prompt engineering for developers, LangChain for building AI applications, MLOps fundamentals, vector databases, and more. Andrew Ng co-founded Coursera and co-founded Google Brain, my name on a certificate is recognized everywhere in ML and AI. Pick the courses most relevant to current work: for Azure OpenAI Service integration, take the ChatGPT API course and the LangChain course. For monitoring ML systems, take the MLOps course. These are background enrichment. Never let them compete with bootcamp or UoPeople time.</div>
+  <div class="pc-url"><a href="https://deeplearning.ai/short-courses" target="_blank">deeplearning.ai/short-courses</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-16">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Imperial%20logo.svg" alt="imperial" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">16</span> Mathematics for Machine Learning Specialisation (3 courses)</div>
+      <div class="pc-inst">Imperial College London · <em style="color:var(--ink3);font-size:.72rem;">Month 5-8, apply financial aid now</em></div>
+      <span class="pc-cert cert-aid">Certificate via Coursera financial aid. Apply immediately</span>
+      <div class="pc-tags"><span class="pc-tag">Linear algebra</span><span class="pc-tag">Multivariate calculus</span><span class="pc-tag">PCA</span><span class="pc-tag">Imperial College London</span><span class="pc-tag">Top-10 global</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Linear algebra, multivariate calculus, principal component analysis (PCA). Imperial College London is consistently ranked top-10 globally, the certificate carries that institutional weight in US company recognition. This is the mathematical foundation that every ML and data-heavy cloud role requires, and the prerequisite for the Stanford ML specialisation in Phase 4. Apply Coursera financial aid at coursera.org/specializations/mathematics-machine-learning immediately, approval takes approximately 15 days. The financial aid application should state: "I am building cloud engineering skills including ML infrastructure at Imperial College London level to position for cloud engineering roles, and I am unable to afford the subscription fee." Three courses, each covering one mathematical domain.</div>
+  <div class="pc-url"><a href="https://coursera.org/specializations/mathematics-machine-learning" target="_blank">coursera.org/specializations/mathematics-machine-learning</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-17">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="ibm" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">17</span> Applied DevOps Engineering Professional Certificate (14 courses)</div>
+      <div class="pc-inst">IBM · <em style="color:var(--ink3);font-size:.72rem;">Month 6-10, apply financial aid now</em></div>
+      <span class="pc-cert cert-aid">Certificate via Coursera financial aid. Apply immediately</span>
+      <div class="pc-tags"><span class="pc-tag">CI/CD</span><span class="pc-tag">Kubernetes</span><span class="pc-tag">Terraform</span><span class="pc-tag">OpenShift</span><span class="pc-tag">TDD</span><span class="pc-tag">IBM Professional Certificate</span><span class="pc-tag">14 courses</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">CI/CD, TDD, containers, Kubernetes, OpenShift, Terraform, monitoring, site reliability engineering. 14 courses under the IBM Professional Certificate badge. An IBM Professional Certificate on the CV is a direct signal to IBM hiring teams that you have engaged seriously with their own learning ecosystem, highly relevant if IBM is one of your target employers. This is the single most strategically targeted credential in the entire Pillar IV plan. Apply Coursera financial aid at coursera.org/professional-certificates/ibm-applied-devops-engineering immediately. Do not wait. The financial aid application should explicitly mention your target employer and explain that IBM's own certification program is directly relevant to the role you are targeting.</div>
+  <div class="pc-url"><a href="https://coursera.org/professional-certificates/ibm-applied-devops-engineering" target="_blank">coursera.org/professional-certificates/ibm-applied-devops-engineering</a></div>
+</div>
+<!-- STEP 3 appends Phase 3 programs 18-24 -->
+
+<div class="anchor" id="phase3"></div>
+<div class="phase-banner ph3-b">
+  <h2>Phase 3: Academic Prestige and CS Foundations. Months 6 to 12</h2>
+  <p>The programs that put Stanford, MIT, Google, and Georgia Tech on the CV. Most require Coursera financial aid applications. Apply for financial aid for all paid programs at the beginning of Month 6: approval takes 2 weeks and you want access ready when you reach each program.</p>
+  <div class="phase-meta">Apply financial aid for programs 19, 20, and 21 simultaneously at the start of Month 6: do not apply one at a time</div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-18">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="harvard" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">18</span> CS50 SQL. Introduction to Databases</div>
+      <div class="pc-inst">Harvard University · <em style="color:var(--ink3);font-size:.72rem;">Month 5-6, in parallel with UoPeople CS 2203 Databases 1</em></div>
+      <span class="pc-cert cert-free">Free certificate via cs50.harvard.edu/sql</span>
+      <div class="pc-tags"><span class="pc-tag">SQL</span><span class="pc-tag">Database design</span><span class="pc-tag">PostgreSQL</span><span class="pc-tag">MySQL</span><span class="pc-tag">SQLite</span><span class="pc-tag">Harvard certificate</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">SQL, database design, querying, optimisation, PostgreSQL, MySQL, SQLite. The third free Harvard certificate. Aligns exactly with UoPeople CS 2203 Databases 1 in Term 4: studying them in the same term means each reinforces the other. SQL is tested in AZ-104 monitoring (KQL is a SQL dialect), in AZ-500 security operations, and in every IBM and Deloitte cloud engineering technical interview. Claim the certificate free at cs50.harvard.edu/sql by scoring 70%+ on all problem sets. This is the most directly applicable of the four Harvard certificates for the Azure cloud engineering career path.</div>
+  <div class="pc-url"><a href="https://cs50.harvard.edu/sql" target="_blank">cs50.harvard.edu/sql</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-19">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://cdn.simpleicons.org/google/4285F4" alt="google" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">19</span> Google Cybersecurity Professional Certificate (8 courses)</div>
+      <div class="pc-inst">Google · <em style="color:var(--ink3);font-size:.72rem;">Month 7-10, apply financial aid at start of Month 7</em></div>
+      <span class="pc-cert cert-aid">Certificate via Coursera financial aid. Apply at Month 7 start</span>
+      <div class="pc-tags"><span class="pc-tag">SIEM</span><span class="pc-tag">Splunk</span><span class="pc-tag">Linux security</span><span class="pc-tag">Python security</span><span class="pc-tag">Incident response</span><span class="pc-tag">Google Professional Certificate</span><span class="pc-tag">8 courses</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Network security, Linux for security, SQL for security, Python automation, SIEM with Splunk and Chronicle, intrusion detection, incident response, threat analysis. 8 courses under the Google Professional Certificate badge. Directly complements the AZ-500 security study happening in the same bootcamp period (Term 7). The Google Professional Certificate brand is recognized by international tech employers including IBM and Google itself. Apply Coursera financial aid at coursera.org/professional-certificates/google-cybersecurity the moment you start Month 7: do not wait until you are ready to study. The 15-day approval window means applying at the start of the month gives you access right when you need it.</div>
+  <div class="pc-url"><a href="https://coursera.org/professional-certificates/google-cybersecurity" target="_blank">coursera.org/professional-certificates/google-cybersecurity</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-20">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Stanford_Cardinal_logo.svg" alt="stanford" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">20</span> Algorithms Specialisation (4 courses)</div>
+      <div class="pc-inst">Stanford University · <em style="color:var(--ink3);font-size:.72rem;">Month 8-12, apply financial aid at start of Month 8</em></div>
+      <span class="pc-cert cert-aid">Certificate via Coursera financial aid. Apply at Month 8 start</span>
+      <div class="pc-tags"><span class="pc-tag">Divide and conquer</span><span class="pc-tag">Graph search</span><span class="pc-tag">Dynamic programming</span><span class="pc-tag">NP-completeness</span><span class="pc-tag">Stanford certificate</span><span class="pc-tag">4 courses</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Divide and conquer, graph search, dynamic programming, shortest paths, greedy algorithms, NP-completeness. Taught by Tim Roughgarden, Professor of Computer Science at Stanford. Stanford brand on the CV at zero cost through financial aid. Apply Coursera financial aid at coursera.org/specializations/algorithms at the beginning of Month 8. This specialisation directly reinforces UoPeople CS 3304 Analysis of Algorithms and CS 3305 Data Structures, studying them in parallel means each reinforces the other. The Stanford Algorithms specialisation also provides concrete preparation for the Georgia Tech OMSCS admission assessment, which tests algorithm and data structure knowledge at this level.</div>
+  <div class="pc-url"><a href="https://coursera.org/specializations/algorithms" target="_blank">coursera.org/specializations/algorithms</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-21">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Georgia%20Tech%20logo%202021.svg" alt="gatech" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">21</span> OMSCS Prep Series: CS1301, CS1331, CS1332</div>
+      <div class="pc-inst">Georgia Tech · <em style="color:var(--ink3);font-size:.72rem;">Month 9-12, begin in Term 7</em></div>
+      <span class="pc-cert cert-audit">Audit free, certificate paid if desired</span>
+      <div class="pc-tags"><span class="pc-tag">Python at campus level</span><span class="pc-tag">OOP with Java</span><span class="pc-tag">Data structures</span><span class="pc-tag">OMSCS admission preparation</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">CS1301 Introduction to Python Programming, CS1331 Introduction to OOP with Java, CS1332 Data Structures and Algorithms, these are the actual Georgia Tech campus course materials, the same courses taught to on-campus Georgia Tech students. Georgia Tech officially recommends this series for OMSCS admission preparation at omscs.gatech.edu/preparing-yourself-omscs. Completing them puts Georgia Tech on the profile now and directly builds the admission case for Year 3-4. The CS1332 Data Structures and Algorithms course is particularly important. It is the course that OMSCS admission assessors reference when evaluating technical readiness. Audit all three free on edX. Pay for the certificate on CS1332 specifically if budget allows. It is the one that signals OMSCS preparation most clearly.</div>
+  <div class="pc-url"><a href="https://omscs.gatech.edu/preparing-yourself-omscs" target="_blank">omscs.gatech.edu/preparing-yourself-omscs</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-22">
+  <div class="pc-top acc-head">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354 200" style="height:22px;width:auto;vertical-align:middle;flex-shrink:0;margin-top:3px;" aria-label="MIT"><path fill="#A31F34" d="M187.268 187.268h41.615V62.423H187.268Zm62.423-145.653H353.728V0H249.691ZM187.268 0h41.615V41.615H187.268ZM124.845 187.268H166.46V0H124.845ZM62.423 145.653h41.615V0H62.423ZM0 187.268H41.615V0H0Zm249.691 0h41.615V62.423H249.691Z"/></svg>
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">22</span> 6.006 Introduction to Algorithms</div>
+      <div class="pc-inst">MIT OpenCourseWare · <em style="color:var(--ink3);font-size:.72rem;">Month 10-12, selective use alongside algorithms study</em></div>
+      <span class="pc-cert cert-none">No certificate. MIT-quality knowledge only</span>
+      <div class="pc-tags"><span class="pc-tag">Sorting</span><span class="pc-tag">Graph algorithms</span><span class="pc-tag">Dynamic programming</span><span class="pc-tag">Shortest paths</span><span class="pc-tag">MIT curriculum</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Sorting, graph algorithms, dynamic programming, shortest paths, intractability. MIT OCW provides the lecture videos, problem sets, and exams for this course at no cost. No certificate is awarded, the value is the content quality, which is MIT campus level. Use selectively: watch the MIT lectures for topics being studied in UoPeople algorithms courses and the Stanford Algorithms specialisation when you want a second high-quality explanation of a concept. Do not attempt to complete 6.006 in full alongside everything else. Use it as a reference and supplement. The combination of Stanford Algorithms (certificate) plus MIT 6.006 (quality enrichment) plus UoPeople CS 3304 (academic credit) covers algorithms at an unusually deep level for a junior engineer.</div>
+  <div class="pc-url"><a href="https://ocw.mit.edu" target="_blank">ocw.mit.edu</a>, search "6.006 Introduction to Algorithms"</div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-23">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://certiprof.com/cdn/shop/t/33/assets/cp_Icon_48x48.png" alt="certiprof" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">23</span> Scrum Foundations Professional Certificate (SFPC)</div>
+      <div class="pc-inst">CertiProf · <em style="color:var(--ink3);font-size:.72rem;">Any week, do this in a single afternoon</em></div>
+      <span class="pc-cert cert-free">Free certificate, approximately 2 hours total</span>
+      <div class="pc-tags"><span class="pc-tag">Scrum</span><span class="pc-tag">Agile</span><span class="pc-tag">Sprints</span><span class="pc-tag">Backlog</span><span class="pc-tag">Deloitte signal</span><span class="pc-tag">2 hours</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Scrum framework, sprints, backlog management, ceremonies (daily standup, sprint planning, retrospective), roles (Product Owner, Scrum Master, Development Team). Deloitte Technology and Transformation runs all client projects using Agile and Scrum. This 2-hour free certificate from CertiProf is a direct Deloitte hiring signal, it demonstrates awareness of the project management methodology that will govern every project worked on at Deloitte. Register and complete at certiprof.com in any single afternoon when UoPeople and bootcamp load is lighter than usual. The certificate is free with no payment required. This is the fastest Deloitte-specific credibility addition available in the entire plan.</div>
+  <div class="pc-url"><a href="https://certiprof.com" target="_blank">certiprof.com</a>, search "Scrum Foundations Professional Certificate"</div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-24">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://cdn.simpleicons.org/freecodecamp/0A0A23" alt="fcc" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">24</span> Relational Database Certification</div>
+      <div class="pc-inst">freeCodeCamp · <em style="color:var(--ink3);font-size:.72rem;">Month 10-18, background at 1-2 hours per week</em></div>
+      <span class="pc-cert cert-free">Free certification, approximately 300 hours content</span>
+      <div class="pc-tags"><span class="pc-tag">PostgreSQL</span><span class="pc-tag">Bash scripting</span><span class="pc-tag">Advanced SQL</span><span class="pc-tag">Linux terminal</span><span class="pc-tag">Git</span><span class="pc-tag">freeCodeCamp</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">PostgreSQL, Bash scripting, advanced SQL, Git, all in an interactive Linux terminal browser environment. Recognised by international tech employers including IBM and Google. At approximately 300 hours of content this is a long-term background project, do 1-2 hours per week in parallel with other Phase 3 study rather than as a focused sprint. The interactive Linux terminal environment reinforces command-line skills from the bootcamp daily, and the PostgreSQL content directly reinforces the CS50 SQL and UoPeople Databases course work. freeCodeCamp certifications carry more weight with US employers than equivalent certificates from less-known platforms because freeCodeCamp has an established reputation in the developer community. The certification is completely free with no application required.</div>
+  <div class="pc-url"><a href="https://freecodecamp.org/learn/relational-database" target="_blank">freecodecamp.org/learn/relational-database</a></div>
+</div>
+<!-- STEP 4 appends Phase 4 programs 25-28 and institutions wall -->
+
+<div class="anchor" id="phase4"></div>
+<div class="phase-banner ph4-b">
+  <h2>Phase 4: Long-Term Specialisation. Year 2 onwards</h2>
+  <p>These programs are studied after the core six Azure certifications are earned and the immediate employment target at an enterprise tech employer is secured. They build toward Georgia Tech OMSCS, deepen ML and backend engineering capability, and position the profile for international market roles.</p>
+  <div class="phase-meta">Prerequisites: AZ-104 passed · Internship active or secured · UoPeople BSc at least 40% complete</div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-25">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Stanford_Cardinal_logo.svg" alt="stanford" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">25</span> Machine Learning Specialisation (3 courses)</div>
+      <div class="pc-inst">Stanford University · <em style="color:var(--ink3);font-size:.72rem;">Year 2, after Imperial College London Math for ML is complete</em></div>
+      <span class="pc-cert cert-aid">Certificate via Coursera financial aid. Apply when ready to start</span>
+      <div class="pc-tags"><span class="pc-tag">Supervised learning</span><span class="pc-tag">Neural networks</span><span class="pc-tag">Recommenders</span><span class="pc-tag">Reinforcement learning</span><span class="pc-tag">Andrew Ng</span><span class="pc-tag">Stanford certificate</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Supervised learning, unsupervised learning, neural networks, recommender systems, reinforcement learning. Taught by Andrew Ng, who co-founded Coursera, co-founded Google Brain, and was Chief Scientist at Baidu. The definitive ML foundation course globally, recognized by every major international tech company. Prerequisite: the Imperial College London Mathematics for Machine Learning specialisation from Phase 2. Without the mathematical foundations (linear algebra, calculus), the Stanford ML content becomes memorisation rather than understanding. Apply Coursera financial aid at coursera.org/specializations/machine-learning-introduction when starting Year 2. Three courses. This positions the profile for Azure Machine Learning, Azure OpenAI Service integration, and ML-adjacent cloud infrastructure roles.</div>
+  <div class="pc-url"><a href="https://coursera.org/specializations/machine-learning-introduction" target="_blank">coursera.org/specializations/machine-learning-introduction</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-26">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="meta" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">26</span> Back-End Developer Professional Certificate (9 courses)</div>
+      <div class="pc-inst">Meta · <em style="color:var(--ink3);font-size:.72rem;">Year 2, after core cloud certifications are complete</em></div>
+      <span class="pc-cert cert-aid">Certificate via Coursera financial aid. Apply when ready to start</span>
+      <div class="pc-tags"><span class="pc-tag">Django</span><span class="pc-tag">REST APIs</span><span class="pc-tag">SQL</span><span class="pc-tag">Cloud deployment</span><span class="pc-tag">API design</span><span class="pc-tag">Meta Professional Certificate</span><span class="pc-tag">9 courses</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Django, REST APIs, SQL, cloud deployment, API design, version control, testing. 9 courses under the Meta Professional Certificate badge. Adds backend engineering depth to the cloud infrastructure profile, the combination of cloud platform engineering (Pillar I bootcamp) and backend application development (this specialisation) is what full-platform engineers hold. Apply Coursera financial aid at coursera.org/professional-certificates/meta-back-end-developer when starting Year 2. The Meta brand carries strong recognition in US tech workplaces and the Django and REST API skills are directly applicable to Azure App Service and Azure API Management work already built in the bootcamp.</div>
+  <div class="pc-url"><a href="https://coursera.org/professional-certificates/meta-back-end-developer" target="_blank">coursera.org/professional-certificates/meta-back-end-developer</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-27">
+  <div class="pc-top acc-head">
+    <img class="pc-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Georgia%20Tech%20logo%202021.svg" alt="gatech" style="height:22px;">
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">27</span> Online Master of Science in Computer Science (OMSCS)</div>
+      <div class="pc-inst">Georgia Tech · <em style="color:var(--ink3);font-size:.72rem;">Year 3-5 target, apply after UoPeople BSc is near complete</em></div>
+      <span class="pc-cert cert-none">Full Master's degree. Year 3 to 5 target · Under  total</span>
+      <div class="pc-tags"><span class="pc-tag">Graduate CS</span><span class="pc-tag">ML specialisation</span><span class="pc-tag">Computing Systems</span><span class="pc-tag">Same as on-campus</span><span class="pc-tag">Under </span><span class="pc-tag">Top-5 US ranking</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">The same degree as the on-campus Georgia Tech Master of Computer Science, delivered 100% online for under  total. Ranked top-5 CS in the international. 74% admission rate. Two strongest specialisation choices for this career plan: Machine Learning (extends Azure AI work, positions for Azure OpenAI Service and ML infrastructure roles) and Computing Systems (deepens infrastructure and systems knowledge underpinning cloud platform engineering). Apply after UoPeople BSc is at least 60% complete and GPA is 3.7+. Target application window: Year 3-4. The Georgia Tech OMSCS prep series from Phase 3 (CS1301, CS1331, CS1332) directly builds the admission case. The intracompany transfer visa case is also significantly strengthened by a Georgia Tech Master's under the "specialized knowledge" criterion of the intracompany category.</div>
+  <div class="pc-url"><a href="https://omscs.gatech.edu" target="_blank">omscs.gatech.edu</a></div>
+</div>
+<div class="prog-card acc-block is-collapsed" id="prog-28">
+  <div class="pc-top acc-head">
+    <div style="font-size:.75rem;font-weight:700;color:#C41230;flex-shrink:0;margin-top:3px;line-height:1.1;">Carnegie<br>Mellon</div>
+    <div class="pc-meta">
+      <div class="pc-title"><span class="pc-num">28</span> 15-213 Introduction to Computer Systems (optional enrichment)</div>
+      <div class="pc-inst">Carnegie Mellon University · <em style="color:var(--ink3);font-size:.72rem;">Year 2+, when time and interest allow</em></div>
+      <span class="pc-cert cert-none">No certificate, legendary systems knowledge · Optional</span>
+      <div class="pc-tags"><span class="pc-tag">Memory</span><span class="pc-tag">Caching</span><span class="pc-tag">Virtual memory</span><span class="pc-tag">Networking at systems level</span><span class="pc-tag">CMU curriculum</span></div>
+    </div>
+  </div>
+  <div class="pc-body acc-body">Memory, caching, virtual memory, networking at the systems level, the internals of how computers actually work that most engineers never study explicitly. CMU 15-213 is nicknamed "the hardest and most important introductory CS course at a major international university" and is referenced constantly in systems engineering communities. No certificate, no formal enrolment, no cost, the course materials are publicly available at csapp.cs.cmu.edu and the textbook (Computer Systems: A Programr's Perspective) is used at MIT, Stanford, and CMU. Use selectively to deepen understanding of concepts encountered in other courses: when container isolation, memory management, or network stack internals become relevant in the bootcamp, the 15-213 lectures are the reference that provides the deepest explanation. This is not required for the career plan. It is the optional ceiling for intellectual depth.</div>
+  <div class="pc-url"><a href="https://csapp.cs.cmu.edu" target="_blank">csapp.cs.cmu.edu</a></div>
+</div>
+<div class="anchor" id="institutions"></div>
+<span class="sec-label">The complete picture</span>
+<h2 class="sec-title">Institutions on your CV at full completion of Pillar IV</h2>
+<div class="title-rule"></div>
+<div class="inst-grid">
+  <div class="inst-card">
+  <img class="inst-logo" src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard University">
+  <div class="inst-name">Harvard University</div>
+  <div class="inst-what">CS50x, CS50P, CS50 SQL, CS50 AI, 4 free certificates</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 1-2</div>
+</div>
+  <div class="inst-card">
+  <div style="margin-bottom:.2rem;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354 200" style="height:22px;width:auto;vertical-align:middle;flex-shrink:0;margin-top:3px;" aria-label="MIT"><path fill="#A31F34" d="M187.268 187.268h41.615V62.423H187.268Zm62.423-145.653H353.728V0H249.691ZM187.268 0h41.615V41.615H187.268ZM124.845 187.268H166.46V0H124.845ZM62.423 145.653h41.615V0H62.423ZM0 187.268H41.615V0H0Zm249.691 0h41.615V62.423H249.691Z"/></svg></div>
+  <div class="inst-name">MIT CSAIL + OCW</div>
+  <div class="inst-what">Missing Semester (knowledge), 6.006 Algorithms (knowledge)</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 1, 3</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Stanford_Cardinal_logo.svg" alt="Stanford University">
+  <div class="inst-name">Stanford University</div>
+  <div class="inst-what">Algorithms Specialisation + ML Specialisation via financial aid</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 3, 4</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Imperial%20logo.svg" alt="Imperial College London">
+  <div class="inst-name">Imperial College London</div>
+  <div class="inst-what">Mathematics for Machine Learning Specialisation via financial aid</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 2</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Georgia%20Tech%20logo%202021.svg" alt="Georgia Tech">
+  <div class="inst-name">Georgia Tech</div>
+  <div class="inst-what">OMSCS Prep Series + OMSCS Master's degree (Year 3-5)</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 3, long-term</div>
+</div>
+  <div class="inst-card">
+  <div style="font-size:.75rem;font-weight:700;color:#C41230;flex-shrink:0;margin-top:3px;line-height:1.1;">Carnegie<br>Mellon</div>
+  <div class="inst-name">Carnegie Mellon University</div>
+  <div class="inst-what">15-213 Systems self-study curriculum (optional)</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 4 optional</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+  <div class="inst-name">IBM</div>
+  <div class="inst-what">SkillsBuild Credly badges + Applied DevOps Professional Certificate</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 1, 2</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://cdn.simpleicons.org/google/4285F4" alt="Google">
+  <div class="inst-name">Google</div>
+  <div class="inst-what">Cybersecurity Professional Certificate via financial aid</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 3</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft + LinkedIn">
+  <div class="inst-name">Microsoft + LinkedIn</div>
+  <div class="inst-what">Career Essentials in Generative AI (free)</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 2</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cloud%20Native%20Computing%20Foundation%202023%20logo.svg" alt="CNCF / Linux Foundation">
+  <div class="inst-name">CNCF / Linux Foundation</div>
+  <div class="inst-what">LFS101, LFS151, LFS158, LFS162, 4 programs</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 1, 2</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="Cisco Networking Academy">
+  <div class="inst-name">Cisco Networking Academy</div>
+  <div class="inst-what">Cybersecurity + CCNA Networks, 2 digital badges</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 1</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta">
+  <div class="inst-name">Meta</div>
+  <div class="inst-what">Back-End Developer Professional Certificate via financial aid</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 4</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://cdn.simpleicons.org/freecodecamp/0A0A23" alt="freeCodeCamp">
+  <div class="inst-name">freeCodeCamp</div>
+  <div class="inst-what">Relational Database Certification (free, ~300 hours)</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 3</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://certiprof.com/cdn/shop/t/33/assets/cp_Icon_48x48.png" alt="CertiProf">
+  <div class="inst-name">CertiProf</div>
+  <div class="inst-what">Scrum Foundations Professional Certificate (free, 2 hours)</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 3</div>
+</div>
+  <div class="inst-card">
+  <img class="inst-logo" src="https://cdn.simpleicons.org/python/3776AB" alt="DeepLearning.AI">
+  <div class="inst-name">DeepLearning.AI</div>
+  <div class="inst-what">Multiple short courses (free, 1-3 hours each)</div>
+  <div style="font-size:.68rem;color:var(--accent);font-weight:600;">Phase 2+</div>
+</div>
+</div>
+<p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-top:.8rem;">This is what the "Licenses and Certifications" section of your LinkedIn profile looks like at full completion, 14 institutions across 28 programs, most at zero cost through free tiers, open courseware, and Coursera financial aid. The institutions represent the most respected names in computer science education globally. The combination is commercially unusual. It is the kind of profile that senior IBM and Deloitte hiring managers notice because it demonstrates not just technical skill but sustained intellectual investment over multiple years.</p>
+<!-- STEP 5 appends OMSCS deep dive, timeline, closes HTML, verifies -->
+
+<div class="anchor" id="omscs-deep"></div>
+<span class="sec-label">The Master's target</span>
+<h2 class="sec-title">Georgia Tech OMSCS, the full picture</h2>
+<div class="title-rule"></div>
+<div class="hbox"><p><strong>Why Georgia Tech OMSCS specifically, and not any other online Master's:</strong> It is the same degree as the on-campus program, identical curriculum, identical faculty, identical diploma. 100% online. Under  total for the complete degree. Georgia Tech is ranked top-5 CS globally. The 74% admission rate is achievable with the right preparation. Former US President Obama publicly praised it as a model for accessible graduate education. It is the only top-5 CS program that is both fully online and financially accessible to international students without financial aid.</p></div>
+<div class="mech-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:.8rem;margin:1.1rem 0 1.5rem;">
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;">
+    <h3 style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;">Admission requirements</h3>
+    <p style="font-size:.8rem;color:var(--ink2);margin:0;line-height:1.5;">Bachelor's degree (UoPeople BSc satisfies this). 3.0+ GPA preferred, 3.7+ target. Demonstrated CS knowledge including algorithms and data structures, the OMSCS prep series (CS1301, CS1331, CS1332) directly satisfies this. Evidence of programming ability, the 12-project GitHub portfolio directly satisfies this.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;">
+    <h3 style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;">Specialisation choices</h3>
+    <p style="font-size:.8rem;color:var(--ink2);margin:0;line-height:1.5;">Machine Learning: extends Azure AI work, positions for Azure OpenAI Service infrastructure, ML platform engineering roles at IBM and Google. Computing Systems: deepens infrastructure and systems knowledge underpinning cloud platform engineering, the more technically credible choice for a cloud infrastructure career. Both are valid. Neither is wrong.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;">
+    <h3 style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;">Application timeline</h3>
+    <p style="font-size:.8rem;color:var(--ink2);margin:0;line-height:1.5;">Apply after UoPeople BSc is at least 60% complete and GPA is 3.7+. Target Year 3-4 application window. Application deadlines are typically February and July. The OMSCS admission committee explicitly values applicants from non-traditional backgrounds with strong project portfolios. The 12-project GitHub portfolio and four Harvard certificates directly support this.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;">
+    <h3 style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;">Total cost</h3>
+    <p style="font-size:.8rem;color:var(--ink2);margin:0;line-height:1.5;">Under  for the full Master's degree. This is approximately one semester of tuition at most international graduate programs. At 3 courses per year (the typical OMSCS part-time pace alongside full-time work), the degree takes 2.5-3 years to complete. International students pay the same rate as domestic students.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;">
+    <h3 style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;">International career connection</h3>
+    <p style="font-size:.8rem;color:var(--ink2);margin:0;line-height:1.5;">A Georgia Tech Master's in CS significantly strengthens the intracompany transfer case under the "specialized knowledge" criterion of the intracompany transfer visa. It is not required for international career eligibility but makes the case considerably clearer and the salary negotiation considerably stronger. IBM and Deloitte both sponsor international career progressions for specialized knowledge workers.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;">
+    <h3 style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;">After OMSCS</h3>
+    <p style="font-size:.8rem;color:var(--ink2);margin:0;line-height:1.5;">Stanford, MIT, CMU PhD programs become realistic targets with a Georgia Tech OMSCS Master's and 3-5 years of industry experience. The research and leadership roles at IBM Research, Google Research, and Microsoft Research that require a graduate degree become accessible. The career ceiling projection from cloud engineer to cloud architect to principal engineer moves substantially faster.</p>
+  </div>
+</div>
+<div class="abox"><h4>OMSCS preparation checklist, actions you can take now, in Year 1</h4><ul><li>Complete CS1301 Introduction to Python Programming on edX (Georgia Tech content, audit free), the actual campus course.</li><li>Complete CS1332 Data Structures and Algorithms on edX (Georgia Tech content, audit free), the OMSCS admission assessment reference course.</li><li>Maintain UoPeople GPA at 3.7+ from Term 1: this is the single most controllable admission factor.</li><li>Build the GitHub portfolio to 8+ projects by Term 9: project evidence is explicitly cited in OMSCS admission guidance.</li><li>Complete the Stanford Algorithms Specialisation (Phase 3): demonstrates algorithm knowledge at the level OMSCS expects.</li><li>Read the OMSCS subreddit at reddit.com/r/OMSCS: the community is unusually transparent about the admission process, which courses are most valuable, and how to manage the workload alongside a full-time job.</li><li>Set a target application date: aim for the July application round in Year 3.</li></ul></div>
+<div class="anchor" id="timeline"></div>
+<span class="sec-label">Key milestones</span>
+<h2 class="sec-title">Pillar IV milestone timeline</h2>
+<div class="title-rule"></div>
+<div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;padding:.85rem 1.1rem;margin:1.2rem 0;">
+  <div style="display:flex;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);">
+    <div style="font-size:.72rem;font-weight:700;color:var(--accent);min-width:90px;padding-top:2px;flex-shrink:0;">Now (April 2026)</div>
+    <div><div style="font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;">Phase 1 programs begin</div><div style="font-size:.81rem;color:var(--ink2);line-height:1.5;">CS50x enrolled and active. UoPeople BSc starting April 9. GitHub Skills Actions badge: complete this week. IBM SkillsBuild: complete both learning paths before sending IBM application. Cisco NetAcad: enrol and begin alongside Bombal networking Udemy content.</div></div>
+  </div>
+  <div style="display:flex;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);">
+    <div style="font-size:.72rem;font-weight:700;color:var(--accent);min-width:90px;padding-top:2px;flex-shrink:0;">Month 2</div>
+    <div><div style="font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;">MIT Missing Semester, LinkedIn GenAI</div><div style="font-size:.81rem;color:var(--ink2);line-height:1.5;">Complete MIT Missing Semester alongside Linux bootcamp work. Complete LinkedIn Career Essentials in Generative AI in a single afternoon, immediate LinkedIn credential.</div></div>
+  </div>
+  <div style="display:flex;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);">
+    <div style="font-size:.72rem;font-weight:700;color:var(--accent);min-width:90px;padding-top:2px;flex-shrink:0;">Month 3</div>
+    <div><div style="font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;">CS50x and CS50P certificates earned</div><div style="font-size:.81rem;color:var(--ink2);line-height:1.5;">Two Harvard certificates earned and on LinkedIn. Phase 2 begins. Apply Coursera financial aid for Imperial College London Math for ML (program 16) and IBM Applied DevOps (program 17) simultaneously.</div></div>
+  </div>
+  <div style="display:flex;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);">
+    <div style="font-size:.72rem;font-weight:700;color:var(--accent);min-width:90px;padding-top:2px;flex-shrink:0;">Month 6</div>
+    <div><div style="font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;">AZ-104 earned, Phase 3 begins</div><div style="font-size:.81rem;color:var(--ink2);line-height:1.5;">Apply Coursera financial aid for Google Cybersecurity (program 19) and Stanford Algorithms (program 20) simultaneously at the start of Month 6. Scrum SFPC: complete this week, 2 hours, direct Deloitte signal. freeCodeCamp Relational Database: begin background work at 1-2 hours per week.</div></div>
+  </div>
+  <div style="display:flex;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);">
+    <div style="font-size:.72rem;font-weight:700;color:var(--accent);min-width:90px;padding-top:2px;flex-shrink:0;">Month 9</div>
+    <div><div style="font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;">Georgia Tech OMSCS prep begins</div><div style="font-size:.81rem;color:var(--ink2);line-height:1.5;">Begin CS1301 and CS1332 on edX (Georgia Tech content, audit free). This puts Georgia Tech on the active learning list now and builds the admission case for Year 3-4 application.</div></div>
+  </div>
+  <div style="display:flex;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);">
+    <div style="font-size:.72rem;font-weight:700;color:var(--accent);min-width:90px;padding-top:2px;flex-shrink:0;">Year 2 (2027)</div>
+    <div><div style="font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;">Phase 4 programs, Stanford ML, Meta Back-End</div><div style="font-size:.81rem;color:var(--ink2);line-height:1.5;">AZ-400 earned. Core bootcamp complete. Stanford ML Specialisation begins (prerequisite: Imperial Math for ML complete). Meta Back-End Developer begins. AZ-400, Stanford Algorithms, Google Cybersecurity, Georgia Tech prep all on CV.</div></div>
+  </div>
+  <div style="display:flex;gap:1rem;padding:.7rem 0;">
+    <div style="font-size:.72rem;font-weight:700;color:var(--accent);min-width:90px;padding-top:2px;flex-shrink:0;">Year 3-5</div>
+    <div><div style="font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;">Georgia Tech OMSCS enrolled, Phase 3, international career eligibility</div><div style="font-size:.81rem;color:var(--ink2);line-height:1.5;">OMSCS application submitted in Year 3. enterprise employer role active in Phase 3. career progression building toward Year 5 target. 14 institutions represented on the CV. Career ceiling: Cloud Security Architect, Principal Platform Engineer.</div></div>
+  </div>
+</div>
+</div><!-- end .page-wrap -->
+<footer><div class="footer-brand">Jeremy Trinity</div><div class="footer-meta">Five-Pillar Development System &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp;<a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a> &nbsp;|&nbsp;<a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a> &nbsp;|&nbsp;<a href="https://jeremytrinity.com">jeremytrinity.com</a> &nbsp;|&nbsp;</div></footer>
+<script>
+const html=document.documentElement;
+const btn=document.getElementById('themeBtn');
+const label=document.getElementById('themeLabel');
+function applyTheme(t){html.setAttribute('data-theme',t);if(label)label.textContent=t==='dark'?'Light':'Dark';}
+const saved=localStorage.getItem('jt-theme');
+if(saved){applyTheme(saved);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){applyTheme('dark');localStorage.setItem('jt-theme','dark');}
+if(btn)btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(next);localStorage.setItem('jt-theme',next);});
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+</script>
+
+<script>
+/* ── ACCORDION ── */
+(function () {
+  document.querySelectorAll('.acc-block').forEach(function (block) {
+    var head = block.querySelector('.acc-head');
+    if (!head) return;
+    // Inject chevron as last flex child
+    var chev = document.createElement('span');
+    chev.className = 'acc-chev';
+    chev.setAttribute('aria-hidden', 'true');
+    chev.textContent = '▾';
+    head.appendChild(chev);
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    function toggle(e) {
+      if (e.target && (e.target.tagName === 'A' || (e.target.closest && e.target.closest('a')))) return;
+      var collapsed = block.classList.toggle('is-collapsed');
+      head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
+  });
+})();
+</script>
+<script>
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

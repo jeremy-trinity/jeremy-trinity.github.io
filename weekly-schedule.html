@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Pomodoro Framework | Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F9F8F5;--surface:#FFFFFF;--surface2:#F2F1EE;--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--ink:#1A1A18;--ink2:#52514E;--ink3:#8A8880;--accent:#2A5F8F;--accent-lt:#EBF2F9;--accent2:#1D4A70;--p1:#2A5F8F;--p2:#0F6E56;--p3:#854F0B;--p4:#534AB7;--p5:#A32D2D;--p1-lt:#EBF2F9;--p2-lt:#E1F5EE;--p3-lt:#FAEEDA;--p4-lt:#EEEDFE;--p5-lt:#FCEBEB;}
+[data-theme="dark"]{--bg:#111110;--surface:#1C1C1A;--surface2:#252523;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--ink:#EEECEA;--ink2:#AAAAAA;--ink3:#777775;--accent:#5B9BD5;--accent-lt:#1A2A3A;--accent2:#7AB3E0;--p1:#5B9BD5;--p2:#4ecdb4;--p3:#FAC775;--p4:#AFA9EC;--p5:#F09595;--p1-lt:#1A2A3A;--p2-lt:#0A2820;--p3-lt:#2A1E0A;--p4-lt:#1A1830;--p5-lt:#2A1010;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;transition:background .3s,color .3s;padding-top:60px;}
+a{color:var(--accent);text-decoration:none;}a:hover{color:var(--accent2);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:background .3s,border-color .3s;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:0.8rem;font-weight:500;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-btn{background:none;border:1px solid var(--border2);border-radius:20px;padding:.25rem .75rem;cursor:pointer;font-size:.75rem;font-weight:500;color:var(--ink2);display:flex;align-items:center;gap:.35rem;font-family:'Inter',sans-serif;transition:all .2s;}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);}
+.sun{color:#F5A623;font-size:.85rem;display:none;}.moon{font-size:.85rem;}
+[data-theme="dark"] .sun{display:inline;}[data-theme="dark"] .moon{display:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:20px;height:1.5px;background:var(--ink);display:block;}
+.page-hero{background:var(--surface);border-bottom:1px solid var(--border);padding:3rem 2rem 2rem;}
+.page-hero-inner,.page-wrap{max-width:1000px;margin:0 auto;}
+.page-wrap{padding:2rem 2rem 5rem;}
+.back-link{font-size:.78rem;color:var(--ink3);display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1rem;}
+.back-link:hover{color:var(--accent);}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:.6rem;}
+.ph-sub{font-size:.92rem;color:var(--ink2);max-width:720px;line-height:1.7;margin-bottom:1.3rem;}
+.ph-stats{display:flex;gap:1.8rem;flex-wrap:wrap;}
+.ph-stat-val{font-size:1.25rem;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;}
+.ph-stat-label{font-size:.68rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;}
+
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.5rem 0 1rem;}
+.legend-item{display:flex;align-items:center;gap:.45rem;padding:.3rem .75rem;border-radius:8px;border:1px solid rgba(0,0,0,.08);background:var(--surface);}
+.legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+.legend-label{font-size:.73rem;font-weight:600;color:var(--ink2);}
+.ld-boot{background:#2A5F8F;}
+.ld-uni{background:#0F6E56;}
+.ld-lang{background:#0F6E8A;}
+.ld-read{background:#A32D2D;}
+.ld-admin{background:#4A5568;}
+.ld-meal{background:#854F0B;}
+.ld-rest{background:#D1D5DB;border:1px solid #9CA3AF;}
+
+/* SECTION TITLES */
+.anchor{display:block;height:72px;margin-top:-72px;visibility:hidden;}
+.sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;margin-top:3rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
+.title-rule{width:36px;height:2px;background:var(--accent);margin-bottom:1.3rem;}
+
+/* PHASE BANNER */
+.phase-banner{border-radius:12px;padding:1.1rem 1.4rem;margin:2rem 0 1rem;border-left:5px solid;}
+.pb-a{background:var(--p1-lt);border-color:var(--p1);}
+.pb-b{background:var(--p2-lt);border-color:var(--p2);}
+.phase-banner h2{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:.25rem;}
+.pb-a h2{color:var(--p1);}.pb-b h2{color:var(--p2);}
+.phase-banner p{font-size:.86rem;color:var(--ink2);margin:0;line-height:1.55;}
+
+/* ALLOCATION TABLE */
+.alloc-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:1.2rem 0;}
+.alloc-table{width:100%;border-collapse:collapse;}
+.alloc-table th{padding:.5rem .85rem;text-align:left;font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.alloc-table td{padding:.45rem .85rem;border-top:1px solid var(--border);font-size:.84rem;vertical-align:middle;}
+.alloc-table tr:nth-child(even) td{background:var(--surface2);}
+.th-pillar{background:var(--ink);color:var(--surface);}
+.th-constrained{background:#1D4A70;color:#EBF2F9;}
+.th-full{background:#0A4F3B;color:#E1F5EE;}
+.pomo-pill{display:inline-flex;align-items:center;gap:.3rem;font-weight:700;font-size:.82rem;}
+.pp-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.bar-wrap{display:flex;align-items:center;gap:.5rem;margin-top:.2rem;}
+.bar-bg{background:var(--border);border-radius:4px;height:6px;flex:1;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;}
+.bar-label{font-size:.68rem;color:var(--ink3);white-space:nowrap;}
+.total-row td{background:var(--surface2);font-weight:700;color:var(--ink);}
+
+/* DAY TEMPLATE */
+.day-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:.8rem 0;}
+.day-header{background:var(--surface);border-bottom:1px solid var(--border);padding:.7rem 1.2rem;display:flex;align-items:center;gap:.8rem;}
+.day-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
+.day-name-text{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--ink);}
+.day-type-text{font-size:.75rem;color:var(--ink3);margin-left:.2rem;}
+.day-pomos{margin-left:auto;font-size:.73rem;color:var(--accent);font-weight:700;}
+
+.block-list{padding:.6rem 0;}
+.block-row{display:flex;align-items:flex-start;gap:.8rem;padding:.35rem 1.1rem;border-bottom:1px solid rgba(0,0,0,.04);}
+.block-row:last-child{border-bottom:none;}
+.block-icon{font-size:.9rem;flex-shrink:0;width:20px;text-align:center;margin-top:1px;}
+.block-label{font-size:.82rem;font-weight:600;color:var(--ink);line-height:1.3;}
+.block-note{font-size:.74rem;color:var(--ink3);line-height:1.3;display:block;margin-top:.05rem;}
+.block-pomo{font-size:.74rem;font-weight:700;color:var(--accent);margin-left:auto;flex-shrink:0;margin-top:2px;}
+
+/* colored left indicator on block rows */
+.bk-boot  .block-label{color:#2A5F8F;}
+.bk-uni   .block-label{color:#0F6E56;}
+.bk-lang  .block-label{color:#0F6E8A;}
+.bk-read  .block-label{color:#A32D2D;}
+.bk-admin .block-label{color:#4A5568;}
+.bk-meal  .block-label{color:#854F0B;}
+.bk-rest  .block-label{color:#6B7280;}
+
+/* PRINCIPLE CARDS */
+.principle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem;margin:1.2rem 0;}
+.principle-card{border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;background:var(--surface);}
+.pc-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--accent);line-height:1;}
+.pc-title{font-size:.83rem;font-weight:600;color:var(--ink);margin:.15rem 0 .3rem;}
+.pc-body{font-size:.78rem;color:var(--ink2);line-height:1.5;}
+
+/* INFO BOX */
+.info-box{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:.85rem 1.1rem;margin:.7rem 0;}
+.info-box p{font-size:.85rem;color:var(--ink2);margin:0;line-height:1.6;}
+.info-box strong{color:var(--accent);}
+
+/* TOC */
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.1rem;margin-bottom:1.8rem;}
+.toc-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:.6rem;}
+.toc-links{display:flex;flex-wrap:wrap;gap:.2rem .8rem;}
+.toc-links a{font-size:.8rem;color:var(--accent);padding:.08rem 0;}
+
+footer{background:var(--surface2);border-top:1px solid var(--border);padding:2rem;text-align:center;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
+.footer-meta{font-size:.78rem;color:var(--ink3);}
+.footer-meta a{color:var(--accent);}
+
+@media(max-width:900px){.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem;z-index:199;}.hamburger{display:flex;}}
+@media(max-width:700px){.ph-stats{gap:1rem;}.alloc-table th,.alloc-table td{padding:.4rem .6rem;font-size:.78rem;}.principle-grid{grid-template-columns:1fr 1fr;}}
+
+/* ── ACCORDION ─────────────────────────────────── */
+.acc-head { cursor: pointer; user-select: none; }
+.acc-chev { margin-left: auto; font-size: 1.05rem; opacity: 0.38; transition: transform .25s ease, opacity .25s ease; flex-shrink: 0; padding-left: .6rem; pointer-events: none; }
+.acc-block.is-collapsed .acc-chev { transform: rotate(-90deg); opacity: 0.65; }
+.acc-block.is-collapsed .acc-body { display: none; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="index.html">Jeremy Trinity</a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" data-en="Overview" data-pt="Visão Geral">Overview</a>
+    <a href="pillar1-bootcamp.html">I. Bootcamp</a>
+    <a href="pillar2-degree.html">II. Degree</a>
+    <a href="pillar3-languages.html">III. Languages</a>
+    <a href="pillar4-courses.html">IV. Courses</a>
+    <a href="pillar5-reading.html">V. Reading</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+      <span class="moon">🌙</span><span class="sun">☀️</span>
+      <span id="themeLabel">Dark</span>
+    </button>
+    <button class="theme-btn lang-btn" id="langBtn" aria-label="Toggle language">
+      <span>🌐</span>
+      <span id="langLabel">PT</span>
+    </button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="page-hero">
+<div class="page-hero-inner">
+  <a class="back-link" href="index.html" data-en="← Back to overview" data-pt="← Voltar à visão geral">← Back to overview</a>
+  <h1 class="ph-title">Weekly Pomodoro Framework</h1>
+  <p class="ph-sub">A pillar-based allocation system built around a 40-minute work / 10-minute break cycle. Two modes adapt to any life period, constrained weeks with external commitments eating into study hours, and full weeks with maximum available depth. The distribution never changes; only the total volume shifts.</p>
+  <div class="ph-stats">
+    <div><div class="ph-stat-val">40/10</div><div class="ph-stat-label">Pomodoro unit (min)</div></div>
+    <div><div class="ph-stat-val">6</div><div class="ph-stat-label">Fixed daily meal breaks</div></div>
+    <div><div class="ph-stat-val">5</div><div class="ph-stat-label">Active study pillars</div></div>
+    <div><div class="ph-stat-val">70%</div><div class="ph-stat-label">Bootcamp share of study pomos</div></div>
+  </div>
+</div>
+</section>
+
+<div class="page-wrap">
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot ld-boot"></div><span class="legend-label">☁️ Bootcamp / Extra Courses</span></div>
+  <div class="legend-item"><div class="legend-dot ld-uni"></div><span class="legend-label">🎓 University</span></div>
+  <div class="legend-item"><div class="legend-dot ld-lang"></div><span class="legend-label">💬 Languages</span></div>
+  <div class="legend-item"><div class="legend-dot ld-read"></div><span class="legend-label">📖 Reading</span></div>
+  <div class="legend-item"><div class="legend-dot ld-admin"></div><span class="legend-label">⚙️ Admin / GitHub</span></div>
+  <div class="legend-item"><div class="legend-dot ld-meal"></div><span class="legend-label">🍽️ Medical break</span></div>
+  <div class="legend-item"><div class="legend-dot ld-rest"></div><span class="legend-label">🌿 Rest</span></div>
+</div>
+
+<div class="toc">
+  <div class="toc-title">Jump to section</div>
+  <div class="toc-links">
+    <a href="#allocation">Weekly pomodoro allocation</a>
+    <a href="#constrained">Constrained week, day templates</a>
+    <a href="#full">Full week, day templates</a>
+    <a href="#fixed">Fixed daily anchors</a>
+    <a href="#principles">Execution principles</a>
+    <a href="#recovery">Exam &amp; recovery weeks</a>
+  </div>
+</div>
+
+<!-- ── ALLOCATION TABLE ──────────────────────────────────────── -->
+<div class="anchor" id="allocation"></div>
+<span class="sec-label">The core framework</span>
+<h2 class="sec-title">Weekly pomodoro allocation by pillar</h2>
+<div class="title-rule"></div>
+
+<div class="info-box"><p><strong>How to read this table:</strong> Each row is a study pillar. The two columns show how many full 40-minute pomodoros go to that pillar depending on the week type. A "constrained week" is any week where external commitments (work, travel, health, family) reduce available study hours. A "full week" is any week with no major interruptions. The <em>proportion</em> across pillars stays the same, only the total volume changes.</p></div>
+
+<div class="alloc-wrap">
+<table class="alloc-table">
+  <thead>
+    <tr>
+      <th class="th-pillar">Pillar</th>
+      <th class="th-constrained">⚡ Constrained week</th>
+      <th class="th-full">🌊 Full week</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="pomo-pill"><div class="pp-dot" style="background:#2A5F8F;"></div>☁️ Bootcamp / Extra Courses</div>
+        <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:70%;background:#2A5F8F;"></div></div><span class="bar-label">70% of study pomos</span></div>
+      </td>
+      <td><strong>8</strong> pomodoros<br><span style="font-size:.75rem;color:var(--ink3);">≈ 5h 20m</span></td>
+      <td><strong>16</strong> pomodoros<br><span style="font-size:.75rem;color:var(--ink3);">≈ 10h 40m</span></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="pomo-pill"><div class="pp-dot" style="background:#0F6E56;"></div>🎓 University (UoPeople / CS50)</div>
+        <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:15%;background:#0F6E56;"></div></div><span class="bar-label">15% of study pomos</span></div>
+      </td>
+      <td><strong>4</strong> pomodoros<br><span style="font-size:.75rem;color:var(--ink3);">≈ 2h 40m</span></td>
+      <td><strong>7</strong> pomodoros<br><span style="font-size:.75rem;color:var(--ink3);">≈ 4h 40m</span></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="pomo-pill"><div class="pp-dot" style="background:#0F6E8A;"></div>💬 Languages</div>
+        <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:8%;background:#0F6E8A;"></div></div><span class="bar-label">8% of study pomos</span></div>
+      </td>
+      <td><strong>2</strong> pomodoros<br><span style="font-size:.75rem;color:var(--ink3);">≈ 1h 20m</span></td>
+      <td><strong>4</strong> pomodoros<br><span style="font-size:.75rem;color:var(--ink3);">≈ 2h 40m</span></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="pomo-pill"><div class="pp-dot" style="background:#A32D2D;"></div>📖 Reading</div>
+        <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:7%;background:#A32D2D;"></div></div><span class="bar-label">7% of study pomos</span></div>
+      </td>
+      <td><strong>2</strong> pomodoros<br><span style="font-size:.75rem;color:var(--ink3);">≈ 1h 20m</span></td>
+      <td><strong>3</strong> pomodoros<br><span style="font-size:.75rem;color:var(--ink3);">≈ 2h</span></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="pomo-pill"><div class="pp-dot" style="background:#4A5568;"></div>⚙️ Admin / GitHub / LinkedIn</div>
+        <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#4A5568;"></div></div><span class="bar-label">1 fixed block every evening, non-negotiable</span></div>
+      </td>
+      <td><strong>7</strong> blocks<br><span style="font-size:.75rem;color:var(--ink3);">1 per day × 7 days</span></td>
+      <td><strong>7</strong> blocks<br><span style="font-size:.75rem;color:var(--ink3);">1 per day × 7 days</span></td>
+    </tr>
+    <tr class="total-row">
+      <td>Total study pomodoros</td>
+      <td><strong>16</strong> pomodoros</td>
+      <td><strong>30</strong> pomodoros</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="info-box" style="margin-top:1rem;"><p><strong>Note on the 70% rule:</strong> Bootcamp and extra courses always own the majority of study time. This is not negotiable. University work keeps its weekly obligation but does not expand into bootcamp territory. Languages and reading are maintenance, they ensure you do not lose progress, but they never compete with the core skill-building track.</p></div>
+
+<!-- ── CONSTRAINED WEEK ─────────────────────────────────────── -->
+<div class="anchor" id="constrained"></div>
+<span class="sec-label">Week mode A</span>
+<h2 class="sec-title">Constrained week, day-by-day templates</h2>
+<div class="title-rule"></div>
+
+<div class="phase-banner pb-a">
+  <h2>Constrained Week</h2>
+  <p>Use this mode whenever external commitments (work, travel, appointments, family) consume 3+ hours on 3 or more weekdays. Morning deep work blocks are the priority, protect them above everything else. Even on constrained days, a minimum of 1 bootcamp pomodoro must happen before external commitments begin.</p>
+</div>
+
+<!-- DEEP WORK DAY -->
+<div class="day-card acc-block is-collapsed">
+  <div class="day-header acc-head">
+    <div class="day-dot" style="background:#2A5F8F;"></div>
+    <div>
+      <span class="day-name-text">Deep Work Day</span>
+      <span class="day-type-text">, Any day with a full morning free (no commitment until afternoon)</span>
+    </div>
+    <div class="day-pomos">3 boot · 2 uni · 1 admin</div>
+  </div>
+  <div class="block-list acc-body">
+    <div class="block-row bk-rest">
+      <div class="block-icon">🌿</div>
+      <div><div class="block-label">Wake + morning routine</div><span class="block-note">No screens. Stretch, hygiene, water. 30–40 minutes.</span></div>
+    </div>
+    <div class="block-row bk-uni">
+      <div class="block-icon">🎓</div>
+      <div><div class="block-label">University. P1</div><span class="block-note">Written assignments, discussion posts, or exam preparation. Priority task first.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Breakfast</div><span class="block-note">Fixed medical break, 40 minutes.</span></div>
+    </div>
+    <div class="block-row bk-uni">
+      <div class="block-icon">🎓</div>
+      <div><div class="block-label">University. P2</div><span class="block-note">Continue or switch to bootcamp if university work is done.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp. P3</div><span class="block-note">Deep work: current module, lab, or hands-on project. No passive video, active practice.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Mid-morning snack</div><span class="block-note">Fixed medical break, 25 minutes.</span></div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp. P4</div><span class="block-note">Deepest focus block of the day. Labs, Terraform code, or Azure portal hands-on.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp. P5</div><span class="block-note">Continue lab work or start next section. Commit any code to GitHub before breaking.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Lunch</div><span class="block-note">Fixed medical break, 40 minutes. Step away from screen completely.</span></div>
+    </div>
+    <div class="block-row bk-rest">
+      <div class="block-icon">💼</div>
+      <div><div class="block-label">External commitment block</div><span class="block-note">Work, travel, appointments, or other obligations that fill the afternoon.</span></div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Evening snack</div><span class="block-note">Fixed medical break, 25 minutes.</span></div>
+    </div>
+    <div class="block-row bk-lang">
+      <div class="block-icon">💬</div>
+      <div><div class="block-label">Language. P6</div><span class="block-note">Anki review, grammar, conversation practice, or reading in target language.</span></div>
+      <div class="block-pomo">1 pomo (alternate days)</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Dinner</div><span class="block-note">Fixed medical break, 40 minutes.</span></div>
+    </div>
+    <div class="block-row bk-admin">
+      <div class="block-icon">⚙️</div>
+      <div><div class="block-label">Daily admin. P7</div><span class="block-note">GitHub: push any commits, update README. LinkedIn: engage with 1–2 posts. Email triage. Planning tomorrow.</span></div>
+      <div class="block-pomo">1 block (~40 min)</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Last meal + wind-down</div><span class="block-note">Fixed medical break, 40 minutes. Screens off. Sleep.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHT DAY -->
+<div class="day-card acc-block is-collapsed">
+  <div class="day-header acc-head">
+    <div class="day-dot" style="background:#854F0B;"></div>
+    <div>
+      <span class="day-name-text">Light Day</span>
+      <span class="day-type-text">, Day with commitments from morning or low energy (travel, health, etc.)</span>
+    </div>
+    <div class="day-pomos">1 boot · 1 uni · 1 admin</div>
+  </div>
+  <div class="block-list acc-body">
+    <div class="block-row bk-uni">
+      <div class="block-icon">🎓</div>
+      <div><div class="block-label">University. P1</div><span class="block-note">Minimum viable: complete any due discussion posts or urgent assignments.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp. P2</div><span class="block-note">Even on light days: 1 minimum bootcamp block. Passive video is acceptable if energy is very low, but still counts.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-rest">
+      <div class="block-icon">💼</div>
+      <div><div class="block-label">External commitment</div><span class="block-note">Main obligation of the day.</span></div>
+    </div>
+    <div class="block-row bk-admin">
+      <div class="block-icon">⚙️</div>
+      <div><div class="block-label">Daily admin</div><span class="block-note">GitHub, LinkedIn, email. Non-negotiable even on light days.</span></div>
+      <div class="block-pomo">1 block</div>
+    </div>
+  </div>
+</div>
+
+<!-- SATURDAY -->
+<div class="day-card acc-block is-collapsed">
+  <div class="day-header acc-head">
+    <div class="day-dot" style="background:#534AB7;"></div>
+    <div>
+      <span class="day-name-text">Saturday. Primary Deep Work Day</span>
+      <span class="day-type-text">, Protected from external commitments in both week modes</span>
+    </div>
+    <div class="day-pomos">4–5 boot · 1 uni · 1 read · 1 admin</div>
+  </div>
+  <div class="block-list acc-body">
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp block, morning</div><span class="block-note">2 consecutive pomodoros before first break. No interruptions. Deepest labs, architecture design, or project work.</span></div>
+      <div class="block-pomo">2 pomos</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Breakfast</div><span class="block-note">Fixed medical break.</span></div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp block, mid-morning</div><span class="block-note">Continue lab or project. Aim for a completed deliverable by lunch (one lab finished, one Terraform resource written and tested).</span></div>
+      <div class="block-pomo">2 pomos</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Snack + lunch</div><span class="block-note">Fixed medical breaks.</span></div>
+    </div>
+    <div class="block-row bk-uni">
+      <div class="block-icon">🎓</div>
+      <div><div class="block-label">University, weekly obligation</div><span class="block-note">Clear any remaining assignments for the UoPeople week. Catch up if behind.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-read">
+      <div class="block-icon">📖</div>
+      <div><div class="block-label">Reading, weekly block</div><span class="block-note">Current technical book (see Pillar V). No skimming, take notes on anything directly applicable to current bootcamp phase.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-admin">
+      <div class="block-icon">⚙️</div>
+      <div><div class="block-label">Weekly review + admin</div><span class="block-note">Longer admin block on Saturday: GitHub weekly summary, LinkedIn post about what you built, plan next week's pomodoro distribution.</span></div>
+      <div class="block-pomo">1 block</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUNDAY -->
+<div class="day-card acc-block is-collapsed">
+  <div class="day-header acc-head">
+    <div class="day-dot" style="background:#6B7280;"></div>
+    <div>
+      <span class="day-name-text">Sunday. Recovery Day</span>
+      <span class="day-type-text">, Light only. No deep work. No labs.</span>
+    </div>
+    <div class="day-pomos">0–1 boot · 1 uni · 1 admin</div>
+  </div>
+  <div class="block-list acc-body">
+    <div class="block-row bk-rest">
+      <div class="block-icon">🌿</div>
+      <div><div class="block-label">Recovery morning</div><span class="block-note">No study until afternoon minimum. Sleep in. Walk. Time away from screen is productive recovery.</span></div>
+    </div>
+    <div class="block-row bk-uni">
+      <div class="block-icon">🎓</div>
+      <div><div class="block-label">University, light review</div><span class="block-note">Review notes, read ahead for next week's unit, or do light discussion post reading. No exams on Sundays.</span></div>
+      <div class="block-pomo">1 pomo (afternoon only)</div>
+    </div>
+    <div class="block-row bk-lang">
+      <div class="block-icon">💬</div>
+      <div><div class="block-label">Language, maintenance</div><span class="block-note">Anki cards only, or light reading. No grammar drills on recovery day.</span></div>
+      <div class="block-pomo">1 pomo (optional)</div>
+    </div>
+    <div class="block-row bk-admin">
+      <div class="block-icon">⚙️</div>
+      <div><div class="block-label">Admin</div><span class="block-note">Minimum admin: GitHub, email. Plan next week if not done Saturday.</span></div>
+      <div class="block-pomo">1 block</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FULL WEEK ───────────────────────────────────────────────── -->
+<div class="anchor" id="full"></div>
+<span class="sec-label">Week mode B</span>
+<h2 class="sec-title">Full week, day-by-day templates</h2>
+<div class="title-rule"></div>
+
+<div class="phase-banner pb-b">
+  <h2>Full Week</h2>
+  <p>Use this mode when no major external commitments interrupt the day. Every weekday becomes a deep work day. The goal is 3 consecutive bootcamp pomodoros in the morning block before any other pillar. This is when certification exam preparation accelerates and portfolio projects get completed.</p>
+</div>
+
+<div class="day-card acc-block is-collapsed">
+  <div class="day-header acc-head">
+    <div class="day-dot" style="background:#0F6E56;"></div>
+    <div>
+      <span class="day-name-text">Full Deep Work Day</span>
+      <span class="day-type-text">, Monday through Friday when no major external commitment exists</span>
+    </div>
+    <div class="day-pomos">4 boot · 1 uni · 1 lang (alt.) · 1 read (alt.) · 1 admin</div>
+  </div>
+  <div class="block-list acc-body">
+    <div class="block-row bk-rest">
+      <div class="block-icon">🌿</div>
+      <div><div class="block-label">Wake + morning routine</div><span class="block-note">No screens. Stretch, hygiene, water.</span></div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp. P1 (prime time)</div><span class="block-note">First block of the day before any distraction. Current lab, project, or module. Active practice. No passive watching.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Breakfast</div><span class="block-note">Fixed medical break, 40 minutes.</span></div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp. P2</div><span class="block-note">Continue lab. Goal: hit a concrete milestone (section completed, resource deployed, test passing).</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp. P3</div><span class="block-note">Third consecutive block. This is where real depth happens. Do not switch to another pillar until this block is done.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Snack</div><span class="block-note">Fixed medical break, 25 minutes.</span></div>
+    </div>
+    <div class="block-row bk-uni">
+      <div class="block-icon">🎓</div>
+      <div><div class="block-label">University. P4</div><span class="block-note">Dedicated university block mid-morning. Written work, readings, discussion posts, or exam prep.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Lunch</div><span class="block-note">Fixed medical break, 40 minutes. No screens.</span></div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp. P5 (afternoon)</div><span class="block-note">Lower intensity than morning. Use for lecture watching, note review, or lighter module content.</span></div>
+      <div class="block-pomo">1 pomo</div>
+    </div>
+    <div class="block-row bk-lang">
+      <div class="block-icon">💬</div>
+      <div><div class="block-label">Language. P6 (Mon/Wed/Fri)</div><span class="block-note">Alternate with reading. Languages on Monday, Wednesday, Friday. Reading on Tuesday and Thursday.</span></div>
+      <div class="block-pomo">1 pomo (alternating)</div>
+    </div>
+    <div class="block-row bk-read">
+      <div class="block-icon">📖</div>
+      <div><div class="block-label">Reading. P6 (Tue/Thu)</div><span class="block-note">Technical book from Pillar V, aligned with current bootcamp phase.</span></div>
+      <div class="block-pomo">1 pomo (alternating)</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Evening snack + dinner</div><span class="block-note">Fixed medical breaks. Wind down from afternoon work.</span></div>
+    </div>
+    <div class="block-row bk-admin">
+      <div class="block-icon">⚙️</div>
+      <div><div class="block-label">Daily admin</div><span class="block-note">GitHub: push commits, check contribution graph. LinkedIn: one meaningful comment or post. Email. Plan tomorrow.</span></div>
+      <div class="block-pomo">1 block</div>
+    </div>
+    <div class="block-row bk-meal">
+      <div class="block-icon">🍽️</div>
+      <div><div class="block-label">Last meal + screens off</div><span class="block-note">Fixed medical break. Screens off 40 minutes before sleep.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FIXED DAILY ANCHORS ───────────────────────────────────── -->
+<div class="anchor" id="fixed"></div>
+<span class="sec-label">Non-negotiables</span>
+<h2 class="sec-title">Fixed daily anchors</h2>
+<div class="title-rule"></div>
+
+<div class="principle-grid">
+  <div class="principle-card">
+    <div class="pc-num">🍽️</div>
+    <div class="pc-title">6 meal breaks daily</div>
+    <div class="pc-body">Medical requirement. They are fixed in the schedule and nothing competes with them. Approximate timing: morning, mid-morning, lunch, afternoon, evening, late evening.</div>
+  </div>
+  <div class="principle-card">
+    <div class="pc-num">⚙️</div>
+    <div class="pc-title">1 daily admin block</div>
+    <div class="pc-body">Every day, 7 days a week. GitHub commit or push. LinkedIn activity. Email triage. Tomorrow's plan. This is what makes the GitHub contribution graph green and the LinkedIn presence consistent.</div>
+  </div>
+  <div class="principle-card">
+    <div class="pc-num">📵</div>
+    <div class="pc-title">Screens off, 40 min before sleep</div>
+    <div class="pc-body">Non-negotiable for sleep quality. Set a daily alarm. Everything unfinished moves to tomorrow, sleep protects the study capacity of the next day.</div>
+  </div>
+  <div class="principle-card">
+    <div class="pc-num">🌿</div>
+    <div class="pc-title">Sunday recovery</div>
+    <div class="pc-body">Deep work and labs are prohibited on Sundays. Light university review and admin only. Recovery is not wasted time. It is what allows the next six days to be productive.</div>
+  </div>
+</div>
+
+<!-- ── EXECUTION PRINCIPLES ──────────────────────────────────── -->
+<div class="anchor" id="principles"></div>
+<span class="sec-label">How to use this framework</span>
+<h2 class="sec-title">Execution principles</h2>
+<div class="title-rule"></div>
+
+<div class="principle-grid">
+  <div class="principle-card">
+    <div class="pc-num">01</div>
+    <div class="pc-title">Protect the morning</div>
+    <div class="pc-body">The first study block of the day always goes to bootcamp. No exceptions. Social media, email, and messages only open after the first pomodoro is complete.</div>
+  </div>
+  <div class="principle-card">
+    <div class="pc-num">02</div>
+    <div class="pc-title">Bootcamp is non-compressible</div>
+    <div class="pc-body">On constrained weeks the total volume drops, but bootcamp's <em>share</em> stays at 70%. University, languages, and reading compress, bootcamp does not.</div>
+  </div>
+  <div class="principle-card">
+    <div class="pc-num">03</div>
+    <div class="pc-title">Active beats passive</div>
+    <div class="pc-body">Labs, writing code, and solving problems count as full pomodoros. Watching a video without stopping counts as half a pomodoro at best. Build, break, fix, always.</div>
+  </div>
+  <div class="principle-card">
+    <div class="pc-num">04</div>
+    <div class="pc-title">Commit something daily</div>
+    <div class="pc-body">Every day ends with at least one GitHub commit. Even a README update or a commented-out Terraform block. The contribution graph is public and it tells a story before the CV is read.</div>
+  </div>
+  <div class="principle-card">
+    <div class="pc-num">05</div>
+    <div class="pc-title">Don't split bootcamp sessions</div>
+    <div class="pc-body">A single 40-minute bootcamp block is not enough for lab work. On days with 2+ available bootcamp pomodoros, run them consecutively before switching. Deep context takes time to build.</div>
+  </div>
+  <div class="principle-card">
+    <div class="pc-num">06</div>
+    <div class="pc-title">Weekly review on Saturday</div>
+    <div class="pc-body">End every Saturday with a 10-minute review: how many pomodoros per pillar this week? What was completed? What is next? This replaces the need to constantly update the schedule.</div>
+  </div>
+</div>
+
+<!-- ── EXAM AND RECOVERY WEEKS ──────────────────────────────── -->
+<div class="anchor" id="recovery"></div>
+<span class="sec-label">Special week modes</span>
+<h2 class="sec-title">Exam week and recovery week</h2>
+<div class="title-rule"></div>
+
+<div class="day-card acc-block is-collapsed">
+  <div class="day-header acc-head">
+    <div class="day-dot" style="background:#A32D2D;"></div>
+    <div>
+      <span class="day-name-text">Exam Week</span>
+      <span class="day-type-text">, Any week with a UoPeople graded exam or major certification exam</span>
+    </div>
+    <div class="day-pomos">6 uni · 4 boot · 1 admin · 0 lang · 0 read</div>
+  </div>
+  <div class="block-list acc-body">
+    <div class="block-row bk-uni">
+      <div class="block-icon">🎓</div>
+      <div><div class="block-label">University takes priority all week</div><span class="block-note">University pomodoro allocation temporarily inverts with bootcamp. All available morning blocks go to exam preparation.</span></div>
+      <div class="block-pomo">Priority</div>
+    </div>
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Bootcamp minimum maintained</div><span class="block-note">Do not stop bootcamp completely. Minimum 4 pomodoros total across the exam week. Use for lighter sections or review, not new labs.</span></div>
+      <div class="block-pomo">4 pomos total</div>
+    </div>
+    <div class="block-row bk-lang">
+      <div class="block-icon">💬</div>
+      <div><div class="block-label">Languages and reading: suspended</div><span class="block-note">Anki cards only (5 minutes daily max). Nothing else from languages or reading during exam week.</span></div>
+      <div class="block-pomo">Suspended</div>
+    </div>
+  </div>
+</div>
+
+<div class="day-card acc-block is-collapsed" style="margin-top:.8rem;">
+  <div class="day-header acc-head">
+    <div class="day-dot" style="background:#6B7280;"></div>
+    <div>
+      <span class="day-name-text">Recovery Week</span>
+      <span class="day-type-text">, The week immediately after an exam, illness, or intensive sprint</span>
+    </div>
+    <div class="day-pomos">Constrained mode + no pressure</div>
+  </div>
+  <div class="block-list acc-body">
+    <div class="block-row bk-boot">
+      <div class="block-icon">☁️</div>
+      <div><div class="block-label">Return to constrained week allocation</div><span class="block-note">Do not try to "make up" lost pomodoros. Use the constrained week template without guilt. Momentum is more important than volume.</span></div>
+    </div>
+    <div class="block-row bk-read">
+      <div class="block-icon">📖</div>
+      <div><div class="block-label">Reading and languages return</div><span class="block-note">Ease back in. One pomodoro each this week. No pressure to catch up on missed sessions.</span></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page-wrap -->
+
+<footer>
+  <div class="footer-brand">Jeremy Trinity</div>
+  <div class="footer-meta">Five-Pillar Development System &nbsp;|&nbsp; <a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a> &nbsp;|&nbsp; <a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a> &nbsp;|&nbsp; <a href="https://jeremytrinity.com">jeremytrinity.com</a> &nbsp;|&nbsp;</div>
+</footer>
+
+<script>
+const btn=document.getElementById('themeBtn');
+const lbl=document.getElementById('themeLabel');
+const root=document.documentElement;
+function applyTheme(t){root.setAttribute('data-theme',t);lbl.textContent=t==='dark'?'Light':'Dark';try{localStorage.setItem('theme',t);}catch(e){}}
+try{const s=localStorage.getItem('theme');if(s)applyTheme(s);}catch(e){}
+btn.addEventListener('click',()=>{applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+</script>
+
+<script>
+/* ── ACCORDION ── */
+(function () {
+  document.querySelectorAll('.acc-block').forEach(function (block) {
+    var head = block.querySelector('.acc-head');
+    if (!head) return;
+    // Inject chevron as last flex child
+    var chev = document.createElement('span');
+    chev.className = 'acc-chev';
+    chev.setAttribute('aria-hidden', 'true');
+    chev.textContent = '▾';
+    head.appendChild(chev);
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    function toggle(e) {
+      if (e.target && (e.target.tagName === 'A' || (e.target.closest && e.target.closest('a')))) return;
+      var collapsed = block.classList.toggle('is-collapsed');
+      head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
+  });
+})();
+</script>
+<script>
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar V: Reading Program | Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F9F8F5;--surface:#FFFFFF;--surface2:#F2F1EE;--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--ink:#1A1A18;--ink2:#52514E;--ink3:#8A8880;--accent:#2A5F8F;--accent-lt:#EBF2F9;--accent2:#1D4A70;--p1:#2A5F8F;--p2:#0F6E56;--p3:#854F0B;--p4:#534AB7;--p5:#A32D2D;--p1-lt:#EBF2F9;--p2-lt:#E1F5EE;--p3-lt:#FAEEDA;--p4-lt:#EEEDFE;--p5-lt:#FCEBEB;}
+[data-theme="dark"]{--bg:#111110;--surface:#1C1C1A;--surface2:#252523;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--ink:#EEECEA;--ink2:#AAAAAA;--ink3:#777775;--accent:#5B9BD5;--accent-lt:#1A2A3A;--accent2:#7AB3E0;--p1:#5B9BD5;--p2:#4ecdb4;--p3:#FAC775;--p4:#AFA9EC;--p5:#F09595;--p1-lt:#1A2A3A;--p2-lt:#0A2820;--p3-lt:#2A1E0A;--p4-lt:#1A1830;--p5-lt:#2A1010;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;transition:background .3s,color .3s;padding-top:60px;}
+a{color:var(--accent);text-decoration:none;}a:hover{color:var(--accent2);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:background .3s,border-color .3s;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:0.8rem;font-weight:500;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-btn{background:none;border:1px solid var(--border2);border-radius:20px;padding:.25rem .75rem;cursor:pointer;font-size:.75rem;font-weight:500;color:var(--ink2);display:flex;align-items:center;gap:.35rem;font-family:'Inter',sans-serif;transition:all .2s;}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);}
+.sun{color:#F5A623;font-size:.85rem;display:none;}.moon{font-size:.85rem;}
+[data-theme="dark"] .sun{display:inline;}[data-theme="dark"] .moon{display:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:20px;height:1.5px;background:var(--ink);display:block;}
+section{padding:4rem 2rem;}
+.si{max-width:920px;margin:0 auto;}
+table{width:100%;border-collapse:collapse;margin:1rem 0 1.4rem;font-size:.84rem;}
+th{background:var(--ink);color:var(--surface);padding:.5rem .7rem;text-align:left;font-weight:600;font-size:.79rem;}
+td{padding:.42rem .7rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:var(--surface2);}
+footer{background:var(--surface2);border-top:1px solid var(--border);padding:2rem;text-align:center;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
+.footer-meta{font-size:.78rem;color:var(--ink3);}
+.footer-meta a{color:var(--accent);}
+@media(max-width:900px){.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem;z-index:199;}.hamburger{display:flex;}}
+
+.page-hero{background:var(--surface);border-bottom:1px solid var(--border);padding:3.5rem 2rem 2.5rem;}
+.page-hero-inner,.page-wrap{max-width:960px;margin:0 auto;}
+.page-wrap{padding:2.5rem 2rem 5rem;}
+.back-link{font-size:.78rem;color:var(--ink3);display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1.2rem;}
+.back-link:hover{color:var(--accent);}
+.pillar-badge{display:inline-block;font-size:.7rem;font-weight:700;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem;background:#FCEBEB;color:#791F1F;}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:.8rem;}
+.ph-sub{font-size:.95rem;color:var(--ink2);max-width:720px;line-height:1.7;margin-bottom:1.5rem;}
+.ph-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.ph-stat-val{font-size:1.35rem;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;}
+.ph-stat-label{font-size:.7rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;}
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2.5rem;}
+.toc-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:.8rem;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.2rem .5rem;}
+.toc-grid a{font-size:.82rem;color:var(--accent);padding:.12rem 0;}
+.anchor{display:block;height:72px;margin-top:-72px;visibility:hidden;}
+.sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;margin-top:3rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:600;color:var(--ink);margin-bottom:.35rem;}
+.title-rule{width:36px;height:2px;background:var(--accent);margin-bottom:1.5rem;}
+/* Book cards */
+.book-card{border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.5rem;margin:1.6rem 0;background:var(--surface);transition:border-color .2s;}
+.book-card:hover{border-color:var(--accent);}
+.book-top{display:flex;align-items:flex-start;gap:1.2rem;margin-bottom:.9rem;}
+.book-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--accent);line-height:1;min-width:44px;flex-shrink:0;}
+.book-meta{flex:1;}
+.book-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:.2rem;line-height:1.25;}
+.book-author{font-size:.78rem;color:var(--ink3);margin-bottom:.4rem;}
+.book-when{display:inline-block;font-size:.69rem;font-weight:700;padding:.18rem .65rem;border-radius:6px;background:var(--accent-lt);color:var(--accent);margin-bottom:.2rem;}
+.book-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:.45rem;}
+.book-tag{font-size:.67rem;padding:2px 7px;border-radius:5px;background:var(--surface2);border:1px solid var(--border);color:var(--ink3);}
+.book-body{font-size:.87rem;color:var(--ink2);line-height:1.68;}
+.book-body p{margin-bottom:.7rem;}
+.book-body p:last-child{margin-bottom:0;}
+/* highlight / warn / action boxes */
+.hbox{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:.9rem 1.1rem;margin:.7rem 0;}
+.hbox p{font-size:.87rem;color:var(--ink2);margin:0;line-height:1.6;}
+.hbox strong{color:var(--accent);}
+.wbox{background:var(--p3-lt);border:1px solid var(--p3);border-radius:10px;padding:.85rem 1.1rem;margin:.7rem 0;}
+.wbox p{font-size:.84rem;color:var(--ink2);margin:0;line-height:1.6;}
+.wbox strong{color:var(--p3);}
+/* mechanics grid */
+.mech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:.8rem;margin:1.1rem 0;}
+.mech-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;}
+.mech-card h3{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em;}
+.mech-card p{font-size:.8rem;color:var(--ink2);margin:0;line-height:1.5;}
+/* sequence counter strip */
+.seq-strip{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0;}
+.seq-pip{display:flex;align-items:center;gap:.4rem;padding:.3rem .75rem;border-radius:20px;background:var(--surface2);border:1px solid var(--border);}
+.seq-pip .n{font-family:'Playfair Display',serif;font-weight:700;font-size:.9rem;color:var(--accent);}
+.seq-pip .t{font-size:.75rem;color:var(--ink2);}
+/* divider */
+.wk-div{border:none;border-top:1px dashed var(--border);margin:1.2rem 0;}
+@media(max-width:700px){.toc-grid{grid-template-columns:1fr;}.ph-stats{gap:1.1rem;}.mech-grid{grid-template-columns:1fr 1fr;}.book-num{font-size:2rem;}}
+
+/* ── ACCORDION ─────────────────────────────────── */
+.acc-head { cursor: pointer; user-select: none; }
+.acc-chev { margin-left: auto; font-size: 1.05rem; opacity: 0.38; transition: transform .25s ease, opacity .25s ease; flex-shrink: 0; padding-left: .6rem; pointer-events: none; }
+.acc-block.is-collapsed .acc-chev { transform: rotate(-90deg); opacity: 0.65; }
+.acc-block.is-collapsed .acc-body { display: none; }
+
+/* ── Language toggle ── */
+.lang-btn { margin-left: 0.4rem; }
+.lang-pt { display: none !important; }
+[data-lang="pt"] .lang-en { display: none !important; }
+[data-lang="pt"] .lang-pt { display: inline !important; }
+[data-lang="pt"] p.lang-pt,
+[data-lang="pt"] div.lang-pt,
+[data-lang="pt"] li.lang-pt,
+[data-lang="pt"] span.lang-pt.block,
+[data-lang="pt"] td.lang-pt { display: block !important; }
+</style>
+</head>
+<body>
+<nav><a class="nav-brand" href="index.html">Jeremy Trinity</a><div class="nav-links" id="navLinks"><a href="index.html" data-en="Overview" data-pt="Visão Geral">Overview</a><a href="pillar1-bootcamp.html">I. Bootcamp</a><a href="pillar2-degree.html">II. Degree</a><a href="pillar3-languages.html">III. Languages</a><a href="pillar4-courses.html">IV. Courses</a><a href="pillar5-reading.html" style="color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:2px;">V. Reading</a></div><div class="nav-right"><button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><span class="moon">🌙</span><span class="sun">☀️</span><span id="themeLabel">Dark</span></button><button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<section class="page-hero">
+<div class="page-hero-inner">
+  <a class="back-link" href="index.html" data-en="← Back to overview" data-pt="← Voltar à visão geral">← Back to overview</a>
+  <span class="pillar-badge">Pillar V</span>
+  <h1 class="ph-title">Reading Program</h1>
+  <p class="ph-sub">10 books, ordered by immediate ROI to career and system sustainability. Physical books, screens off at 9:40 PM, 20-60 minutes every evening. No notes during reading. One book per month minimum. This is the pillar that builds the mental models, professional culture fluency, and habits of mind that no course, certification, or bootcamp can produce, and it costs nothing because the time is already there.</p>
+  <div class="ph-stats">
+    <div><div class="ph-stat-val">10</div><div class="ph-stat-label">Books sequenced</div></div>
+    <div><div class="ph-stat-val">9:40 PM</div><div class="ph-stat-label">Daily reading window starts</div></div>
+    <div><div class="ph-stat-val">60 min</div><div class="ph-stat-label">Available every evening</div></div>
+    <div><div class="ph-stat-val">~375 pg</div><div class="ph-stat-label">Per month at 25 pages/hour</div></div>
+    <div><div class="ph-stat-val">EUR 0</div><div class="ph-stat-label">Additional time cost, window already exists</div></div>
+  </div>
+</div>
+</section>
+<div class="page-wrap">
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <div class="toc-grid">
+    <a href="#why-reading">Why reading is structural, not optional</a>
+    <a href="#mechanics">Reading mechanics: the 9:40 PM window</a>
+    <a href="#sequence">The 10-book sequence at a glance</a>
+    <a href="#book-1">Book 1: Atomic Habits</a>
+    <a href="#book-2">Book 2: The Phoenix Project</a>
+    <a href="#book-3">Book 3: The Pragmatic Programr</a>
+    <a href="#book-4">Book 4: Terraform: Up and Running</a>
+    <a href="#book-5">Book 5: Deep Work</a>
+    <a href="#book-6">Book 6: The DevOps Handbook</a>
+    <a href="#book-7">Book 7: Designing Data-Intensive Applications</a>
+    <a href="#book-8">Book 8: The Clean Coder</a>
+    <a href="#book-9">Book 9: Site Reliability Engineering</a>
+    <a href="#book-10">Book 10: The Manager's Path</a>
+    <a href="#beyond">Beyond the 10, choosing what comes next</a>
+  </div>
+</div>
+<div class="anchor" id="why-reading"></div>
+<span class="sec-label">The structural argument</span>
+<h2 class="sec-title">Why reading is a pillar and not a hobby</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;">Courses teach you what to do. Books teach you how to think. There is a specific type of knowledge that only comes from sustained linear reading of a book-length argument: mental models, professional cultural fluency, and the frameworks for making decisions under uncertainty. The DevOps community has a culture. It is encoded in The Phoenix Project and The DevOps Handbook. The engineering community has professional standards, they are encoded in The Pragmatic Programr and The Clean Coder. IBM and Deloitte senior engineers have read these books. Reading them is professional socialisation, not enrichment reading.</p>
+<div class="mech-grid" style="margin-top:1.2rem;">
+  <div class="mech-card"><h3>Mental models</h3><p>Deep Work gives a framework for protecting high-value focus time that explains exactly why the Pomodoro system works and why internship time is in the afternoon. Atomic Habits gives the framework for building daily study habits without relying on motivation. These models make every other decision in the five-pillar system more sustainable.</p></div>
+  <div class="mech-card"><h3>Professional culture</h3><p>The Phoenix Project and The DevOps Handbook describe the culture of high-performing engineering teams. Reading them before the first internship observation day means walking in with the vocabulary, the values, and the mental models that experienced DevOps engineers use, not discovering them for the first time from the other side of the desk.</p></div>
+  <div class="mech-card"><h3>Architecture intuition</h3><p>Designing Data-Intensive Applications builds the intuition for why distributed systems make the tradeoffs they do. After reading it, every Azure architecture decision (Cosmos DB vs Azure SQL vs Synapse) has a principled theoretical foundation rather than just a Microsoft documentation recommendation.</p></div>
+  <div class="mech-card"><h3>Career navigation</h3><p>The Manager's Path explains how to grow from engineer to tech lead to manager at an enterprise tech employer, the competencies, the political dynamics, and the personal tradeoffs of each transition. Reading it in Year 2 means the career conversations in Year 3 are informed rather than reactive.</p></div>
+  <div class="mech-card"><h3>Craft standards</h3><p>The Pragmatic Programr and The Clean Coder instil specific habits: DRY, rubber-duck debugging, saying no professionally, estimating honestly. These habits are visible in GitHub commit quality and code review behavior, they differentiate engineers who were self-taught from ones who know how to be professional.</p></div>
+  <div class="mech-card"><h3>Zero additional time cost</h3><p>The 9:40 PM screens-off rule creates 60 minutes of reading time every single day that already exists in the schedule. At 25 pages per hour, that is approximately 375 pages per month, one solid book per month without scheduling anything new or taking time from anywhere else.</p></div>
+</div>
+<div class="anchor" id="mechanics"></div>
+<span class="sec-label">The system</span>
+<h2 class="sec-title">Reading mechanics, why the time is already there</h2>
+<div class="title-rule"></div>
+<div class="hbox"><p><strong>The 9:40 PM rule creates the reading habit automatically:</strong> Screens off at 9:40 PM every day. The window between 9:40 PM and 10:00 PM is 20 minutes. The window during and after the 10:00 PM medical meal break is another 40 minutes. Total: 60 minutes of physical reading time built into every single day at zero additional time cost. At 25 pages per hour, this is approximately 375 pages per month, one substantial book every month, consistently, without effort or scheduling.</p></div>
+<div class="mech-grid">
+  <div class="mech-card"><h3>Physical books, not Kindle</h3><p>Physical books reinforce the screens-off rule. The Kindle activates the same neural pathways as phone use and makes winding down harder. Portuguese Atomic Habits already in hand is the right format. For technical books where import costs are high, Kindle is acceptable, set it to airplane mode during reading to block notifications.</p></div>
+  <div class="mech-card"><h3>Read in the original language</h3><p>Portuguese for Atomic Habits: correct. English for all technical books: correct, the terminology matches the certifications and documentation read daily. Do not read translated versions of technical books if you can read the original in English. Translated technical vocabulary often introduces terminology inconsistencies.</p></div>
+  <div class="mech-card"><h3>No notes during reading</h3><p>The reading window is sleep-adjacent (9:40 PM-10:40 PM). Notes activate a different cognitive mode and reduce the winding-down effect that makes the reading sustainable. Instead: one sticky note per book maximum for the single sentence that matters most. Write it the morning after, never during reading.</p></div>
+  <div class="mech-card"><h3>Two books per month on good weeks</h3><p>Short books (The Clean Coder at ~200 pages, Atomic Habits at ~270) can be finished in 2-3 weeks. Use good health weeks to run ahead of schedule. A buffer of one completed book ahead of the monthly target means a difficult medical week never breaks the habit entirely. No pressure to catch up means the habit survives gaps.</p></div>
+  <div class="mech-card"><h3>Second reads are valid</h3><p>Terraform: Up and Running is explicitly scheduled for two reads, a quick first pass alongside Month 4 bootcamp study, then a careful second read before the Terraform Associate exam in Month 10. Some books reward re-reading more than reading new books. Both of these reads count toward the monthly target.</p></div>
+  <div class="mech-card"><h3>Sequence is deliberate</h3><p>The order is not arbitrary. Atomic Habits comes first because it explains the system before you are deep in it. Deep Work comes before the most intensive bootcamp months. The Phoenix Project comes before the first internship observation day. Each book is timed to its moment of maximum relevance.</p></div>
+</div>
+<div class="anchor" id="sequence"></div>
+<span class="sec-label">At a glance</span>
+<h2 class="sec-title">The 10-book sequence</h2>
+<div class="title-rule"></div>
+<div class="seq-strip">
+  <div class="seq-pip"><span class="n">1</span><span class="t">Atomic Habits. Month 1</span></div>
+  <div class="seq-pip"><span class="n">2</span><span class="t">The Phoenix Project. Month 2</span></div>
+  <div class="seq-pip"><span class="n">3</span><span class="t">The Pragmatic Programr. Month 3</span></div>
+  <div class="seq-pip"><span class="n">4</span><span class="t">Terraform: Up and Running. Months 4-5, re-read Month 10</span></div>
+  <div class="seq-pip"><span class="n">5</span><span class="t">Deep Work. Month 2 (read alongside Book 2)</span></div>
+  <div class="seq-pip"><span class="n">6</span><span class="t">The DevOps Handbook. Months 6-7</span></div>
+  <div class="seq-pip"><span class="n">7</span><span class="t">Designing Data-Intensive Applications. Month 10, one chapter/week</span></div>
+  <div class="seq-pip"><span class="n">8</span><span class="t">The Clean Coder. Month 3 (read alongside Book 3)</span></div>
+  <div class="seq-pip"><span class="n">9</span><span class="t">Site Reliability Engineering. Month 8+ (free at sre.google/books)</span></div>
+  <div class="seq-pip"><span class="n">10</span><span class="t">The Manager's Path. Month 18+</span></div>
+</div>
+<p style="color:var(--ink3);font-size:.8rem;margin-top:.3rem;">Books 2 and 5 are read in the same month (both short enough). Books 3 and 8 are read in the same month. Book 7 is read one chapter per week alongside AZ-305 study. Do not try to sprint it.</p>
+<div class="anchor" id="book-1"></div>
+<span class="sec-label">The books</span>
+<h2 class="sec-title">All 10 books, annotated, timed, with reasoning</h2>
+<div class="title-rule"></div>
+<div class="book-card acc-block is-collapsed" id="book-1">
+  <div class="book-top acc-head">
+    <div class="book-num">1</div>
+    <div class="book-meta">
+      <div class="book-title">Atomic Habits: An Easy and Proven Way to Build Good Habits and Break Bad Ones</div>
+      <div class="book-author">James Clear · Systems and habit formation · Already in hand in Portuguese</div>
+      <span class="book-when">Start April 9, 2026. Month 1</span>
+      <div class="book-tags"><span class="book-tag">Habit stacking</span><span class="book-tag">Identity-based habits</span><span class="book-tag">Compound growth</span><span class="book-tag">System design</span><span class="book-tag">Tiny changes, remarkable results</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>Start this on April 9, the same day as UoPeople Term 1. The entire five-pillar system is built on small, consistent daily actions that compound over 24 months: the daily Git commit, the daily Duolingo session, the daily 10-minute Spanish practice, the daily Anki cards. Atomic Habits makes the theoretical case for why these small consistent actions produce extraordinary results through compound growth, and more importantly, it gives you the framework to understand why you will want to skip them on tired days and why that impulse is precisely what the system is designed to resist.</p><p>The chapter on identity-based habits is the most immediately applicable. Clear's core argument is that durable habits are built not by saying "I am going to commit code every day" but by saying "I am an engineer who commits code every day." The identity precedes the behavior. Reading this in Month 1: before any certification is earned, before any internship is secured, means building the engineering identity from day one rather than waiting until the credentials exist to justify it.</p><p>Two chapters deserve a second reading. The chapter on the two-minute rule (every habit should be reducible to a version that takes under two minutes, because starting is the hardest part) directly explains why the daily Duolingo session is 10 minutes and not 60. The chapter on habit tracking explains why the green GitHub contribution graph works as a motivator: the visual chain of unbroken days makes missing a day feel like a loss rather than just an absence. You are already using these principles, this book explains why they work.</p><p>Read in Portuguese. Already in hand. No acquisition cost. Read first, before anything else in the reading program.</p></div>
+</div>
+<div class="book-card acc-block is-collapsed" id="book-2">
+  <div class="book-top acc-head">
+    <div class="book-num">2</div>
+    <div class="book-meta">
+      <div class="book-title">The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win</div>
+      <div class="book-author">Gene Kim, Kevin Behr, George Spafford · DevOps culture narrative · Business novel format</div>
+      <span class="book-when">Month 2: before first internship application is sent</span>
+      <div class="book-tags"><span class="book-tag">DevOps culture</span><span class="book-tag">The Three Ways</span><span class="book-tag">Change management</span><span class="book-tag">IT operations reality</span><span class="book-tag">Blameless post-mortems</span><span class="book-tag">Flow optimisation</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>A business novel about an IT organization in crisis that discovers DevOps. It is the most effective way to understand how cloud engineering teams actually operate inside enterprises before entering one. IBM and Deloitte have built the DevOps culture described in this book. Reading it before the first internship observation day means walking in knowing the vocabulary, change advisory board, deployment frequency, mean time to recovery, technical debt, The Three Ways, the political dynamics (why operations and development are often structurally at odds), and the cultural values (blameless post-mortems, flow optimisation, limiting work in progress) that senior engineers use as their operating framework.</p><p>The Three Ways that the book introduces are worth memorising explicitly. The First Way is about flow, making work visible and moving it through the system without interruption. The Second Way is about feedback loops, detecting problems as early as possible and pushing information back upstream. The Third Way is about continual experimentation, creating a culture where it is safe to try things and learn from failure. These three principles underpin every AZ-400 DevOps certification topic, every Azure DevOps pipeline design decision, and every incident post-mortem format used at IBM and Deloitte.</p><p>The novel format makes it readable in a single long weekend or three to four evenings. Do not be deceived by the fiction framing into treating it as light reading. The operational situations described, a critical deployment gone wrong, a change advisory board that blocks everything, a "hero" engineer who is actually a single point of failure, are drawn from real enterprise IT experiences and you will recognize every pattern the first week you are inside a major enterprise employer. Reading this in Month 2 means those patterns are already familiar when you encounter them, which converts you from a confused observer into one who sees exactly what is happening.</p></div>
+</div>
+<div class="book-card acc-block is-collapsed" id="book-3">
+  <div class="book-top acc-head">
+    <div class="book-num">3</div>
+    <div class="book-meta">
+      <div class="book-title">The Pragmatic Programr: Your Journey to Mastery</div>
+      <div class="book-author">David Thomas, Andrew Hunt · Technical craft and engineering professionalism · 20th Anniversary Edition</div>
+      <span class="book-when">Month 3: as portfolio project coding begins in earnest</span>
+      <div class="book-tags"><span class="book-tag">DRY principle</span><span class="book-tag">Rubber duck debugging</span><span class="book-tag">Tracer bullets</span><span class="book-tag">Code quality habits</span><span class="book-tag">Estimation frameworks</span><span class="book-tag">Orthogonality</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>The definitive guide to how experienced engineers actually think and work. The authors coined DRY (Don't Repeat Yourself), popularised rubber duck debugging (explain the problem out loud to a rubber duck, the act of explanation forces you to find the answer), and introduced tracer bullets (deploy thin end-to-end slices of the system before building thick features, so you know the whole pipeline works before optimising any part of it). Each of these concepts has a direct application to the bootcamp portfolio projects.</p><p>Read this in Month 3 when the bootcamp is moving from watching lectures to writing real Terraform code and Python scripts for portfolio projects. The habits it instils, version control every change before touching it, write code to be read by future-you not just to run once, automate every repetitive task immediately, never tolerate broken windows (fix small problems before they become large ones), will be visible in GitHub commits from that point forward. IBM and Deloitte engineers reviewing a GitHub portfolio can tell within five minutes whether the code was written by someone who has absorbed these principles.</p><p>The chapter on estimation deserves particular attention. The Pragmatic Programr is unusually direct about how engineers systematically underestimate and what to do about it: give ranges, not single numbers; commit to what you know and flag what you do not; update estimates as you learn more rather than defending the original number. This is exactly the skill that junior cloud engineers are most visibly missing in their first internship, the ability to say "I think this will take two to four days but I need to dig into the networking configuration before I can narrow it down" rather than "sure, no problem, I'll have it done by tomorrow."</p></div>
+</div>
+<!-- STEP 2 CONTINUES HERE -->
+
+<div class="book-card acc-block is-collapsed" id="book-4">
+  <div class="book-top acc-head">
+    <div class="book-num">4</div>
+    <div class="book-meta">
+      <div class="book-title">Terraform: Up and Running. Writing Infrastructure as Code</div>
+      <div class="book-author">Yevgeniy Brikman · Technical reference · Third edition · Gruntwork co-founder</div>
+      <span class="book-when">First read: Months 4-5 alongside Phase 1 Terraform bootcamp · Second read: Month 9-10 before Terraform Associate exam</span>
+      <div class="book-tags"><span class="book-tag">Terraform state model</span><span class="book-tag">Module design</span><span class="book-tag">IaC patterns</span><span class="book-tag">Remote backends</span><span class="book-tag">Testing IaC</span><span class="book-tag">Production Terraform</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>The standard book-length treatment of Terraform. Yevgeniy Brikman is one of the founding engineers of Gruntwork, which maintains the Terraform infrastructure modules used by thousands of production companies. This book covers why Terraform works the way it does, the state model, the provider model, the resource graph, the dependency resolution algorithm, with a depth that Udemy courses cannot match in the same page count.</p><p>Read the relevant chapter the same week the corresponding Udemy bootcamp section is being studied. Chapter 2 (Terraform state) should be read alongside Course 52 Section 5 (Terraform State). Chapter 4 (Terraform modules) should be read alongside Course 52 Section 6 (Modules). Chapter 5 (tips and tactics, loops, conditionals, zero-downtime deployment) is the most immediately applicable to writing production-quality Terraform rather than tutorial Terraform. The combination of watching the Udemy instructor build something and then reading Brikman explain why it works that way produces a depth of understanding that neither source achieves alone.</p><p>The book covers a topic that almost no Udemy course addresses seriously: testing Terraform code. Brikman's chapter on Terratest (a Go testing framework for infrastructure) and the broader question of how to validate that infrastructure code does what you think it does before deploying it to production is directly relevant to the AZ-400 exam domain on continuous testing strategy. By the time the Terraform Associate exam is being prepared in Month 9-10, this chapter will read differently than it did in Month 4: the second read is specifically scheduled for exam preparation.</p><p>Read it twice. First time in Months 4-5: quick, one chapter per evening, following the bootcamp pace. You will not understand everything on the first pass and that is fine. You are building recognition. Second time in Month 9-10: careful, chapter by chapter, with the Terraform Associate exam objectives open alongside. The concepts that were opaque in Month 4 will be obvious in Month 10 because eight months of hands-on Terraform experience now contextualises everything Brikman describes.</p></div>
+</div>
+<div class="book-card acc-block is-collapsed" id="book-5">
+  <div class="book-top acc-head">
+    <div class="book-num">5</div>
+    <div class="book-meta">
+      <div class="book-title">Deep Work: Rules for Focused Success in a Distracted World</div>
+      <div class="book-author">Cal Newport · Productivity and cognitive science · Portfolio/Penguin</div>
+      <span class="book-when">Month 2: read alongside The Phoenix Project, before bootcamp intensity ramps up</span>
+      <div class="book-tags"><span class="book-tag">Deep work blocks</span><span class="book-tag">Attention management</span><span class="book-tag">Context switching cost</span><span class="book-tag">Scheduling philosophy</span><span class="book-tag">Distraction cost quantified</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>Newport makes a rigorous economic argument for scheduled, distraction-free focused work as the primary competitive advantage in knowledge work. I identify two categories: deep work (cognitively demanding tasks that create real value and cannot be replicated by shallow engagement) and shallow work (email, meetings, administrative tasks that create the illusion of productivity without advancing the actual work). The entire Pomodoro structure in this plan, 40 minutes of focused work, 10 minutes of transition, no phone during work blocks, is precisely what Newport prescribes, and reading the book explains why the structure is not arbitrary.</p><p>Read this in Month 2, before the bootcamp enters its most intensive phase in Months 5-7, because it provides the psychological and economic framework that makes protecting the morning deep work blocks feel not just sensible but rationally necessary. The chapter on the cost of context-switching is the argument for keeping the morning for bootcamp study and reserving the afternoon for internship observation. Every interruption costs approximately 23 minutes of recovery time according to the attention research Newport cites. Understanding this number changes how you respond to the impulse to check messages during a study block.</p><p>The most practically useful chapter is the one on scheduling. Newport argues that every hour of the working day should be assigned in advance to a specific task, and that when unexpected events disrupt the schedule, the correct response is to reschedule explicitly rather than letting the rest of the day drift. This is the rationale for the weekly planning session on Sunday: the medical schedule is fixed, the UoPeople deadlines are fixed, the bootcamp pace is fixed, the planning session turns those constraints into a committed schedule rather than a set of competing intentions. The difference between a committed schedule and competing intentions is the difference between consistent study and sporadic bursts.</p><p>Newport's argument about email and communication deserves particular attention given the internship context. His recommendation is to batch communication into two or three defined windows per day rather than responding reactively throughout the day. For the internship observation period, this translates to: take notes during observation, process and write up the notes immediately after the observation session, then send any follow-up messages in the evening rather than interrupting the morning bootcamp study block to respond in real time.</p></div>
+</div>
+<div class="book-card acc-block is-collapsed" id="book-6">
+  <div class="book-top acc-head">
+    <div class="book-num">6</div>
+    <div class="book-meta">
+      <div class="book-title">The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organisations</div>
+      <div class="book-author">Gene Kim, Jez Humble, Patrick Debois, John Willis · Technical culture, prescriptive · IT Revolution Press</div>
+      <span class="book-when">Months 6-7: alongside LFS162 and AZ-400 preparation</span>
+      <div class="book-tags"><span class="book-tag">CI/CD culture</span><span class="book-tag">Deployment frequency</span><span class="book-tag">MTTR</span><span class="book-tag">Blameless post-mortems</span><span class="book-tag">Value stream mapping</span><span class="book-tag">The Three Ways applied</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>The companion to The Phoenix Project, but prescriptive rather than narrative. Where The Phoenix Project tells the story of DevOps, The DevOps Handbook explains the specific practices. CI/CD pipeline design, deployment frequency optimisation, mean time to recovery, blameless post-mortems, value stream mapping, the three ways applied to specific technical contexts. Read this in Months 6-7 alongside the LFS162 DevOps and SRE Linux Foundation course (Pillar 4) and the Azure DevOps CI/CD bootcamp content in Month 9. Three sources studying the same domain simultaneously from three angles: the Udemy course provides hands-on implementation, the Linux Foundation course provides SRE theory, and the DevOps Handbook provides the cultural practices that make technical implementation actually work inside an organization.</p><p>The chapter on deployment pipelines is the one that most directly maps to the AZ-400 exam and the actual Azure DevOps pipeline work in bootcamp Month 9. The Handbook describes the ideal deployment pipeline as a series of stages, each designed to give fast feedback about a specific type of failure: compilation and unit tests first (seconds), then integration tests (minutes), then acceptance tests (tens of minutes), then performance tests (hours if needed), then production deployment. This staged approach is exactly the multi-stage Azure DevOps pipeline with gate approvals that the AZ-104 and AZ-400 exams test, reading the Handbook's description of why each stage exists makes the pipeline architecture intuitive rather than memorised.</p><p>The chapter on blameless post-mortems is worth re-reading in full when the first significant lab mistake happens, a Terraform apply that destroys a resource group, a pipeline misconfiguration that deploys to the wrong environment. The Handbook's argument is that blame is not only morally unjust but technically counterproductive: when people fear punishment for mistakes, they hide information that would have prevented the next mistake. The correct response to failure is a structured post-mortem that asks what conditions made the failure possible and what system changes would make the same failure impossible or unlikely. This framing converts every mistake in the bootcamp labs from a source of discouragement into a structured learning event.</p><p>The deployment frequency data that the Handbook presents is worth memorising for IBM and Deloitte interview conversations. Elite DevOps performers deploy to production multiple times per day. High performers deploy daily to weekly. Medium performers deploy weekly to monthly. Low performers deploy monthly to every six months. The gap between elite and low performers on deployment frequency is not a technology gap. It is a culture and process gap. Being able to articulate this distinction, and connect it to specific Azure DevOps pipeline capabilities, is the kind of answer that distinguishes a candidate who has thought about engineering culture from one who has only read documentation.</p></div>
+</div>
+<div class="book-card acc-block is-collapsed" id="book-7">
+  <div class="book-top acc-head">
+    <div class="book-num">7</div>
+    <div class="book-meta">
+      <div class="book-title">Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems</div>
+      <div class="book-author">Martin Kleppmann · Systems architecture · O'Reilly · Often abbreviated DDIA</div>
+      <span class="book-when">Month 10 onwards, one chapter per week alongside AZ-305 architecture study. Do not try to sprint this book.</span>
+      <div class="book-tags"><span class="book-tag">Distributed systems</span><span class="book-tag">Database internals</span><span class="book-tag">Consistency models</span><span class="book-tag">Replication</span><span class="book-tag">Streaming architecture</span><span class="book-tag">Fault tolerance</span><span class="book-tag">CAP theorem</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>The most important systems design book available and the one that most directly explains why Azure database and storage services are designed the way they are. Kleppmann covers the theoretical foundations of the decisions that Azure, AWS, and Google Cloud made when building their data services. Why does Cosmos DB use eventual consistency by default? Why does Azure SQL use write-ahead logging for durability? Why does Azure Service Bus behave differently from Azure Event Hubs? After reading this book, these are not arbitrary Microsoft product decisions, they are principled engineering tradeoffs with clear theoretical explanations that Kleppmann derives from first principles.</p><p>Read it alongside AZ-305 architecture study in Month 10-12 because AZ-305 asks you to choose between Azure database services for different business scenarios, and DDIA is the book that explains why those choices have correct answers grounded in distributed systems theory rather than just feature comparison. The AZ-305 scenario "Contoso needs a database that can handle 100,000 writes per second with global distribution and eventual consistency for a shopping cart feature" has a principled answer (Cosmos DB with eventual consistency) that DDIA explains fully in its chapters on replication and consistency models.</p><p>Read one chapter per week, not one chapter per sitting. DDIA is dense in the way that rewarding books are dense, every paragraph contains a claim that deserves ten minutes of thought before moving to the next one. Reading it at sprint pace produces the sensation of having read it without the understanding. The chapter on replication, the chapter on distributed transactions, and the chapter on stream processing are the three most directly relevant to Azure architecture conversations. The chapters on encoding and evolution and on batch processing are more background context, read them but spend proportionally less time.</p><p>DDIA is the book that most consistently separates engineers who have read widely from engineers who have only completed tutorials. In a Deloitte technology consulting interview where the candidate is asked to compare Azure Cosmos DB with Azure SQL Database for a specific workload, the candidate who has read DDIA will answer in terms of consistency guarantees, partition tolerance, write amplification, and read vs write optimisation patterns. The candidate who has only done Udemy courses will answer in terms of which Azure portal settings to click. Both answers are technically accurate. Only one demonstrates architectural thinking.</p></div>
+</div>
+<!-- STEP 3 CONTINUES HERE -->
+
+<div class="book-card acc-block is-collapsed" id="book-8">
+  <div class="book-top acc-head">
+    <div class="book-num">8</div>
+    <div class="book-meta">
+      <div class="book-title">The Clean Coder: A Code of Conduct for Professional Programrs</div>
+      <div class="book-author">Robert C. Martin (Uncle Bob) · Professional conduct and engineering ethics · Prentice Hall</div>
+      <span class="book-when">Month 3: read alongside The Pragmatic Programr, before first internship application is sent</span>
+      <div class="book-tags"><span class="book-tag">Professional ethics</span><span class="book-tag">Estimation honesty</span><span class="book-tag">Saying no professionally</span><span class="book-tag">Handling pressure</span><span class="book-tag">TDD discipline</span><span class="book-tag">Career ownership</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>About how to be a professional, not how to write code. This distinction is what makes it essential reading before the first internship rather than after it. The Pragmatic Programr teaches craft. The Clean Coder teaches conduct. Both are needed and they complement each other exactly when read in the same month.</p><p>The chapter on saying no is the most immediately practical. Martin is unusually direct: a professional says no when they genuinely cannot meet a commitment, and then works to find an alternative rather than pretending the answer might be yes. The specific scenario I describe, a manager applies pressure for a deadline that the engineer knows is unrealistic, and the engineer capitulates rather than holding the line, is the scenario most likely to arise in the first internship. Martin's argument is that capitulating does not make the deadline realistic; it merely transfers the disappointment from now to later, at a higher cost. A professional who says "I cannot deliver this by Friday, but I can deliver X by Friday and the full feature by the following Wednesday" is more valuable than one who says "I'll try" and then misses Friday anyway.</p><p>The chapter on estimation deserves reading alongside the Pragmatic Programr's chapter on estimation, because they approach the same problem from different angles and the combination is more complete than either alone. Martin focuses on the emotional dynamics of estimation under pressure, the social pressure to give an optimistic number, the fear of appearing slow or incompetent, the rationalisation that "maybe it will work out." His argument is that honest estimation, including explicit uncertainty ranges, is a form of professional respect for the people who depend on the estimate. "It will take between three days and one week depending on what we find when we start" is a more professional answer than "definitely by Thursday" delivered with false confidence.</p><p>The chapter on "Saying Yes" is as important as "Saying No." Martin describes the three parts of a commitment: you say you will do it, you mean it, and you actually do it. Failing any one of these three makes you professionally unreliable regardless of intent. For the internship observation period specifically: if you commit to writing up observation notes and sending them to a mentor by Friday, write them up and send them by Friday. If something prevents you from meeting that commitment, communicate before the deadline, not after. This is the fundamental professional behavior that Martin is describing, and it is the behavior that converts an observation placement into a reference and then into an offer.</p></div>
+</div>
+<div class="book-card acc-block is-collapsed" id="book-9">
+  <div class="book-top acc-head">
+    <div class="book-num">9</div>
+    <div class="book-meta">
+      <div class="book-title">Site Reliability Engineering: How Google Runs Production Systems</div>
+      <div class="book-author">Niall Richard Murphy, Betsy Beyer, Chris Jones, Jennifer Petoff (Google SRE Team) · Technical operations · O'Reilly</div>
+      <span class="book-when">Month 8 onwards, alongside Phase 3 monitoring and observability bootcamp content. FREE at sre.google/books</span>
+      <div class="book-tags"><span class="book-tag">SLOs and error budgets</span><span class="book-tag">On-call culture</span><span class="book-tag">Toil reduction</span><span class="book-tag">Incident management</span><span class="book-tag">Reliability as a feature</span><span class="book-tag">SRE vs DevOps</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>Google's approach to running production systems at massive scale. This book is free online at sre.google/books, read it there, zero cost. The concepts it introduces, error budgets, SLO design (Service Level Objectives), on-call culture, incident management, toil reduction, the principle of treating operations as a software engineering problem, appear in AZ-400 content, in the Kalyan Reddy Terraform SRE course in bootcamp Month 13, and in every senior cloud engineering interview at IBM and Deloitte.</p><p>The error budget concept is one of those ideas that permanently changes how you think about reliability work. The argument: if a system is more reliable than its SLO requires, the extra reliability is not free, it comes at the cost of deployment speed. A system with 99.99% uptime (52 minutes of downtime per year) has 52 minutes of annual error budget. If the team spends all year achieving 99.999% uptime (5 minutes of downtime), they consumed only 5 minutes of budget and left 47 minutes unused. The SRE framework says those 47 unused minutes represent unrealized feature deployment capacity, risky deployments that could have been attempted and learned from. This framing converts reliability from a binary good (more is always better) into a resource to be deliberately managed.</p><p>Read it alongside Phase 3 monitoring and observability bootcamp content in Month 8: Prometheus, Grafana, Azure Monitor, Log Analytics, because the SRE framework is what gives that technical tooling its purpose. Prometheus without an SLO is just a dashboard. Prometheus in an SRE framework is a tool for tracking error budget consumption in real time and triggering a response when the budget is nearly exhausted. Understanding this connection transforms the monitoring bootcamp content from "learn the tools" into "learn why organizations build these tools and what decisions they enable."</p><p>The chapter on on-call is worth reading carefully before the first internship, even though on-call responsibility is unlikely to be part of an observation placement. The chapter describes how high-functioning SRE teams structure on-call rotations, what makes on-call sustainable versus what makes it burnout-inducing, and how incident command structure works during a major outage. IBM and Deloitte both have on-call engineering teams. Understanding how professional organizations approach this before joining one means the first exposure to production incident response is a recognition experience rather than a disorienting one.</p><p>The chapters on toil are equally important. SRE defines toil as manual, repetitive, automatable work that produces no lasting value, work that scales linearly with system load rather than being eliminated by engineering investment. The goal of an SRE team is to spend no more than 50% of time on toil and at least 50% on engineering work that permanently reduces toil. This framework justifies every automation script, every Terraform module, every CI/CD pipeline built in the bootcamp: each one is toil reduction that compounds over the lifetime of the system.</p></div>
+</div>
+<div class="book-card acc-block is-collapsed" id="book-10">
+  <div class="book-top acc-head">
+    <div class="book-num">10</div>
+    <div class="book-meta">
+      <div class="book-title">The Manager's Path: A Guide for Tech Leaders Navigating Growth and Change</div>
+      <div class="book-author">Camille Fournier · Career trajectory and technical leadership · O'Reilly</div>
+      <span class="book-when">Month 18 onwards, when senior role conversations begin at enterprise tech employer</span>
+      <div class="book-tags"><span class="book-tag">Tech lead transition</span><span class="book-tag">Engineering management</span><span class="book-tag">Career growth frameworks</span><span class="book-tag">Influence without authority</span><span class="book-tag">Senior engineering</span><span class="book-tag">Principal and staff engineer</span></div>
+    </div>
+  </div>
+  <div class="book-body acc-body"><p>The book that tells you what actually happens at each stage of the engineer-to-tech-lead-to-manager transition, written by someone who has been through every stage and is unusually honest about the downsides of each step. Fournier covers individual contributor to tech lead, tech lead to engineering manager, engineering manager to senior manager, and senior manager to VP. Read it at Month 18 because by then the first internship relationship with enterprise employers will be established enough that conversations about medium-term growth are beginning, and this book reframes those conversations from a technical question into a leadership and influence question.</p><p>The tech lead chapter is the most relevant for Years 2-3 of the career plan. Fournier is clear about the tech lead role's ambiguity: a tech lead is not a manager (no direct reports, no performance review authority) but is responsible for the technical direction and delivery of a team. This means influence without formal authority, the most important and least taught skill in engineering careers. Her advice is that tech leads earn influence by being the person who asks the right questions in architecture discussions, who writes the documentation that makes the team's decisions legible to others, and who takes on the unglamorous coordination work that nobody else wants to do. This is the exact profile that converts an internship observer into a full-time hire.</p><p>The chapter on being managed is worth reading first, before the chapter on managing. Fournier's argument is that understanding what good management looks like from the receiving end, knowing what information a manager needs to do their job, knowing how to communicate blockers upward in time to be useful, knowing what questions to ask in a one-on-one, makes every working relationship more effective regardless of which side of the hierarchy you are on. For a junior cloud engineer in an internship, the most important skill is not technical. It is the ability to make the supervising engineer's job easier by giving them the right information at the right time.</p><p>The chapter on the principal engineer track is the longer-term target that makes sense to read and put aside. Fournier describes the staff and principal engineer path as an alternative to the management track that allows technical specialists to grow in scope and compensation without taking on people management. The profile she describes, someone who works across multiple teams, who defines technical standards for a whole organization, who is the person called on when a problem is too complex or too ambiguous for a single team, is the profile that a cloud security architect or platform engineering principal at an enterprise tech employer occupies. Reading this in Month 18 plants the seed for a conversation at Year 4-5.</p></div>
+</div>
+<div class="anchor" id="beyond"></div>
+<span class="sec-label">After the list</span>
+<h2 class="sec-title">Beyond the 10 books, how to choose what comes next</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);line-height:1.7;font-size:.92rem;margin-bottom:1rem;">After the 10 books are complete (approximately Month 24-30), the selection criterion shifts from a fixed list to a more dynamic one. The question becomes: what would a senior engineer at an enterprise tech employer have read that has not been read yet?</p>
+<div class="hbox"><p><strong>The discovery method:</strong> Ask one senior engineer per quarter what the last technically significant book they read was. This single question, asked consistently, produces a better reading list than any curated recommendation because it is filtered by what engineers who do your specific job in your specific context actually found useful, not what reviewers or generalist lists recommend.</p></div>
+<table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:.84rem;">
+  <thead><tr style="background:var(--ink);color:var(--surface);"><th style="padding:.44rem .65rem;text-align:left;font-weight:600;font-size:.77rem;">Source</th><th style="padding:.44rem .65rem;text-align:left;font-weight:600;font-size:.77rem;">What it produces</th><th style="padding:.44rem .65rem;text-align:left;font-weight:600;font-size:.77rem;">Access</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--border);"><td style="padding:.38rem .65rem;color:var(--ink2);">sre.google/books reading list</td><td style="padding:.38rem .65rem;color:var(--ink2);">Books curated by practitioners running the most demanding production systems on earth. Every book has been validated in real operational practice, not by reviewers.</td><td style="padding:.38rem .65rem;color:var(--ink2);">sre.google/books, already free</td></tr>
+    <tr style="border-bottom:1px solid var(--border);background:var(--surface2);"><td style="padding:.38rem .65rem;color:var(--ink2);">Accelerate. Nicole Forsgren, Jez Humble, Gene Kim</td><td style="padding:.38rem .65rem;color:var(--ink2);">The academic research basis for The DevOps Handbook. Four key metrics (deployment frequency, lead time, MTTR, change failure rate) measured across thousands of organizations. Read after The DevOps Handbook. It is the evidence base for everything the Handbook argues.</td><td style="padding:.38rem .65rem;color:var(--ink2);">Purchase or library</td></tr>
+    <tr style="border-bottom:1px solid var(--border);"><td style="padding:.38rem .65rem;color:var(--ink2);">Recommendations from internship colleagues</td><td style="padding:.38rem .65rem;color:var(--ink2);">Direct signal of what experienced engineers in your actual work environment read. More reliable than any curated list because it is filtered by domain and company culture.</td><td style="padding:.38rem .65rem;color:var(--ink2);">Ask explicitly: "What was the last technically significant book you read?"</td></tr>
+    <tr style="border-bottom:1px solid var(--border);background:var(--surface2);"><td style="padding:.38rem .65rem;color:var(--ink2);">ACM Queue (queue.acm.org)</td><td style="padding:.38rem .65rem;color:var(--ink2);">The practitioner bridge between academic CS research and real-world systems engineering. Articles that become influential books often appear here first as shorter pieces. Free.</td><td style="padding:.38rem .65rem;color:var(--ink2);">Free at queue.acm.org</td></tr>
+    <tr style="border-bottom:1px solid var(--border);"><td style="padding:.38rem .65rem;color:var(--ink2);">The DevOps Handbook bibliography</td><td style="padding:.38rem .65rem;color:var(--ink2);">Lists the primary sources behind the Handbook's recommendations. Each citation is a signal about which books the authors found most compelling when writing their own.</td><td style="padding:.38rem .65rem;color:var(--ink2);">Already owned in the reading program</td></tr>
+    <tr style="background:var(--surface2);"><td style="padding:.38rem .65rem;color:var(--ink2);">The Architecture of Open Source Applications (aosabook.org)</td><td style="padding:.38rem .65rem;color:var(--ink2);">Experienced engineers describe the architecture decisions of major open source projects, nginx, Python, Git, SQLite, and many others. Free online. The closest thing available to reading the internal design documents of the software you use daily.</td><td style="padding:.38rem .65rem;color:var(--ink2);">Free at aosabook.org</td></tr>
+  </tbody>
+</table>
+<p style="color:var(--ink2);font-size:.84rem;line-height:1.6;margin-top:.8rem;">One rule governs all reading program decisions after the initial 10 books: if a book is not making you think differently about something you encounter in actual work, stop reading it and start something else. The 9:40 PM reading window is finite and valuable. Time spent finishing a book that stopped being useful is time not spent on a book that would be. There is no obligation to finish every book you start, there is only the obligation to be reading something that is actively reshaping how you see the work.</p>
+<!-- STEP 4 CLOSES THE FILE -->
+
+</div><!-- end .page-wrap -->
+<footer><div class="footer-brand">Jeremy Trinity</div><div class="footer-meta">Five-Pillar Development System &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp;<a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a> &nbsp;|&nbsp;<a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a> &nbsp;|&nbsp;<a href="https://jeremytrinity.com">jeremytrinity.com</a> &nbsp;|&nbsp;</div></footer>
+<script>
+const html=document.documentElement;
+const btn=document.getElementById('themeBtn');
+const label=document.getElementById('themeLabel');
+function applyTheme(t){html.setAttribute('data-theme',t);if(label)label.textContent=t==='dark'?'Light':'Dark';}
+const saved=localStorage.getItem('jt-theme');
+if(saved){applyTheme(saved);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){applyTheme('dark');localStorage.setItem('jt-theme','dark');}
+if(btn)btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(next);localStorage.setItem('jt-theme',next);});
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+</script>
+
+<script>
+/* ── ACCORDION ── */
+(function () {
+  document.querySelectorAll('.acc-block').forEach(function (block) {
+    var head = block.querySelector('.acc-head');
+    if (!head) return;
+    // Inject chevron as last flex child
+    var chev = document.createElement('span');
+    chev.className = 'acc-chev';
+    chev.setAttribute('aria-hidden', 'true');
+    chev.textContent = '▾';
+    head.appendChild(chev);
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    function toggle(e) {
+      if (e.target && (e.target.tagName === 'A' || (e.target.closest && e.target.closest('a')))) return;
+      var collapsed = block.classList.toggle('is-collapsed');
+      head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
+  });
+})();
+</script>
+<script>
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

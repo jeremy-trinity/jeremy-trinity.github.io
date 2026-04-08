@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar I: Cloud Engineering Bootcamp | Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{--bg:#F9F8F5;--surface:#FFFFFF;--surface2:#F2F1EE;--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--ink:#1A1A18;--ink2:#52514E;--ink3:#8A8880;--accent:#2A5F8F;--accent-lt:#EBF2F9;--accent2:#1D4A70;--p1:#2A5F8F;--p2:#0F6E56;--p3:#854F0B;--p4:#534AB7;--p5:#A32D2D;--p1-lt:#EBF2F9;--p2-lt:#E1F5EE;--p3-lt:#FAEEDA;--p4-lt:#EEEDFE;--p5-lt:#FCEBEB;}
+[data-theme="dark"]{--bg:#111110;--surface:#1C1C1A;--surface2:#252523;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--ink:#EEECEA;--ink2:#AAAAAA;--ink3:#777775;--accent:#5B9BD5;--accent-lt:#1A2A3A;--accent2:#7AB3E0;--p1:#5B9BD5;--p2:#4ecdb4;--p3:#FAC775;--p4:#AFA9EC;--p5:#F09595;--p1-lt:#1A2A3A;--p2-lt:#0A2820;--p3-lt:#2A1E0A;--p4-lt:#1A1830;--p5-lt:#2A1010;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;transition:background .3s,color .3s;padding-top:60px;}
+a{color:var(--accent);text-decoration:none;}a:hover{color:var(--accent2);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:background .3s,border-color .3s;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:0.8rem;font-weight:500;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-btn{background:none;border:1px solid var(--border2);border-radius:20px;padding:.25rem .75rem;cursor:pointer;font-size:.75rem;font-weight:500;color:var(--ink2);display:flex;align-items:center;gap:.35rem;font-family:'Inter',sans-serif;transition:all .2s;}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);}
+.sun{color:#F5A623;font-size:.85rem;display:none;}.moon{font-size:.85rem;}
+[data-theme="dark"] .sun{display:inline;}[data-theme="dark"] .moon{display:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:20px;height:1.5px;background:var(--ink);display:block;}
+section{padding:4rem 2rem;}
+.si{max-width:920px;margin:0 auto;}
+.section-label{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.6rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.5rem;}
+.title-rule{width:40px;height:2px;background:var(--accent);margin-bottom:2rem;}
+table{width:100%;border-collapse:collapse;margin:1rem 0 1.4rem;font-size:.87rem;}
+th{background:var(--ink);color:var(--surface);padding:.55rem .75rem;text-align:left;font-weight:600;font-size:.82rem;letter-spacing:.02em;}
+td{padding:.45rem .75rem;border-bottom:1px solid var(--border);vertical-align:top;color:var(--ink2);}
+tr:last-child td{border-bottom:none;}tr:nth-child(even) td{background:var(--surface2);}
+.sub-h{font-size:.88rem;font-weight:600;color:var(--ink);margin:1.2rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--border);}
+footer{background:var(--surface2);border-top:1px solid var(--border);padding:2rem;text-align:center;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
+.footer-meta{font-size:.78rem;color:var(--ink3);}
+.footer-meta a{color:var(--accent);}
+@media(max-width:900px){.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem;z-index:199;}.hamburger{display:flex;}}
+@media(max-width:600px){section{padding:3rem 1.2rem;}}
+
+
+/* PAGE HERO */
+.page-hero{background:var(--surface);border-bottom:1px solid var(--border);padding:3.5rem 2rem 2.5rem;}
+.page-hero-inner{max-width:960px;margin:0 auto;}
+.back-link{font-size:.78rem;color:var(--ink3);display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1.2rem;transition:color .2s;}
+.back-link:hover{color:var(--accent);}
+.pillar-badge{display:inline-block;font-size:.7rem;font-weight:700;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem;letter-spacing:.05em;background:#EBF2F9;color:#1D4A70;}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:.8rem;}
+.ph-sub{font-size:.98rem;color:var(--ink2);max-width:720px;line-height:1.7;margin-bottom:1.5rem;}
+.ph-logos{display:flex;flex-wrap:wrap;gap:.65rem;align-items:center;margin-bottom:1.5rem;}
+.ph-logo{height:26px;width:auto;object-fit:contain;}
+.ph-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.ph-stat-val{font-size:1.4rem;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;}
+.ph-stat-label{font-size:.72rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;}
+
+/* LAYOUT */
+.page-wrap{max-width:960px;margin:0 auto;padding:2.5rem 2rem 5rem;}
+
+/* TOC */
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2.5rem;}
+.toc-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:.8rem;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.25rem .5rem;}
+.toc-grid a{font-size:.83rem;color:var(--accent);padding:.15rem 0;}
+.toc-grid a:hover{color:var(--accent2);}
+
+/* ANCHORS */
+.anchor{display:block;height:72px;margin-top:-72px;visibility:hidden;}
+
+/* SECTION HEADER */
+.sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;margin-top:3rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.35rem;}
+.title-rule{width:36px;height:2px;background:var(--accent);margin-bottom:1.5rem;}
+
+/* PHASE BANNER */
+.phase-banner{border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0 1.5rem;border-left:4px solid;}
+.ph1{background:var(--p1-lt);border-color:var(--p1);}
+.ph2{background:var(--p2-lt);border-color:var(--p2);}
+.ph3{background:var(--p3-lt);border-color:var(--p3);}
+.ph4{background:var(--p4-lt);border-color:var(--p4);}
+.phase-banner h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
+.ph1 h2{color:var(--p1);} .ph2 h2{color:var(--p2);} .ph3 h2{color:var(--p3);} .ph4 h2{color:var(--p4);}
+.phase-banner p{font-size:.88rem;color:var(--ink2);margin:0;line-height:1.6;}
+.phase-meta{font-size:.75rem;font-weight:600;margin-top:.5rem;color:var(--ink3);}
+
+/* MONTH BLOCK */
+.month-block{margin:2rem 0;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.month-header{display:flex;align-items:center;gap:.85rem;padding:1rem 1.4rem;background:var(--surface);border-bottom:1px solid var(--border);}
+.month-num{font-size:.7rem;font-weight:700;color:#fff;padding:.28rem .85rem;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.mn1,.mn2,.mn3,.mn4{background:#2A5F8F;} .mn5,.mn6,.mn7,.mn8,.mn9,.mn10{background:#0F6E56;}
+.mn11,.mn12,.mn13,.mn14,.mn15,.mn16,.mn17,.mn18{background:#854F0B;}
+.mn19,.mn20,.mn21,.mn22,.mn23,.mn24{background:#534AB7;}
+.month-title{font-size:1rem;font-weight:600;color:var(--ink);}
+.month-goal{font-size:.8rem;color:var(--ink3);margin-top:.1rem;}
+.month-body{padding:1.4rem;}
+
+/* WEEK BLOCK */
+.week-block{margin-bottom:1.75rem;}
+.week-header{display:flex;align-items:center;gap:.65rem;margin-bottom:.7rem;}
+.week-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);background:var(--accent-lt);padding:.2rem .65rem;border-radius:10px;white-space:nowrap;}
+.week-desc{font-size:.85rem;font-weight:600;color:var(--ink);}
+
+/* COURSE CARD */
+.course-card{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:.85rem;}
+.course-card:hover{border-color:var(--accent);}
+.cc-top{display:flex;align-items:flex-start;gap:.85rem;margin-bottom:.6rem;}
+.cc-logo{height:26px;width:auto;object-fit:contain;flex-shrink:0;margin-top:2px;}
+.cc-logo-svg{height:24px;width:auto;flex-shrink:0;margin-top:2px;}
+.cc-info{flex:1;}
+.cc-title{font-size:.92rem;font-weight:600;color:var(--ink);margin-bottom:.15rem;}
+.cc-meta{font-size:.75rem;color:var(--ink3);margin-bottom:.3rem;}
+.cc-badge{font-size:.68rem;font-weight:600;padding:.18rem .6rem;border-radius:6px;margin-right:.35rem;}
+.ext-badge{background:#E1F5EE;color:#0F6E56;}
+.cat-badge{background:#EBF2F9;color:#1D4A70;}
+.own-badge{background:#FAEEDA;color:#633806;}
+.cc-why{font-size:.85rem;color:var(--ink2);line-height:1.6;margin-bottom:.7rem;}
+.cc-urls{font-size:.76rem;color:var(--ink3);line-height:1.8;}
+.cc-urls a{color:var(--accent);}
+
+/* SECTION LIST */
+.section-list{margin:.5rem 0 .9rem;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:.25rem;}
+.section-list li{font-size:.84rem;color:var(--ink2);padding:.3rem .65rem .3rem 1rem;border-left:2px solid var(--border);line-height:1.5;position:relative;}
+.section-list li.priority{border-left-color:var(--accent);color:var(--ink);font-weight:500;}
+.section-list li.priority::before{content:'★';font-size:.6rem;color:var(--accent);position:absolute;left:-8px;top:50%;transform:translateY(-50%);background:var(--surface2);padding:1px;}
+.section-list li em{font-size:.75rem;color:var(--ink3);font-style:normal;}
+
+/* ACTION BOX */
+.action-box{background:var(--accent-lt);border:1px solid var(--accent);border-radius:10px;padding:1rem 1.2rem;margin:.75rem 0;}
+.action-box h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:.4rem;}
+.action-box p,.action-box li{font-size:.85rem;color:var(--ink2);line-height:1.6;margin:0;}
+.action-box ul{padding-left:1.2rem;margin:.3rem 0;}
+
+/* WARN BOX */
+.warn-box{background:var(--p3-lt);border:1px solid var(--p3);border-radius:10px;padding:.9rem 1.2rem;margin:.75rem 0;}
+.warn-box h4{font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--p3);margin-bottom:.3rem;}
+.warn-box p{font-size:.84rem;color:var(--ink2);margin:0;line-height:1.6;}
+
+/* EXAM BOX */
+.exam-box{background:#FCEBEB;border:1px solid var(--p5);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;}
+[data-theme="dark"] .exam-box{background:var(--p5-lt);}
+.exam-box h4{font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--p5);margin-bottom:.4rem;}
+.exam-box p{font-size:.85rem;color:var(--ink2);line-height:1.6;margin:.2rem 0;}
+
+/* FREE RESOURCE */
+.free-res{display:flex;align-items:flex-start;gap:.75rem;padding:.7rem .9rem;background:var(--p2-lt);border:1px solid var(--p2);border-radius:8px;margin:.5rem 0;}
+.free-res .fr-icon{font-size:1rem;flex-shrink:0;margin-top:2px;}
+.free-res p{font-size:.83rem;color:var(--ink2);margin:0;line-height:1.55;}
+.free-res a{color:var(--p2);}
+[data-theme="dark"] .free-res a{color:var(--p2);}
+
+/* PYTHON TRACK */
+.python-track{border-left:3px solid var(--python, #3776AB);padding:.5rem .9rem;background:var(--surface2);border-radius:0 6px 6px 0;margin:.5rem 0;}
+.python-track p{font-size:.82rem;color:var(--ink2);margin:0;line-height:1.55;}
+.python-track strong{color:#3776AB;}
+
+/* LAB DELIVERABLE */
+.lab-box{background:var(--surface);border:2px dashed var(--border2);border-radius:10px;padding:1rem 1.2rem;margin:.75rem 0;}
+.lab-box h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem;}
+.lab-box ul{padding-left:1.2rem;margin:.2rem 0;}
+.lab-box li{font-size:.84rem;color:var(--ink2);margin:.2rem 0;line-height:1.5;}
+
+/* TOOL CHIPS */
+.tool-row{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0;}
+.tc{display:flex;align-items:center;gap:5px;padding:.22rem .65rem;background:var(--surface2);border:1px solid var(--border);border-radius:20px;}
+.tc img{height:13px;width:13px;object-fit:contain;}
+.tc span{font-size:.7rem;font-weight:500;color:var(--ink2);}
+
+/* DIVIDER */
+.wk-div{border:none;border-top:1px dashed var(--border);margin:1.2rem 0;}
+
+/* MINI STATS */
+.mini-stats{display:flex;gap:1.5rem;flex-wrap:wrap;padding:.85rem 0;border-top:1px solid var(--border);margin-top:1rem;}
+.ms{display:flex;flex-direction:column;gap:.1rem;}
+.ms-val{font-size:1rem;font-weight:700;color:var(--accent);font-family:'Playfair Display',serif;}
+.ms-label{font-size:.66rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;}
+
+/* BIG TABLE */
+table{width:100%;border-collapse:collapse;margin:1rem 0 1.4rem;font-size:.84rem;}
+th{background:var(--ink);color:var(--surface);padding:.5rem .7rem;text-align:left;font-weight:600;font-size:.79rem;}
+td{padding:.42rem .7rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:var(--surface2);}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .toc-grid{grid-template-columns:1fr;}
+  .ph-stats{gap:1.2rem;}
+  .mini-stats{gap:1rem;}
+}
+
+
+/* ── ACCORDION ─────────────────────────────────── */
+.acc-head { cursor: pointer; user-select: none; }
+.acc-chev { margin-left: auto; font-size: 1.05rem; opacity: 0.38; transition: transform .25s ease, opacity .25s ease; flex-shrink: 0; padding-left: .6rem; pointer-events: none; }
+.acc-block.is-collapsed .acc-chev { transform: rotate(-90deg); opacity: 0.65; }
+.acc-block.is-collapsed .acc-body { display: none; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="index.html">Jeremy Trinity</a>
+  <div class="nav-links" id="navLinks"><a href="index.html" data-en="Overview" data-pt="Visão Geral">Overview</a><a href="pillar1-bootcamp.html" style="color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:2px;">I. Bootcamp</a><a href="pillar2-degree.html">II. Degree</a><a href="pillar3-languages.html">III. Languages</a><a href="pillar4-courses.html">IV. Courses</a><a href="pillar5-reading.html">V. Reading</a></div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+      <span class="moon">🌙</span><span class="sun">☀️</span>
+      <span id="themeLabel">Dark</span>
+    </button>
+    <button class="theme-btn lang-btn" id="langBtn" aria-label="Toggle language">
+      <span>🌐</span>
+      <span id="langLabel">PT</span>
+    </button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="page-hero">
+<div class="page-hero-inner">
+  <a class="back-link" href="index.html" data-en="← Back to overview" data-pt="← Voltar à visão geral">← Back to overview</a>
+  <span class="pillar-badge">Pillar I</span>
+  <h1 class="ph-title">Cloud Engineering Bootcamp</h1>
+  <p class="ph-sub">The complete 24-month, week-by-week, section-by-section study plan. Every course, every section, every lab, every exam booking decision, in the exact order and with the exact reasoning you need to follow it without guessing. This is your teacher talking, not a reference document.</p>
+  <div class="ph-logos">
+    <img class="ph-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/python/3776AB" alt="Python">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="Bash">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/github/181717" alt="GitHub">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/githubactions/2088FF" alt="Actions">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus">
+    <img class="ph-logo" src="https://cdn.simpleicons.org/helm/0F1689" alt="Helm">
+  </div>
+  <div class="ph-stats">
+    <div class="ph-stat"><div class="ph-stat-val">6</div><div class="ph-stat-label">Certifications</div></div>
+    <div class="ph-stat"><div class="ph-stat-val">34</div><div class="ph-stat-label">Courses mapped</div></div>
+    <div class="ph-stat"><div class="ph-stat-val">24</div><div class="ph-stat-label">Months planned</div></div>
+    <div class="ph-stat"><div class="ph-stat-val">6</div><div class="ph-stat-label">Portfolio projects</div></div>
+    <div class="ph-stat"><div class="ph-stat-val">EUR 755</div><div class="ph-stat-label">Total exam cost</div></div>
+  </div>
+</div>
+</section>
+
+<div class="page-wrap">
+
+<div class="toc">
+  <div class="toc-title">Jump to any month</div>
+  <div class="toc-grid">
+    <a href="#before-start">Before you start. April 9</a>
+    <a href="#phase1">Phase 1: Foundation (Months 1-4)</a>
+    <a href="#month-1">Month 1: Linux, Networking, Git, Python</a>
+    <a href="#month-2">Month 2: PowerShell, Linux done, AZ-900</a>
+    <a href="#month-3">Month 3: Azure deep dive</a>
+    <a href="#month-4">Month 4: Terraform, Project 1</a>
+    <a href="#phase2">Phase 2: Differentiation (Months 5-10)</a>
+    <a href="#month-5">Month 5: AZ-104 core study</a>
+    <a href="#month-6">Month 6: Docker + Kubernetes</a>
+    <a href="#month-7">Month 7: AZ-104 exam + Terraform depth</a>
+    <a href="#month-8">Month 8: AKS, Azure DevOps integration</a>
+    <a href="#month-9">Month 9: AKS complete + CI/CD mastery</a>
+    <a href="#month-10">Month 10: Terraform Associate exam + Security+</a>
+    <a href="#phase3">Phase 3: Expert Layer (Months 11-18)</a>
+    <a href="#month-11">Month 11: Security+ done + AZ-500 begins</a>
+    <a href="#month-12">Month 12: AZ-500 labs + DevSecOps</a>
+    <a href="#month-13">Month 13: AZ-500 exam + Terraform SRE</a>
+    <a href="#month-14">Month 14: CKA prep + Ansible + AZ-305 starts</a>
+    <a href="#month-15">Month 15: AZ-305 full + GitHub Actions</a>
+    <a href="#month-16">Month 16: AZ-305 exam + Landing Zone</a>
+    <a href="#phase4">Phase 4: 1% Positioning (Months 17-24)</a>
+    <a href="#month-17">Month 17: AZ-400 preparation</a>
+    <a href="#month-18">Month 18: AZ-400 exam + Terraform mastery</a>
+    <a href="#months-19-22">Months 19-22: Capstone project</a>
+    <a href="#months-23-24">Months 23-24: Multi-cloud + profile polish</a>
+    <a href="#market">Market context and salary benchmarks</a>
+    <a href="#certifications">All certifications with booking links</a>
+  </div>
+</div>
+
+<!-- ══ BEFORE START ══ -->
+<div class="anchor" id="before-start"></div>
+<span class="sec-label">Before anything else</span>
+<h2 class="sec-title">April 9: the four things you do first</h2>
+<div class="title-rule"></div>
+<p style="color:var(--ink2);font-size:.93rem;line-height:1.7;margin-bottom:1.2rem;">Before opening any Udemy course, before watching a single lecture, you do these four things in this exact order. This takes about two hours and saves you from making expensive mistakes on day one.</p>
+
+<div class="action-box">
+  <h4>Step 1: Test your free LIRN access before paying for anything</h4>
+  <p>Go to <a href="https://link.gale.com/apps/?userGroupName=lirn17237" target="_blank">link.gale.com/apps/?userGroupName=lirn17237</a> after your UoPeople Moodle login is active. Search for these six courses by name: Scott Duffy AZ-104, Imran Afzal Complete Linux Training, Kalyan Reddy AKS with Azure DevOps and Terraform, Alan Rodrigues AZ-500, Mumshad Mannambeth Docker for Absolute Beginners, Mumshad Mannambeth Kubernetes for Absolute Beginners. If all six appear, do not subscribe to the Udemy Personal Plan. Your course cost is EUR 0. If any are missing, subscribe to the Personal Plan at EUR 10 per month. That is your fallback.</p>
+</div>
+
+<div class="action-box">
+  <h4>Step 2: Create your Azure free account</h4>
+  <p>Go to <a href="https://azure.microsoft.com/free" target="_blank">azure.microsoft.com/free</a>. You get  in credits for 30 days and 12 months of free services after that. The always-free tier includes one B1s Linux VM running 24/7, App Service F1 tier, Azure SQL 250GB, Blob Storage 5GB, and the AKS management layer at no cost. This is your primary lab environment for all of Phase 1 and Phase 2. Set up a budget alert at EUR 20 per month immediately after creating the account so you are notified before spending anything real.</p>
+</div>
+
+<div class="action-box">
+  <h4>Step 3: Set up your GitHub repositories right now</h4>
+  <p>Create three repositories on github.com/jeremy-trinity: <strong>learning-log</strong> (daily study notes, commit every single day), <strong>azure-project-01</strong> (your first portfolio project, Terraform VNet and VM), and <strong>cloud-engineering</strong> (scratch pad for code experiments). Read the Conventional Commits specification at conventionalcommits.org and apply it from the very first commit. This is the contribution graph that IBM and Deloitte recruiters will see on your profile before they ever read your CV. Build it from day one, not from month three.</p>
+</div>
+
+<div class="action-box">
+  <h4>Step 4: Bookmark these five free resources you will use every month</h4>
+  <p><strong>John Savill YouTube:</strong> youtube.com/@NTFAQGuy: the best free AZ-104, AZ-305, and AZ-400 study crams on the internet. Watch my study cram the week before every certification exam booking. <strong>Microsoft Learn:</strong> learn.microsoft.com: official learning paths and the free official practice assessments that are written by the same team that writes the real exams. <strong>Azure Cloud Shell:</strong> shell.azure.com: browser terminal with Azure CLI, PowerShell, Terraform, and kubectl pre-installed, free, no installation required. <strong>KodeKloud free tier:</strong> kodekloud.com: browser-based interactive labs for Docker, Kubernetes, Linux, and Terraform. <strong>OverTheWire Bandit:</strong> overthewire.org/wargames/bandit: Linux command line practice levels 0-15, complete this in Month 1.</p>
+</div>
+
+<!-- ══ PHASE 1 ══ -->
+<div class="anchor" id="phase1"></div>
+<div class="phase-banner ph1">
+  <h2>Phase 1: Foundation: Months 1 to 4</h2>
+  <p>You are building the ground floor everything else sits on. Linux fluency, networking concepts, Git workflow, Python basics, Azure account live, AZ-900 passed, and your first real Terraform project on GitHub. None of these are optional. Every module in every later phase assumes you have done this work.</p>
+  <div class="phase-meta">Goal: AZ-900 passed · Linux and networking solid · Git workflow active · First Terraform project live · Python Days 1-50 complete</div>
+</div>
+
+<!-- MONTH 1 -->
+<div class="month-block acc-block is-collapsed" id="month-1">
+  <div class="month-header acc-head">
+    <span class="month-num mn1">Month 1</span>
+    <div>
+      <div class="month-title">Linux, Networking, Git, Python kickoff</div>
+      <div class="month-goal">The month you build the foundations that every Azure service builds on.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">Linux with Imran Afzal. Your primary Day 1 course</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/linux/FCC624" alt="linux">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge ext-badge">[EXT] Replaces thin course 371</span> Complete Linux Training Course 2026</div>
+      <div class="cc-meta">Imran Afzal · ⭐ 4.7 · 45,600+ reviews · ~18h total · Study months 1-2</div>
+    </div>
+  </div>
+  <p class="cc-why">This is your very first course and it is the most important foundation decision in the plan. The catalogue had course 371 for Linux at only 2 hours and 64 reviews. That is dangerously thin. A student review of Imran's course reads: "I am now working as a Linux Systems Administrator with IBM and you played a big part in educating me." IBM is one of your two primary employers. You need to know Linux the way IBM engineers know Linux, not the way a weekend hobbyist knows it.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete these sections in Month 1 (weeks 1-2):</p>
+<ul class="section-list"><li class="priority">Section 1: Download and Install Linux <em>Set up Ubuntu in Azure VM. You are practising on the cloud from day one</em></li><li class="priority">Section 2: System Access and File System</li><li class="priority">Section 3: Linux Fundamentals: navigating, files, directories, links</li><li class="priority">Section 4: Linux File and Directory Permissions <em>chmod, chown. You will use these daily in production</em></li><li class="priority">Section 5: Linux File Maintenance Commands</li><li class="priority">Section 6: Linux Text Processing: grep, awk, sed <em>Critical for log analysis and KQL later</em></li><li class="priority">Section 7: Linux System Administration</li><li class="priority">Section 8: Linux Boot Process <em>Understand the concept, do not memorise it</em></li></ul>
+<p style="color:var(--ink3);font-size:.8rem;margin-top:.5rem;">Sections 9-12 (shell scripting, networking commands, system monitoring) carry into Month 2.</p>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/complete-linux-training-course-to-get-your-dream-it-job/" target="_blank">udemy.com/course/complete-linux-training-course</a><br>Instructor profile: <a href="https://www.udemy.com/user/imran-afzal/" target="_blank">udemy.com/user/imran-afzal/</a></div>
+  
+</div>
+  <div class="free-res"><span class="fr-icon">🎮</span><p>OverTheWire Bandit: overthewire.org/wargames/bandit: Complete levels 0-15 across Month 1 alongside the Udemy course. This is where command line fluency becomes automatic. It is a game, but the skills are real. Every level requires you to find a password by using Linux commands. By level 15 you will navigate a Linux file system faster than you navigate Windows.</p></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2 parallel</span><span class="week-desc">Networking with David Bombal, targeted sections only, not the full course</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="cisco">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge ext-badge">[EXT] Zero networking in catalogue</span> The Complete Networking Fundamentals Course</div>
+      <div class="cc-meta">David Bombal · ⭐ 4.7 · 200,000+ reviews · 6-8 hours used from an 80-hour course</div>
+    </div>
+  </div>
+  <p class="cc-why">There was not a single dedicated networking course across all 774 courses in the catalogue. This was the most dangerous gap. The Azure networking questions in AZ-104 are the most failed section by candidates who skip networking fundamentals. Candidates who understand subnetting, routing, and firewall concepts before opening Azure pass the networking section with confidence. Candidates who see Azure VNets first struggle for months. You are doing this now so you never struggle with it.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Do NOT attempt to complete this course. Use only these targeted sections, approximately 6-8 hours total across months 1-2:</p>
+<ul class="section-list"><li class="priority">Section IP Addressing: IPv4, CIDR notation, subnetting, essential for Azure VNet design <em>Every Azure VNet address space and subnet calculation uses this</em></li><li class="priority">Section DNS: How DNS resolves, records, forwarders, feeds Azure DNS directly</li><li class="priority">Section Firewalls and ACLs: How rules work and are ordered, feeds NSG configuration <em>Understanding rule priority in NSGs requires this</em></li><li class="priority">Section Routing: Basic static and dynamic routing, feeds UDR understanding</li><li class="priority">Section TCP/IP: Connection establishment, ports, protocols, feeds security group rules</li></ul>
+  <div class="cc-urls">Search Personal Plan: "Complete Networking Fundamentals Course David Bombal"<br>Instructor profile: <a href="https://www.udemy.com/user/davidbombal/" target="_blank">udemy.com/user/davidbombal/</a></div>
+  
+</div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 3-4</span><span class="week-desc">Git and GitHub with Colt Steele, the daily habit that builds your professional reputation</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/github/181717" alt="github">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #45]</span> The Git and GitHub Bootcamp</div>
+      <div class="cc-meta">Colt Steele · ⭐ 4.7 · 40,989 reviews · 17h total → 11h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">Git is not optional. Every portfolio project, every lab file, every study note goes on GitHub from day one. IBM and Deloitte recruiters look at your GitHub profile before they read your CV. The green contribution graph tells them immediately whether you work consistently or only in bursts. Build this habit now and never break it.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete sections 1-12 this month:</p>
+<ul class="section-list"><li>Section 1: Introduction</li><li class="priority">Section 2: Installation and Setup <em>Get Git running and connected to your GitHub account</em></li><li class="priority">Section 3: The Very Basics of Git: Adding and Committing</li><li class="priority">Section 4: Commits in Detail</li><li class="priority">Section 5: Working with Branches</li><li class="priority">Section 6: Merging Branches</li><li>Section 7: Comparing Changes with Git Diff</li><li>Section 8: The Ins and Outs of Stashing</li><li class="priority">Section 9: Undoing Changes and Time Traveling <em>You will use this when you break something</em></li><li class="priority">Section 10: GitHub: The Basics</li><li class="priority">Section 11: Fetching and Pulling</li><li>Section 12: GitHub Grab Bag: Odds and Ends</li></ul>
+<p style="color:var(--ink3);font-size:.8rem;margin-top:.5rem;">Sections 13-20 (reflogs, tags, aliases, workflows) carry into Month 2.</p>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/git-and-github-bootcamp/" target="_blank">udemy.com/course/git-and-github-bootcamp/</a><br>Instructor profile: <a href="https://www.udemy.com/user/coltsteele/" target="_blank">udemy.com/user/coltsteele/</a></div>
+  
+</div>
+  <div class="action-box"><h4>Lab action: set up your GitHub presence right now</h4><ul><li>Create github.com/jeremy-trinity/learning-log: commit a study note here every single day, even just one line. This builds the contribution graph.</li><li>Create github.com/jeremy-trinity/azure-project-01. This is where your first Terraform project lives in Month 4.</li><li>Create github.com/jeremy-trinity/cloud-engineering, scratch pad for code experiments.</li><li>Read the Conventional Commits spec at conventionalcommits.org. Apply it from your first commit. Format: feat:, fix:, docs:, chore:. This signals professionalism to every engineer who reads your commits.</li></ul></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Weeks 1-4 parallel</span><span class="week-desc">Python: Days 1-15, already owned, no Personal Plan needed</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/python/3776AB" alt="python">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge own-badge">[OWNED] Already in your library</span> 100 Days of Code: The Complete Python Pro Bootcamp</div>
+      <div class="cc-meta">Dr. Angela Yu · ⭐ 4.7 · Already purchased · 56h total · Study across months 1-4</div>
+    </div>
+  </div>
+  <p class="cc-why">Already in your library. Do not rush this course. The correct pace is 1-2 Python days per study session, not blitzing through 10 days in a weekend. Python will be running code inside Azure functions, calling the Azure SDK, and writing automation scripts by month 5. Build the habits correctly now.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete Days 1-15 this month:</p>
+<ul class="section-list"><li>Section Days 1-5: Beginner: printing, variables, string manipulation, input, loops</li><li>Section Days 6-10: Beginner: functions, conditionals, while loops, logic</li><li>Section Days 11-15: Beginner: scope, debugging, string and number methods, files</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/100-days-of-code/" target="_blank">udemy.com/course/100-days-of-code/</a><br>Instructor: <a href="https://www.udemy.com/user/angela_yu/" target="_blank">udemy.com/user/angela_yu/</a></div>
+  
+</div>
+  <div class="free-res"><span class="fr-icon">🎓</span><p>CS50x parallel track: Continue CS50x every Saturday, approximately 2.5 hours. You started Lecture 0 in late March. Keep going. Week 6 Python reinforces 100 Days of Code. Week 4 memory and pointers builds systems thinking that feeds Kubernetes later. Do not let it replace Azure study but do not abandon it. It strengthens UoPeople grades, cloud skills, and GitHub activity simultaneously. cs50.harvard.edu/x</p></div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">~4</div><div class="ms-label">Courses active this month</div></div>
+  <div class="ms"><div class="ms-val">~12h</div><div class="ms-label">Linux study (Udemy + Bandit)</div></div>
+  <div class="ms"><div class="ms-val">~7h</div><div class="ms-label">Git and networking combined</div></div>
+  <div class="ms"><div class="ms-val">15 days</div><div class="ms-label">Python completed</div></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 2 -->
+<div class="month-block acc-block is-collapsed" id="month-2">
+  <div class="month-header acc-head">
+    <span class="month-num mn2">Month 2</span>
+    <div>
+      <div class="month-title">PowerShell + Linux completion + AZ-900 exam</div>
+      <div class="month-goal">The month you earn your first certification.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">PowerShell, a critical gap that had zero coverage in 774 courses</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://www.svgrepo.com/download/473762/powershell.svg" alt="powershell">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge ext-badge">[EXT] Zero PowerShell in catalogue</span> PowerShell Master Class</div>
+      <div class="cc-meta">John Savill (Microsoft Azure MVP) · ⭐ 4.7 · Use sections 1-6 only this month (~4-5 hours)</div>
+    </div>
+  </div>
+  <p class="cc-why">PowerShell is tested directly in the AZ-104 exam. Questions will ask you to write a PowerShell command to accomplish a specific task. It appears in virtually every Azure cloud engineer job posting at IBM and Deloitte. There was not a single PowerShell course in all 774 catalogue courses. This addition was non-negotiable.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete sections 1-6 this month (foundational layer only):</p>
+<ul class="section-list"><li class="priority">Section 1: PowerShell Introduction: how it differs from CMD and Bash</li><li class="priority">Section 2: Core cmdlets: Get-Help, Get-Command, Get-Member <em>These three are the foundation of everything in PowerShell</em></li><li class="priority">Section 3: Variables and data types</li><li class="priority">Section 4: Pipeline: piping objects between cmdlets <em>This is PowerShell's superpower over Bash</em></li><li class="priority">Section 5: Conditional logic and loops</li><li class="priority">Section 6: Functions and scripts: writing your first reusable script</li></ul>
+<p style="color:var(--ink3);font-size:.8rem;margin-top:.5rem;">Sections 7+ (modules, remoting, Azure Az module) carry into Month 3.</p>
+  <div class="cc-urls">Search Personal Plan: "PowerShell Master Class John Savill" or "PowerShell for Beginners Jason Yoder"<br>Alternative if neither is on Plan: "Learn PowerShell in a Month of Lunches" by Don Jones<br>Instructor profile: <a href="https://www.udemy.com/user/john-savill/" target="_blank">udemy.com/user/john-savill/</a></div>
+  
+</div>
+  <div class="action-box"><h4>Practise in Azure Cloud Shell after every section</h4><p>After each PowerShell section, open shell.azure.com (free, no install, PowerShell pre-loaded) and immediately apply what you just learned. Create a resource group with New-AzResourceGroup. List all VMs with Get-AzVM. Assign an RBAC role with New-AzRoleAssignment. This is the direct bridge from PowerShell theory to Azure administration. If you only watch and never do, the exam will expose you.</p></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 2-3</span><span class="week-desc">Linux completion, sections 9-12 from Imran Afzal's course</span></div>
+  <ul class="section-list"><li class="priority">Section 9: Shell Scripting: write your first bash automation scripts <em>You will write bash scripts to automate Azure deployments throughout the bootcamp</em></li><li class="priority">Section 10: Networking Services: SSH, SCP, rsync, netstat, traceroute</li><li class="priority">Section 11: System Monitoring: top, ps, df, du, iostat <em>These are what you use to diagnose problems in live Azure VMs</em></li><li>Section 12: System Maintenance</li></ul>
+  <p style="color:var(--ink2);font-size:.84rem;">Also complete the remaining targeted Bombal networking sections this week. Finish your 6-8 hour networking foundation before moving to Azure.</p>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 3-4</span><span class="week-desc">AZ-900 with Scott Duffy. Your first certification</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #88]</span> Master Microsoft Azure Fundamentals: AZ-900 Exam Prep 2025</div>
+      <div class="cc-meta">Scott Duffy · ⭐ 4.6 · 138,483 reviews · 9h → 6h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">Scott Duffy is the most review-validated AZ-900 instructor in the catalogue and the same instructor as the AZ-104 course you will use in Month 5. This is not a difficult certification but do not underinvest in it. AZ-900 is the lens through which IBM and Deloitte HR verify that you understand the Azure vocabulary before an interview.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete all 15 sections in full:</p>
+<ul class="section-list"><li>Section 1: Introduction: What Is Cloud Computing?</li><li>Section 2: The Language of Cloud Computing</li><li class="priority">Section 3: The Language of Azure</li><li class="priority">Section 4: Core Azure Architectural Components</li><li class="priority">Section 5: Compute and Networking Services</li><li class="priority">Section 6: Storage Services</li><li class="priority">Section 7: Identity, Access, and Security <em>This is AZ-104 preview territory, pay attention</em></li><li class="priority">Section 8: Cost Management and Service Level Agreements</li><li class="priority">Section 9: Governance and Compliance</li><li class="priority">Section 10: Tools for Managing and Deploying Azure Resources</li><li class="priority">Section 11: Monitoring Tools</li><li class="priority">Section 12: AZ-900 Practice Exam</li><li>Section 13-15: Additional practice and review</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/az900-azure/" target="_blank">udemy.com/course/az900-azure/</a><br>Practice tests: <a href="https://www.udemy.com/course/az900-azure-practice-tests/" target="_blank">udemy.com/course/az900-azure-practice-tests/</a> [CAT #190]</div>
+  
+</div>
+  <div class="free-res"><span class="fr-icon">📺</span><p>John Savill AZ-900 study cram: youtube.com/@NTFAQGuy: Search "AZ-900 study cram" and watch it in the week before booking the exam. It is 3-5 hours and synthesises everything into a coherent revision session. This is your most effective last-mile revision tool for every certification in this plan. Bookmark the channel now and use it before every single exam.</p></div>
+  <div class="free-res"><span class="fr-icon">📚</span><p>Microsoft Learn AZ-900 learning path: learn.microsoft.com: Complete the hands-on exercises in your Azure free account as you work through each Duffy section. Free. The exercises reinforce every concept with actual Azure portal interaction.</p></div>
+  <div class="exam-box"><h4>🎯 Exam: AZ-900 Microsoft Azure Fundamentals</h4><p><strong>Fee:</strong> Approximately EUR 90-95 &nbsp;|&nbsp; <strong>Target:</strong> End of Month 2</p><p>Target 85%+ on the Scott Duffy practice tests (CAT #190) before booking. Check microsoft.com/en-us/trainingdays for a free exam voucher from a Microsoft Virtual Training Day, these events frequently include AZ-900 vouchers. Book through learn.microsoft.com/en-us/certifications/azure-fundamentals/</p></div>
+  <div class="python-track"><p><strong>Python parallel track:</strong> Days Days 16-30. OOP introduction, lists, dictionaries, functions, small projects</p></div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">AZ-900 ✓</div><div class="ms-label">First certification earned</div></div>
+  <div class="ms"><div class="ms-val">Linux done</div><div class="ms-label">Imran Afzal complete</div></div>
+  <div class="ms"><div class="ms-val">30 days</div><div class="ms-label">Python completed</div></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 3 -->
+<div class="month-block acc-block is-collapsed" id="month-3">
+  <div class="month-header acc-head">
+    <span class="month-num mn3">Month 3</span>
+    <div>
+      <div class="month-title">Azure deep dive, learning to actually use Azure, not just talk about it</div>
+      <div class="month-goal">Deploy every resource type manually. PowerShell and CLI both.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Weeks 1-4</span><span class="week-desc">Microsoft Azure: From Zero to Hero with Memi Lavi</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #633]</span> Microsoft Azure: From Zero to Hero. The Complete Guide</div>
+      <div class="cc-meta">Memi Lavi · ⭐ 4.5 · 22,441 reviews · 21h → 14h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">AZ-900 gave you the vocabulary. This course gives you the hands. After completing this month, you will have deployed VMs, VNets with NSGs, App Service applications, Azure SQL databases with managed identity auth, and Key Vault, all from both the portal and the command line. Every resource you deploy here you will later automate with Terraform in Month 4.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete sections 1-12 in Month 3:</p>
+<ul class="section-list"><li>Section 1: Welcome</li><li>Section 2: Introduction to Cloud Computing</li><li class="priority">Section 3: Azure Setup: create your free Azure account here if not done</li><li class="priority">Section 4: Azure Core Resources: VMs, App Service, storage</li><li class="priority">Section 5: Virtual Machines: deep dive <em>Deploy, resize, add disks, connect via SSH</em></li><li class="priority">Section 6: Networking: VNets, Subnets, NSGs <em>Your Bombal networking foundation pays off here. You already understand subnets and ACLs</em></li><li class="priority">Section 7: Storage</li><li class="priority">Section 8: Load Balancer</li><li class="priority">Section 9: App Service</li><li class="priority">Section 10: Azure SQL Database <em>Configure managed identity authentication. No passwords</em></li><li class="priority">Section 11: Security in Azure: Entra ID, RBAC, Key Vault</li><li class="priority">Section 12: Azure DevOps introduction <em>Overview only, deep study comes in Month 9</em></li></ul>
+<p style="color:var(--ink3);font-size:.8rem;margin-top:.5rem;">Sections 13-20 carry into Month 4 weeks 1-2.</p>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/microsoft-azure-from-zero-to-hero-the-complete-guide/" target="_blank">udemy.com/course/microsoft-azure-from-zero-to-hero-the-complete-guide/</a><br>Instructor: <a href="https://www.udemy.com/user/memi-lavi/" target="_blank">udemy.com/user/memi-lavi/</a></div>
+  
+</div>
+  <div class="action-box"><h4>Lab action: deploy everything manually this month. Every. Single. Resource.</h4><ul><li>Create a VNet with two subnets. Add an NSG. Apply inbound rules. Try to SSH into your VM before adding the SSH rule, notice it fails. Add the rule. Connect. This is how NSG rule ordering becomes intuitive.</li><li>Deploy a VM. SSH in from Azure Cloud Shell. Install nginx. Create an inbound port 80 rule. Verify the web server is reachable from your browser.</li><li>Deploy App Service with a sample Python Flask app. Connect it to Azure SQL using managed identity. No connection string passwords.</li><li>Create a Key Vault. Store a secret. Retrieve it via CLI. Assign a managed identity access policy.</li><li>Write PowerShell commands to create each resource after creating it manually. This builds the dual fluency the AZ-104 exam tests.</li></ul></div>
+  <div class="python-track"><p><strong>Python parallel track:</strong> Days Days 31-50. Intermediate: file manipulation, error handling, APIs with requests, OOP deep dive</p></div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">8+</div><div class="ms-label">Resource types deployed manually</div></div>
+  <div class="ms"><div class="ms-val">50 days</div><div class="ms-label">Python completed</div></div>
+  <div class="ms"><div class="ms-val">Month 4</div><div class="ms-label">Terraform starts next</div></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 4 -->
+<div class="month-block acc-block is-collapsed" id="month-4">
+  <div class="month-header acc-head">
+    <span class="month-num mn4">Month 4</span>
+    <div>
+      <div class="month-title">Terraform first contact + Project 1 live on GitHub</div>
+      <div class="month-goal">AZ-900 passed. Now you rebuild everything in code.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">Complete Azure Zero to Hero sections 13-20</span></div>
+  <ul class="section-list"><li class="priority">Section 13: Azure Monitor and logging <em>Reinforces your monitoring foundation. Log Analytics workspace, diagnostic settings</em></li><li class="priority">Section 14: Containers and ACI <em>Preview of Docker and containers before Month 6</em></li><li class="priority">Section 15: Azure Kubernetes Service overview <em>Overview only, deep study in Month 8</em></li><li class="priority">Section 16: Azure Functions: serverless</li><li>Section 17: Messaging: Service Bus, Event Hub</li><li>Section 18: CDN and Front Door</li><li class="priority">Section 19: Cost Management <em>Set up cost alerts, review the cost analysis dashboard for your lab subscriptions</em></li><li class="priority">Section 20: Architectural patterns and wrap-up</li></ul>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 2-4</span><span class="week-desc">Terraform 101 Azure Edition, the highest-rated Azure Terraform course in the catalogue</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/terraform/7B42BC" alt="terraform">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #52] ⭐ 4.8, highest-rated Azure Terraform in catalogue</span> Terraform 101: The Ultimate Hands-On Guide [Azure Edition]</div>
+      <div class="cc-meta">Mark · ⭐ 4.8 · 1,524 reviews · 12h → 8h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">You have now deployed every resource type manually. Now you rebuild it all in code. This is the conceptual shift that separates portal workers from IaC engineers. Terraform appears in 60%+ of senior Azure job postings. Starting it in Month 4 means you will have been writing Terraform for four months before your AZ-104 exam. Every project in this bootcamp is built in Terraform.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete all 10 sections:</p>
+<ul class="section-list"><li class="priority">Section 1: Course Introduction and Setup</li><li class="priority">Section 2: Terraform Basics: providers, init, plan, apply <em>This is the core workflow. Understand it deeply.</em></li><li class="priority">Section 3: Azure Resource Group and Resources</li><li class="priority">Section 4: Variables, Outputs, and Locals <em>Exam topic for Terraform Associate</em></li><li class="priority">Section 5: Terraform State <em>Exam topic, understand state files before you touch remote state</em></li><li class="priority">Section 6: Modules <em>Exam topic, modules are how production Terraform is written</em></li><li class="priority">Section 7: Remote State with Azure Storage <em>Exam topic, local state is never used in production</em></li><li class="priority">Section 8: Loops, Conditions, and Dynamic Blocks</li><li class="priority">Section 9: Workspaces and Environments <em>Exam topic</em></li><li class="priority">Section 10: Terraform with Azure DevOps CI/CD <em>Preview of Month 9 work</em></li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/terraform-101-azure-edition/" target="_blank">udemy.com/course/terraform-101-azure-edition/</a></div>
+  
+</div>
+  <div class="lab-box"><h4>🔧 Lab deliverable: azure-project-01, rebuild Month 3 labs in Terraform</h4><ul><li>Write Terraform code to deploy: resource group, VNet with two subnets, NSG with rules, Linux VM with public IP.</li><li>Add App Service plan and App Service. Add Azure SQL with managed identity authentication.</li><li>Store all secrets in Key Vault. Reference Key Vault from your Terraform code using data sources.</li><li>Push everything to github.com/jeremy-trinity/azure-project-01.</li><li>Write a README that includes: architecture diagram (use draw.io or the Azure Architecture Center), technology decisions ("I chose managed identity over connection strings because..."), and cost analysis ("This environment costs EUR X per month in the Azure free tier").</li><li>This is the project that IBM and Deloitte engineers will look at. Make it look like it was written by someone who knows what they are doing.</li></ul></div>
+  <div class="python-track"><p><strong>Python parallel track:</strong> Days Days 51-70. Intermediate: pandas introduction, web scraping, APIs, start calling Azure SDK from Python around Day 65</p></div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">Project 1 ✓</div><div class="ms-label">First GitHub portfolio project live</div></div>
+  <div class="ms"><div class="ms-val">70 days</div><div class="ms-label">Python completed</div></div>
+  <div class="ms"><div class="ms-val">Month 5</div><div class="ms-label">AZ-104 begins next</div></div>
+</div>
+</div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="anchor" id="phase2"></div>
+<div class="phase-banner ph2">
+  <h2>Phase 2: Differentiation: Months 5 to 10</h2>
+  <p>You have foundations. Now you build the credential that opens doors. AZ-104. Then you add Docker, Kubernetes, AKS, and CI/CD. Then Terraform Associate. Then Security+. By Month 10 you are employable. This is where the work gets real.</p>
+  <div class="phase-meta">Goal: AZ-104 passed · Terraform Associate passed · Docker and Kubernetes fluent · Projects 2 and 3 live · Security+ conceptual foundation built</div>
+</div>
+
+<!-- MONTH 5 -->
+<div class="month-block acc-block is-collapsed" id="month-5">
+  <div class="month-header acc-head">
+    <span class="month-num mn5">Month 5</span>
+    <div>
+      <div class="month-title">AZ-104 core study, the most important course in the plan</div>
+      <div class="month-goal">Do not rush this. This is the certification that opens every door.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Weeks 1-4</span><span class="week-desc">Scott Duffy AZ-104, replaces the inadequate catalogue course 205</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge ext-badge">[EXT] Replaces weak course 205 (4.2★, 247 reviews only)</span> AZ-104 Microsoft Azure Administrator, Complete Exam Prep</div>
+      <div class="cc-meta">Scott Duffy (Microsoft Azure MVP, 1M+ students) · ⭐ 4.8 · 80,000+ students · ~18h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">Course 205 from the catalogue had only 247 reviews. For your most important certification, that is unacceptable. Scott Duffy has over 1 million students and continuously updates the course as the exam changes. His philosophy: "The AZ-104 exam doesn't test theory. It tests whether you can actually administer Azure." Study with that in mind. For each topic, ask yourself: can I do this in the portal? Can I do it in PowerShell? Can I do it in the Azure CLI? All three.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete all sections. Emphasis distribution below. This is where to invest the most time:</p>
+<ul class="section-list"><li class="priority">Section Identity and Governance (20% of your study time): Entra ID, users, groups, app registrations, managed identities, RBAC custom roles, management groups, subscriptions, Azure Policy, blueprints <em>Foundation for AZ-500 and AZ-305, double investment pays twice</em></li><li class="priority">Section Storage: Storage accounts, blob, files, managed disks, lifecycle policies, replication tiers, access tiers, SAS tokens, Azure Backup</li><li class="priority">Section Compute: VMs creation and sizing, extensions, custom scripts, VM Scale Sets, App Service plans, Functions overview, container instances <em>Every resource type deployed and deleted at least once</em></li><li class="priority">Section Networking: VNets, NSGs, ASGs, Load Balancer, Application Gateway, Azure DNS, VNet Peering, Private Endpoints <em>HARDEST domain, most tested. Your Bombal foundation from Month 1 pays dividends here</em></li><li class="priority">Section Monitoring: Azure Monitor, Log Analytics workspaces, metric alerts, log query alerts, activity logs, diagnostic settings, practice KQL queries</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/70533-azure/" target="_blank">udemy.com/course/70533-azure/</a> (slug "70533-azure" is the original ID not the cert name. Use instructor profile if URL breaks)<br>Instructor profile: <a href="https://www.udemy.com/user/scottduffy2/" target="_blank">udemy.com/user/scottduffy2/</a></div>
+  
+</div>
+  <div class="free-res"><span class="fr-icon">📚</span><p>Microsoft Learn AZ-104 learning paths: learn.microsoft.com: Complete all 6 official learning paths in parallel with the Duffy course. Every exercise in your Azure free account. These are written by Microsoft and mirror the exam domains exactly.</p></div>
+  <div class="free-res"><span class="fr-icon">📺</span><p>KQL practice: learn.microsoft.com: Search "KQL tutorial" and complete the free module. KQL (Kusto Query Language) is tested in AZ-104 monitoring domain and appears in AZ-500, AZ-305, and AZ-400 later. Start practising now.</p></div>
+  <div class="action-box"><h4>PowerShell integration. Build the automation habit this month</h4><p>After each Azure topic in the Duffy course, write a PowerShell script that automates what you just did manually. VM creation, NSG rule modification, RBAC assignment, storage account deployment. By end of Month 5 you should be able to provision a full 3-tier environment via PowerShell without looking anything up. This is what AZ-104 tests.</p></div>
+  <div class="python-track"><p><strong>Python parallel track:</strong> Days Days 71-80. Python with Azure SDK: import azure.identity, azure.mgmt.resource, start making real Azure API call</p></div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">AZ-104</div><div class="ms-label">Core study complete</div></div>
+  <div class="ms"><div class="ms-val">Month 6</div><div class="ms-label">Docker and Kubernetes next</div></div>
+  <div class="ms"><div class="ms-val">Month 7</div><div class="ms-label">AZ-104 exam target</div></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 6 -->
+<div class="month-block acc-block is-collapsed" id="month-6">
+  <div class="month-header acc-head">
+    <span class="month-num mn6">Month 6</span>
+    <div>
+      <div class="month-title">Docker + Kubernetes foundations + AZ-104 revision</div>
+      <div class="month-goal">Build your container knowledge while keeping AZ-104 warm.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">Docker with Mumshad Mannambeth, fastest and clearest Docker introduction available</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/docker/2496ED" alt="docker">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #25]</span> Docker for the Absolute Beginner, Hands On, DevOps</div>
+      <div class="cc-meta">Mumshad Mannambeth (KodeKloud) · ⭐ 4.6 · 70,849 reviews · 4h → 3h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">Mumshad is the most trusted DevOps instructor on Udemy. His courses are used by engineers at Google, Microsoft, Amazon, and IBM. Start here for Docker. Complete the entire course in one week, it is short enough. After each section, go to kodekloud.com and complete the corresponding free lab in the browser.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete all 10 sections in week 1-2:</p>
+<ul class="section-list"><li class="priority">Section 1: Docker Overview</li><li class="priority">Section 2: Docker Commands</li><li class="priority">Section 3: Docker Run</li><li class="priority">Section 4: Docker Images and Dockerfile <em>Writing Dockerfiles is tested in every DevOps interview</em></li><li class="priority">Section 5: Docker Compose</li><li class="priority">Section 6: Docker Engine, Storage, and Networking</li><li class="priority">Section 7: Docker Swarm <em>Overview only. Swarm is not your focus</em></li><li class="priority">Section 8: Docker with Kubernetes preview</li><li class="priority">Section 9: Conclusion and practice</li><li class="priority">Section 10: YAML <em>Every Kubernetes manifest, every CI/CD pipeline, every Helm chart is YAML</em></li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/learn-docker/" target="_blank">udemy.com/course/learn-docker/</a><br>Instructor profile: <a href="https://www.udemy.com/user/mumshad-mannambeth/" target="_blank">udemy.com/user/mumshad-mannambeth/</a></div>
+  
+</div>
+  <div class="free-res"><span class="fr-icon">🔬</span><p>KodeKloud free labs: kodekloud.com: After each Udemy section, complete the corresponding free lab. Browser-based, no installation. This is Mumshad's own platform and the labs are the same ones embedded in my Udemy courses. From Month 6 onwards, video section first, KodeKloud lab second, every time.</p></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 3-4</span><span class="week-desc">Kubernetes with Mumshad Mannambeth, the foundation before AKS</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="kubernetes">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #34]</span> Kubernetes for the Absolute Beginners, Hands-on</div>
+      <div class="cc-meta">Mumshad Mannambeth (KodeKloud) · ⭐ 4.6 · 111,176 reviews · 7h → 4.5h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">Do not jump to AKS without understanding plain Kubernetes first. AKS is managed Kubernetes. If you do not understand what is being managed, you cannot diagnose it when it breaks. This course gives you the mental model. Month 8 gives you the production AKS implementation.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete all 11 sections:</p>
+<ul class="section-list"><li class="priority">Section 1: Kubernetes Overview</li><li class="priority">Section 2: Kubernetes Concepts: Pods, ReplicaSets, Deployments</li><li class="priority">Section 3: Networking</li><li class="priority">Section 4: Services</li><li class="priority">Section 5: Microservices Architecture</li><li class="priority">Section 6: Kubernetes on Cloud: Azure preview</li><li>Section 7: Setup: using Minikube locally</li><li class="priority">Section 8: YAMLs in Kubernetes <em>Write every manifest by hand. Do not copy-paste</em></li><li class="priority">Section 9: Kubernetes Commands reference</li><li class="priority">Section 10: Namespace, ConfigMaps, Secrets</li><li class="priority">Section 11: Practice Labs</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/learn-kubernetes/" target="_blank">udemy.com/course/learn-kubernetes/</a><br>Instructor profile: <a href="https://www.udemy.com/user/mumshad-mannambeth/" target="_blank">udemy.com/user/mumshad-mannambeth/</a></div>
+  
+</div>
+  <div class="free-res"><span class="fr-icon">🔬</span><p>Killercoda Kubernetes playground: killercoda.com/playgrounds/scenario/kubernetes. Free, browser-based Kubernetes cluster. Use this alongside the course. Try to break something, then fix it. Production readiness comes from diagnosing failures, not running happy-path scenarios.</p></div>
+  <div class="action-box"><h4>AZ-104 revision: 30 minutes per day</h4><p>Set a daily 30-minute AZ-104 revision block throughout Month 6. Use the Scott Duffy practice tests (CAT #190) to identify weak areas. Review those specific Microsoft Learn sections, not the entire course. Targeted revision is more effective than re-watching lectures.</p></div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">Docker ✓</div><div class="ms-label">Container fundamentals</div></div>
+  <div class="ms"><div class="ms-val">Kubernetes ✓</div><div class="ms-label">Orchestration fundamentals</div></div>
+  <div class="ms"><div class="ms-val">Month 7</div><div class="ms-label">AZ-104 exam next</div></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 7 -->
+<div class="month-block acc-block is-collapsed" id="month-7">
+  <div class="month-header acc-head">
+    <span class="month-num mn7">Month 7</span>
+    <div>
+      <div class="month-title">AZ-104 exam + Terraform depth</div>
+      <div class="month-goal">Book the exam. Pass it. Then go deeper on Terraform.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">AZ-104 practice tests and exam booking</span></div>
+  <p style="color:var(--ink2);font-size:.88rem;line-height:1.65;margin-bottom:.9rem;">You have studied AZ-104 for two months. Now you verify readiness with practice tests. Do not book the real exam until you consistently hit 85%+ on every practice test set. Case study questions are what fail candidates who only use MCQ tests. Use both sets below.</p>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge ext-badge">[EXT] AZ-104 exam confidence. MCQ set</span> AZ-104 Azure Administrator 100% Original Practice Tests</div>
+      <div class="cc-meta">Scott Duffy · ⭐ 4.8 · Same instructor as your primary course</div>
+    </div>
+  </div>
+  <p class="cc-why">Four practice tests of 25 questions each, updated to April 2025 exam version. Sit all four. Review every wrong answer against Microsoft Learn documentation, not by re-reading the question answer, but by finding the official Microsoft page that explains the concept. This is how wrong answers become permanently learned.</p>
+  
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/az104-azure-practice/" target="_blank">udemy.com/course/az104-azure-practice/</a></div>
+  
+</div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge ext-badge">[EXT] AZ-104 exam confidence, case study set</span> AZ-104 Practice Tests 2026 including Case Studies</div>
+      <div class="cc-meta">Joel Palmer (Microsoft Solution Architect) · ⭐ 4.8</div>
+    </div>
+  </div>
+  <p class="cc-why">Six full practice exams including case study scenarios: Fabrikam, Northwind, Adventure Works environments. Case study questions present a business scenario and ask you to design a solution across multiple questions that build on each other. MCQ-only candidates fail these. Joel Palmer's set is specifically designed to fix this gap.</p>
+  
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/az-104-practice-tests-2025-azure-administrator-associate/" target="_blank">udemy.com/course/az-104-practice-tests-2025-azure-administrator-associate/</a><br>Instructor: <a href="https://www.udemy.com/user/joelpalmer2/" target="_blank">udemy.com/user/joelpalmer2/</a></div>
+  
+</div>
+  <div class="free-res"><span class="fr-icon">📝</span><p>Microsoft Learn official AZ-104 practice assessment: learn.microsoft.com: Search "AZ-104 practice assessment". This is written by the same team that writes the real exam. Use it exactly two weeks before booking. Score below 75%: study two more weeks and retest. Score 75%+ combined with 85%+ on Duffy and Palmer: book the exam.</p></div>
+  <div class="exam-box"><h4>🎯 Exam: AZ-104 Microsoft Azure Administrator Associate</h4><p><strong>Fee:</strong> Approximately EUR 150-155 &nbsp;|&nbsp; <strong>Target:</strong> Month 7: THE most important certification</p><p>Book through learn.microsoft.com/en-us/certifications/azure-administrator/ Check microsoft.com/en-us/trainingdays for a Virtual Training Day AZ-104 voucher before paying. Watch John Savill's AZ-104 study cram on YouTube the week before: youtube.com/@NTFAQGuy. AZ-104 adds 15-20% to base salary and opens roles at enterprise cloud employers immediately.</p></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 3-4</span><span class="week-desc">Terraform on Azure depth. Alan Rodrigues takes over from Course 52</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/terraform/7B42BC" alt="terraform">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #53]</span> Terraform on Azure Services</div>
+      <div class="cc-meta">Alan Rodrigues · ⭐ 4.7 · 3,674 reviews · 21h → 14h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">Alan Rodrigues is the instructor you will follow for AZ-500 (Month 11), AZ-305 (Month 15), and AZ-400 (Month 17). His teaching style will become familiar. This course covers Azure-specific Terraform patterns at greater depth than Course 52 and is the bridge to AKS-with-Terraform in Month 8.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">All 8 sections, priority on sections 4-8:</p>
+<ul class="section-list"><li>Section 1: Introduction and Setup</li><li>Section 2: Basic Azure Resources with Terraform</li><li class="priority">Section 3: Networking Infrastructure <em>Reinforces Project 1 VNet work with deeper patterns</em></li><li class="priority">Section 4: Modules and reusable patterns <em>This is how production Terraform is structured at IBM and Deloitte</em></li><li class="priority">Section 5: Remote state and backends</li><li class="priority">Section 6: Azure DevOps + Terraform CI/CD pipeline <em>Preview of Month 9 pipeline work, pay close attention</em></li><li class="priority">Section 7: Azure Kubernetes Service with Terraform <em>Directly feeds Month 8 AKS work</em></li><li class="priority">Section 8: Advanced patterns and best practices</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/terraform-on-azure-services/" target="_blank">udemy.com/course/terraform-on-azure-services/</a><br>Instructor profile: <a href="https://www.udemy.com/user/alan-rodrigues-5/" target="_blank">udemy.com/user/alan-rodrigues-5/</a></div>
+  
+</div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">AZ-104 ✓</div><div class="ms-label">Most important cert earned</div></div>
+  <div class="ms"><div class="ms-val">LinkedIn</div><div class="ms-label">Update profile today, recruiters filter for AZ-104</div></div>
+  <div class="ms"><div class="ms-val">Apply</div><div class="ms-label">Start internship applications this week</div></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 8 -->
+<div class="month-block acc-block is-collapsed" id="month-8">
+  <div class="month-header acc-head">
+    <span class="month-num mn8">Month 8</span>
+    <div>
+      <div class="month-title">AKS + Azure DevOps integration, the highest-value course in the entire catalogue</div>
+      <div class="month-goal">This combination is what IBM and Deloitte actually hire for.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Weeks 1-3</span><span class="week-desc">AKS with Azure DevOps and Terraform. Kalyan Reddy</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="kubernetes">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #7]. Highest-value course in the entire 774-course catalogue</span> Azure Kubernetes Service with Azure DevOps and Terraform</div>
+      <div class="cc-meta">Kalyan Reddy (StackSimplify) · ⭐ 4.7 · 6,263 reviews · 28h → 19h at 1.5x · 34 sections across months 8-9</div>
+    </div>
+  </div>
+  <p class="cc-why">This course is the reason Month 8-9 exist as a dedicated block. AKS + Azure DevOps + Terraform in one integrated course is exactly the combination that appears in IBM and Deloitte senior cloud engineer job postings. After this course and Project 2, your GitHub portfolio demonstrates the combination that enterprise employers pay senior salaries for.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete sections 1-20 in Month 8. Sections 21-34 carry into Month 9:</p>
+<ul class="section-list"><li class="priority">Section 1-5: AKS architecture, cluster creation, kubectl fundamentals <em>Understand the control plane vs data plane, this appears in architecture interviews</em></li><li class="priority">Section 6-10: Deployments, services, ingress, DNS</li><li class="priority">Section 11-15: Storage: Azure Disk, Azure Files, persistent volumes</li><li class="priority">Section 16-20: Azure DevOps CI/CD pipelines for AKS <em>This section alone is worth the 19 hours, pipelines for containerised apps are the standard at enterprise scale</em></li><li class="priority">Section 21-25: Terraform for AKS provisioning <em>Carry into Month 9</em></li><li class="priority">Section 26-30: Helm, autoscaling, monitoring <em>Carry into Month 9</em></li><li class="priority">Section 31-34: Security hardening, workload identity, RBAC <em>Carry into Month 9</em></li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/azure-kubernetes-service-with-azure-devops-and-terraform/" target="_blank">udemy.com/course/azure-kubernetes-service-with-azure-devops-and-terraform/</a><br>Instructor profile: <a href="https://www.udemy.com/user/kalyan-reddy-9/" target="_blank">udemy.com/user/kalyan-reddy-9/</a></div>
+  
+</div>
+  <div class="lab-box"><h4>🔧 Lab deliverable: azure-project-02, containerised application on AKS with full CI/CD</h4><ul><li>Deploy a containerised Python or Node.js application to AKS using Terraform for infrastructure provisioning.</li><li>Build an Azure DevOps CI/CD pipeline that: builds the Docker image, pushes to Azure Container Registry, and deploys to AKS on every commit to main.</li><li>Configure Horizontal Pod Autoscaler based on CPU metrics.</li><li>Add Azure Monitor container insights to the AKS cluster.</li><li>Reference the AKS baseline architecture from learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks in your README.</li><li>Write an Architecture Decision Record (ADR) explaining why you chose AKS over ACI for this workload.</li></ul></div>
+  <div class="free-res"><span class="fr-icon">🏛</span><p>Azure Architecture Center habit: learn.microsoft.com/en-us/azure/architecture: From this month onward, every architecture diagram in every project README references or is based on an official pattern from the Azure Architecture Center. This single habit is what separates tutorial-level candidates from enterprise-ready ones in IBM and Deloitte hiring processes.</p></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 9 -->
+<div class="month-block acc-block is-collapsed" id="month-9">
+  <div class="month-header acc-head">
+    <span class="month-num mn9">Month 9</span>
+    <div>
+      <div class="month-title">AKS complete + Azure DevOps mastery + Terraform Associate prep</div>
+      <div class="month-goal">Complete the AKS course, master CI/CD pipelines, prepare for the Terraform exam.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">Complete AKS course sections 21-34</span></div>
+  <ul class="section-list"><li class="priority">Section 21-25: Terraform for AKS provisioning <em>Writing Terraform modules for AKS clusters at production scale</em></li><li class="priority">Section 26-30: Helm chart deployment, autoscaling, Prometheus monitoring stack <em>Helm is the package manager for Kubernetes. You will use it in every AKS deployment</em></li><li class="priority">Section 31-34: Security hardening, workload identity, RBAC in AKS <em>Security in containers is AZ-500 territory. This is the bridge</em></li></ul>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 3-4</span><span class="week-desc">Azure DevOps CI/CD Pipelines with Houssem Dellai</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/githubactions/2088FF" alt="githubactions">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #36]</span> Learn Azure DevOps CI/CD Pipelines</div>
+      <div class="cc-meta">Houssem Dellai · ⭐ 4.5 · 4,217 reviews · 14h → 9h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">Azure DevOps is the CI/CD platform that IBM and Deloitte actually use at enterprise scale. This course closes the gap between knowing what a pipeline is and being able to build one that handles secrets, multi-environment deployments, and Terraform runs.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">All 30 sections. Focus on sections 5-22:</p>
+<ul class="section-list"><li class="priority">Section 1-4: Introduction and Azure DevOps overview <em>Light review only. You already know the overview</em></li><li class="priority">Section 5-9: Classic pipelines to YAML pipelines migration <em>YAML pipelines are the standard, classic pipelines are being retired</em></li><li class="priority">Section 10-15: Multi-stage pipelines, environments, gates <em>Multi-stage with approval gates is what production deployments look like</em></li><li class="priority">Section 16-20: Pipeline variables, secrets, Azure Key Vault integration <em>Secrets in pipelines is a security requirement. You will be tested on this</em></li><li class="priority">Section 21-25: Docker and container builds in pipelines</li><li class="priority">Section 26-30: Terraform in pipelines <em>This reinforces Month 7 Terraform work directly</em></li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/azure-devops-ci-cd-pipelines/" target="_blank">udemy.com/course/azure-devops-ci-cd-pipelines/</a><br>Instructor: <a href="https://www.udemy.com/user/houssem-dellai/" target="_blank">udemy.com/user/houssem-dellai/</a></div>
+  
+</div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Parallel. Terraform Associate exam prep</span><span class="week-desc">Zeal Vora's course as a revision checklist</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/terraform/7B42BC" alt="terraform">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #61]</span> HashiCorp Certified Terraform Associate 2026</div>
+      <div class="cc-meta">Zeal Vora · ⭐ 4.7 · 31,104 reviews · Use as revision checklist, not primary study</div>
+    </div>
+  </div>
+  <p class="cc-why">You have been building Terraform since Month 4. This course is not new learning. It is the exam revision layer that ensures you have covered every topic the HashiCorp exam tests. Use it as a checklist.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Use these sections as your exam revision checklist:</p>
+<ul class="section-list"><li class="priority">Section 3: Terraform Variables and Outputs <em>Exam topic</em></li><li class="priority">Section 4: Terraform State <em>Exam topic, local vs remote, locking, drift detection</em></li><li class="priority">Section 5: Terraform Modules <em>Exam topic, module sources, versions, inputs, outputs</em></li><li class="priority">Section 6: Terraform Backends <em>Exam topic. Azure Storage backend configuration</em></li><li class="priority">Section 7: Workspaces <em>Exam topic</em></li><li class="priority">Section 9: Terraform Cloud and HCP Terraform <em>Exam topic, the exam tests HCP Terraform features</em></li><li class="priority">Section 10-11: Practice exams</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/terraform-beginner-to-advanced/" target="_blank">udemy.com/course/terraform-beginner-to-advanced/</a><br>Instructor: <a href="https://www.udemy.com/user/zeal-vora/" target="_blank">udemy.com/user/zeal-vora/</a></div>
+  
+</div>
+  <div class="warn-box"><h4>⚠ CAT #472. Azure DevOps Bootcamp supplement</h4><p>Course 472 (Azure DevOps Bootcamp: Zero to Hero, 4.2★, 1,283 reviews) is in the catalogue and can be used as a supplementary second perspective on specific sections where Course 36 leaves gaps. Do not treat it as primary study. Use it selectively when you want another explanation of a concept that Course 36 did not fully clarify.</p></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 10 -->
+<div class="month-block acc-block is-collapsed" id="month-10">
+  <div class="month-header acc-head">
+    <span class="month-num mn10">Month 10</span>
+    <div>
+      <div class="month-title">Terraform Associate exam + Security+ foundations, two milestones in one month</div>
+      <div class="month-goal">Book and sit the Terraform exam. Then start the security conceptual foundation.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1</span><span class="week-desc">Terraform Associate exam</span></div>
+  <div class="exam-box"><h4>🎯 Exam: HashiCorp Terraform Associate (004)</h4><p><strong>Fee:</strong> Approximately EUR 65 &nbsp;|&nbsp; <strong>Target:</strong> Week 1 of Month 10</p><p>You have deployed Terraform since Month 4, completed Course 52 (foundations), Course 53 (Azure depth), AKS sections 21-25 (production patterns), and used Course 61 as a revision checklist. You are ready. Book through hashicorp.com/certification/terraform-associate. Review exam objectives at developer.hashicorp.com/terraform/tutorials/certification-004/associate-study-004 the week before booking.</p></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Weeks 2-4</span><span class="week-desc">CompTIA Security+, the conceptual foundation that makes AZ-500 click</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="cisco">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #94]</span> CompTIA Security+ (SY0-701) Complete Course and Practice Exam</div>
+      <div class="cc-meta">Jason Dion · ⭐ 4.6 · 116,005 reviews · 31h → 21h at 1.5x · Sections 1-15 this month</div>
+    </div>
+  </div>
+  <p class="cc-why">Security+ provides vendor-neutral security foundations. Without it, AZ-500 content (PIM, Conditional Access, Defender, Sentinel) feels like disconnected product features. With Security+ foundations, AZ-500 feels like a natural extension of concepts you already understand. Starting Security+ before AZ-500 is the correct sequence.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">Complete sections 1-15 this month. Sections 16-29 carry into Month 11:</p>
+<ul class="section-list"><li>Section 1: Introduction</li><li class="priority">Section 2: Cybersecurity Basics</li><li class="priority">Section 3: Malware and Attack Types</li><li class="priority">Section 4: Social Engineering and Password Attacks</li><li class="priority">Section 5: Network Threats <em>Reinforces your Bombal networking knowledge. NSG rules now have threat context</em></li><li class="priority">Section 6: Vulnerabilities</li><li class="priority">Section 7: Security Assessment and Testing</li><li class="priority">Section 8: Cryptography <em>TLS, certificates, PKI. This is Key Vault territory in Azure</em></li><li class="priority">Section 9: PKI and Certificates</li><li class="priority">Section 10: Networking Basics <em>Further reinforces networking foundation</em></li><li class="priority">Section 11: Infrastructure Security</li><li class="priority">Section 12: Identity and Access Management <em>Directly maps to AZ-500 Entra ID and PIM content</em></li><li class="priority">Section 13: Cloud Security <em>Directly maps to Defender for Cloud and Sentinel</em></li><li class="priority">Section 14: Application Security</li><li class="priority">Section 15: Data Privacy and GDPR context <em>Your EU market differentiator. GDPR knowledge is commercially valuable in regulated European markets</em></li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/securityplus/" target="_blank">udemy.com/course/securityplus/</a><br>Instructor: <a href="https://www.udemy.com/user/jason-dion/" target="_blank">udemy.com/user/jason-dion/</a></div>
+  
+</div>
+  <div class="lab-box"><h4>🔧 Lab deliverable: azure-project-03 begins: Zero Trust security implementation</h4><ul><li>Deploy Key Vault. Store all application secrets and connection strings here. No secrets in environment variables.</li><li>Enable Defender for Cloud on your subscription. Review the secure score. Address every High severity recommendation.</li><li>Configure NSGs with private endpoints for all PaaS services. No public endpoints.</li><li>Add Azure Policy assignment to deny creation of public IP addresses in your lab environment.</li><li>Document the threat model for your lab environment: what are the attack surfaces and how are they mitigated.</li></ul></div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">Terraform ✓</div><div class="ms-label">HashiCorp Associate earned</div></div>
+  <div class="ms"><div class="ms-val">3 certs</div><div class="ms-label">AZ-900, AZ-104, Terraform</div></div>
+  <div class="ms"><div class="ms-val">Phase 3</div><div class="ms-label">Expert layer begins next month</div></div>
+</div>
+</div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="anchor" id="phase3"></div>
+<div class="phase-banner ph3">
+  <h2>Phase 3: Expert Layer: Months 11 to 18</h2>
+  <p>You are now building the certifications and skills that define senior cloud engineers. AZ-500 security. AZ-305 architecture. CKA-level Kubernetes depth. GitHub Actions. The Landing Zone project. Platform engineering patterns. By Month 18 you are applying for roles, not just internships.</p>
+  <div class="phase-meta">Goal: AZ-500 passed · AZ-305 passed · CKA preparation complete · Projects 4 and 5 live · Senior positioning achieved</div>
+</div>
+
+<!-- MONTH 11 -->
+<div class="month-block acc-block is-collapsed" id="month-11">
+  <div class="month-header acc-head">
+    <span class="month-num mn11">Month 11</span>
+    <div>
+      <div class="month-title">Security+ complete + AZ-500 begins, the highest-paying Azure specialisation</div>
+      <div class="month-goal">Security engineers earn 20-25% above standard cloud engineers at the same level.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">Complete Security+: sections 16-29</span></div>
+  <ul class="section-list"><li class="priority">Section 16-20: Risk management, incident response, forensics</li><li class="priority">Section 21-25: Governance, compliance, regulations including GDPR and NIS2 <em>This is your EU market differentiator. NIS2 compliance is a growing Azure consulting niche across the EU</em></li><li class="priority">Section 26-29: Practice exams and review</li></ul>
+  <div class="warn-box"><h4>⚠ Security+ exam decision, budget-dependent</h4><p>The Security+ exam costs approximately EUR 90–165. This is optional. The knowledge is what matters for AZ-500 preparation, not the Security+ credential itself. Skip the exam if budget is tight, the AZ-500 exam at EUR 150 is the higher priority. Revisit Security+ at Month 11 once you know your financial position.</p></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 3-4</span><span class="week-desc">AZ-500 with Alan Rodrigues, completely absent from 774 courses</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge ext-badge">[EXT] Completely absent from all 774 catalogue courses</span> AZ-500 Microsoft Azure Security Exam Certification</div>
+      <div class="cc-meta">Alan Rodrigues · ⭐ 4.6 · Refreshed October 2024 · ~20h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">This course did not exist anywhere in the 774-course catalogue. Alan Rodrigues was chosen because I am already the author of AZ-305 (Month 15) and AZ-400 (Month 17) in this plan, my teaching style is familiar by Month 11. The course was refreshed in October 2024 to reflect updated exam objectives.</p>
+  <p style="color:var(--ink2);font-size:.83rem;margin-bottom:.4rem;font-weight:500;">All sections, complete in full. Exam domain breakdown:</p>
+<ul class="section-list"><li class="priority">Section Identity and Access Management (25-30% of exam): Entra ID Protection, risk policies, MFA, Conditional Access, PIM just-in-time access, RBAC custom roles at management group scope</li><li class="priority">Section Platform Protection (20-25% of exam): Azure Firewall, Bastion, DDoS Protection, Key Vault access policies vs RBAC vs soft-delete, Private Endpoints at scale</li><li class="priority">Section Data and Application Security (15-20% of exam): Azure SQL Always Encrypted, Data Masking, TDE, storage SAS tokens, App Service managed identities, Container Registry security</li><li class="priority">Section Security Operations (15-20% of exam): Defender for Cloud secure score, Sentinel workspaces and data connectors, analytics rules and incidents, playbook automation</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/exam-azure-2/" target="_blank">udemy.com/course/exam-azure-2/</a> (slug "exam-azure-2". Use instructor profile if URL breaks)<br>Instructor profile: <a href="https://www.udemy.com/user/alan-rodrigues-5/" target="_blank">udemy.com/user/alan-rodrigues-5/</a></div>
+  
+</div>
+  <div class="free-res"><span class="fr-icon">📚</span><p>Microsoft Learn AZ-500 paths: learn.microsoft.com: 4 official learning paths, approximately 35 hours. Run in parallel with the Udemy course, doing exercises in your Azure account alongside each section.</p></div>
+  <div class="free-res"><span class="fr-icon">📡</span><p>Microsoft Sentinel Ninja Training L100-L200: techcommunity.microsoft.com: Free, written by the Sentinel product team. Deeper Sentinel coverage than any Udemy course. Complete L100 in Month 11 and L200 in Month 12.</p></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 12 -->
+<div class="month-block acc-block is-collapsed" id="month-12">
+  <div class="month-header acc-head">
+    <span class="month-num mn12">Month 12</span>
+    <div>
+      <div class="month-title">AZ-500 lab work + DevSecOps practices, three short courses in one month</div>
+      <div class="month-goal">Weekend courses, real project patterns, Sentinel Ninja complete.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">Two DevSecOps weekend courses. Complete each in a single weekend</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/githubactions/2088FF" alt="githubactions">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #329]. Complete in one weekend</span> DevSecOps with Azure DevOps: Secure CI/CD</div>
+      <div class="cc-meta">⭐ 4.5 · 933 reviews · 4h → 2.5h at 1.5x · 10 sections</div>
+    </div>
+  </div>
+  <p class="cc-why">Security integrated into Azure DevOps pipelines. SAST scanning, DAST integration, dependency vulnerability scanning, secrets management inside pipelines, compliance gates. Complete all 10 sections in a single Saturday or Sunday.</p>
+  
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/devsecops-with-azure-devops/" target="_blank">udemy.com/course/devsecops-with-azure-devops/</a></div>
+  
+</div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="kubernetes">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #348]. Complete in one weekend</span> DevSecOps with Azure, GitHub Actions, GitOps and AKS</div>
+      <div class="cc-meta">⭐ 4.7 · 92 reviews · 3h → 2h at 1.5x · 9 sections</div>
+    </div>
+  </div>
+  <p class="cc-why">Very current content. Low review count because it is new. GitHub Actions security scanning, GitOps security patterns, AKS security hardening. Completes the DevSecOps layer alongside Course 329.</p>
+  
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/devsecops-with-gitops-azure-cloud-and-github-actions/" target="_blank">udemy.com/course/devsecops-with-gitops-azure-cloud-and-github-actions/</a></div>
+  
+</div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 3-4</span><span class="week-desc">Advanced Azure DevSecOps with real project patterns</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #314]</span> Advanced Azure DevSecOps Course with Real-Time Projects</div>
+      <div class="cc-meta">Rohit · ⭐ 4.6 · 170 reviews · 17h → 11h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why"></p>
+  <ul class="section-list"><li class="priority">Section 1-3: DevSecOps concepts and Azure security architecture</li><li class="priority">Section 4-6: Azure Key Vault in pipelines <em>Real project patterns, secrets retrieved at pipeline runtime, not stored in pipeline variables</em></li><li class="priority">Section 7-9: Defender for Cloud configuration and automation</li><li class="priority">Section 10-12: Sentinel rules and security automation <em>Building custom analytics rules is what a security engineer actually does at IBM and Deloitte</em></li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/advanced-azure-devsecops-course-with-real-time-projects/" target="_blank">udemy.com/course/advanced-azure-devsecops-course-with-real-time-projects/</a></div>
+  
+</div>
+  <div class="lab-box"><h4>🔧 Lab deliverable: azure-project-03 complete: Zero Trust security platform</h4><ul><li>Finalise the Sentinel workspace: add data connectors for Azure Activity, Azure Defender, and your AKS cluster.</li><li>Write a custom analytics rule that fires when a VM is created without tags.</li><li>Configure automated playbook response: when a high-severity incident is created, send a Teams notification.</li><li>Defender for Cloud: achieve Secure Score above 80%. Document every recommendation you addressed and why.</li><li>Key Vault with RBAC: remove all access policies, replace with Key Vault RBAC roles.</li><li>Private Endpoints: every PaaS service (SQL, Storage, Key Vault) accessible only via private endpoint.</li><li>Write a threat model document: what are the attack vectors, what controls address each one.</li></ul></div>
+  <div class="free-res"><span class="fr-icon">📡</span><p>Sentinel Ninja Training L200: techcommunity.microsoft.com: Complete the L200 module this month. This covers advanced Sentinel features: UEBA, watchlists, threat intelligence integration, and advanced KQL for security analytics. This knowledge is tested in AZ-500 and valued in IBM security roles.</p></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 13 -->
+<div class="month-block acc-block is-collapsed" id="month-13">
+  <div class="month-header acc-head">
+    <span class="month-num mn13">Month 13</span>
+    <div>
+      <div class="month-title">AZ-500 exam + Terraform SRE patterns</div>
+      <div class="month-goal">Book and sit AZ-500. Then go deeper on Terraform at production scale.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">AZ-500 exam preparation and booking</span></div>
+  <div class="free-res"><span class="fr-icon">📝</span><p>Microsoft Learn AZ-500 practice assessment: learn.microsoft.com: Search "AZ-500 practice assessment". Free, written by the exam team. Use this two weeks before booking. Target 75%+ before proceeding to the real exam booking.</p></div>
+  <div class="warn-box"><h4>⚠ SC-500 announcement, verify before booking</h4><p>Microsoft announced that SC-500 may partially replace AZ-500 in H2 2026. Before booking your AZ-500 exam, verify the current active exam at learn.microsoft.com/en-us/certifications/azure-security-engineer/. If AZ-500 is still active, proceed. If it has transitioned, adjust accordingly.</p></div>
+  <div class="exam-box"><h4>🎯 Exam: AZ-500 Microsoft Azure Security Engineer Associate</h4><p><strong>Fee:</strong> Approximately EUR 150-155 &nbsp;|&nbsp; <strong>Target:</strong> End of Month 13</p><p>Book through learn.microsoft.com/en-us/certifications/azure-security-engineer/. Watch John Savill's AZ-500 study cram on YouTube the week before. AZ-500 adds 20-25% to base salary and is the differentiating credential for security-adjacent cloud roles at IBM and Deloitte.</p></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Weeks 2-4</span><span class="week-desc">Terraform IaC with SRE patterns, selective sections from Kalyan Reddy</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/terraform/7B42BC" alt="terraform">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #334], selective study, not full course</span> Terraform on Azure with IaC DevOps SRE. Real-World 25 Demos</div>
+      <div class="cc-meta">Kalyan Reddy (StackSimplify) · ⭐ 4.6 · 1,939 reviews · 31h → use ~12h of targeted sections</div>
+    </div>
+  </div>
+  <p class="cc-why">Use selectively. Skip sections that heavily overlap with Courses 52 and 53. Focus on genuinely new material: SRE concepts applied to Azure infrastructure and policy-as-code compliance automation.</p>
+  <ul class="section-list"><li class="priority">Section 1-5: SRE concepts on Azure <em>New material, error budgets, toil reduction, reliability targets applied to Azure infrastructure</em></li><li class="priority">Section 10-15: Advanced Terraform patterns, policy as code, compliance automation</li><li class="priority">Section 20-25: Azure Monitor and Log Analytics alerting with Terraform <em>Directly reinforces AZ-500 monitoring domain</em></li><li class="priority">Section 30-35: Security automation demos <em>Reinforces AZ-500 content with Terraform implementation</em></li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/terraform-on-azure-with-iac-azure-devops-sre-real-world-25-demos/" target="_blank">udemy.com/course/terraform-on-azure-with-iac-azure-devops-sre-real-world-25-demos/</a><br>Instructor: <a href="https://www.udemy.com/user/kalyan-reddy-9/" target="_blank">udemy.com/user/kalyan-reddy-9/</a></div>
+  
+</div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">AZ-500 ✓</div><div class="ms-label">Security credential earned</div></div>
+  <div class="ms"><div class="ms-val">4 certs</div><div class="ms-label">AZ-900, AZ-104, Terraform, AZ-500</div></div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 14 -->
+<div class="month-block acc-block is-collapsed" id="month-14">
+  <div class="month-header acc-head">
+    <span class="month-num mn14">Month 14</span>
+    <div>
+      <div class="month-title">CKA preparation + Ansible foundations + AZ-305 begins</div>
+      <div class="month-goal">Production Kubernetes depth, IaC awareness across tools, architecture study starts.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Weeks 1-3</span><span class="week-desc">CKA with Mumshad Mannambeth, depth, not necessarily the exam yet</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="kubernetes">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #110]</span> Certified Kubernetes Administrator (CKA) with Practice Tests</div>
+      <div class="cc-meta">Mumshad Mannambeth (KodeKloud) · ⭐ 4.7 · 90,266 reviews · 26h → 17h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">Use this course for production Kubernetes depth, not necessarily to immediately sit the CKA exam. Understanding how Kubernetes actually works at the cluster level, scheduling decisions, RBAC enforcement, network policy evaluation, PV binding, makes your AKS projects significantly more sophisticated and your interview answers more credible.</p>
+  <ul class="section-list"><li class="priority">Section 1: Introduction to YAML</li><li class="priority">Section 2: Core Concepts: architecture, API, pods <em>Understanding the API server, etcd, controller manager, not just pods</em></li><li class="priority">Section 3: Scheduling: node affinity, taints, tolerations <em>This is what determines where workloads run, critical for cost optimisation</em></li><li class="priority">Section 4: Logging and Monitoring</li><li class="priority">Section 5: Application Lifecycle Management: rolling updates, rollbacks</li><li class="priority">Section 6: Cluster Maintenance: upgrades, backup, restore</li><li class="priority">Section 7: Security: ServiceAccounts, RBAC, NetworkPolicies <em>Directly relevant to AKS security hardening, builds on AZ-500</em></li><li class="priority">Section 8: Storage: PVs, PVCs, storage classes</li><li class="priority">Section 9: Networking: CNI, services, ingress</li><li class="priority">Section 10: Troubleshooting <em>The most practical section for interviews, how you diagnose a broken pod</em></li><li class="priority">Section 11: JSON path (kubectl output parsing) <em>kubectl output with -o jsonpath is used daily by Kubernetes administrators</em></li><li class="priority">Section 12: Practice tests</li></ul>
+<p style="color:var(--ink3);font-size:.8rem;margin-top:.5rem;">Sections 13-18: complete in Month 15 if time allows.</p>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/" target="_blank">udemy.com/course/certified-kubernetes-administrator-with-practice-tests/</a><br>Instructor: <a href="https://www.udemy.com/user/mumshad-mannambeth/" target="_blank">udemy.com/user/mumshad-mannambeth/</a></div>
+  
+</div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 3-4</span><span class="week-desc">Ansible sections 1-5 only, conversational fluency in 4 hours</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="bash">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #15], sections 1-5 only, ~4 hours total</span> Dive Into Ansible: Beginner to Expert in Ansible, DevOps</div>
+      <div class="cc-meta">⭐ 4.6 · Sections 1-5 only, approximately 4 hours</div>
+    </div>
+  </div>
+  <p class="cc-why">Ansible appears in DevOps job descriptions alongside Terraform and is worth 4 hours of attention. Do not complete the full course. The goal is conversational fluency. You can read a playbook, understand what it does, and write a simple one. That is enough for interviews where it appears as "nice to have."</p>
+  <ul class="section-list"><li class="priority">Section 1: Introduction to Ansible and IaC context</li><li class="priority">Section 2: Installation and first playbook</li><li class="priority">Section 3: Inventory and host patterns</li><li class="priority">Section 4: Variables and facts</li><li class="priority">Section 5: Tasks and modules: the core patterns</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/dive-into-ansible/" target="_blank">udemy.com/course/dive-into-ansible/</a></div>
+  
+</div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 4</span><span class="week-desc">AZ-305 architecture study begins, sections 1-2 only this week</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #658]</span> AZ-305 Designing Azure Infrastructure Solutions</div>
+      <div class="cc-meta">Alan Rodrigues · ⭐ 4.6 · Start sections 1-2 this week. Full study in Month 15.</div>
+    </div>
+  </div>
+  <p class="cc-why">Begin sections 1-2 this week to prime the architecture thinking mindset before Month 15's full study block. Reading architectural design questions requires a different cognitive mode than administration questions. Starting early lets your brain begin making connections between what you have built and how you would design it differently.</p>
+  
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/exam-az-microsoft-azure-exam-role1/" target="_blank">udemy.com/course/exam-az-microsoft-azure-exam-role1/</a> (slug not descriptive. Use instructor profile)<br>Instructor profile: <a href="https://www.udemy.com/user/alan-rodrigues-5/" target="_blank">udemy.com/user/alan-rodrigues-5/</a></div>
+  
+</div>
+</div>
+</div>
+</div>
+
+<!-- MONTH 15 -->
+<div class="month-block acc-block is-collapsed" id="month-15">
+  <div class="month-header acc-head">
+    <span class="month-num mn15">Month 15</span>
+    <div>
+      <div class="month-title">AZ-305 full study + GitHub Actions, architecture and pipeline mastery</div>
+      <div class="month-goal">The two courses that complete the expert positioning.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Weeks 1-3</span><span class="week-desc">AZ-305 full course, thinking like an architect, not an administrator</span></div>
+  <p style="color:var(--ink2);font-size:.88rem;line-height:1.65;margin-bottom:.9rem;">AZ-305 is a different kind of exam from AZ-104. AZ-104 tests whether you can perform administration tasks. AZ-305 tests whether you can design solutions that meet business requirements. Questions present a scenario, "Contoso needs to migrate 50TB of data from on-premises to Azure while keeping costs below EUR 2,000 per month and maintaining 99.99% availability", and ask you to choose between several valid architectural approaches. You need to know not just what each service does but when to use it and why.</p>
+  <ul class="section-list"><li class="priority">Section 1: Design Identity, Governance, and Monitoring Solutions <em>Identity hierarchy, RBAC design at enterprise scale, Azure Policy custom definitions, Monitor and Log Analytics workspace design, connect to your Landing Zone project</em></li><li class="priority">Section 2: Design Data Storage Solutions <em>Storage account design: tiers, redundancy, lifecycle. Database selection: Azure SQL vs Cosmos vs PostgreSQL. Data flow architecture patterns.</em></li><li class="priority">Section 3: Design Business Continuity Solutions <em>High availability with availability zones. ASR and backup design. DR strategy for different RTO and RPO requirements. This is Deloitte consulting territory.</em></li><li class="priority">Section 4: Design Infrastructure Solutions <em>Compute selection: VM vs containers vs serverless, when is each correct. Networking: Hub-and-Spoke vs Virtual WAN. Azure Landing Zone architecture. Migration architecture.</em></li><li class="priority">Section 5: Design Secure Solutions at architecture level <em>Zero Trust architecture design. Network segmentation. Identity and access design patterns.</em></li><li class="priority">Section 6: Architecture case studies</li><li class="priority">Section 7: Practice exam scenarios</li></ul>
+  <div class="free-res"><span class="fr-icon">📚</span><p>Microsoft Learn AZ-305 paths: learn.microsoft.com: Complete exercises alongside each section. The AZ-305 exam is scenario-heavy and the Microsoft Learn exercises present you with realistic scenarios to practice on.</p></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 4</span><span class="week-desc">GitHub Actions. Complete first half (sections 1-15)</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/githubactions/2088FF" alt="githubactions">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #31]</span> GitHub Actions: The Complete Guide</div>
+      <div class="cc-meta">· ~22h total · Complete sections 1-15 this month, 16+ in Month 16</div>
+    </div>
+  </div>
+  <p class="cc-why">GitHub Actions is the CI/CD platform that works directly with your GitHub portfolio projects. Everything you push to github.com/jeremy-trinity/azure-project-01, 02, 03, 04, 05 should have a working GitHub Actions pipeline. This course gives you the full picture.</p>
+  <ul class="section-list"><li class="priority">Section 1-5: Introduction, First Workflow, Events, Jobs, Steps</li><li class="priority">Section 6-10: Environment Variables, Secrets, Expressions <em>Secrets management in GitHub Actions, how to inject Key Vault secrets</em></li><li class="priority">Section 11-15: Runners, Docker containers in workflows, Custom Actions</li></ul>
+  <div class="cc-urls">Search Personal Plan: "GitHub Actions The Complete Guide"</div>
+  
+</div>
+  <div class="lab-box"><h4>🔧 Lab deliverable: azure-project-04 begins: Azure Landing Zone implementation</h4><ul><li>Create a management group hierarchy: Root > Production > Development > Sandbox.</li><li>Apply Azure Policy initiatives at each level: deny public IPs in Production, require tags on all resources.</li><li>Build Hub-and-Spoke VNet topology with Azure Firewall in the hub and spoke VNets peered to it.</li><li>Configure route tables to force traffic through the Azure Firewall.</li><li>Deploy with Terraform modules and a GitHub Actions pipeline.</li><li>Reference the official Hub-and-Spoke pattern: learn.microsoft.com/en-us/azure/architecture/networking/architecture/hub-spoke</li></ul></div>
+</div>
+</div>
+
+<!-- MONTH 16 -->
+<div class="month-block acc-block is-collapsed" id="month-16">
+  <div class="month-header acc-head">
+    <span class="month-num mn16">Month 16</span>
+    <div>
+      <div class="month-title">AZ-305 exam + Landing Zone completion + GitHub Actions done</div>
+      <div class="month-goal">Pass the architect exam. Complete the most complex project in your portfolio.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">AZ-305 revision and mock exams</span></div>
+  <div class="free-res"><span class="fr-icon">📺</span><p>John Savill AZ-305 study cram: youtube.com/@NTFAQGuy: Watch the week before booking. Savill's AZ-305 cram focuses heavily on the "design" thinking required and gives you frameworks for approaching scenario questions.</p></div>
+  <div class="free-res"><span class="fr-icon">📝</span><p>Microsoft Learn AZ-305 practice assessment: learn.microsoft.com: Target 80%+ consistently. AZ-305 requires AZ-104 to be already passed (it is a prerequisite), verify this before booking.</p></div>
+  <div class="exam-box"><h4>🎯 Exam: AZ-305 Microsoft Azure Solutions Architect Expert</h4><p><strong>Fee:</strong> Approximately EUR 150-155 &nbsp;|&nbsp; <strong>Target:</strong> End of Month 16</p><p>Prerequisite: AZ-104 must be passed. Book through learn.microsoft.com/en-us/certifications/azure-solutions-architect/ Note: AZ-305 replaces AZ-303 and AZ-304. The current active exam path is AZ-104 then AZ-305.</p></div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 3-4</span><span class="week-desc">GitHub Actions completion (sections 16+) + Landing Zone final delivery</span></div>
+  <ul class="section-list"><li class="priority">Section 16-20: Reusable workflows, composite actions <em>Reusable workflows are how GitHub Actions is structured at enterprise scale, one workflow called by many repos</em></li><li class="priority">Section 21+: Matrix builds, caching, deployment environments, Azure integration</li></ul>
+  <div class="lab-box"><h4>🔧 Lab deliverable: azure-project-04 complete: publish with Architecture Decision Records</h4><ul><li>Hub-and-Spoke topology deployed entirely with Terraform.</li><li>RBAC assignments applied at management group scope, not individual resource scope.</li><li>Azure Policy compliance report: all resources in compliance. Screenshot in README.</li><li>GitHub Actions pipeline for the entire Landing Zone deployment.</li><li>Write Architecture Decision Records (ADRs) for every major design choice: Why Hub-and-Spoke over Virtual WAN? Why Azure Firewall over NVA? Why Terraform over Bicep?</li><li>This project demonstrates enterprise-level architecture thinking. It is what you present when enterprise employers ask "what is the most complex thing you have built?"</li></ul></div>
+</div>
+
+<div class="mini-stats">
+  <div class="ms"><div class="ms-val">AZ-305 ✓</div><div class="ms-label">Architect credential earned</div></div>
+  <div class="ms"><div class="ms-val">5 certs</div><div class="ms-label">AZ-900 AZ-104 Terraform AZ-500 AZ-305</div></div>
+  <div class="ms"><div class="ms-val">4 projects</div><div class="ms-label">GitHub portfolio live</div></div>
+</div>
+</div>
+</div>
+
+<!-- PHASE 4 -->
+<div class="anchor" id="phase4"></div>
+<div class="phase-banner ph4">
+  <h2>Phase 4: 1% Positioning: Months 17 to 24</h2>
+  <p>One more certification. The capstone project that integrates everything. Multi-cloud awareness. And the profile work that converts qualifications into job offers. By the end of Month 24 you are not a junior candidate in a pool. You are a platform engineer with a documented track record.</p>
+  <div class="phase-meta">Goal: AZ-400 passed · Capstone project complete · Profile polished · Senior role applications active · senior market exploration begun</div>
+</div>
+
+<!-- MONTH 17 -->
+<div class="month-block acc-block is-collapsed" id="month-17">
+  <div class="month-header acc-head">
+    <span class="month-num mn17">Month 17</span>
+    <div>
+      <div class="month-title">AZ-400 DevOps Engineer Expert, the final certification</div>
+      <div class="month-goal">The DevOps Expert combined with AZ-305 is the platform engineer profile.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Weeks 1-4</span><span class="week-desc">Alan Rodrigues AZ-400, the same instructor as AZ-500 and AZ-305</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/githubactions/2088FF" alt="githubactions">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #325]</span> AZ-400 Designing and Implementing DevOps Certification</div>
+      <div class="cc-meta">Alan Rodrigues · ⭐ 4.5 · 13,061 reviews · 21h → 14h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">By Month 17 you have deployed six Azure project environments, written hundreds of Terraform files, built Azure DevOps pipelines, configured GitHub Actions, implemented Zero Trust security, and designed a Landing Zone. AZ-400 is not a course that introduces new concepts at this point. It is the examination that validates everything you have already built.</p>
+  <ul class="section-list"><li class="priority">Section 1: Design and Implement Processes and Communications</li><li class="priority">Section 2: Design and Implement Source Control Strategy</li><li class="priority">Section 3: Design and Implement Build and Release Pipelines</li><li class="priority">Section 4: Develop a Security and Compliance Plan <em>Integrates AZ-500 knowledge, this section connects both certifications</em></li><li class="priority">Section 5: Implement an Instrumentation Strategy: Azure Monitor, App Insights, KQL <em>Connects monitoring work from AZ-104, AZ-500, and the SRE Terraform course</em></li><li class="priority">Section 6: Source Control Integration with GitHub and Azure Repos</li><li class="priority">Section 7: Design and Implement a Continuous Testing Strategy</li><li class="priority">Section 8: Implement and Manage Infrastructure as Code <em>Integrates all Terraform work from months 4-18, this section reviews it in exam terms</em></li><li class="priority">Section 9: Design and Implement a Dependency Management Strategy</li><li class="priority">Section 10: AZ-400 Practice Exam and Review</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/azure100/" target="_blank">udemy.com/course/azure100/</a> (slug "azure100" pre-dates the cert name, stable URL)<br>Instructor profile: <a href="https://www.udemy.com/user/alan-rodrigues-5/" target="_blank">udemy.com/user/alan-rodrigues-5/</a></div>
+  
+</div>
+  <div class="lab-box"><h4>🔧 Lab deliverable: azure-project-05 begins: FinOps dashboard</h4><ul><li>Tag every resource across all your subscriptions with environment, project, and owner tags.</li><li>Set up Azure Cost Management exports to a Storage Account.</li><li>Build a Grafana dashboard that visualises spend by service, by environment, and by project.</li><li>Identify and eliminate waste: unattached disks, oversized VMs, unused public IPs.</li><li>Write a FinOps report: "Identified 18% monthly waste through unattached disks and oversized VMs. Implemented autoscaling and reserved instance strategy."</li></ul></div>
+</div>
+</div>
+
+<!-- MONTH 18 -->
+<div class="month-block acc-block is-collapsed" id="month-18">
+  <div class="month-header acc-head">
+    <span class="month-num mn18">Month 18</span>
+    <div>
+      <div class="month-title">AZ-400 exam + Terraform mastery + FinOps complete</div>
+      <div class="month-goal">The last major certification. Complete the six-cert portfolio.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Week 1-2</span><span class="week-desc">AZ-400 revision using Terraform advanced patterns</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/terraform/7B42BC" alt="terraform">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #59], selective use for advanced patterns</span> Azure, HashiCorp Certified Terraform Associate: 70 Demos</div>
+      <div class="cc-meta">Kalyan Reddy (StackSimplify) · ⭐ 4.6 · 1,992 reviews · Use selectively</div>
+    </div>
+  </div>
+  <p class="cc-why">The IaC section of AZ-400 reviews Terraform at the exam level. Use this course to fill any remaining gaps in advanced Terraform patterns before sitting the exam.</p>
+  <ul class="section-list"><li class="priority">Section Terraform workspaces at scale: policy</li><li>Section Terraform testing with terratest concepts: priority</li><li>Section Policy-as-code integration patterns: priority</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/hashicorp-certified-terraform-associate-on-azure-cloud/" target="_blank">udemy.com/course/hashicorp-certified-terraform-associate-on-azure-cloud/</a><br>Instructor: <a href="https://www.udemy.com/user/kalyan-reddy-9/" target="_blank">udemy.com/user/kalyan-reddy-9/</a></div>
+  
+</div>
+  <div class="free-res"><span class="fr-icon">📝</span><p>Microsoft Learn AZ-400 practice assessment: learn.microsoft.com: Free. Written by the exam team. Use two weeks before booking.</p></div>
+  <div class="free-res"><span class="fr-icon">📺</span><p>John Savill AZ-400 study cram: youtube.com/@NTFAQGuy: Watch the week before booking the exam.</p></div>
+  <div class="exam-box"><h4>🎯 Exam: AZ-400 Microsoft Azure DevOps Engineer Expert</h4><p><strong>Fee:</strong> Approximately EUR 150-155 &nbsp;|&nbsp; <strong>Target:</strong> End of Month 18 or early Month 19</p><p>Book through learn.microsoft.com/en-us/certifications/devops-engineer/. AZ-400 combined with AZ-305 completes the platform engineer profile. Six certifications. You are now in the top 5% of Azure-certified professionals globally.</p></div>
+</div>
+</div>
+</div>
+
+<!-- MONTHS 19-22 -->
+<div class="anchor" id="months-19-22"></div>
+<div class="month-block acc-block is-collapsed" id="month-19-22">
+  <div class="month-header acc-head">
+    <span class="month-num mn19">Month 19-22</span>
+    <div>
+      <div class="month-title">Capstone project + Terraform advanced patterns</div>
+      <div class="month-goal">The project that integrates everything into one enterprise-grade environment.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Months 19-20</span><span class="week-desc">Terraform advanced patterns, highest-rated Terraform course in the catalogue</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://cdn.simpleicons.org/terraform/7B42BC" alt="terraform">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #67] ⭐ 4.8, highest-rated Terraform course in entire catalogue</span> HashiCorp Certified Terraform Associate: 50 Practical Demos</div>
+      <div class="cc-meta">Kalyan Reddy (StackSimplify) · ⭐ 4.8 · 1,766 reviews · 22h → 14h at 1.5x</div>
+    </div>
+  </div>
+  <p class="cc-why">The highest-rated Terraform course across all 774 courses. At this stage you are not learning Terraform basics. You are learning the advanced patterns that define senior platform engineers.</p>
+  <ul class="section-list"><li class="priority">Section Policy as Code with Terraform: priority</li><li class="priority">Section HashiCorp Sentinel policy integration: priority</li><li class="priority">Section Module registry design: priority</li><li class="priority">Section Advanced state management: priority</li><li class="priority">Section Testing and validation: priority</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/hashicorp-certified-terraform-associate-step-by-step/" target="_blank">udemy.com/course/hashicorp-certified-terraform-associate-step-by-step/</a><br>Instructor: <a href="https://www.udemy.com/user/kalyan-reddy-9/" target="_blank">udemy.com/user/kalyan-reddy-9/</a></div>
+  
+</div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Months 19-22</span><span class="week-desc">Capstone: end-to-end platform engineering environment</span></div>
+  <p style="color:var(--ink2);font-size:.88rem;line-height:1.65;margin-bottom:.9rem;">This is the project you present in IBM and Deloitte interviews. It combines everything: Landing Zone, AKS, GitOps, CI/CD, monitoring, security, and FinOps into one documented enterprise-grade environment. It needs to look like it was designed by a senior platform engineer, because it was.</p>
+  <div class="lab-box"><h4>🔧 Lab deliverable: Capstone project: complete platform engineering environment</h4><ul><li>Architecture Decision Records (ADRs) for every major design choice in the entire environment.</li><li>Full Terraform code with proper module structure, not monolithic, modular with a public module registry pattern.</li><li>Azure DevOps and GitHub Actions pipelines for all components.</li><li>Prometheus and Grafana monitoring dashboard covering: cluster health, application performance, cost metrics.</li><li>Microsoft Sentinel workspace with custom analytics rules, UEBA enabled, automated playbook responses.</li><li>Complete FinOps implementation: resource tagging, cost allocation, waste elimination report.</li><li>Written operational runbook: how to deploy a new environment, how to respond to common incidents, how to rotate secrets.</li><li>Architecture diagram that references official Azure Architecture Center patterns throughout.</li></ul></div>
+</div>
+</div>
+</div>
+
+<!-- MONTHS 23-24 -->
+<div class="anchor" id="months-23-24"></div>
+<div class="month-block acc-block is-collapsed" id="month-23-24">
+  <div class="month-header acc-head">
+    <span class="month-num mn23">Month 23-24</span>
+    <div>
+      <div class="month-title">Multi-cloud awareness + profile polish + senior market</div>
+      <div class="month-goal">The last miles before active job applications.</div>
+    </div>
+  </div>
+  <div class="month-body acc-body">
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Month 23</span><span class="week-desc">AWS Cloud Practitioner, 3-4 hours only, multi-cloud conversational fluency</span></div>
+  <div class="course-card">
+  <div class="cc-top">
+    <img class="cc-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure">
+    <div class="cc-info">
+      <div class="cc-title"><span class="cc-badge cat-badge">[CAT #76]. Skim 3-4 hours total, not full study</span> Ultimate AWS Certified Cloud Practitioner CLF-C02 2026</div>
+      <div class="cc-meta">Stephane Maarek · ⭐ 4.6 · Do not study this course fully</div>
+    </div>
+  </div>
+  <p class="cc-why">Multi-cloud fluency adds 15-20% to salary. The goal is not AWS certification right now. It is the ability to hold a conversation about AWS equivalents and to frame your Azure knowledge in multi-cloud terms in interviews. Three to four hours is enough.</p>
+  <ul class="section-list"><li>Section Compute: EC2 vs Azure VM analogies, know the vocabulary</li><li>Section Networking: VPC vs Azure VNet, understand the structural equivalents</li><li>Section IAM: AWS IAM vs Azure RBAC and Entra ID, compare the models</li><li>Section Storage: S3 vs Azure Blob, understand tiering and lifecycle equivalents</li></ul>
+  <div class="cc-urls">Course URL: <a href="https://www.udemy.com/course/aws-certified-cloud-practitioner-new/" target="_blank">udemy.com/course/aws-certified-cloud-practitioner-new/</a><br>Instructor: <a href="https://www.udemy.com/user/stephanemaarek/" target="_blank">udemy.com/user/stephanemaarek/</a></div>
+  
+</div>
+</div>
+
+<hr class="wk-div">
+
+<div class="week-block">
+  <div class="week-header"><span class="week-label">Month 24</span><span class="week-desc">Profile polish, interview preparation, senior market exploration</span></div>
+  <div class="free-res"><span class="fr-icon">🔧</span><p>Interview self-assessment: github.com/bregman-arie/devops-exercises: Work through the Azure and Kubernetes sections. These are the actual questions asked in cloud engineering technical interviews. Identify your gaps and address them before interviews.</p></div>
+  <div class="action-box"><h4>Your positioning statement, write this now and memorise it</h4><p>Azure Cloud Engineer specialising in cloud security and infrastructure automation. I design and deploy secure Azure environments using Terraform and Bicep, implement Zero Trust security architectures with Microsoft Sentinel and Defender for Cloud, and automate delivery pipelines with Azure DevOps and GitHub Actions. I hold AZ-104, AZ-500, HashiCorp Terraform Associate, AZ-305, and AZ-400. My work is documented at github.com/jeremy-trinity and jeremytrinity.com.</p></div>
+  <div class="action-box"><h4>Month 24 profile actions</h4><ul><li>Update every GitHub project README: architecture diagram, decision records, technology rationale.</li><li>Publish LinkedIn articles from your project work: "How I implemented Zero Trust on Azure with Terraform", "Building a Landing Zone from scratch: lessons learned."</li><li>At your employer, ask HR about the Microsoft ESI (Enterprise Skills Initiative) program if they are a Microsoft partner. ESI vouchers can cover future exam costs.</li><li>Begin Phase 3 market research: target international technology companies with France and international presence. Your French C2 and your certifications position you well. The internal transfer pathway is the structured career pathway in action.</li></ul></div>
+</div>
+</div>
+</div>
+
+<!-- MARKET CONTEXT -->
+<div class="anchor" id="market"></div>
+<span class="sec-label">Market context</span>
+<h2 class="sec-title">Why this market, why now</h2>
+<div class="title-rule"></div>
+<table>
+  <thead><tr><th>Level</th><th>Experience</th><th>US salary range</th><th>Cert premium</th></tr></thead>
+  <tbody>
+    <tr><td>Entry / AZ-104 only</td><td>0-2 years</td><td>$95K - $143K</td><td>+15 to 20%</td></tr>
+    <tr><td>Mid / AZ-104 + AZ-500</td><td>2-5 years</td><td>$115K - $155K</td><td>+20 to 25%</td></tr>
+    <tr><td>Senior / AZ-305 + IaC</td><td>5-8 years</td><td>$125K - $175K</td><td>+18 to 22%</td></tr>
+    <tr><td>Multi-cloud architect</td><td>8+ years</td><td>$175K - $210K</td><td>+25 to 30%</td></tr>
+    <tr><td>AI/ML + cloud specialist</td><td>Specialized</td><td>$210K - $248K+</td><td>+35%+</td></tr>
+  </tbody>
+</table>
+<p style="color:var(--ink2);font-size:.85rem;line-height:1.6;margin-top:.5rem;">Junior range at Month 7-12 (AZ-104 earned): 800 to 1,400 EUR/month. Mid-level at Month 12-24 (AZ-500 added): 1,400 to 2,800 EUR/month. Senior range at Year 3-4: 3,500 to 5,500 EUR/month. International range at Year 5+: 130,000 to 180,000 EUR/year.</p>
+
+<!-- CERTIFICATIONS REFERENCE -->
+<div class="anchor" id="certifications"></div>
+<span class="sec-label">Quick reference</span>
+<h2 class="sec-title">All certifications with booking links</h2>
+<div class="title-rule"></div>
+<table>
+  <thead><tr><th>Certification</th><th>Fee (approx.)</th><th>Month</th><th>Booking URL</th><th>Voucher opportunity</th></tr></thead>
+  <tbody>
+    <tr><td>AZ-900 Azure Fundamentals</td><td>EUR 90</td><td>Month 2</td><td><a href="https://learn.microsoft.com/en-us/certifications/azure-fundamentals/" target="_blank">learn.microsoft.com</a></td><td>Microsoft Virtual Training Day, frequently includes free voucher</td></tr>
+    <tr><td>AZ-104 Azure Administrator</td><td>EUR 150</td><td>Month 7</td><td><a href="https://learn.microsoft.com/en-us/certifications/azure-administrator/" target="_blank">learn.microsoft.com</a></td><td>Microsoft Virtual Training Day AZ-104 event</td></tr>
+    <tr><td>HashiCorp Terraform Associate</td><td>EUR 65</td><td>Month 10</td><td><a href="https://www.hashicorp.com/certification/terraform-associate" target="_blank">hashicorp.com</a></td><td>None, but EUR 65 is already affordable</td></tr>
+    <tr><td>AZ-500 Azure Security Engineer</td><td>EUR 150</td><td>Month 13</td><td><a href="https://learn.microsoft.com/en-us/certifications/azure-security-engineer/" target="_blank">learn.microsoft.com</a></td><td>IBM ESI program after employment</td></tr>
+    <tr><td>AZ-305 Azure Solutions Architect Expert</td><td>EUR 150</td><td>Month 16</td><td><a href="https://learn.microsoft.com/en-us/certifications/azure-solutions-architect/" target="_blank">learn.microsoft.com</a></td><td>IBM ESI program after employment</td></tr>
+    <tr><td>AZ-400 Azure DevOps Engineer Expert</td><td>EUR 150</td><td>Month 18</td><td><a href="https://learn.microsoft.com/en-us/certifications/devops-engineer/" target="_blank">learn.microsoft.com</a></td><td>IBM ESI program after employment</td></tr>
+  </tbody>
+</table>
+<p style="color:var(--ink2);font-size:.83rem;margin-top:.5rem;"><strong>Total core exam cost: approximately EUR 755 over 18 months, roughly EUR 42 per month averaged out.</strong> After joining a Microsoft-partner employer, ask HR about the ESI (Enterprise Skills Initiative) program. ESI vouchers can offset or eliminate exam costs for AZ-500, AZ-305, and AZ-400.</p>
+
+</div>
+
+<footer>
+  <div class="footer-brand">Jeremy Trinity</div>
+  <div class="footer-meta">
+    Five-Pillar Development System &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp;
+    <a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a> &nbsp;|&nbsp;
+    <a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a> &nbsp;|&nbsp;
+    <a href="https://jeremytrinity.com">jeremytrinity.com</a> &nbsp;|&nbsp;
+  </div>
+</footer>
+<script>
+const html=document.documentElement;
+const btn=document.getElementById('themeBtn');
+const label=document.getElementById('themeLabel');
+function applyTheme(t){html.setAttribute('data-theme',t);if(label)label.textContent=t==='dark'?'Light':'Dark';}
+const saved=localStorage.getItem('jt-theme');
+if(saved){applyTheme(saved);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){applyTheme('dark');localStorage.setItem('jt-theme','dark');}
+if(btn)btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(next);localStorage.setItem('jt-theme',next);});
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+</script>
+
+<script>
+/* ── ACCORDION ── */
+(function () {
+  document.querySelectorAll('.acc-block').forEach(function (block) {
+    var head = block.querySelector('.acc-head');
+    if (!head) return;
+    // Inject chevron as last flex child
+    var chev = document.createElement('span');
+    chev.className = 'acc-chev';
+    chev.setAttribute('aria-hidden', 'true');
+    chev.textContent = '▾';
+    head.appendChild(chev);
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    function toggle(e) {
+      if (e.target && (e.target.tagName === 'A' || (e.target.closest && e.target.closest('a')))) return;
+      var collapsed = block.classList.toggle('is-collapsed');
+      head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+    });
+  });
+})();
+</script>
+<script>
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

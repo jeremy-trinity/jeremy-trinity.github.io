@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Five-Pillar Development System | Jeremy Trinity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F9F8F5;
+  --surface: #FFFFFF;
+  --surface2: #F2F1EE;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --ink: #1A1A18;
+  --ink2: #52514E;
+  --ink3: #8A8880;
+  --accent: #2A5F8F;
+  --accent-lt: #EBF2F9;
+  --accent2: #1D4A70;
+  --p1: #2A5F8F;
+  --p2: #0F6E56;
+  --p3: #854F0B;
+  --p4: #534AB7;
+  --p5: #A32D2D;
+  --p1-lt: #EBF2F9;
+  --p2-lt: #E1F5EE;
+  --p3-lt: #FAEEDA;
+  --p4-lt: #EEEDFE;
+  --p5-lt: #FCEBEB;
+}
+[data-theme="dark"] {
+  --bg: #111110;
+  --surface: #1C1C1A;
+  --surface2: #252523;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --ink: #EEECEA;
+  --ink2: #AAAAAA;
+  --ink3: #777775;
+  --accent: #5B9BD5;
+  --accent-lt: #1A2A3A;
+  --accent2: #7AB3E0;
+  --p1: #5B9BD5;
+  --p2: #4ecdb4;
+  --p3: #FAC775;
+  --p4: #AFA9EC;
+  --p5: #F09595;
+  --p1-lt: #1A2A3A;
+  --p2-lt: #0A2820;
+  --p3-lt: #2A1E0A;
+  --p4-lt: #1A1830;
+  --p5-lt: #2A1010;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; transition: background .3s, color .3s; padding-top: 60px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent2); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px; background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; transition: background .3s, border-color .3s;
+}
+.nav-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--ink); }
+.nav-links { display: flex; align-items: center; gap: 1.5rem; }
+.nav-links a { font-size: 0.8rem; font-weight: 500; color: var(--ink2); text-transform: uppercase; letter-spacing: 0.05em; }
+.nav-links a:hover { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.theme-btn {
+  background: none; border: 1px solid var(--border2); border-radius: 20px;
+  padding: 0.25rem 0.75rem; cursor: pointer; font-size: 0.75rem; font-weight: 500;
+  color: var(--ink2); display: flex; align-items: center; gap: 0.35rem;
+  font-family: 'Inter', sans-serif; transition: all .2s;
+}
+.theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+/* ── Language toggle ── */
+.lang-btn { margin-left: 0.4rem; }
+.lang-pt { display: none !important; }
+[data-lang="pt"] .lang-en { display: none !important; }
+[data-lang="pt"] .lang-pt { display: inline !important; }
+[data-lang="pt"] p.lang-pt,
+[data-lang="pt"] div.lang-pt,
+[data-lang="pt"] li.lang-pt,
+[data-lang="pt"] span.lang-pt.block { display: block !important; }
+
+.sun { color: #F5A623; font-size: 0.85rem; display: none; }
+.moon { font-size: 0.85rem; }
+[data-theme="dark"] .sun { display: inline; }
+[data-theme="dark"] .moon { display: none; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { width: 20px; height: 1.5px; background: var(--ink); display: block; }
+
+/* HERO */
+#hero { padding: 6rem 2rem 5rem; text-align: center; background: var(--surface); border-bottom: 1px solid var(--border); }
+.hero-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1.25rem; }
+.hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 700; color: var(--ink); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem; }
+.hero-subtitle { font-size: 1.05rem; color: var(--ink2); margin-bottom: 0.6rem; }
+.hero-tagline { font-size: 0.9rem; color: var(--ink3); font-style: italic; max-width: 560px; margin: 0 auto 2.5rem; }
+.pillars-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.pillar-tag { font-size: 0.75rem; font-weight: 600; padding: 0.35rem 1rem; border-radius: 20px; border: 1.5px solid; white-space: nowrap; }
+.pt1 { background: var(--p1-lt); color: var(--p1); border-color: var(--p1); }
+.pt2 { background: var(--p2-lt); color: var(--p2); border-color: var(--p2); }
+.pt3 { background: var(--p3-lt); color: var(--p3); border-color: var(--p3); }
+.pt4 { background: var(--p4-lt); color: var(--p4); border-color: var(--p4); }
+.pt5 { background: var(--p5-lt); color: var(--p5); border-color: var(--p5); }
+.hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-p { background: var(--accent); color: #fff; padding: 0.7rem 1.6rem; border-radius: 6px; font-size: 0.88rem; font-weight: 500; transition: background .2s, transform .1s; }
+.btn-p:hover { background: var(--accent2); color: #fff; transform: translateY(-1px); }
+.btn-o { border: 1px solid var(--border2); color: var(--ink); padding: 0.7rem 1.6rem; border-radius: 6px; font-size: 0.88rem; font-weight: 500; transition: all .2s; }
+.btn-o:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-lt); }
+
+/* SECTIONS */
+section { padding: 4.5rem 2rem; }
+.si { max-width: 920px; margin: 0 auto; }
+.section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.6rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 600; color: var(--ink); line-height: 1.2; margin-bottom: 0.5rem; }
+.title-rule { width: 40px; height: 2px; background: var(--accent); margin-bottom: 2rem; }
+.section-intro { color: var(--ink2); font-size: 0.95rem; max-width: 680px; margin-bottom: 2rem; line-height: 1.7; }
+
+/* WHY section */
+#why { background: var(--bg); }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.why-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+.why-card h3 { font-size: 0.85rem; font-weight: 600; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+.why-card p { font-size: 0.9rem; color: var(--ink2); line-height: 1.6; }
+.callout { background: var(--accent-lt); border: 1px solid var(--accent); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.callout p { font-size: 0.9rem; color: var(--ink2); margin: 0; }
+.callout strong { color: var(--accent); }
+
+/* PILLARS */
+#pillars { background: var(--surface); }
+.pillar-block { margin-bottom: 3rem; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; scroll-margin-top: 88px; }
+.pillar-head { width: 100%; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; text-align: left; background: none; border: 0; cursor: pointer; font: inherit; color: inherit; transition: filter .2s ease; }
+.pillar-head:hover { filter: brightness(0.98); }
+.pillar-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.phead1 { background: var(--p1-lt); border-bottom: 1px solid var(--p1); }
+.phead2 { background: var(--p2-lt); border-bottom: 1px solid var(--p2); }
+.phead3 { background: var(--p3-lt); border-bottom: 1px solid var(--p3); }
+.phead4 { background: var(--p4-lt); border-bottom: 1px solid var(--p4); }
+.phead5 { background: var(--p5-lt); border-bottom: 1px solid var(--p5); }
+.pillar-num { font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 20px; white-space: nowrap; color: #fff; }
+.pn1 { background: var(--p1); }
+.pn2 { background: var(--p2); }
+.pn3 { background: var(--p3); }
+.pn4 { background: var(--p4); }
+.pn5 { background: var(--p5); }
+.pillar-head-text h2 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--ink); }
+.pillar-head-text p { font-size: 0.8rem; color: var(--ink2); margin-top: 0.15rem; }
+.pillar-head-icon { margin-left: auto; font-size: 1.4rem; opacity: 0.5; transition: transform .25s ease, opacity .25s ease; }
+.pillar-block.is-collapsed .pillar-head-icon { transform: rotate(-90deg); opacity: 0.8; }
+.pillar-body { padding: 1.5rem; }
+.pillar-body[hidden] { display: none; }
+.pillar-jump { transition: transform .15s ease, box-shadow .15s ease; }
+.pillar-jump:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.06); }
+.pillar-body p { font-size: 0.92rem; color: var(--ink2); margin-bottom: 0.9rem; line-height: 1.65; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.4rem; font-size: 0.87rem; }
+th { background: var(--ink); color: var(--surface); padding: 0.55rem 0.75rem; text-align: left; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.02em; }
+td { padding: 0.45rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--ink2); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--surface2); }
+
+/* Phase blocks inside pillars */
+.phase-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 10px; margin-bottom: 0.6rem; margin-top: 0.4rem; }
+.ptag1 { background: var(--p1-lt); color: var(--p1); }
+.ptag2 { background: var(--p2-lt); color: var(--p2); }
+.ptag3 { background: var(--p3-lt); color: var(--p3); }
+.ptag4 { background: var(--p4-lt); color: var(--p4); }
+
+/* Sub-section headers */
+.sub-h { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin: 1.2rem 0 0.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+
+/* Cert card row */
+.cert-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.85rem; margin: 1rem 0; }
+.cert-card { border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; background: var(--surface); }
+.cert-card:hover { border-color: var(--accent); background: var(--accent-lt); }
+.cert-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+.cert-meta { font-size: 0.78rem; color: var(--ink3); margin-bottom: 0.4rem; }
+.cert-badge { font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.6rem; border-radius: 8px; }
+.cb-paid { background: var(--p3-lt); color: var(--p3); }
+.cb-free { background: var(--p2-lt); color: var(--p2); }
+
+/* Schedule */
+#schedule { background: var(--bg); }
+.schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; margin-top: 1.5rem; }
+.day-col { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; min-height: 300px; }
+.day-header { padding: 0.5rem; text-align: center; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; background: var(--ink); color: var(--surface); }
+.day-block { padding: 0.35rem 0.4rem; font-size: 0.65rem; font-weight: 500; border-bottom: 1px solid var(--border); line-height: 1.3; }
+.db-boot { background: #EBF2F9; color: #1D4A70; }
+.db-uni { background: #E1F5EE; color: #0F6E56; }
+.db-meal { background: #F1EFE8; color: #5F5E5A; }
+.db-intern { background: #EEEDFE; color: #3C3489; }
+.db-rest { background: #FCEBEB; color: #791F1F; }
+.db-lang { background: #FAEEDA; color: #633806; }
+.db-admin { background: #F2F1EE; color: #444441; }
+.db-read { background: #EAF3DE; color: #27500A; }
+[data-theme="dark"] .db-boot { background: #0C447C; color: #B5D4F4; }
+[data-theme="dark"] .db-uni { background: #085041; color: #9FE1CB; }
+[data-theme="dark"] .db-meal { background: #444441; color: #D3D1C7; }
+[data-theme="dark"] .db-intern { background: #26215C; color: #AFA9EC; }
+[data-theme="dark"] .db-rest { background: #501313; color: #F7C1C1; }
+[data-theme="dark"] .db-lang { background: #633806; color: #FAC775; }
+[data-theme="dark"] .db-admin { background: #2C2C2A; color: #B4B2A9; }
+[data-theme="dark"] .db-read { background: #173404; color: #C0DD97; }
+.schedule-note { font-size: 0.8rem; color: var(--ink2); margin-top: 1.2rem; padding: 0.9rem 1.1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+.legend-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+.leg { font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.7rem; border-radius: 6px; }
+
+/* Medical breaks box */
+.medical-box { background: var(--p5-lt); border: 1px solid var(--p5); border-radius: 10px; padding: 1.1rem 1.4rem; margin: 1.2rem 0; }
+.medical-box h4 { font-size: 0.8rem; font-weight: 700; color: var(--p5); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.5rem; }
+.medical-box ul { list-style: none; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.medical-box li { font-size: 0.8rem; font-weight: 600; background: var(--p5); color: #fff; padding: 0.2rem 0.65rem; border-radius: 6px; }
+
+/* Timeline */
+.timeline { position: relative; margin-top: 1.5rem; }
+.tl-item { display: flex; gap: 1.25rem; margin-bottom: 1.75rem; }
+.tl-left { display: flex; flex-direction: column; align-items: center; }
+.tl-dot { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tl-dot.active { background: var(--accent); }
+.tl-dot-inner { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.tl-dot.active .tl-dot-inner { background: #fff; }
+.tl-line { width: 1px; background: var(--border2); flex: 1; margin: 4px 0; min-height: 30px; }
+.tl-right { flex: 1; padding-top: 2px; }
+.tl-phase { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent); margin-bottom: 0.2rem; }
+.tl-title { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+.tl-desc { font-size: 0.85rem; color: var(--ink2); line-height: 1.55; }
+
+/* ROI */
+#roi { background: var(--surface); }
+.roi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.roi-card { background: var(--surface2); border-radius: 10px; padding: 1.25rem; text-align: center; }
+.roi-val { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+.roi-label { font-size: 0.78rem; color: var(--ink3); margin-top: 0.2rem; }
+
+/* Contact */
+#contact { background: var(--bg); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.contact-items { display: flex; flex-direction: column; gap: 0.75rem; }
+.ci { display: flex; align-items: center; gap: 0.85rem; }
+.ci-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-lt); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--accent); flex-shrink: 0; font-weight: 600; }
+.ci-text { font-size: 0.9rem; color: var(--ink2); }
+.ci-text a { color: var(--accent); }
+
+/* Footer */
+footer { background: var(--surface2); border-top: 1px solid var(--border); padding: 2rem; text-align: center; }
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+.footer-meta { font-size: 0.78rem; color: var(--ink3); }
+.footer-meta a { color: var(--accent); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; gap: 1.25rem; z-index: 199; }
+  .hamburger { display: flex; }
+  .why-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .schedule-grid { grid-template-columns: repeat(4, 1fr); }
+  .cert-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  section { padding: 3rem 1.2rem; }
+  .schedule-grid { grid-template-columns: 1fr 1fr; }
+  .cert-row { grid-template-columns: 1fr; }
+  .roi-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── LOGO TICKER ── */
+.ticker-section { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); margin-top: 2.5rem; }
+.ticker-track { display: flex; width: max-content; animation: ticker 42s linear infinite; }
+.ticker-section:hover .ticker-track { animation-play-state: paused; }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.t-item { display:flex; align-items:center; justify-content:center; gap:7px; padding:0.9rem 1.6rem; border-right:1px solid var(--border); flex-shrink:0; min-width:110px; }
+.t-item img { height:20px; width:auto; object-fit:contain; filter:grayscale(1); opacity:0.5; transition:filter .2s,opacity .2s; }
+.t-item svg { height:18px; width:auto; opacity:0.45; transition:opacity .2s; }
+.t-item:hover img,.t-item:hover svg { filter:grayscale(0); opacity:1; }
+.t-item span { font-size:0.68rem; font-weight:600; color:var(--ink3); white-space:nowrap; letter-spacing:.04em; }
+[data-theme="dark"] .t-item img { opacity:0.35; }
+[data-theme="dark"] .t-item:hover img { opacity:0.9; }
+
+/* ── CAREER PATH ── */
+.career-strip { display:flex; align-items:center; gap:0; margin:1.5rem 0 2rem; }
+.cs-step { display:flex; flex-direction:column; align-items:center; gap:4px; padding:0 1rem; }
+.cs-flag { font-size:2.2rem; line-height:1; }
+.cs-label { font-size:0.7rem; font-weight:600; color:var(--ink2); }
+.cs-year { font-size:0.62rem; color:var(--ink3); }
+.cs-arr { font-size:1.4rem; color:var(--border2); align-self:center; padding-bottom:12px; }
+
+/* ── TOOL CHIPS ── */
+.tool-grid { display:flex; flex-wrap:wrap; gap:0.6rem; margin:1rem 0 1.4rem; }
+.tool-chip { display:flex; align-items:center; gap:6px; padding:.28rem .75rem; background:var(--surface2); border:1px solid var(--border); border-radius:20px; transition:border-color .2s,background .2s; }
+.tool-chip:hover { border-color:var(--accent); background:var(--accent-lt); }
+.tool-chip img { height:15px; width:15px; object-fit:contain; }
+.tool-chip span { font-size:0.73rem; font-weight:500; color:var(--ink2); }
+
+/* ── CERT LOGO ── */
+.cert-card .cert-logo { height:24px; width:auto; max-width:70px; object-fit:contain; display:block; margin-bottom:6px; }
+
+/* ── INSTITUTION WALL ── */
+.inst-wall { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:.75rem; margin:1.5rem 0 .5rem; }
+.iw-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:.9rem .75rem; display:flex; flex-direction:column; align-items:center; gap:.5rem; transition:border-color .2s,transform .15s; cursor:default; }
+.iw-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+.iw-card img { height:28px; width:auto; max-width:80px; object-fit:contain; }
+.iw-card svg { height:26px; width:auto; }
+.iw-name { font-size:0.7rem; font-weight:600; color:var(--ink2); text-align:center; line-height:1.3; }
+.iw-cred { font-size:0.62rem; color:var(--ink3); text-align:center; }
+
+/* ── TARGET CO LOGO ── */
+.tco-logo { height:18px; width:auto; object-fit:contain; vertical-align:middle; margin-right:5px; }
+
+/* ── PILLAR LOGO STRIP (inside pillar 4) ── */
+.p4-logos { display:flex; flex-wrap:wrap; gap:.65rem; margin:.75rem 0 1.1rem; align-items:center; }
+.p4-logo-pill { display:flex; align-items:center; gap:6px; padding:.3rem .75rem; background:var(--surface2); border:1px solid var(--border); border-radius:8px; }
+.p4-logo-pill img { height:16px; width:auto; object-fit:contain; }
+.p4-logo-pill svg { height:14px; width:auto; }
+.p4-logo-pill span { font-size:0.7rem; font-weight:500; color:var(--ink2); }
+
+/* ── NAV DROPDOWN ───────────────────────────────────────── */
+.nav-dropdown { position: relative; display: flex; align-items: center; }
+.nav-dropdown > a { display: flex; align-items: center; gap: .25rem; }
+.nav-drop-arrow { font-size: .72rem; opacity: .55; transition: transform .2s ease; }
+.nav-dropdown:hover .nav-drop-arrow,
+.nav-dropdown:focus-within .nav-drop-arrow { transform: rotate(-180deg); }
+.nav-drop-menu {
+  position: absolute; top: calc(100% + 10px); left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: .45rem 0;
+  min-width: 230px; width: max-content;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .18s ease, visibility .18s ease, transform .18s ease;
+  transform-origin: top center;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+  z-index: 500;
+}
+.nav-dropdown:hover .nav-drop-menu,
+.nav-dropdown:focus-within .nav-drop-menu {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-drop-menu a {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .5rem 1rem; font-size: .8rem; font-weight: 500;
+  color: var(--ink2); text-transform: none; letter-spacing: 0;
+  transition: background .12s, color .12s;
+}
+.nav-drop-menu a:hover { background: var(--accent-lt); color: var(--accent); }
+.nav-drop-pill {
+  font-size: .62rem; font-weight: 700; padding: .12rem .48rem;
+  border-radius: 5px; flex-shrink: 0; line-height: 1.4;
+}
+.nav-drop-divider { height: 1px; background: var(--border); margin: .35rem .9rem; }
+
+/* ── DEEP-DIVE LINK ─────────────────────────────────────── */
+.deep-dive-link {
+  display: inline-flex; align-items: center; gap: .4rem;
+  margin-top: 1.2rem; font-size: .82rem; font-weight: 600;
+  color: var(--accent); border: 1.5px solid var(--accent);
+  border-radius: 7px; padding: .45rem 1rem;
+  transition: background .15s, color .15s;
+  text-decoration: none;
+}
+.deep-dive-link:hover { background: var(--accent); color: #fff !important; }
+.deep-dive-link::after { content: ' →'; }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#hero">Jeremy Trinity</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#why">Context</a>
+    <div class="nav-dropdown">
+      <a href="#pillars">Five Pillars <span class="nav-drop-arrow">▾</span></a>
+      <div class="nav-drop-menu">
+        <a href="pillar1-bootcamp.html">
+          <span class="nav-drop-pill" style="background:var(--p1-lt);color:var(--p1)">I</span>
+          Cloud Engineering Bootcamp
+        </a>
+        <a href="pillar2-degree.html">
+          <span class="nav-drop-pill" style="background:var(--p2-lt);color:var(--p2)">II</span>
+          BSc Computer Science
+        </a>
+        <a href="pillar3-languages.html">
+          <span class="nav-drop-pill" style="background:var(--p3-lt);color:var(--p3)">III</span>
+          Language Acquisition
+        </a>
+        <a href="pillar4-courses.html">
+          <span class="nav-drop-pill" style="background:var(--p4-lt);color:var(--p4)">IV</span>
+          Advanced Courses
+        </a>
+        <a href="pillar5-reading.html">
+          <span class="nav-drop-pill" style="background:var(--p5-lt);color:var(--p5)">V</span>
+          Reading Program
+        </a>
+        <div class="nav-drop-divider"></div>
+        <a href="#pillars" style="font-size:.75rem;opacity:.7;">↑ Overview on this page</a>
+      </div>
+    </div>
+    <a href="#schedule">Schedule</a>
+    <a href="#timeline" data-en="Timeline" data-pt="Cronograma">Timeline</a>
+    <a href="#roi" data-en="ROI" data-pt="Retorno">ROI</a>
+    <a href="#contact" data-en="Contact" data-pt="Contacto">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+      <span class="moon">🌙</span><span class="sun">☀️</span>
+      <span id="themeLabel">Dark</span>
+    </button>
+    <button class="theme-btn lang-btn" id="langBtn" aria-label="Toggle language">
+      <span>🌐</span>
+      <span id="langLabel">PT</span>
+    </button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="si">
+    <span class="hero-tag" data-en="Five-Pillar Development System, April 2026" data-pt="Sistema de Cinco Pilares, Abril 2026">Five-Pillar Development System, April 2026</span>
+    <h1 class="hero-name">Jeremy Trinity</h1>
+    <p class="hero-subtitle" data-en="Junior Azure Cloud Engineer in Training" data-pt="Engenheiro Cloud Azure Júnior em Formação">Junior Azure Cloud Engineer in Training</p>
+    <p class="hero-tagline" data-en="A structured path from training to junior cloud engineer. Building from April 2026." data-pt="Um percurso estruturado da formação a engenheiro cloud júnior. Em construção desde abril de 2026.">A structured path from training to junior cloud engineer. Building from April 2026.</p>
+    <div class="pillars-row">
+      <a class="pillar-tag pt1 pillar-jump" href="#pillar-1" data-en="I. Cloud Engineering Bootcamp" data-pt="I. Bootcamp de Engenharia Cloud">I. Cloud Engineering Bootcamp</a>
+      <a class="pillar-tag pt2 pillar-jump" href="#pillar-2" data-en="II. BSc Computer Science" data-pt="II. Licenciatura em Ciências da Computação">II. BSc Computer Science</a>
+      <a class="pillar-tag pt3 pillar-jump" href="#pillar-3" data-en="III. Language Acquisition" data-pt="III. Aquisição de Idiomas">III. Language Acquisition</a>
+      <a class="pillar-tag pt4 pillar-jump" href="#pillar-4" data-en="IV. Advanced Courses" data-pt="IV. Cursos Avançados">IV. Advanced Courses</a>
+      <a class="pillar-tag pt5 pillar-jump" href="#pillar-5" data-en="V. Reading Program" data-pt="V. Programa de Leitura">V. Reading Program</a>
+    </div>
+
+    <div class="ticker-section" aria-label="Technologies and institutions"><div class="ticker-track"><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure" loading="lazy"><span>Azure</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" loading="lazy"><span>IBM</span></div><div class="t-item"><img src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard" loading="lazy"><span>Harvard</span></div><div class="t-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354 200" aria-label="MIT"><path fill="#A31F34" d="M187.268 187.268h41.615V62.423H187.268Zm62.423-145.653H353.728V0H249.691ZM187.268 0h41.615V41.615H187.268ZM124.845 187.268H166.46V0H124.845ZM62.423 145.653h41.615V0H62.423ZM0 187.268H41.615V0H0Zm249.691 0h41.615V62.423H249.691Z"/></svg><span>MIT</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" loading="lazy"><span>Microsoft</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" loading="lazy"><span>Terraform</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" loading="lazy"><span>Docker</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" loading="lazy"><span>Kubernetes</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" loading="lazy"><span>Python</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" loading="lazy"><span>GitHub</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="Actions" loading="lazy"><span>Actions</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="Cisco" loading="lazy"><span>Cisco</span></div><div class="t-item"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cloud%20Native%20Computing%20Foundation%202023%20logo.svg" alt="CNCF" loading="lazy"><span>CNCF</span></div><div class="t-item"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Linux%20Foundation%20logo%202013.svg" alt="Linux Fdn" loading="lazy"><span>Linux Fdn</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Stanford_Cardinal_logo.svg" alt="Stanford" loading="lazy"><span>Stanford</span></div><div class="t-item"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Georgia%20Tech%20logo%202021.svg" alt="Georgia Tech" loading="lazy"><span>Georgia Tech</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta" loading="lazy"><span>Meta</span></div><div class="t-item"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Deloitte.svg" alt="Deloitte" loading="lazy"><span>Deloitte</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="Bash" loading="lazy"><span>Bash</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux" loading="lazy"><span>Linux</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" loading="lazy"><span>Grafana</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus" loading="lazy"><span>Prometheus</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/udemy/A435F0" alt="Udemy" loading="lazy"><span>Udemy</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" loading="lazy"><span>LinkedIn</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure" loading="lazy"><span>Azure</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" loading="lazy"><span>IBM</span></div><div class="t-item"><img src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard" loading="lazy"><span>Harvard</span></div><div class="t-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354 200" aria-label="MIT"><path fill="#A31F34" d="M187.268 187.268h41.615V62.423H187.268Zm62.423-145.653H353.728V0H249.691ZM187.268 0h41.615V41.615H187.268ZM124.845 187.268H166.46V0H124.845ZM62.423 145.653h41.615V0H62.423ZM0 187.268H41.615V0H0Zm249.691 0h41.615V62.423H249.691Z"/></svg><span>MIT</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" loading="lazy"><span>Microsoft</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" loading="lazy"><span>Terraform</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" loading="lazy"><span>Docker</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" loading="lazy"><span>Kubernetes</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" loading="lazy"><span>Python</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" loading="lazy"><span>GitHub</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="Actions" loading="lazy"><span>Actions</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="Cisco" loading="lazy"><span>Cisco</span></div><div class="t-item"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cloud%20Native%20Computing%20Foundation%202023%20logo.svg" alt="CNCF" loading="lazy"><span>CNCF</span></div><div class="t-item"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Linux%20Foundation%20logo%202013.svg" alt="Linux Fdn" loading="lazy"><span>Linux Fdn</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Stanford_Cardinal_logo.svg" alt="Stanford" loading="lazy"><span>Stanford</span></div><div class="t-item"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Georgia%20Tech%20logo%202021.svg" alt="Georgia Tech" loading="lazy"><span>Georgia Tech</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta" loading="lazy"><span>Meta</span></div><div class="t-item"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Deloitte.svg" alt="Deloitte" loading="lazy"><span>Deloitte</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="Bash" loading="lazy"><span>Bash</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux" loading="lazy"><span>Linux</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" loading="lazy"><span>Grafana</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus" loading="lazy"><span>Prometheus</span></div><div class="t-item"><img src="https://cdn.simpleicons.org/udemy/A435F0" alt="Udemy" loading="lazy"><span>Udemy</span></div><div class="t-item"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" loading="lazy"><span>LinkedIn</span></div></div></div>
+    <div class="hero-actions">
+      <a href="#pillars" class="btn-p" data-en="View the five pillars" data-pt="Ver os cinco pilares">View the five pillars</a>
+      <a href="https://github.com/jeremy-trinity" class="btn-o" target="_blank">github.com/jeremy-trinity</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="si">
+    <span class="section-label" data-en="Strategic context" data-pt="Contexto estratégico">Strategic context</span>
+    <h2 class="section-title" data-en="Why this system, why now" data-pt="Porquê este sistema, porquê agora">Why this system, why now</h2>
+    <div class="title-rule"></div>
+    <p class="section-intro" data-en="This is not a learning experiment. It is a structured path from current position to employed cloud engineer, built around a medical reality, a geographic opportunity, and a precise career target. Every decision here has a reason." data-pt="Isto não é uma experiência de aprendizagem. É um percurso estruturado desde a posição atual até engenheiro cloud empregado, construído em torno de uma realidade médica, uma oportunidade geográfica e um objetivo de carreira preciso. Cada decisão aqui tem uma razão.">This is not a learning experiment. It is a structured path from current position to employed cloud engineer, built around a medical reality, a geographic opportunity, and a precise career target. Every decision here has a reason.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <h3 data-en="The medical constraint is real" data-pt="A condição médica é real">The medical constraint is real</h3>
+        <p>Spinal and pain conditions mean any role must be viable from a bed, from a remote setup, on unpredictable days. Cloud engineering is one of the few technical roles where a senior professional can operate entirely remotely, even from day one of an internship. DevOps was considered and deprioritized because it typically requires more office presence in early career stages. Cloud engineering, particularly Azure administration and infrastructure-as-code work, is the most work-from-home-compatible technical role available at the junior level.</p>
+      </div>
+      <div class="why-card">
+        <h3 data-en="Why Azure and not AWS" data-pt="Porquê Azure e não AWS">Why Azure and not AWS</h3>
+        <p>Target employers operate primarily in Azure environments serving enterprise clients running Microsoft infrastructure. Cross-referencing live job postings confirms that 70% or more of cloud engineering roles in the target markets specify Azure as the primary platform. AWS is a Phase 4 addition, not a starting point. Building Azure depth first maximizes the chance of getting an internship or junior role within 12 months.</p>
+      </div>
+      <div class="why-card">
+        <h3 data-en="Why Udemy as a second university" data-pt="Porquê a Udemy como segunda universidade">Why Udemy as a second university</h3>
+        <p data-en="Udemy instructors operate as small businesses. The price point means they must sell volume to profit, which means the product must be good enough to receive few refund requests. Students can claim 100% money back within 30 days. This market mechanism creates a self-correcting quality filter. The best-selling Azure, Linux, Kubernetes, and Terraform courses have been reviewed by tens of thousands of students and survived. That is a more reliable quality signal than many traditional educational products at far higher prices." data-pt="Os instrutores da Udemy operam como pequenas empresas. O preço obriga-os a vender em volume para ter lucro, o que significa que o produto tem de ser bom o suficiente para receber poucas solicitações de reembolso. Os estudantes podem pedir 100% de reembolso em 30 dias. Este mecanismo de mercado cria um filtro de qualidade autocorretivo. Os cursos mais vendidos de Azure, Linux, Kubernetes e Terraform foram avaliados por dezenas de milhares de estudantes e sobreviveram. É um sinal de qualidade mais fiável do que muitos produtos educativos tradicionais a preços muito mais altos.">Udemy instructors operate as small businesses. The price point means they must sell volume to profit, which means the product must be good enough to receive few refund requests. Students can claim 100% money back within 30 days. This market mechanism creates a self-correcting quality filter. The best-selling Azure, Linux, Kubernetes, and Terraform courses have been reviewed by tens of thousands of students and survived. That is a more reliable quality signal than many traditional educational products at far higher prices.</p>
+      </div>
+      <div class="why-card">
+        <h3 data-en="Why 20% work experience from day one" data-pt="Porquê 20% de experiência profissional desde o início">Why 20% work experience from day one</h3>
+        <p data-en="Tech hiring is portfolio-driven. No amount of certifications or coursework replaces the question: have you worked in a real environment? Three afternoons per week of internship observation, even unpaid, produces questions that courses cannot generate. The format proposed is 3 afternoons per week, Monday, Wednesday, and Friday, leaving full mornings for deep bootcamp work and full days between each internship session for consolidation. This ratio of 20% real-world exposure to 80% structured study is calibrated for maximum learning velocity at minimum burnout risk." data-pt="A contratação em tecnologia é orientada para portfolio. Nenhuma quantidade de certificações ou trabalho académico substitui a questão: já trabalhou num ambiente real? Três tardes por semana de observação em estágio, mesmo não remunerado, gera questões que os cursos não conseguem criar. O formato proposto é 3 tardes por semana, segunda, quarta e sexta, deixando as manhãs completas para trabalho intensivo no bootcamp e dias inteiros entre cada sessão de estágio para consolidação. Este rácio de 20% de exposição ao mundo real para 80% de estudo estruturado está calibrado para máxima velocidade de aprendizagem com mínimo risco de esgotamento.">Tech hiring is portfolio-driven. No amount of certifications or coursework replaces the question: have you worked in a real environment? Three afternoons per week of internship observation, even unpaid, produces questions that courses cannot generate. The format proposed is 3 afternoons per week, Monday, Wednesday, and Friday, leaving full mornings for deep bootcamp work and full days between each internship session for consolidation. This ratio of 20% real-world exposure to 80% structured study is calibrated for maximum learning velocity at minimum burnout risk.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p data-en="&lt;strong&gt;The core philosophy:&lt;/strong&gt; Be employable first, knowledgeable second. The bootcamp is the primary track. Everything else runs in parallel to support it, not compete with it. University grades matter because a strong GPA keeps the scholarship active. Languages matter because they expand the market. Reading matters because it builds the mental habits that make everything else possible. But if the bootcamp falls behind, everything else slows down until it is back on track." data-pt="&lt;strong&gt;A filosofia central:&lt;/strong&gt; Ser empregável primeiro, conhecedor segundo. O bootcamp é o pilar principal. Tudo o resto corre em paralelo para o apoiar, não para competir com ele. As notas da universidade importam porque uma GPA elevada mantém a bolsa ativa. Os idiomas importam porque expandem o mercado. A leitura importa porque constrói os hábitos mentais que tornam tudo o resto possível. Mas se o bootcamp atrasar, tudo o resto abranda até estar de volta ao caminho certo."><strong>The core philosophy:</strong> Be employable first, knowledgeable second. The bootcamp is the primary track. Everything else runs in parallel to support it, not compete with it. University grades matter because a strong GPA keeps the scholarship active. Languages matter because they expand the market. Reading matters because it builds the mental habits that make everything else possible. But if the bootcamp falls behind, everything else slows down until it is back on track.</p>
+    </div>
+
+    <div class="medical-box">
+      <h4 data-en="Non-negotiable medical meal breaks, every day" data-pt="Pausas alimentares médicas inegociáveis, todos os dias">Non-negotiable medical meal breaks, every day</h4>
+      <ul>
+        <li data-en="8:00 AM, 40 min" data-pt="8:00 AM, 40 min">8:00 AM, 40 min</li>
+        <li data-en="10:00 AM, 25 min" data-pt="10:00 AM, 25 min">10:00 AM, 25 min</li>
+        <li data-en="12:40 PM, 40 min" data-pt="12:40 PM, 40 min">12:40 PM, 40 min</li>
+        <li data-en="5:00 PM, 25 min" data-pt="5:00 PM, 25 min">5:00 PM, 25 min</li>
+        <li data-en="7:40 PM, 40 min" data-pt="7:40 PM, 40 min">7:40 PM, 40 min</li>
+        <li data-en="10:00 PM, 40 min" data-pt="10:00 PM, 40 min">10:00 PM, 40 min</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FIVE PILLARS -->
+<section id="pillars">
+  <div class="si">
+    <span class="section-label" data-en="The system" data-pt="O sistema">The system</span>
+    <h2 class="section-title" data-en="The five pillars" data-pt="Os cinco pilares">The five pillars</h2>
+    <div class="title-rule"></div>
+    <p class="section-intro" data-en="Each pillar has a primary purpose, a daily time budget, a sequencing logic, and a clear output. They are ordered by ROI to your employability target." data-pt="Cada pilar tem um propósito principal, um orçamento de tempo diário, uma lógica de sequenciamento e um resultado claro. Estão ordenados por retorno sobre o investimento no objetivo de empregabilidade.">Each pillar has a primary purpose, a daily time budget, a sequencing logic, and a clear output. They are ordered by ROI to your employability target.</p>
+
+    <!-- PILLAR 1 -->
+    <div class="pillar-block is-collapsed" id="pillar-1">
+      <button class="pillar-head phead1" type="button" aria-expanded="false" aria-controls="pillar-1-body">
+        <span class="pillar-num pn1" data-en="Pillar 1" data-pt="Pilar 1">Pillar 1</span>
+        <div class="pillar-head-text">
+          <h2>Azure Cloud Engineering Bootcamp</h2>
+          <p data-en="Primary track. Non-negotiable priority. Everything else yields to this." data-pt="Pilar principal. Prioridade inegociável. Tudo o resto cede a este.">Primary track. Non-negotiable priority. Everything else yields to this.</p>
+        </div>
+        <span class="pillar-head-icon">☁</span>
+      </button>
+      <div class="pillar-body" id="pillar-1-body">
+        <p data-en="This is the engine of the entire system. The goal is to become a specialist, not a generalist with cloud exposure. By month 18, the target profile is: AZ-104 certified, Terraform-native, comfortable with Docker and Kubernetes, with six deployed GitHub projects and a working CI/CD pipeline. That profile is employable at enterprise cloud consulting firms and international technology companies." data-pt="Este é o motor de todo o sistema. O objetivo é tornar-me especialista, não um generalista com exposição a cloud. Até ao mês 18, o perfil-alvo é: certificado AZ-104, nativo em Terraform, confortável com Docker e Kubernetes, com seis projetos GitHub publicados e uma pipeline CI/CD funcional. Esse perfil é empregável em empresas de consultoria cloud empresarial e empresas tecnológicas internacionais.">This is the engine of the entire system. The goal is to become a specialist, not a generalist with cloud exposure. By month 18, the target profile is: AZ-104 certified, Terraform-native, comfortable with Docker and Kubernetes, with six deployed GitHub projects and a working CI/CD pipeline. That profile is employable at enterprise cloud consulting firms and international technology companies.</p>
+
+        <div class="sub-h">Daily time budget</div>
+        <p>6 Pomodoros per day (4 hours of net work) on internship-free days. 3 to 4 Pomodoros on internship days. Bootcamp takes the highest-energy morning slots and the first post-snack afternoon block every day.</p>
+
+
+        <div class="tool-grid">
+          <div class="tool-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure"><span>Azure</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform"><span>Terraform</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker"><span>Docker</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes"><span>Kubernetes</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/python/3776AB" alt="Python"><span>Python</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="Bash"><span>Bash</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub"><span>GitHub</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="Actions"><span>GitHub Actions</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux"><span>Linux</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus"><span>Prometheus</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana"><span>Grafana</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/helm/0F1689" alt="Helm"><span>Helm</span></div>
+          <div class="tool-chip"><img src="https://www.svgrepo.com/download/473762/powershell.svg" alt="PowerShell"><span>PowerShell</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript"><span>JavaScript</span></div>
+          <div class="tool-chip"><img src="https://cdn.simpleicons.org/sqlite/003B57" alt="SQL"><span>SQL</span></div>
+        </div>
+        <div class="sub-h">Certification sequence (ordered by ROI)</div>
+        <div class="cert-row">
+          <div class="cert-card">
+            <div class="cert-name"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure" class="cert-logo">AZ-900 Azure Fundamentals</div>
+            <div class="cert-meta">Target: Term 2, Month 2</div>
+            <span class="cert-badge cb-paid">Exam, approx. 90 euros</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-name"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure" class="cert-logo">AZ-104 Azure Administrator Associate</div>
+            <div class="cert-meta">Target: Term 4, Month 7. Highest priority.</div>
+            <span class="cert-badge cb-paid">Exam, approx. 150 euros</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-name"><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" class="cert-logo">HashiCorp Terraform Associate</div>
+            <div class="cert-meta">Target: Term 5, Month 10</div>
+            <span class="cert-badge cb-paid">Exam, approx. 65 euros</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-name"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure" class="cert-logo">AZ-500 Azure Security Engineer</div>
+            <div class="cert-meta">Target: Term 7, Month 13</div>
+            <span class="cert-badge cb-paid">Exam, approx. 150 euros</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-name"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure" class="cert-logo">AZ-305 Azure Solutions Architect Expert</div>
+            <div class="cert-meta">Target: Term 9, Month 16</div>
+            <span class="cert-badge cb-paid">Exam, approx. 150 euros</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-name"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure" class="cert-logo">AZ-400 Azure DevOps Engineer Expert</div>
+            <div class="cert-meta">Target: Term 10, Month 18-19</div>
+            <span class="cert-badge cb-paid">Exam, approx. 150 euros</span>
+          </div>
+        </div>
+
+        <div class="sub-h">Phase structure</div>
+        <span class="phase-tag ptag1">Phase 1, Months 1 to 3</span>
+        <p>Linux fluency, Python running, Git workflow established, Azure free account live, AZ-900 passed, CS50x in progress. First GitHub project deployed with Terraform: VNet, subnets, NSG, and Linux VM.</p>
+
+        <span class="phase-tag ptag2">Phase 2, Months 4 to 7</span>
+        <p>AZ-104 exam. Three-tier web application deployed: App Service, Azure SQL with managed identity, Blob Storage, GitHub Actions pipeline. Active internship and observation placement search at target enterprise technology employers.</p>
+
+        <span class="phase-tag ptag3">Phase 3, Months 8 to 13</span>
+        <p>Terraform Associate, AZ-500. Container work: Docker, ACI, Kubernetes basics. AKS with Azure DevOps. Prometheus monitoring stack. Health IT capstone project design begins.</p>
+
+        <span class="phase-tag ptag4">Phase 4, Months 14 to 24</span>
+        <p>AZ-305, AZ-400. Senior architecture patterns: landing zones, Azure Policy at scale, Zero Trust. Healthcare cloud platform capstone. Active application for junior cloud engineering roles across target market regions.</p>
+
+        <div class="sub-h">Udemy course access strategy</div>
+        <p>Step one on April 9: test UoPeople LIRN access at link.gale.com/apps/?userGroupName=lirn17237 before subscribing to anything. If the six key courses are present (Scott Duffy AZ-104, Imran Afzal Linux, Kalyan Reddy AKS, Alan Rodrigues AZ-500, Mumshad Mannambeth Docker, Mumshad Mannambeth Kubernetes), the course cost is zero. If missing, the Udemy Personal Plan at 10 euros per month is the fallback. Total bootcamp course cost at worst: 240 euros over 24 months.</p>
+
+        <div class="sub-h">Portfolio projects, in order</div>
+        <table>
+          <thead><tr><th>Project</th><th>Core technology</th><th>Target term</th></tr></thead>
+          <tbody>
+            <tr><td>azure-project-01</td><td>Terraform, VNet, NSG, Linux VM, ARM baseline</td><td>Term 1</td></tr>
+            <tr><td>azure-project-02</td><td>App Service, Azure SQL, Blob Storage, GitHub Actions pipeline</td><td>Term 2-3</td></tr>
+            <tr><td>azure-project-03</td><td>VM Scale Set, Load Balancer, Log Analytics, KQL, Azure Policy</td><td>Term 3-4</td></tr>
+            <tr><td>azure-project-04</td><td>Docker, ACI deployment via Terraform, GitHub Actions image build</td><td>Term 5-6</td></tr>
+            <tr><td>azure-project-05</td><td>AKS, Helm, Azure DevOps pipeline, Prometheus monitoring</td><td>Term 6-7</td></tr>
+            <tr><td>Health-Tech Capstone</td><td>Clinical data compliance, FHIR integration, IoT patient monitoring</td><td>Terms 7-9</td></tr>
+          </tbody>
+        </table>
+      
+        <a href="pillar1-bootcamp.html" class="deep-dive-link">Full bootcamp breakdown, every month, every course</a>
+      </div>
+    </div>
+
+    <!-- PILLAR 2 -->
+    <div class="pillar-block is-collapsed" id="pillar-2">
+      <button class="pillar-head phead2" type="button" aria-expanded="false" aria-controls="pillar-2-body">
+        <span class="pillar-num pn2" data-en="Pillar 2" data-pt="Pilar 2">Pillar 2</span>
+        <div class="pillar-head-text">
+          <h2 data-en="BSc Computer Science, University of the People" data-pt="Licenciatura em Ciências da Computação, University of the People">BSc Computer Science, University of the People</h2>
+          <p data-en="Academic foundation. Scholarship maintenance. Harvard CS50x in parallel." data-pt="Alicerce académico. Manutenção da bolsa. Harvard CS50x em paralelo.">Academic foundation. Scholarship maintenance. Harvard CS50x in parallel.</p>
+        </div>
+        <span class="pillar-head-icon">🎓</span>
+      </button>
+      <div class="pillar-body" id="pillar-2-body">
+        <p>UoPeople provides the academic credential that opens doors requiring a degree. The scholarship is GPA-dependent, which means consistent high grades are financially necessary, not just academically desirable. The degree also gives access to LIRN resources including Gale Presents Udemy, which potentially makes the entire Udemy bootcamp cost zero.</p>
+        <p>Harvard CS50x runs in parallel to Terms 1 through 3. It is treated as a companion to the bootcamp, not as a separate heavy commitment. Weeks 0 through 4 of CS50x (C, arrays, algorithms, memory) run alongside Term 1 UoPeople coursework and reinforce the foundations being built in both tracks simultaneously.</p>
+
+        <div class="sub-h">Term 1 academic structure (April 2026)</div>
+        <table>
+          <thead><tr><th>Course</th><th>Type</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>UNIV 1001: Online Education Strategies</td><td>Mandatory orientation</td><td>Must pass. No waiver available.</td></tr>
+            <tr><td>CS 1101: Programming Fundamentals</td><td>Core CS</td><td>Python. Directly reinforces bootcamp scripting work.</td></tr>
+            <tr><td>CS50x Weeks 0-3</td><td>Harvard parallel</td><td>C, Scratch, algorithms. ~2 hours on Sundays.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="sub-h">Daily time budget</div>
+        <p>2 to 3 Pomodoros per day for UoPeople written assignments, discussion posts, and readings. UoPeople takes the Monday and Thursday morning slots for written work, where written assignments are the priority before bootcamp deep work. Discussion posts are written in the evening Pomodoro.</p>
+
+        <div class="sub-h">Harvard CS50x and parallel programs</div>
+        <p>CS50x (cs50.harvard.edu/x) produces a free certificate on OCW by scoring 70% on all problem sets and the final project. CS50P (cs50.harvard.edu/python) runs alongside CS50x during lighter weeks and produces a second free Harvard certificate. CS50 SQL (cs50.harvard.edu/sql) is a Phase 3 addition. These three Harvard certificates cost nothing and carry the Harvard name, which is the strongest free academic credential available.</p>
+
+        <div class="sub-h">Scholarship protection strategy</div>
+        <p>The UoPeople scholarship is GPA-linked. Target GPA 3.7 or above across all terms. Write all assignments two days before the deadline. Use the discussion post to engage genuinely with peers, which typically accounts for 20% to 30% of grades. If a single week is particularly heavy in the bootcamp, the bootcamp slightly reduces pace before UoPeople grades are ever put at risk.</p>
+      
+        <a href="pillar2-degree.html" class="deep-dive-link">Full degree plan, all 11 terms with course detail</a>
+      </div>
+    </div>
+
+    <!-- PILLAR 3 -->
+    <div class="pillar-block is-collapsed" id="pillar-3">
+      <button class="pillar-head phead3" type="button" aria-expanded="false" aria-controls="pillar-3-body">
+        <span class="pillar-num pn3" data-en="Pillar 3" data-pt="Pilar 3">Pillar 3</span>
+        <div class="pillar-head-text">
+          <h2>Language Acquisition</h2>
+          <p>English to C2, Spanish to B2, Mandarin to A2. Weekend study, daily micro-sessions.</p>
+        </div>
+        <span class="pillar-head-icon">🌍</span>
+      </button>
+      <div class="pillar-body" id="pillar-3-body">
+        <p>Languages are a force multiplier, not a standalone goal. Each language unlocks a larger market, a richer professional network, and faster access to the best learning resources in that language. The principle is staggered acquisition: never study two languages at the same proficiency level at the same time, because interference slows both. Each language must be at a meaningfully different level from the others.</p>
+
+        <div class="sub-h">Current position and targets</div>
+        <table>
+          <thead><tr><th>Language</th><th>Current</th><th>Target (24 months)</th><th>Career value</th></tr></thead>
+          <tbody>
+            <tr><td>French</td><td>C2 native</td><td>C2 maintenance</td><td>Native proficiency — key asset for EU enterprise clients</td></tr>
+            <tr><td>Portuguese</td><td>C2 native</td><td>C2 incl. Brazilian variant</td><td>Phase 1 market internships, Brazil cloud market (Azure Brazil South)</td></tr>
+            <tr><td>English</td><td>B2 confirmed</td><td>C1 to C2</td><td>All certifications, UoPeople, IBM and Deloitte working language</td></tr>
+            <tr><td>Spanish</td><td>A0, start now</td><td>A2 to B1</td><td>international tech market</td></tr>
+            <tr><td>Mandarin</td><td>A0, start Month 2</td><td>A1 to A2</td><td>Long-term professional network expansion</td></tr>
+          </tbody>
+        </table>
+
+        <div class="sub-h">Weekly time budget</div>
+        <table>
+          <thead><tr><th>Session</th><th>Language</th><th>Format</th><th>Duration</th></tr></thead>
+          <tbody>
+            <tr><td>Saturday morning</td><td>English</td><td>Udemy structured grammar, academic writing</td><td>1 Pomodoro, 40 min</td></tr>
+            <tr><td>Sunday morning</td><td>Spanish</td><td>Udemy structured course, El Metodo Level 1</td><td>1 Pomodoro, 40 min</td></tr>
+            <tr><td>Sunday afternoon (from Month 2)</td><td>Mandarin</td><td>App-based, HelloChinese or Duolingo</td><td>1 Pomodoro, 40 min</td></tr>
+            <tr><td>Daily optional, 10 min each</td><td>Spanish and English</td><td>Duolingo micro-sessions, doubles weekly contact</td><td>10 min each</td></tr>
+          </tbody>
+        </table>
+
+        <div class="sub-h">Why multilingualism matters for this career specifically</div>
+        <p>Being able to study Udemy courses in Portuguese, English, and French means access to three times the instructional content and three times the professional communities. A problem that has no English-language solution on Stack Overflow often has one in Portuguese or French. A certification study group on Discord that is too fast-moving in English might be exactly the right pace in Portuguese. This is a direct learning velocity advantage that most competitors do not have.</p>
+
+        <div class="sub-h">Long-term language map (beyond 24 months)</div>
+        <p>After the core four are consolidated: German (B1 target, for Germany's Azure enterprise SAP market), Hindi (A2 target, for international tech workplace relationships), Japanese (A2 target, for Asia-Pacific market), Italian (A2 target, fast from French and Portuguese), Mandarin continued to B1. The rotation system means adding one language at A0 every 12 to 18 months once the Tier 1 languages are stable.</p>
+      
+        <a href="pillar3-languages.html" class="deep-dive-link">Full language strategy, all 10 languages mapped</a>
+      </div>
+    </div>
+
+    <!-- PILLAR 4 -->
+    <div class="pillar-block is-collapsed" id="pillar-4">
+      <button class="pillar-head phead4" type="button" aria-expanded="false" aria-controls="pillar-4-body">
+        <span class="pillar-num pn4" data-en="Pillar 4" data-pt="Pilar 4">Pillar 4</span>
+        <div class="pillar-head-text">
+          <h2 data-en="Advanced Courses from Top Institutions" data-pt="Cursos Avançados de Instituições de Referência">Advanced Courses from Top Institutions</h2>
+          <p>Harvard, Stanford, MIT, Imperial, Georgia Tech, IBM, Google, Microsoft. Free, phased.</p>
+        </div>
+        <span class="pillar-head-icon">🏛</span>
+      </button>
+      <div class="pillar-body" id="pillar-4-body">
+
+        <div class="p4-logos">
+          <div class="p4-logo-pill"><img src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard"><span>Harvard</span></div>
+          <div class="p4-logo-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354 200" aria-label="MIT" style="height:14px;width:auto;"><path fill="#A31F34" d="M187.268 187.268h41.615V62.423H187.268Zm62.423-145.653H353.728V0H249.691ZM187.268 0h41.615V41.615H187.268ZM124.845 187.268H166.46V0H124.845ZM62.423 145.653h41.615V0H62.423ZM0 187.268H41.615V0H0Zm249.691 0h41.615V62.423H249.691Z"/></svg><span>MIT</span></div>
+          <div class="p4-logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Stanford_Cardinal_logo.svg" alt="Stanford"><span>Stanford</span></div>
+          <div class="p4-logo-pill"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Imperial%20logo.svg" alt="Imperial"><span>Imperial College</span></div>
+          <div class="p4-logo-pill"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Georgia%20Tech%20logo%202021.svg" alt="Georgia Tech"><span>Georgia Tech</span></div>
+          <div class="p4-logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM"><span>IBM</span></div>
+          <div class="p4-logo-pill"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Google%202015%20logo.svg" alt="Google"><span>Google</span></div>
+          <div class="p4-logo-pill"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cloud%20Native%20Computing%20Foundation%202023%20logo.svg" alt="CNCF"><span>CNCF</span></div>
+          <div class="p4-logo-pill"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cisco%20logo%20blue%202016.svg" alt="Cisco"><span>Cisco</span></div>
+          <div class="p4-logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta"><span>Meta</span></div>
+          <div class="p4-logo-pill"><img src="https://cdn.simpleicons.org/udemy/A435F0" alt="Udemy"><span>Udemy</span></div>
+        </div>
+        <p>This pillar is not about collecting badges. It is about building two things simultaneously: the actual foundational CS knowledge that makes a better engineer, and the institutional names on a CV that open doors with leading enterprise companies and graduate admissions committees. The rule is simple: these courses are listed on the roadmap and CV as planned, active, or completed. Never list them as completed when they are not. The portfolio and GitHub are where reality lives.</p>
+
+        <div class="sub-h">Priority order within this pillar</div>
+        <p>Phase 1 courses run in the background as parallel micro-study, 1 Pomodoro per week at most, because the bootcamp is the priority. Phase 3 and Phase 4 courses are what you actually study when the bootcamp is in maintenance mode after the major certifications are earned.</p>
+
+        <div class="sub-h">Phase 1, background now (1 Pomodoro per week, bootcamp priority always)</div>
+        <table>
+          <thead><tr><th>Course</th><th>Institution</th><th>Certificate</th><th>Direct link</th></tr></thead>
+          <tbody>
+            <tr><td>CS50x, Intro to Computer Science</td><td>Harvard</td><td>Free via OCW</td><td>cs50.harvard.edu/x</td></tr>
+            <tr><td>CS50P, Intro to Python</td><td>Harvard</td><td>Free via OCW</td><td>cs50.harvard.edu/python</td></tr>
+            <tr><td>LFS101, Introduction to Linux</td><td>Linux Foundation</td><td>Audit free</td><td>linuxfoundation.org/LFS101</td></tr>
+            <tr><td>LFS151, Cloud Infrastructure</td><td>Linux Foundation</td><td>Audit free</td><td>linuxfoundation.org/LFS151</td></tr>
+            <tr><td>GitHub Actions and Skills paths</td><td>GitHub</td><td>Free Achievement badges</td><td>skills.github.com</td></tr>
+            <tr><td>Cisco Cybersecurity and CCNA Networks</td><td>Cisco NetAcad</td><td>Free Cisco badge</td><td>netacad.com</td></tr>
+            <tr><td>MIT Missing Semester</td><td>MIT CSAIL</td><td>None, knowledge only</td><td>missing.csail.mit.edu</td></tr>
+            <tr><td>Cloud Fundamentals and DevOps</td><td>IBM SkillsBuild</td><td>Free Credly badge</td><td>skillsbuild.org</td></tr>
+          </tbody>
+        </table>
+
+        <div class="sub-h">Phase 2, active study alongside AZ-104 prep</div>
+        <table>
+          <thead><tr><th>Course</th><th>Institution</th><th>Certificate</th></tr></thead>
+          <tbody>
+            <tr><td>LFS158, Introduction to Kubernetes</td><td>CNCF</td><td>Free cert</td></tr>
+            <tr><td>LFS162, DevOps and SRE</td><td>Linux Foundation</td><td>Audit free</td></tr>
+            <tr><td>Career Essentials in Generative AI</td><td>Microsoft and LinkedIn</td><td>Free, 4 hours</td></tr>
+            <tr><td>CS50 AI, Intro to AI with Python</td><td>Harvard</td><td>Free via OCW</td></tr>
+            <tr><td>Mathematics for Machine Learning</td><td>Imperial College London</td><td>Financial aid</td></tr>
+            <tr><td>Applied DevOps Engineering Professional</td><td>IBM</td><td>Financial aid, 14 courses</td></tr>
+          </tbody>
+        </table>
+
+        <div class="sub-h">Phase 3 and beyond</div>
+        <table>
+          <thead><tr><th>Course</th><th>Institution</th><th>Certificate</th></tr></thead>
+          <tbody>
+            <tr><td>CS50 SQL, Intro to Databases</td><td>Harvard</td><td>Free via OCW</td></tr>
+            <tr><td>Cybersecurity Professional Certificate</td><td>Google</td><td>Financial aid, 8 courses</td></tr>
+            <tr><td>Algorithms Specialisation, 4 courses</td><td>Stanford</td><td>Financial aid</td></tr>
+            <tr><td>OMSCS Prep Series (CS1301, CS1331, CS1332)</td><td>Georgia Tech</td><td>Audit free</td></tr>
+            <tr><td>6.006 Introduction to Algorithms</td><td>MIT OCW</td><td>None, knowledge only</td></tr>
+            <tr><td>Scrum Foundations Professional Certificate</td><td>CertiProf</td><td>Free, 2 hours</td></tr>
+            <tr><td>Machine Learning Specialisation, 3 courses</td><td>Stanford</td><td>Financial aid</td></tr>
+            <tr><td>OMSCS Master of Science in CS</td><td>Georgia Tech</td><td>Full degree program</td></tr>
+          </tbody>
+        </table>
+
+        <div class="sub-h">Coursera financial aid process</div>
+        <p>For any Coursera course with a paid certificate, apply for financial aid at enrollment. Approval rate is high. Wait approximately 2 weeks. State clearly that you cannot afford the enrollment fee and explain your situation. Once approved, the certificate is free and fully valid. This applies to Stanford, Imperial College London, Google, IBM, and Meta programs.</p>
+      
+        <a href="pillar4-courses.html" class="deep-dive-link">All 28 programs, institutions, timing, free access</a>
+      </div>
+    </div>
+
+    <!-- PILLAR 5 -->
+    <div class="pillar-block is-collapsed" id="pillar-5">
+      <button class="pillar-head phead5" type="button" aria-expanded="false" aria-controls="pillar-5-body">
+        <span class="pillar-num pn5" data-en="Pillar 5" data-pt="Pilar 5">Pillar 5</span>
+        <div class="pillar-head-text">
+          <h2 data-en="Reading Program" data-pt="Programa de Leitura">Reading Program</h2>
+          <p data-en="One book per month. Technical, mindset, and career." data-pt="Um livro por mês. Técnico, mentalidade e carreira.">One book per month. Technical, mindset, and career. Physical books, screens off.</p>
+        </div>
+        <span class="pillar-head-icon">📚</span>
+      </button>
+      <div class="pillar-body" id="pillar-5-body">
+        <p data-en="Reading is the one pillar that happens entirely offline. The 9:40 PM screens-off rule creates a natural reading window from 9:40 PM to 10:00 PM and again from 10:00 PM to 10:40 PM during the last meal. Physical books, read in bed if needed. One book per month is achievable at roughly 20 minutes per day. Two books per month is achievable on better weeks." data-pt="A leitura é o único pilar que acontece totalmente offline. A regra de ecrãs desligados às 9:40 PM cria uma janela de leitura natural das 9:40 PM às 10:00 PM e novamente das 10:00 PM às 10:40 PM durante a última refeição. Livros físicos, lidos na cama se necessário. Um livro por mês é alcançável com cerca de 20 minutos por dia. Dois livros por mês é alcançável nas semanas melhores.">Reading is the one pillar that happens entirely offline. The 9:40 PM screens-off rule creates a natural reading window from 9:40 PM to 10:00 PM and again from 10:00 PM to 10:40 PM during the last meal. Physical books, read in bed if needed. One book per month is achievable at roughly 20 minutes per day. Two books per month is achievable on better weeks.</p>
+        <p>The selection logic: technical books are chosen for direct bootcamp application. Mindset and productivity books are chosen for system sustainability. Career and business books are chosen for the entrepreneurial context of the long-term plan.</p>
+
+        <div class="sub-h">Reading sequence, ordered by immediate ROI</div>
+        <table>
+          <thead><tr><th>Book</th><th>Author</th><th>Category</th><th>Why now</th></tr></thead>
+          <tbody>
+            <tr><td>Atomic Habits</td><td>James Clear</td><td>Systems and habits</td><td>Already in hand in Portuguese. Start April 9. Builds the daily discipline the entire system requires.</td></tr>
+            <tr><td>The Phoenix Project</td><td>Kim, Behr, Spafford</td><td>DevOps narrative</td><td>Tells the story of DevOps culture through fiction. Directly relevant to cloud engineering context and how teams actually operate.</td></tr>
+            <tr><td>The Pragmatic Programr</td><td>Hunt and Thomas</td><td>Technical craft</td><td>The definitive guide to how experienced engineers think. Covers version control, testing, debugging, documentation. Every chapter is immediately applicable.</td></tr>
+            <tr><td>Terraform: Up and Running</td><td>Brikman</td><td>Technical reference</td><td>The standard Terraform book. Read alongside the Udemy Terraform bootcamp course. Chapters map directly to what you are building in projects 1 through 3.</td></tr>
+            <tr><td>Deep Work</td><td>Cal Newport</td><td>Productivity and focus</td><td>Makes the case for intense focused work blocks, directly validating the Pomodoro system. Read in month 2 before intensity ramps up.</td></tr>
+            <tr><td>The DevOps Handbook</td><td>Kim, Humble, Debois, Willis</td><td>Technical culture</td><td>Companion to The Phoenix Project. More prescriptive. Covers CI/CD, deployment frequency, mean time to recovery. Read alongside AZ-400 prep.</td></tr>
+            <tr><td>Designing Data-Intensive Applications</td><td>Martin Kleppmann</td><td>Systems architecture</td><td>The most important systems design book available. Read in Phase 3 alongside AZ-305 architecture work. Covers distributed systems, databases, and streaming at depth.</td></tr>
+            <tr><td>The Clean Coder</td><td>Robert Martin</td><td>Professional practice</td><td>About professional conduct, estimation, how to say no, and how to take ownership. Prepares for the internship environment before it starts.</td></tr>
+            <tr><td>Site Reliability Engineering</td><td>Google SRE team</td><td>Technical operations</td><td>Google's approach to running production systems. Free at sre.google/books. Read in Phase 3 alongside monitoring and observability bootcamp content.</td></tr>
+            <tr><td>The Manager's Path</td><td>Camille Fournier</td><td>Career trajectory</td><td>Covers the engineer-to-tech-lead-to-manager path. Read in Phase 4 as the career conversation shifts from getting hired to growing.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="sub-h">Reading mechanics</div>
+        <p>Physical books where possible. Your Portuguese copy of Atomic Habits is the right format: language matches the content, no translation delay, reading in the native register of the book. For technical books, English originals are preferred because the terminology matches the certifications and documentation. Kindle is acceptable for technical books to avoid import costs.</p>
+      
+        <a href="pillar5-reading.html" class="deep-dive-link">All 10 books, annotated, timed, with reasoning</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="si">
+    <span class="section-label" data-en="Weekly structure" data-pt="Estrutura semanal">Weekly structure</span>
+    <h2 class="section-title" data-en="Master weekly schedule" data-pt="Horário semanal mestre">Master weekly schedule</h2>
+    <div class="title-rule"></div>
+    <p class="section-intro" data-en="Version A: before June 16, internship on Monday, Tuesday, and Thursday afternoons 2:00 PM to 7:00 PM. Wednesday is a low-energy driving day. Friday mornings only. Sunday is strictly off with CS50 in the evening." data-pt="Versão A: antes de 16 de junho, estágio às tardes de segunda, terça e quinta das 2:00 PM às 7:00 PM. Quarta é um dia de baixa energia (condução). Apenas as manhãs de sexta. O domingo é estritamente de descanso, com CS50 à noite.">Version A: before June 16, internship on Monday, Tuesday, and Thursday afternoons 2:00 PM to 7:00 PM. Wednesday is a low-energy driving day. Friday mornings only. Sunday is strictly off with CS50 in the evening.</p>
+
+    <div class="legend-row">
+      <span class="leg db-boot" data-en="Bootcamp" data-pt="Bootcamp">Bootcamp</span>
+      <span class="leg db-uni" data-en="UoPeople/CS50" data-pt="UoPeople/CS50">UoPeople/CS50</span>
+      <span class="leg db-meal" data-en="Medical break" data-pt="Pausa médica">Medical break</span>
+      <span class="leg db-intern" data-en="Internship" data-pt="Estágio">Internship</span>
+      <span class="leg db-lang" data-en="Languages" data-pt="Idiomas">Languages</span>
+      <span class="leg db-read" data-en="Reading" data-pt="Leitura">Reading</span>
+      <span class="leg db-admin" data-en="Admin/GitHub" data-pt="Admin/GitHub">Admin/GitHub</span>
+      <span class="leg db-rest" data-en="Rest/Travel" data-pt="Descanso/Viagem">Rest/Travel</span>
+    </div>
+
+    <div class="schedule-grid">
+      <!-- Monday -->
+      <div class="day-col">
+        <div class="day-header" data-en="Monday" data-pt="Segunda-feira">Monday</div>
+        <div class="day-block db-rest" data-en="6:50 AM Wake + routine" data-pt="6:50 AM Acordar + rotina">6:50 AM Wake + routine</div>
+        <div class="day-block db-uni" data-en="7:30 AM P1: UoPeople 30min" data-pt="7:30 AM P1: UoPeople 30min">7:30 AM P1: UoPeople 30min</div>
+        <div class="day-block db-meal" data-en="8:00 AM BREAKFAST 40min" data-pt="8:00 AM PEQUENO-ALMOÇO 40min">8:00 AM BREAKFAST 40min</div>
+        <div class="day-block db-uni" data-en="8:40 AM P2: UoPeople 40min" data-pt="8:40 AM P2: UoPeople 40min">8:40 AM P2: UoPeople 40min</div>
+        <div class="day-block db-meal" data-en="10:00 AM SNACK 25min" data-pt="10:00 AM LANCHE 25min">10:00 AM SNACK 25min</div>
+        <div class="day-block db-boot" data-en="10:25 AM P3: Bootcamp 40min" data-pt="10:25 AM P3: Bootcamp 40min">10:25 AM P3: Bootcamp 40min</div>
+        <div class="day-block db-boot" data-en="11:15 AM P4: Bootcamp 40min" data-pt="11:15 AM P4: Bootcamp 40min">11:15 AM P4: Bootcamp 40min</div>
+        <div class="day-block db-uni" data-en="12:05 PM P5: UoPeople 35min" data-pt="12:05 PM P5: UoPeople 35min">12:05 PM P5: UoPeople 35min</div>
+        <div class="day-block db-meal" data-en="12:40 PM LUNCH 40min" data-pt="12:40 PM ALMOÇO 40min">12:40 PM LUNCH 40min</div>
+        <div class="day-block db-boot" data-en="1:20 PM P6: Bootcamp 40min" data-pt="1:20 PM P6: Bootcamp 40min">1:20 PM P6: Bootcamp 40min</div>
+        <div class="day-block db-intern" data-en="2:00 PM INTERNSHIP 5h" data-pt="2:00 PM ESTÁGIO 5h">2:00 PM INTERNSHIP 5h</div>
+        <div class="day-block db-meal" data-en="7:40 PM DINNER 40min" data-pt="7:40 PM JANTAR 40min">7:40 PM DINNER 40min</div>
+        <div class="day-block db-uni" data-en="8:20 PM P7: UoPeople 40min" data-pt="8:20 PM P7: UoPeople 40min">8:20 PM P7: UoPeople 40min</div>
+        <div class="day-block db-admin" data-en="9:00 PM GitHub+LinkedIn 40min" data-pt="9:00 PM GitHub+LinkedIn 40min">9:00 PM GitHub+LinkedIn 40min</div>
+        <div class="day-block db-rest" data-en="9:40 PM SCREENS OFF" data-pt="9:40 PM ECRÃS DESLIGADOS">9:40 PM SCREENS OFF</div>
+        <div class="day-block db-read" data-en="9:40 PM Reading (book)" data-pt="9:40 PM Leitura (livro)">9:40 PM Reading (book)</div>
+        <div class="day-block db-meal" data-en="10:00 PM Last meal + reading" data-pt="10:00 PM Última refeição + leitura">10:00 PM Last meal + reading</div>
+        <div class="day-block db-rest" data-en="10:45 PM SLEEP" data-pt="10:45 PM DORMIR">10:45 PM SLEEP</div>
+      </div>
+      <!-- Tuesday -->
+      <div class="day-col">
+        <div class="day-header" data-en="Tuesday" data-pt="Terça-feira">Tuesday</div>
+        <div class="day-block db-rest" data-en="6:50 AM Wake + routine" data-pt="6:50 AM Acordar + rotina">6:50 AM Wake + routine</div>
+        <div class="day-block db-boot" data-en="7:30 AM P1: Bootcamp DEEP 30min" data-pt="7:30 AM P1: Bootcamp DEEP 30min">7:30 AM P1: Bootcamp DEEP 30min</div>
+        <div class="day-block db-meal" data-en="8:00 AM BREAKFAST 40min" data-pt="8:00 AM PEQUENO-ALMOÇO 40min">8:00 AM BREAKFAST 40min</div>
+        <div class="day-block db-boot" data-en="8:40 AM P2: Bootcamp DEEP 40min" data-pt="8:40 AM P2: Bootcamp DEEP 40min">8:40 AM P2: Bootcamp DEEP 40min</div>
+        <div class="day-block db-boot" data-en="9:30 AM P3: Bootcamp DEEP 30min" data-pt="9:30 AM P3: Bootcamp DEEP 30min">9:30 AM P3: Bootcamp DEEP 30min</div>
+        <div class="day-block db-meal" data-en="10:00 AM SNACK 25min" data-pt="10:00 AM LANCHE 25min">10:00 AM SNACK 25min</div>
+        <div class="day-block db-boot" data-en="10:25 AM P4: Bootcamp DEEP 40min" data-pt="10:25 AM P4: Bootcamp DEEP 40min">10:25 AM P4: Bootcamp DEEP 40min</div>
+        <div class="day-block db-uni" data-en="11:15 AM P5: UoPeople 40min" data-pt="11:15 AM P5: UoPeople 40min">11:15 AM P5: UoPeople 40min</div>
+        <div class="day-block db-uni" data-en="12:05 PM P6: UoPeople 35min" data-pt="12:05 PM P6: UoPeople 35min">12:05 PM P6: UoPeople 35min</div>
+        <div class="day-block db-meal" data-en="12:40 PM LUNCH 40min" data-pt="12:40 PM ALMOÇO 40min">12:40 PM LUNCH 40min</div>
+        <div class="day-block db-uni" data-en="1:20 PM P7: Light review 40min" data-pt="1:20 PM P7: Light review 40min">1:20 PM P7: Light review 40min</div>
+        <div class="day-block db-intern" data-en="2:00 PM INTERNSHIP 5h" data-pt="2:00 PM ESTÁGIO 5h">2:00 PM INTERNSHIP 5h</div>
+        <div class="day-block db-meal" data-en="7:40 PM DINNER 40min" data-pt="7:40 PM JANTAR 40min">7:40 PM DINNER 40min</div>
+        <div class="day-block db-boot" data-en="8:20 PM P8: Bootcamp light 40min" data-pt="8:20 PM P8: Bootcamp light 40min">8:20 PM P8: Bootcamp light 40min</div>
+        <div class="day-block db-admin" data-en="9:00 PM GitHub+LinkedIn 40min" data-pt="9:00 PM GitHub+LinkedIn 40min">9:00 PM GitHub+LinkedIn 40min</div>
+        <div class="day-block db-rest" data-en="9:40 PM SCREENS OFF" data-pt="9:40 PM ECRÃS DESLIGADOS">9:40 PM SCREENS OFF</div>
+        <div class="day-block db-read" data-en="9:40 PM Reading (book)" data-pt="9:40 PM Leitura (livro)">9:40 PM Reading (book)</div>
+        <div class="day-block db-meal" data-en="10:00 PM Last meal + reading" data-pt="10:00 PM Última refeição + leitura">10:00 PM Last meal + reading</div>
+        <div class="day-block db-rest" data-en="10:45 PM SLEEP" data-pt="10:45 PM DORMIR">10:45 PM SLEEP</div>
+      </div>
+      <!-- Wednesday -->
+      <div class="day-col">
+        <div class="day-header" data-en="Wednesday" data-pt="Quarta-feira">Wednesday</div>
+        <div class="day-block db-rest" data-en="6:50 AM Wake + prep for travel" data-pt="6:50 AM Acordar + preparar viagem">6:50 AM Wake + prep for travel</div>
+        <div class="day-block db-lang" data-en="7:30 AM P1: English 30min" data-pt="7:30 AM P1: English 30min">7:30 AM P1: English 30min</div>
+        <div class="day-block db-meal" data-en="8:00 AM BREAKFAST 40min" data-pt="8:00 AM PEQUENO-ALMOÇO 40min">8:00 AM BREAKFAST 40min</div>
+        <div class="day-block db-boot" data-en="8:40 AM P2: Bootcamp LIGHT 40min (lecture only)" data-pt="8:40 AM P2: Bootcamp LIGHT 40min (lecture only)">8:40 AM P2: Bootcamp LIGHT 40min (lecture only)</div>
+        <div class="day-block db-uni" data-en="9:30 AM P3: UoPeople reading 30min" data-pt="9:30 AM P3: UoPeople reading 30min">9:30 AM P3: UoPeople reading 30min</div>
+        <div class="day-block db-meal" data-en="10:00 AM SNACK 25min" data-pt="10:00 AM LANCHE 25min">10:00 AM SNACK 25min</div>
+        <div class="day-block db-rest" data-en="10:25 AM DRIVING approx 2.5h" data-pt="10:25 AM DRIVING approx 2.5h">10:25 AM DRIVING approx 2.5h</div>
+        <div class="day-block db-meal" data-en="12:40 PM LUNCH 40min" data-pt="12:40 PM ALMOÇO 40min">12:40 PM LUNCH 40min</div>
+        <div class="day-block db-rest" data-en="1:20 PM Return journey" data-pt="1:20 PM Return journey">1:20 PM Return journey</div>
+        <div class="day-block db-uni" data-en="3:00 PM P4: UoPeople LIGHT 40min" data-pt="3:00 PM P4: UoPeople LIGHT 40min">3:00 PM P4: UoPeople LIGHT 40min</div>
+        <div class="day-block db-boot" data-en="3:50 PM P5: Bootcamp LIGHT 40min" data-pt="3:50 PM P5: Bootcamp LIGHT 40min">3:50 PM P5: Bootcamp LIGHT 40min</div>
+        <div class="day-block db-meal" data-en="5:00 PM SNACK 25min" data-pt="5:00 PM LANCHE 25min">5:00 PM SNACK 25min</div>
+        <div class="day-block db-lang" data-en="5:25 PM P6: Spanish 40min" data-pt="5:25 PM P6: Spanish 40min">5:25 PM P6: Spanish 40min</div>
+        <div class="day-block db-rest" data-en="6:15 PM Plan + wind down" data-pt="6:15 PM Plan + wind down">6:15 PM Plan + wind down</div>
+        <div class="day-block db-meal" data-en="7:40 PM DINNER 40min" data-pt="7:40 PM JANTAR 40min">7:40 PM DINNER 40min</div>
+        <div class="day-block db-uni" data-en="8:20 PM P7: UoPeople LIGHT 40min" data-pt="8:20 PM P7: UoPeople LIGHT 40min">8:20 PM P7: UoPeople LIGHT 40min</div>
+        <div class="day-block db-admin" data-en="9:00 PM GitHub+LinkedIn 40min" data-pt="9:00 PM GitHub+LinkedIn 40min">9:00 PM GitHub+LinkedIn 40min</div>
+        <div class="day-block db-rest" data-en="9:40 PM SCREENS OFF (sleep earlier if possible)" data-pt="9:40 PM SCREENS OFF (sleep earlier if possible)">9:40 PM SCREENS OFF (sleep earlier if possible)</div>
+        <div class="day-block db-meal" data-en="10:00 PM Last meal" data-pt="10:00 PM Last meal">10:00 PM Last meal</div>
+        <div class="day-block db-rest" data-en="10:45 PM SLEEP" data-pt="10:45 PM DORMIR">10:45 PM SLEEP</div>
+      </div>
+      <!-- Thursday -->
+      <div class="day-col">
+        <div class="day-header" data-en="Thursday" data-pt="Quinta-feira">Thursday</div>
+        <div class="day-block db-rest" data-en="6:50 AM Wake + routine" data-pt="6:50 AM Acordar + rotina">6:50 AM Wake + routine</div>
+        <div class="day-block db-uni" data-en="7:30 AM P1: UoPeople WRITTEN 30min" data-pt="7:30 AM P1: UoPeople WRITTEN 30min">7:30 AM P1: UoPeople WRITTEN 30min</div>
+        <div class="day-block db-meal" data-en="8:00 AM BREAKFAST 40min" data-pt="8:00 AM PEQUENO-ALMOÇO 40min">8:00 AM BREAKFAST 40min</div>
+        <div class="day-block db-uni" data-en="8:40 AM P2: UoPeople WRITTEN 40min" data-pt="8:40 AM P2: UoPeople WRITTEN 40min">8:40 AM P2: UoPeople WRITTEN 40min</div>
+        <div class="day-block db-boot" data-en="9:30 AM P3: Bootcamp DEEP 30min" data-pt="9:30 AM P3: Bootcamp DEEP 30min">9:30 AM P3: Bootcamp DEEP 30min</div>
+        <div class="day-block db-meal" data-en="10:00 AM SNACK 25min" data-pt="10:00 AM LANCHE 25min">10:00 AM SNACK 25min</div>
+        <div class="day-block db-boot" data-en="10:25 AM P4: Bootcamp DEEP 40min" data-pt="10:25 AM P4: Bootcamp DEEP 40min">10:25 AM P4: Bootcamp DEEP 40min</div>
+        <div class="day-block db-boot" data-en="11:15 AM P5: Bootcamp DEEP 40min" data-pt="11:15 AM P5: Bootcamp DEEP 40min">11:15 AM P5: Bootcamp DEEP 40min</div>
+        <div class="day-block db-uni" data-en="12:05 PM P6: UoPeople 35min" data-pt="12:05 PM P6: UoPeople 35min">12:05 PM P6: UoPeople 35min</div>
+        <div class="day-block db-meal" data-en="12:40 PM LUNCH 40min" data-pt="12:40 PM ALMOÇO 40min">12:40 PM LUNCH 40min</div>
+        <div class="day-block db-boot" data-en="1:20 PM P7: Bootcamp 40min" data-pt="1:20 PM P7: Bootcamp 40min">1:20 PM P7: Bootcamp 40min</div>
+        <div class="day-block db-intern" data-en="2:00 PM INTERNSHIP 5h" data-pt="2:00 PM ESTÁGIO 5h">2:00 PM INTERNSHIP 5h</div>
+        <div class="day-block db-meal" data-en="7:40 PM DINNER 40min" data-pt="7:40 PM JANTAR 40min">7:40 PM DINNER 40min</div>
+        <div class="day-block db-boot" data-en="8:20 PM P8: Bootcamp light 40min" data-pt="8:20 PM P8: Bootcamp light 40min">8:20 PM P8: Bootcamp light 40min</div>
+        <div class="day-block db-admin" data-en="9:00 PM GitHub+LinkedIn 40min" data-pt="9:00 PM GitHub+LinkedIn 40min">9:00 PM GitHub+LinkedIn 40min</div>
+        <div class="day-block db-rest" data-en="9:40 PM SCREENS OFF" data-pt="9:40 PM ECRÃS DESLIGADOS">9:40 PM SCREENS OFF</div>
+        <div class="day-block db-read" data-en="9:40 PM Reading (book)" data-pt="9:40 PM Leitura (livro)">9:40 PM Reading (book)</div>
+        <div class="day-block db-meal" data-en="10:00 PM Last meal + reading" data-pt="10:00 PM Última refeição + leitura">10:00 PM Last meal + reading</div>
+        <div class="day-block db-rest" data-en="10:45 PM SLEEP" data-pt="10:45 PM DORMIR">10:45 PM SLEEP</div>
+      </div>
+      <!-- Friday -->
+      <div class="day-col">
+        <div class="day-header" data-en="Friday" data-pt="Sexta-feira">Friday</div>
+        <div class="day-block db-rest" data-en="6:50 AM Wake + routine" data-pt="6:50 AM Acordar + rotina">6:50 AM Wake + routine</div>
+        <div class="day-block db-boot" data-en="7:30 AM P1: Bootcamp DEEP 30min" data-pt="7:30 AM P1: Bootcamp DEEP 30min">7:30 AM P1: Bootcamp DEEP 30min</div>
+        <div class="day-block db-meal" data-en="8:00 AM BREAKFAST 40min" data-pt="8:00 AM PEQUENO-ALMOÇO 40min">8:00 AM BREAKFAST 40min</div>
+        <div class="day-block db-boot" data-en="8:40 AM P2: Bootcamp DEEP 40min" data-pt="8:40 AM P2: Bootcamp DEEP 40min">8:40 AM P2: Bootcamp DEEP 40min</div>
+        <div class="day-block db-boot" data-en="9:30 AM P3: Bootcamp DEEP 30min" data-pt="9:30 AM P3: Bootcamp DEEP 30min">9:30 AM P3: Bootcamp DEEP 30min</div>
+        <div class="day-block db-meal" data-en="10:00 AM SNACK 25min" data-pt="10:00 AM LANCHE 25min">10:00 AM SNACK 25min</div>
+        <div class="day-block db-boot" data-en="10:25 AM P4: Bootcamp 40min" data-pt="10:25 AM P4: Bootcamp 40min">10:25 AM P4: Bootcamp 40min</div>
+        <div class="day-block db-uni" data-en="11:15 AM P5: UoPeople 40min" data-pt="11:15 AM P5: UoPeople 40min">11:15 AM P5: UoPeople 40min</div>
+        <div class="day-block db-uni" data-en="12:05 PM P6: UoPeople 35min" data-pt="12:05 PM P6: UoPeople 35min">12:05 PM P6: UoPeople 35min</div>
+        <div class="day-block db-meal" data-en="12:40 PM LUNCH 40min" data-pt="12:40 PM ALMOÇO 40min">12:40 PM LUNCH 40min</div>
+        <div class="day-block db-rest" data-en="1:20 PM TRAVEL to Aveiro" data-pt="1:20 PM TRAVEL to Aveiro">1:20 PM TRAVEL to Aveiro</div>
+        <div class="day-block db-rest" data-en="~3:30 PM Arrive Aveiro/Travasso" data-pt="~3:30 PM Arrive Aveiro/Travasso">~3:30 PM Arrive Aveiro/Travasso</div>
+        <div class="day-block db-meal" data-en="5:00 PM SNACK 25min" data-pt="5:00 PM LANCHE 25min">5:00 PM SNACK 25min</div>
+        <div class="day-block db-boot" data-en="5:25 PM P7: Bootcamp light 40min" data-pt="5:25 PM P7: Bootcamp light 40min">5:25 PM P7: Bootcamp light 40min</div>
+        <div class="day-block db-meal" data-en="7:40 PM DINNER 40min" data-pt="7:40 PM JANTAR 40min">7:40 PM DINNER 40min</div>
+        <div class="day-block db-boot" data-en="8:20 PM P8: Portfolio review 40min" data-pt="8:20 PM P8: Portfolio review 40min">8:20 PM P8: Portfolio review 40min</div>
+        <div class="day-block db-admin" data-en="9:00 PM GitHub+LinkedIn 40min" data-pt="9:00 PM GitHub+LinkedIn 40min">9:00 PM GitHub+LinkedIn 40min</div>
+        <div class="day-block db-rest" data-en="9:40 PM SCREENS OFF" data-pt="9:40 PM ECRÃS DESLIGADOS">9:40 PM SCREENS OFF</div>
+        <div class="day-block db-read" data-en="9:40 PM Reading (book)" data-pt="9:40 PM Leitura (livro)">9:40 PM Reading (book)</div>
+        <div class="day-block db-meal" data-en="10:00 PM Last meal + reading" data-pt="10:00 PM Última refeição + leitura">10:00 PM Last meal + reading</div>
+        <div class="day-block db-rest" data-en="10:45 PM SLEEP" data-pt="10:45 PM DORMIR">10:45 PM SLEEP</div>
+      </div>
+      <!-- Saturday -->
+      <div class="day-col">
+        <div class="day-header" data-en="Saturday" data-pt="Sábado">Saturday</div>
+        <div class="day-block db-rest" data-en="7:00 AM Wake (no alarm)" data-pt="7:00 AM Wake (no alarm)">7:00 AM Wake (no alarm)</div>
+        <div class="day-block db-boot" data-en="8:00 AM P1: Bootcamp DEEP 40min" data-pt="8:00 AM P1: Bootcamp DEEP 40min">8:00 AM P1: Bootcamp DEEP 40min</div>
+        <div class="day-block db-meal" data-en="8:00 AM BREAKFAST 40min" data-pt="8:00 AM PEQUENO-ALMOÇO 40min">8:00 AM BREAKFAST 40min</div>
+        <div class="day-block db-boot" data-en="8:40 AM P2: Bootcamp DEEP 40min" data-pt="8:40 AM P2: Bootcamp DEEP 40min">8:40 AM P2: Bootcamp DEEP 40min</div>
+        <div class="day-block db-boot" data-en="9:30 AM P3: Bootcamp DEEP 40min" data-pt="9:30 AM P3: Bootcamp DEEP 40min">9:30 AM P3: Bootcamp DEEP 40min</div>
+        <div class="day-block db-meal" data-en="10:00 AM SNACK 25min" data-pt="10:00 AM LANCHE 25min">10:00 AM SNACK 25min</div>
+        <div class="day-block db-boot" data-en="10:25 AM P4: Bootcamp DEEP 40min" data-pt="10:25 AM P4: Bootcamp DEEP 40min">10:25 AM P4: Bootcamp DEEP 40min</div>
+        <div class="day-block db-lang" data-en="11:15 AM P5: ENGLISH study 40min" data-pt="11:15 AM P5: ENGLISH study 40min">11:15 AM P5: ENGLISH study 40min</div>
+        <div class="day-block db-uni" data-en="12:05 PM P6: UoPeople 35min" data-pt="12:05 PM P6: UoPeople 35min">12:05 PM P6: UoPeople 35min</div>
+        <div class="day-block db-meal" data-en="12:40 PM LUNCH 40min" data-pt="12:40 PM ALMOÇO 40min">12:40 PM LUNCH 40min</div>
+        <div class="day-block db-boot" data-en="1:20 PM P7: Bootcamp 40min" data-pt="1:20 PM P7: Bootcamp 40min">1:20 PM P7: Bootcamp 40min</div>
+        <div class="day-block db-boot" data-en="2:10 PM P8: Bootcamp 40min" data-pt="2:10 PM P8: Bootcamp 40min">2:10 PM P8: Bootcamp 40min</div>
+        <div class="day-block db-rest" data-en="3:00 PM Personal time, Aveiro" data-pt="3:00 PM Personal time, Aveiro">3:00 PM Personal time, Aveiro</div>
+        <div class="day-block db-meal" data-en="5:00 PM SNACK 25min" data-pt="5:00 PM LANCHE 25min">5:00 PM SNACK 25min</div>
+        <div class="day-block db-uni" data-en="5:25 PM P9: UoPeople 40min" data-pt="5:25 PM P9: UoPeople 40min">5:25 PM P9: UoPeople 40min</div>
+        <div class="day-block db-meal" data-en="7:40 PM DINNER 40min" data-pt="7:40 PM JANTAR 40min">7:40 PM DINNER 40min</div>
+        <div class="day-block db-boot" data-en="8:20 PM P10: Bootcamp review 40min" data-pt="8:20 PM P10: Bootcamp review 40min">8:20 PM P10: Bootcamp review 40min</div>
+        <div class="day-block db-admin" data-en="9:00 PM GitHub+LinkedIn 40min" data-pt="9:00 PM GitHub+LinkedIn 40min">9:00 PM GitHub+LinkedIn 40min</div>
+        <div class="day-block db-rest" data-en="9:40 PM SCREENS OFF" data-pt="9:40 PM ECRÃS DESLIGADOS">9:40 PM SCREENS OFF</div>
+        <div class="day-block db-read" data-en="9:40 PM Reading (book)" data-pt="9:40 PM Leitura (livro)">9:40 PM Reading (book)</div>
+        <div class="day-block db-meal" data-en="10:00 PM Last meal + reading" data-pt="10:00 PM Última refeição + leitura">10:00 PM Last meal + reading</div>
+        <div class="day-block db-rest" data-en="10:45 PM SLEEP" data-pt="10:45 PM DORMIR">10:45 PM SLEEP</div>
+      </div>
+      <!-- Sunday -->
+      <div class="day-col">
+        <div class="day-header" data-en="Sunday" data-pt="Domingo">Sunday</div>
+        <div class="day-block db-rest" data-en="7:30 AM Wake, slow morning" data-pt="7:30 AM Wake, slow morning">7:30 AM Wake, slow morning</div>
+        <div class="day-block db-meal" data-en="8:00 AM BREAKFAST 40min" data-pt="8:00 AM PEQUENO-ALMOÇO 40min">8:00 AM BREAKFAST 40min</div>
+        <div class="day-block db-rest" data-en="8:40 AM STRICTLY OFF" data-pt="8:40 AM STRICTLY OFF">8:40 AM STRICTLY OFF</div>
+        <div class="day-block db-meal" data-en="10:00 AM SNACK 25min" data-pt="10:00 AM LANCHE 25min">10:00 AM SNACK 25min</div>
+        <div class="day-block db-rest" data-en="10:25 AM Personal time, family" data-pt="10:25 AM Personal time, family">10:25 AM Personal time, family</div>
+        <div class="day-block db-meal" data-en="12:40 PM LUNCH 40min" data-pt="12:40 PM ALMOÇO 40min">12:40 PM LUNCH 40min</div>
+        <div class="day-block db-rest" data-en="1:20 PM REST, no study" data-pt="1:20 PM REST, no study">1:20 PM REST, no study</div>
+        <div class="day-block db-lang" data-en="3:00 PM P1: SPANISH 40min" data-pt="3:00 PM P1: SPANISH 40min">3:00 PM P1: SPANISH 40min</div>
+        <div class="day-block db-lang" data-en="3:50 PM P2: MANDARIN 40min (from Month 2)" data-pt="3:50 PM P2: MANDARIN 40min (from Month 2)">3:50 PM P2: MANDARIN 40min (from Month 2)</div>
+        <div class="day-block db-meal" data-en="5:00 PM SNACK 25min" data-pt="5:00 PM LANCHE 25min">5:00 PM SNACK 25min</div>
+        <div class="day-block db-rest" data-en="5:25 PM REST or walk" data-pt="5:25 PM REST or walk">5:25 PM REST or walk</div>
+        <div class="day-block db-meal" data-en="7:40 PM DINNER 40min" data-pt="7:40 PM JANTAR 40min">7:40 PM DINNER 40min</div>
+        <div class="day-block db-uni" data-en="8:20 PM Advanced Course, whatever fits the current phase (2h)" data-pt="8:20 PM Advanced Course, whatever fits the current phase (2h)">8:20 PM Advanced Course, whatever fits the current phase (2h)</div>
+        <div class="day-block db-admin" data-en="9:00 PM GitHub+LinkedIn 40min" data-pt="9:00 PM GitHub+LinkedIn 40min">9:00 PM GitHub+LinkedIn 40min</div>
+        <div class="day-block db-rest" data-en="9:40 PM SCREENS OFF" data-pt="9:40 PM ECRÃS DESLIGADOS">9:40 PM SCREENS OFF</div>
+        <div class="day-block db-read" data-en="9:40 PM Reading (book)" data-pt="9:40 PM Leitura (livro)">9:40 PM Reading (book)</div>
+        <div class="day-block db-meal" data-en="10:00 PM Last meal + reading" data-pt="10:00 PM Última refeição + leitura">10:00 PM Last meal + reading</div>
+        <div class="day-block db-rest" data-en="10:45 PM SLEEP" data-pt="10:45 PM DORMIR">10:45 PM SLEEP</div>
+      </div>
+    </div>
+
+    <div class="schedule-note">
+      <strong>Version B (after June 16, no travel constraints):</strong> Wednesday and Friday become full deep-work days with 6 Pomodoros each. Internship schedule adjusts based on what has been arranged by then. The structure above is Version A. Version B retains all meal breaks, sleep target, and admin ritual identically.
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="weekly-schedule.html" class="deep-dive-link" data-en="Full weekly schedule — every hour, every pillar, every day, Version A and B compared" data-pt="Horário completo — cada hora, cada pilar, cada dia, Versão A e B comparadas" data-en="Full weekly schedule — every hour, every pillar, every day, Version A and B compared" data-pt="Horário semanal completo — cada hora, cada pilar, cada dia, Versão A e B comparadas">Full weekly schedule — every hour, every pillar, every day, Version A and B compared</a>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="si">
+    <span class="section-label" data-en="Career trajectory" data-pt="Trajectória de carreira">Career trajectory</span>
+    <h2 class="section-title" data-en="24-month development plan" data-pt="Plano de desenvolvimento de 24 meses">24-month development plan</h2>
+    <div class="title-rule"></div>
+    <p class="section-intro" data-en="April 2026 onwards. Each milestone is a proof point, not a checkbox." data-pt="A partir de abril de 2026. Cada marco é uma prova, não uma caixa a assinalar.">April 2026 onwards. Each milestone is a proof point, not a checkbox. Each milestone is a proof point, not a checkbox.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot active"><div class="tl-dot-inner"></div></div><div class="tl-line"></div></div>
+        <div class="tl-right">
+          <div class="tl-phase" data-en="April 9, 2026. The switch." data-pt="9 de abril de 2026. O arranque.">April 9, 2026. The switch.</div>
+          <div class="tl-title" data-en="System activation" data-pt="Ativação do sistema">System activation</div>
+          <div class="tl-desc" data-en="UoPeople Term 1 begins. LIRN access tested. Azure free account created. First GitHub commit on learning-log. Atomic Habits started. First observation placement applications sent to target enterprise employers." data-pt="O Termo 1 da UoPeople começa. Acesso LIRN testado. Conta Azure gratuita criada. Primeiro commit no GitHub no learning-log. Hábitos Atômicos iniciado. Primeiras candidaturas de observação enviadas aos empregadores empresariais-alvo.">UoPeople Term 1 begins. LIRN access tested. Azure free account created. First GitHub commit on learning-log. Atomic Habits started. First observation placement applications sent to target enterprise employers.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-line"></div></div>
+        <div class="tl-right">
+          <div class="tl-phase" data-en="Month 2, June 2026" data-pt="Mês 2, junho de 2026">Month 2, June 2026</div>
+          <div class="tl-title" data-en="AZ-900 passed. First internship observation begins." data-pt="AZ-900 aprovado. Primeira observação de estágio começa.">AZ-900 passed. First internship observation begins.</div>
+          <div class="tl-desc" data-en="First Microsoft certification on record. Internship observation placement active (unpaid, 3 afternoons/week). CS50P started. Spanish at A1. Mandarin A0 begun. GitHub portfolio shows daily commits for 60 days." data-pt="Primeira certificação Microsoft registada. Estágio de observação ativo (não remunerado, 3 tardes/semana). CS50P iniciado. Espanhol em A1. Mandarim A0 começado. Portfolio GitHub com commits diários durante 60 dias.">First Microsoft certification on record. Internship observation placement active (unpaid, 3 afternoons/week). CS50P started. Spanish at A1. Mandarin A0 begun. GitHub portfolio shows daily commits for 60 days.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-line"></div></div>
+        <div class="tl-right">
+          <div class="tl-phase" data-en="Month 7, October 2026" data-pt="Mês 7, outubro de 2026">Month 7, October 2026</div>
+          <div class="tl-title" data-en="AZ-104 passed. Junior applications open." data-pt="AZ-104 aprovado. Candidaturas júnior abertas.">AZ-104 passed. Junior applications open.</div>
+          <div class="tl-desc" data-en="The most important certification earned. Azure-project-02 and azure-project-03 live on GitHub. Harvard CS50x certificate received. UoPeople GPA at 3.7 or above with scholarship active. First paid junior cloud engineering applications sent." data-pt="A certificação mais importante obtida. Azure-project-02 e azure-project-03 publicados no GitHub. Certificado Harvard CS50x recebido. GPA UoPeople em 3.7 ou superior com bolsa ativa. Primeiras candidaturas pagas de engenharia cloud júnior enviadas.">The most important certification earned. Azure-project-02 and azure-project-03 live on GitHub. Harvard CS50x certificate received. UoPeople GPA at 3.7 or above with scholarship active. First paid junior cloud engineering applications sent.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-line"></div></div>
+        <div class="tl-right">
+          <div class="tl-phase" data-en="Month 10, January 2027" data-pt="Mês 10, janeiro de 2027">Month 10, January 2027</div>
+          <div class="tl-title" data-en="HashiCorp Terraform Associate. First income target." data-pt="HashiCorp Terraform Associate. Primeiro objetivo de rendimento.">HashiCorp Terraform Associate. First income target.</div>
+          <div class="tl-desc" data-en="IaC certification earned. Three GitHub projects with Terraform code deployed and documented. IBM SkillsBuild DevOps badge active. Either employed or in active interview process at a target enterprise technology employer. Spanish at A2." data-pt="Certificação IaC obtida. Três projetos GitHub com código Terraform publicado e documentado. Distintivo IBM SkillsBuild DevOps ativo. Empregado ou em processo ativo de entrevistas num empregador empresarial-alvo. Espanhol em A2.">IaC certification earned. Three GitHub projects with Terraform code deployed and documented. IBM SkillsBuild DevOps badge active. Either employed or in active interview process at a target enterprise technology employer. Spanish at A2.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-line"></div></div>
+        <div class="tl-right">
+          <div class="tl-phase" data-en="Month 13, April 2027" data-pt="Mês 13, abril de 2027">Month 13, April 2027</div>
+          <div class="tl-title" data-en="AZ-500. Security engineer profile established." data-pt="AZ-500. Perfil de engenheiro de segurança estabelecido.">AZ-500. Security engineer profile established.</div>
+          <div class="tl-desc" data-en="Azure security certification. Docker and AKS projects live. Google Cybersecurity or IBM Applied DevOps Professional certificate in progress. UoPeople Year 1 complete. Stanford Algorithms via Coursera financial aid in progress." data-pt="Certificação de segurança Azure. Projetos Docker e AKS publicados. Certificado Google Cybersecurity ou IBM Applied DevOps Professional em curso. Ano 1 da UoPeople completo. Stanford Algorithms via apoio financeiro da Coursera em curso.">Azure security certification. Docker and AKS projects live. Google Cybersecurity or IBM Applied DevOps Professional certificate in progress. UoPeople Year 1 complete. Stanford Algorithms via Coursera financial aid in progress.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-line"></div></div>
+        <div class="tl-right">
+          <div class="tl-phase" data-en="Month 18 to 19, September to October 2027" data-pt="Mês 18 a 19, setembro a outubro de 2027">Month 18 to 19, September to October 2027</div>
+          <div class="tl-title" data-en="AZ-400 and AZ-305. Full stack certified engineer." data-pt="AZ-400 e AZ-305. Engenheiro certificado full stack.">AZ-400 and AZ-305. Full stack certified engineer.</div>
+          <div class="tl-desc" data-en="DevOps Expert and Solutions Architect credentials earned. Six GitHub projects documented. Active in senior market exploration. Georgia Tech OMSCS prep courses completed. UoPeople Year 2 in progress." data-pt="Credenciais de DevOps Expert e Solutions Architect obtidas. Seis projetos GitHub documentados. Exploração ativa do mercado sénior. Cursos preparatórios Georgia Tech OMSCS concluídos. Ano 2 da UoPeople em curso.">DevOps Expert and Solutions Architect credentials earned. Six GitHub projects documented. Active in senior market exploration via Paris/La Defense corridor. Georgia Tech OMSCS prep courses completed. UoPeople Year 2 in progress.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-line"></div></div>
+        <div class="tl-right">
+          <div class="tl-phase" data-en="Year 3 to 4, 2028 to 2029" data-pt="Ano 3 a 4, 2028 a 2029">Year 3 to 4, 2028 to 2029</div>
+          <div class="tl-title" data-en="Senior engineer milestone. Georgia Tech OMSCS enrolled." data-pt="Marco de engenheiro sénior. Georgia Tech OMSCS inscrito.">Senior engineer milestone. Georgia Tech OMSCS enrolled.</div>
+          <div class="tl-desc" data-en="CKA earned. UoPeople BSc complete. Georgia Tech OMSCS enrolled. Spanish at B1. Mandarin at A1. Senior cloud engineer at enterprise employer." data-pt="CKA obtido. Licenciatura UoPeople completa. Georgia Tech OMSCS inscrito. Espanhol em B1. Mandarim em A1. Engenheiro cloud sénior em empregador empresarial.">CKA earned. UoPeople BSc complete. Georgia Tech OMSCS enrolled. Spanish at B1. Mandarin at A1. Senior cloud engineer at enterprise employer.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+        <div class="tl-right">
+          <div class="tl-phase" data-en="Year 5, 2031" data-pt="Ano 5, 2031">Year 5, 2031</div>
+          <div class="tl-title" data-en="Senior cloud engineer at enterprise level." data-pt="Engenheiro cloud sénior ao nível empresarial.">Senior cloud engineer at enterprise level.</div>
+          <div class="tl-desc" data-en="Senior cloud engineer or cloud architect at enterprise level. Georgia Tech OMSCS completed or near completion." data-pt="Engenheiro cloud sénior ou arquiteto cloud ao nível empresarial. Georgia Tech OMSCS concluído ou próximo da conclusão.">Senior cloud engineer or cloud architect at enterprise level. Georgia Tech OMSCS completed or near completion.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section id="roi">
+  <div class="si">
+    <span class="section-label" data-en="Return on investment" data-pt="Retorno sobre o investimento">Return on investment</span>
+    <h2 class="section-title" data-en="What this system produces" data-pt="O que este sistema produz">What this system produces</h2>
+    <div class="title-rule"></div>
+
+    <div class="roi-grid">
+      <div class="roi-card"><div class="roi-val">6</div><div class="roi-label" data-en="Microsoft Azure certifications by month 19" data-pt="Certificações Microsoft Azure até ao mês 19">Microsoft Azure certifications by month 19</div></div>
+      <div class="roi-card"><div class="roi-val">6+</div><div class="roi-label" data-en="Deployed GitHub portfolio projects" data-pt="Projetos GitHub de portfolio publicados">Deployed GitHub portfolio projects</div></div>
+      <div class="roi-card"><div class="roi-val">5</div><div class="roi-label" data-en="Pillars running in parallel" data-pt="Pilares a correr em paralelo">Pillars running in parallel</div></div>
+      <div class="roi-card"><div class="roi-val">5</div><div class="roi-label" data-en="Languages at working level by year 5" data-pt="Idiomas a nível profissional até ao ano 5">Languages at working level by year 5</div></div>
+      <div class="roi-card"><div class="roi-val">14+</div><div class="roi-label" data-en="Institutions on CV at full completion" data-pt="Instituições no CV no final do programa">Institutions on CV at full completion</div></div>
+      <div class="roi-card"><div class="roi-val">240€</div><div class="roi-label" data-en="Maximum Udemy course cost over 24 months" data-pt="Custo máximo dos cursos Udemy em 24 meses">Maximum Udemy course cost over 24 months</div></div>
+      <div class="roi-card"><div class="roi-val">0€</div><div class="roi-label" data-en="Cost of Harvard CS50 certificates (x3)" data-pt="Custo dos certificados Harvard CS50 (x3)">Cost of Harvard CS50 certificates (x3)</div></div>
+      <div class="roi-card"><div class="roi-val">OMSCS</div><div class="roi-label" data-en="Georgia Tech OMSCS Master's degree" data-pt="Mestrado Georgia Tech OMSCS">Georgia Tech OMSCS Master's degree</div></div>
+    </div>
+
+    <div class="sub-h" style="margin-top:2rem" data-en="Institutions on your CV at full completion" data-pt="Instituições no seu CV no final do programa">Institutions on your CV at full completion</div>
+    <div class="inst-wall">
+      <div class="iw-card">
+        <img src="https://www.harvard.edu/wp-content/uploads/2020/10/cropped-logo-branding-compressed.png?w=192" alt="Harvard" loading="lazy">
+        <div class="iw-name">Harvard</div>
+        <div class="iw-cred" data-en="4 free certificates" data-pt="4 certificados gratuitos">4 free certificates</div>
+      </div>
+      <div class="iw-card">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354 200" aria-label="MIT"><path fill="#A31F34" d="M187.268 187.268h41.615V62.423H187.268Zm62.423-145.653H353.728V0H249.691ZM187.268 0h41.615V41.615H187.268ZM124.845 187.268H166.46V0H124.845ZM62.423 145.653h41.615V0H62.423ZM0 187.268H41.615V0H0Zm249.691 0h41.615V62.423H249.691Z"/></svg>
+        <div class="iw-name">MIT</div>
+        <div class="iw-cred" data-en="Self-study curriculum" data-pt="Currículo de auto-estudo">Self-study curriculum</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Stanford_Cardinal_logo.svg" alt="Stanford" loading="lazy">
+        <div class="iw-name">Stanford</div>
+        <div class="iw-cred" data-en="2 specialisations via aid" data-pt="2 especializações via apoio financeiro">2 specialisations via aid</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Imperial%20logo.svg" alt="Imperial College" loading="lazy">
+        <div class="iw-name">Imperial College</div>
+        <div class="iw-cred" data-en="Math for ML" data-pt="Matemática para ML">Math for ML</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Georgia%20Tech%20logo%202021.svg" alt="Georgia Tech" loading="lazy">
+        <div class="iw-name">Georgia Tech</div>
+        <div class="iw-cred" data-en="OMSCS Master's" data-pt="Mestrado OMSCS">OMSCS Master's</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" loading="lazy">
+        <div class="iw-name">IBM</div>
+        <div class="iw-cred">2 programs</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Google%202015%20logo.svg" alt="Google" loading="lazy">
+        <div class="iw-name">Google</div>
+        <div class="iw-cred" data-en="Cybersecurity cert" data-pt="Certificado de cibersegurança">Cybersecurity cert</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" loading="lazy">
+        <div class="iw-name">Microsoft</div>
+        <div class="iw-cred" data-en="AZ-900, AZ-104, AZ-400" data-pt="AZ-900, AZ-104, AZ-400">AZ-900, AZ-104, AZ-400</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cloud%20Native%20Computing%20Foundation%202023%20logo.svg" alt="CNCF" loading="lazy">
+        <div class="iw-name">CNCF</div>
+        <div class="iw-cred">4 programs</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Linux%20Foundation%20logo%202013.svg" alt="Linux Foundation" loading="lazy">
+        <div class="iw-name">Linux Foundation</div>
+        <div class="iw-cred" data-en="LFS101, LFS151, LFS158" data-pt="LFS101, LFS151, LFS158">LFS101, LFS151, LFS158</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cisco%20logo%20blue%202016.svg" alt="Cisco" loading="lazy">
+        <div class="iw-name">Cisco</div>
+        <div class="iw-cred" data-en="2 digital badges" data-pt="2 distintivos digitais">2 digital badges</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta" loading="lazy">
+        <div class="iw-name">Meta</div>
+        <div class="iw-cred" data-en="Back-End Developer" data-pt="Programador Back-End">Back-End Developer</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" loading="lazy">
+        <div class="iw-name">LinkedIn</div>
+        <div class="iw-cred" data-en="Generative AI cert" data-pt="Certificado de IA Generativa">Generative AI cert</div>
+      </div>
+      <div class="iw-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/22/University_of_the_People_seal.png" alt="UoPeople" loading="lazy">
+        <div class="iw-name">UoPeople</div>
+        <div class="iw-cred" data-en="BSc Computer Science" data-pt="Licenciatura em Ciências da Computação">BSc Computer Science</div>
+      </div>
+    </div>
+
+    <div class="sub-h" style="margin-top:2rem" data-en="Salary trajectory reference (market data, April 2026)" data-pt="Referência de trajectória salarial (dados de mercado, abril 2026)">Salary trajectory reference (market data, April 2026)</div>
+    <table>
+      <thead><tr><th data-en="Stage" data-pt="Etapa">Stage</th><th data-en="Role" data-pt="Função">Role</th><th data-en="Market" data-pt="Mercado">Market</th><th data-en="Estimated range" data-pt="Intervalo estimado">Estimated range</th></tr></thead>
+      <tbody>
+        <tr><td data-en="Month 7 to 12" data-pt="Mês 7 a 12">Month 7 to 12</td><td data-en="Junior Cloud Engineer, internship or first role" data-pt="Engenheiro Cloud Júnior, estágio ou primeira função">Junior Cloud Engineer, internship or first role</td><td data-en="Phase 1 market" data-pt="Mercado Fase 1">Phase 1 market</td><td>800 to 1,400 EUR/month</td></tr>
+        <tr><td data-en="Month 12 to 24" data-pt="Mês 12 a 24">Month 12 to 24</td><td data-en="Junior to Mid Cloud Engineer" data-pt="Engenheiro Cloud Júnior a Médio">Junior to Mid Cloud Engineer</td><td>Phase 1 → Phase 2</td><td>1,400 to 2,200 EUR/month</td></tr>
+        <tr><td data-en="Year 2 to 3" data-pt="Ano 2 a 3">Year 2 to 3</td><td data-en="Mid Cloud Engineer, AZ-104 and AZ-500 certified" data-pt="Engenheiro Cloud Médio, certificado AZ-104 e AZ-500">Mid Cloud Engineer, AZ-104 and AZ-500 certified</td><td>Phase 2 → Phase 3</td><td>2,200 to 3,500 EUR/month</td></tr>
+        <tr><td data-en="Year 3 to 4" data-pt="Ano 3 a 4">Year 3 to 4</td><td data-en="Cloud Engineer" data-pt="Engenheiro Cloud">Cloud Engineer</td><td>Phase 3</td><td>3,500 to 5,500 EUR/month</td></tr>
+        <tr><td data-en="Year 5+" data-pt="Ano 5+">Year 5+</td><td data-en="Senior Cloud Engineer or Cloud Architect" data-pt="Engenheiro Cloud Sénior ou Arquiteto Cloud">Senior Cloud Engineer or Cloud Architect</td><td>Phase 4+</td><td>130,000 to 180,000 EUR/year</td></tr>
+      </tbody>
+    </table>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="roi.html" class="deep-dive-link">Full ROI analysis — all certifications, costs, institution credentials and sequencing</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="si">
+    <span class="section-label" data-en="Get in touch" data-pt="Entre em contacto">Get in touch</span>
+    <h2 class="section-title" data-en="Contact" data-pt="Contacto">Contact</h2>
+    <div class="title-rule"></div>
+    <div class="contact-grid">
+      <div>
+        <p style="color:var(--ink2);font-size:0.95rem;margin-bottom:1.5rem;" data-en="Open to observation placement requests, cloud engineering junior roles, and internship opportunities at enterprise technology and cloud consulting companies. Available in French, Portuguese, and English." data-pt="Disponível para pedidos de observação, funções júnior de engenharia cloud e oportunidades de estágio em empresas de tecnologia empresarial e consultoria cloud. Disponível em francês, português e inglês.">Open to observation placement requests, cloud engineering junior roles, and internship opportunities at enterprise technology and cloud consulting companies. Available in French, Portuguese, and English.</p>
+        <div class="contact-items">
+          <div class="ci"><div class="ci-icon">@</div><div class="ci-text"><a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a></div></div>
+          <div class="ci"><div class="ci-icon">G</div><div class="ci-text"><a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a></div></div>
+          <div class="ci"><div class="ci-icon">W</div><div class="ci-text"><a href="https://jeremytrinity.com" target="_blank">jeremytrinity.com</a></div></div>
+          <div class="ci"><div class="ci-icon">L</div><div class="ci-text"><a href="https://linkedin.com/in/jeremy-trinity" target="_blank">linkedin.com/in/jeremy-trinity</a></div></div>
+          <div class="ci"><div class="ci-icon">🌍</div><div class="ci-text" data-en="Viseu, Portugal · Open to relocation" data-pt="Viseu, Portugal · Disponível para recolocação">Viseu, Portugal · Open to relocation</div></div>
+          <div class="ci"><div class="ci-icon">FR</div><div class="ci-text">Legal name: Jeremy Da Trindade (FR) / Jeremy Trindade (PT)</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sub-h" data-en="Target companies" data-pt="Empresas-alvo">Target companies</div>
+        <table>
+          <thead><tr><th data-en="Company" data-pt="Empresa">Company</th><th data-en="Target role" data-pt="Função-alvo">Target role</th><th data-en="Why" data-pt="Porquê">Why</th></tr></thead>
+          <tbody>
+            <tr><td>Enterprise tech and consulting</td><td>Observation placement, then junior cloud role</td><td>Azure expertise, intracompany transfer pathway</td></tr>
+            <tr><td>Cloud-native regional companies</td><td>Observation placement, junior cloud / DevOps</td><td>Kubernetes focus, community presence</td></tr>
+            <tr><td>Remote-first EU / UK cloud companies</td><td>Junior cloud engineering (remote)</td><td>Portfolio and certifications. No location dependency</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Jeremy Trinity</div>
+  <div class="footer-meta" data-en="Five-Pillar Development System &amp;nbsp;|&amp;nbsp; April 2026 &amp;nbsp;|&amp;nbsp; jeremytrinity.me@gmail.com &amp;nbsp;|&amp;nbsp; github.com/jeremy-trinity &amp;nbsp;|&amp;nbsp; jeremytrinity.com" data-pt="Sistema de Cinco Pilares &amp;nbsp;|&amp;nbsp; Abril 2026 &amp;nbsp;|&amp;nbsp; jeremytrinity.me@gmail.com &amp;nbsp;|&amp;nbsp; github.com/jeremy-trinity &amp;nbsp;|&amp;nbsp; jeremytrinity.com">
+    Five-Pillar Development System &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp;
+    <a href="mailto:jeremytrinity.me@gmail.com">jeremytrinity.me@gmail.com</a> &nbsp;|&nbsp;
+    <a href="https://github.com/jeremy-trinity" target="_blank">github.com/jeremy-trinity</a> &nbsp;|&nbsp;
+    <a href="https://jeremytrinity.com">jeremytrinity.com</a>
+  </div>
+</footer>
+
+<script>
+const html = document.documentElement;
+
+// ── Language toggle ──────────────────────────────────────────────────────────
+(function () {
+  const langBtn   = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const htmlEl    = document.documentElement;
+
+  function applyLang(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    if (langLabel) langLabel.textContent = lang === 'pt' ? 'EN' : 'PT';
+    // swap data-en / data-pt elements
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = (lang === 'pt' && el.dataset.pt) ? el.dataset.pt : el.dataset.en;
+    });
+  }
+
+  const saved = localStorage.getItem('jt-lang') || 'en';
+  applyLang(saved);
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      const next = htmlEl.getAttribute('data-lang') === 'pt' ? 'en' : 'pt';
+      applyLang(next);
+      localStorage.setItem('jt-lang', next);
+    });
+  }
+})();
+
+const btn = document.getElementById('themeBtn');
+const label = document.getElementById('themeLabel');
+function applyTheme(t) {
+  html.setAttribute('data-theme', t);
+  label.textContent = t === 'dark' ? 'Light' : 'Dark';
+}
+const saved = localStorage.getItem('jt-theme');
+if (saved) {
+  applyTheme(saved);
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  applyTheme('dark');
+  localStorage.setItem('jt-theme', 'dark');
+}
+btn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  localStorage.setItem('jt-theme', next);
+});
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+
+const pillarBlocks = document.querySelectorAll('.pillar-block');
+
+function setPillarState(block, expanded) {
+  const button = block.querySelector('.pillar-head');
+  const body = block.querySelector('.pillar-body');
+  if (!button || !body) return;
+  button.setAttribute('aria-expanded', String(expanded));
+  body.hidden = !expanded;
+  block.classList.toggle('is-collapsed', !expanded);
+}
+
+pillarBlocks.forEach(block => {
+  const button = block.querySelector('.pillar-head');
+  if (!button) return;
+  button.addEventListener('click', () => {
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+    setPillarState(block, !expanded);
+  });
+});
+
+document.querySelectorAll('.pillar-jump').forEach(link => {
+  link.addEventListener('click', () => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    setPillarState(target, true);
+  });
+});
+</script>
+</body>
+</html>
