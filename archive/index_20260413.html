@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeremy Trinity — RNCP40356 Tracker</title>
+  <style>
+    :root {
+      --orange:#E86B2C; --black:#111111; --dark:#444444; --mid:#777777; --light:#AAAAAA;
+      --rule:#E8E8E8; --bg:#F5F5F5; --surface:#FFFFFF; --green:#27AE60; --green-bg:#E8F8EE;
+      --text:#111111; --text2:#444444; --text3:#777777; --shadow:0 1px 3px rgba(0,0,0,.07);
+    }
+    body.dark {
+      --black:#F0F0F0; --dark:#CCCCCC; --mid:#999999; --light:#555555;
+      --rule:#2C2C2C; --bg:#121212; --surface:#1E1E1E; --green-bg:#0A2015;
+      --text:#F0F0F0; --text2:#CCCCCC; --text3:#888888; --shadow:0 1px 4px rgba(0,0,0,.5);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);transition:background .2s,color .2s}
+    .top-bar{height:5px;background:var(--orange)}
+    header{background:var(--black);color:#fff;padding:22px 0 20px;transition:background .2s}
+    body.dark header{background:#0A0A0A}
+    .h-inner{max-width:960px;margin:0 auto;padding:0 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .h-left h1{font-size:26px;font-weight:700;letter-spacing:-.5px}
+    .h-left h1 .j{color:#fff}.h-left h1 .t{color:var(--orange)}
+    .h-left .form{font-size:14px;color:#999;margin-top:5px}
+    .h-left .sub{font-size:12px;color:#555;margin-top:3px}
+    .h-ctrl{display:flex;align-items:center;gap:8px;margin-top:4px}
+    .pill{display:flex;border:1px solid #333;border-radius:20px;overflow:hidden}
+    .pill button{padding:5px 12px;background:none;border:none;font-size:12px;font-weight:700;color:#666;cursor:pointer;transition:all .15s;letter-spacing:.3px}
+    .pill button.active{background:var(--orange);color:#fff}
+    .btn-dark{width:34px;height:34px;border-radius:50%;border:1px solid #333;background:none;cursor:pointer;color:#888;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+    .btn-dark:hover{border-color:var(--orange);color:var(--orange)}
+    .stats-band{background:var(--surface);border-bottom:1px solid var(--rule);padding:20px 0 16px;transition:background .2s,border-color .2s}
+    .sg{max-width:960px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr)}
+    .sb{text-align:center;padding:0 12px;border-right:1px solid var(--rule)}
+    .sb:last-child{border-right:none}
+    .sn{font-size:28px;font-weight:700;color:var(--orange);line-height:1}
+    .sl{font-size:11px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.6px}
+    .pw{max-width:960px;margin:14px auto 0;padding:0 24px}
+    .pb{height:6px;background:var(--rule);border-radius:3px;overflow:hidden}
+    .pf{height:100%;background:var(--orange);border-radius:3px;transition:width .5s}
+    .filters{background:var(--surface);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:20;transition:background .2s,border-color .2s}
+    .fi{max-width:960px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+    .fb{padding:5px 13px;border:1px solid var(--rule);border-radius:16px;background:var(--surface);font-size:12px;font-weight:600;cursor:pointer;color:var(--text2);transition:all .15s;white-space:nowrap}
+    .fb:hover{border-color:var(--orange);color:var(--orange)}
+    .fb.active{background:var(--orange);border-color:var(--orange);color:#fff}
+    .fsep{width:1px;height:18px;background:var(--rule);flex-shrink:0}
+    .fsearch{flex:1;min-width:140px;max-width:220px;padding:5px 12px;border:1px solid var(--rule);border-radius:16px;font-size:12px;outline:none;background:var(--surface);color:var(--text);transition:all .15s}
+    .fsearch:focus{border-color:var(--orange)}
+    main{max-width:960px;margin:0 auto;padding:24px}
+    .slabel{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:12px}
+    .blocs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
+    .bc{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px;border-left:4px solid var(--orange);box-shadow:var(--shadow);transition:background .2s,border-color .2s}
+    .bnum{font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.5px}
+    .btitle{font-size:13px;font-weight:700;margin-top:4px;color:var(--text);line-height:1.3}
+    .bsub{font-size:11px;color:var(--text3);margin-top:5px}
+    .bbar{margin-top:10px;height:3px;background:var(--rule);border-radius:2px;overflow:hidden}
+    .bfill{height:100%;background:var(--orange);border-radius:2px;transition:width .5s}
+    .ps{margin-bottom:24px}
+    .ph{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .ptag{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;white-space:nowrap}
+    .p0 .ptag{background:#E3F9E5;color:#1A7A2E}.p1 .ptag{background:#E8F0FE;color:#1A56A3}
+    .p2 .ptag{background:#FFF3E0;color:#B36200}.p3 .ptag{background:#FCE4EC;color:#B71C1C}
+    .p4 .ptag{background:#E3F2FD;color:#0D47A1}.p5 .ptag{background:#F3E5F5;color:#6A1B9A}
+    .pa .ptag{background:#ECEFF1;color:#37474F}
+    body.dark .p0 .ptag{background:#0A2B12;color:#4CAF50}body.dark .p1 .ptag{background:#0A1A3A;color:#5B9BF5}
+    body.dark .p2 .ptag{background:#2B1A00;color:#FFB347}body.dark .p3 .ptag{background:#2B0A0A;color:#EF5350}
+    body.dark .p4 .ptag{background:#001A2B;color:#42A5F5}body.dark .p5 .ptag{background:#1A0A2B;color:#CE93D8}
+    body.dark .pa .ptag{background:#1A1F22;color:#90A4AE}
+    .pinfo{flex:1}.pname{font-size:15px;font-weight:700;color:var(--text)}
+    .pmeta{font-size:11px;color:var(--text3);margin-top:2px}
+    .pcnt{font-size:13px;font-weight:700;color:var(--text3);white-space:nowrap}
+    .cl{background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);transition:background .2s,border-color .2s}
+    .cr,.ar{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .12s}
+    .cr:last-child,.ar:last-child{border-bottom:none}
+    .cr:hover,.ar:hover{background:color-mix(in srgb,var(--orange) 4%,var(--surface))}
+    body.dark .cr:hover,body.dark .ar:hover{background:#252525}
+    .cr.done,.ar.done{background:var(--green-bg)}
+    .cr.hidden,.ar.hidden{display:none}
+    .chk{width:20px;height:20px;border:2px solid var(--rule);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+    .cr.done .chk{background:var(--green);border-color:var(--green)}
+    .chksq{width:20px;height:20px;border:2px solid var(--rule);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+    .ar.done .chksq{background:var(--green);border-color:var(--green)}
+    .chkico{display:none}
+    .cr.done .chkico,.ar.done .chkico{display:block}
+    .ci,.ai{flex:1;min-width:0}
+    .cn,.an{font-size:13px;font-weight:600;color:var(--text)}
+    .cr.done .cn,.ar.done .an{color:var(--text3);text-decoration:line-through}
+    .cp,.anote{font-size:11px;color:var(--text3);margin-top:2px;line-height:1.4}
+    .cdd,.add{font-size:10px;color:var(--green);margin-top:2px;font-weight:700}
+    .cm{display:flex;align-items:center;gap:8px;flex-shrink:0}
+    .chrs{font-size:11px;color:var(--light)}
+    .bdg{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px}
+    .bfree{background:#E8F8EE;color:var(--green)}.bpaid{background:#FFF3E0;color:#C06000}
+    body.dark .bfree{background:#0A2015;color:#4CAF50}body.dark .bpaid{background:#2B1A00;color:#FFB347}
+    .el{color:var(--orange);font-size:16px;text-decoration:none;flex-shrink:0;opacity:.8;transition:opacity .15s}
+    .el:hover{opacity:1}
+    .sync{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:20px;margin-top:28px;box-shadow:var(--shadow);transition:background .2s,border-color .2s}
+    .stitle{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
+    .sdesc{font-size:12px;color:var(--text3);line-height:1.6;margin-bottom:14px}
+    .sdesc code{background:var(--rule);padding:1px 5px;border-radius:3px;font-size:11px;color:var(--orange)}
+    .brow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .btn{padding:8px 16px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:opacity .15s}
+    .btn:hover{opacity:.85}
+    .bprimary{background:var(--orange);color:#fff}
+    .boutline{background:var(--surface);color:var(--text2);border:1px solid var(--rule)}
+    .bdanger{background:var(--surface);color:#C00;border:1px solid #FCC}
+    body.dark .bdanger{border-color:#500}
+    .ja{width:100%;height:130px;font-family:monospace;font-size:11px;border:1px solid var(--rule);border-radius:6px;padding:10px;color:var(--text2);background:var(--bg);resize:vertical;display:none;transition:background .2s,border-color .2s}
+    .ja.show{display:block}
+    .iact{display:none;margin-top:8px;gap:8px}
+    .iact.show{display:flex}
+    footer{background:var(--black);color:#444;text-align:center;padding:16px;font-size:11px;margin-top:28px;transition:background .2s}
+    body.dark footer{background:#0A0A0A}
+    footer .acc{color:var(--orange)}
+    @media(max-width:640px){.sg{grid-template-columns:1fr 1fr}.sb:nth-child(2){border-right:none}.blocs{grid-template-columns:1fr}.chrs{display:none}}
+  </style>
+</head>
+<body>
+<div class="top-bar"></div>
+<header>
+  <div class="h-inner">
+    <div class="h-left">
+      <h1><span class="j">Jeremy</span> <span class="t">Trinity</span></h1>
+      <div class="form" data-fr="RNCP40356 — Administrateur Systèmes, Réseaux et Cybersécurité" data-en="RNCP40356 — Systems, Networks &amp; Cybersecurity Administrator">RNCP40356 — Administrateur Systèmes, Réseaux et Cybersécurité</div>
+      <div class="sub" data-fr="OpenClassrooms · Alternance · Suivi de certification" data-en="OpenClassrooms · Work-Study · Certification Tracker">OpenClassrooms · Alternance · Suivi de certification</div>
+    </div>
+    <div class="h-ctrl">
+      <div class="pill">
+        <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="btn-dark" id="btn-dark" onclick="toggleDark()" title="Toggle dark mode">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="stats-band">
+  <div class="sg">
+    <div class="sb"><div class="sn" id="s-done">0</div><div class="sl" data-fr="Complétés" data-en="Completed">Complétés</div></div>
+    <div class="sb"><div class="sn" id="s-tot">0</div><div class="sl" data-fr="Certifications" data-en="Certifications">Certifications</div></div>
+    <div class="sb"><div class="sn" id="s-pct">0%</div><div class="sl" data-fr="Progression" data-en="Progress">Progression</div></div>
+    <div class="sb"><div class="sn" id="s-hrs">0h</div><div class="sl" data-fr="Heures restantes" data-en="Hours remaining">Heures restantes</div></div>
+  </div>
+  <div class="pw"><div class="pb"><div class="pf" id="gbar" style="width:0%"></div></div></div>
+</div>
+
+<div class="filters">
+  <div class="fi">
+    <button class="fb active" data-filter="all"     data-fr="Tout"      data-en="All">Tout</button>
+    <button class="fb"        data-filter="pending" data-fr="À faire"   data-en="Pending">À faire</button>
+    <button class="fb"        data-filter="done"    data-fr="Complétés" data-en="Completed">Complétés</button>
+    <div class="fsep"></div>
+    <button class="fb" data-filter="phase-0">Phase 0</button>
+    <button class="fb" data-filter="phase-1">Phase 1</button>
+    <button class="fb" data-filter="phase-2">Phase 2</button>
+    <button class="fb" data-filter="phase-3">Phase 3</button>
+    <button class="fb" data-filter="phase-4">Phase 4</button>
+    <button class="fb" data-filter="phase-5">Phase 5</button>
+    <button class="fb" data-filter="admin" data-fr="Admin" data-en="Admin">Admin</button>
+    <div class="fsep"></div>
+    <input class="fsearch" id="fsearch" type="text" data-pfr="Rechercher..." data-pen="Search..." placeholder="Rechercher...">
+  </div>
+</div>
+
+<main>
+  <div class="slabel" data-fr="RNCP40356 — 4 Blocs de compétences" data-en="RNCP40356 — 4 Competency Blocs">RNCP40356 — 4 Blocs de compétences</div>
+  <div class="blocs">
+    <div class="bc"><div class="bnum" data-fr="Bloc 1" data-en="Bloc 1">Bloc 1</div><div class="btitle" data-fr="Administrer et optimiser les OS et la virtualisation" data-en="Administer and optimise OS and virtualisation">Administrer et optimiser les OS et la virtualisation</div><div class="bsub" id="b1s">—</div><div class="bbar"><div class="bfill" id="b1f" style="width:0%"></div></div></div>
+    <div class="bc"><div class="bnum" data-fr="Bloc 2" data-en="Bloc 2">Bloc 2</div><div class="btitle" data-fr="Configurer les infrastructures réseaux et cloud" data-en="Configure network and cloud infrastructure">Configurer les infrastructures réseaux et cloud</div><div class="bsub" id="b2s">—</div><div class="bbar"><div class="bfill" id="b2f" style="width:0%"></div></div></div>
+    <div class="bc"><div class="bnum" data-fr="Bloc 3" data-en="Bloc 3">Bloc 3</div><div class="btitle" data-fr="Cybersécurité et protection des données" data-en="Cybersecurity and data protection">Cybersécurité et protection des données</div><div class="bsub" id="b3s">—</div><div class="bbar"><div class="bfill" id="b3f" style="width:0%"></div></div></div>
+    <div class="bc"><div class="bnum" data-fr="Bloc 4" data-en="Bloc 4">Bloc 4</div><div class="btitle" data-fr="Manager les projets d'infrastructure sécurisée" data-en="Manage secure infrastructure projects">Manager les projets d'infrastructure sécurisée</div><div class="bsub" id="b4s">—</div><div class="bbar"><div class="bfill" id="b4f" style="width:0%"></div></div></div>
+  </div>
+
+  <div id="phases"></div>
+
+  <div class="sync">
+    <div class="stitle" data-fr="Synchronisation GitHub" data-en="GitHub Sync">Synchronisation GitHub</div>
+    <div class="sdesc" data-fr="Clique sur <strong>Exporter</strong> pour générer le <code>progress.json</code> mis à jour et le coller dans ton repo. Pour marquer directement sur GitHub, édite <code>progress.json</code> et passe <code>completed</code> à <code>true</code>. Sur un nouvel appareil, clique <strong>Importer</strong> pour restaurer ta progression." data-en="Click <strong>Export</strong> to generate the updated <code>progress.json</code> and paste it into your repo. To mark items directly on GitHub, edit <code>progress.json</code> and set <code>completed</code> to <code>true</code>. On a new device, click <strong>Import</strong> to restore your progress.">Clique sur <strong>Exporter</strong> pour générer le <code>progress.json</code> mis à jour et le coller dans ton repo.</div>
+    <div class="brow">
+      <button class="btn bprimary" onclick="doExport()"  data-fr="Exporter progress.json"  data-en="Export progress.json">Exporter progress.json</button>
+      <button class="btn boutline" onclick="showImport()" data-fr="Importer depuis GitHub"   data-en="Import from GitHub">Importer depuis GitHub</button>
+      <button class="btn bdanger"  onclick="doReset()"   data-fr="Réinitialiser tout"       data-en="Reset all">Réinitialiser tout</button>
+    </div>
+    <textarea class="ja" id="exp-area" readonly></textarea>
+    <textarea class="ja" id="imp-area" data-pfr="Colle ici le contenu de progress.json…" data-pen="Paste progress.json content here…" placeholder="Colle ici le contenu de progress.json…"></textarea>
+    <div class="iact" id="iact">
+      <button class="btn bprimary" onclick="loadImp()"    data-fr="Charger" data-en="Load">Charger</button>
+      <button class="btn boutline" onclick="cancelImp()"  data-fr="Annuler" data-en="Cancel">Annuler</button>
+    </div>
+  </div>
+</main>
+
+<footer>Jeremy <span class="acc">Trinity</span> (Trindade) &nbsp;·&nbsp; <span data-fr="Suivi RNCP40356" data-en="RNCP40356 Tracker">Suivi RNCP40356</span> &nbsp;·&nbsp; jeremytrinity.com</footer>
+
+<script>
+const PD=[
+  {id:"phase-0",cls:"p0",label:"Phase 0",
+   name:{fr:"Victoires Immédiates — Cette semaine",en:"Quick Wins — This Week"},
+   meta:{fr:"~15h · 8 certificats · €0",en:"~15h · 8 certifications · €0"},
+   certs:[
+    {id:"p0-01",name:"Claude 101",prov:"Anthropic",hrs:"1-2h",cost:"€0",paid:false,url:"https://anthropic.skilljar.com/",bloc:4},
+    {id:"p0-02",name:"AI Fluency: Framework & Foundations",prov:"Anthropic",hrs:"2-3h",cost:"€0",paid:false,url:"https://anthropic.skilljar.com/",bloc:4},
+    {id:"p0-03",name:"Claude Code 101",prov:"Anthropic",hrs:"1-2h",cost:"€0",paid:false,url:"https://anthropic.skilljar.com/",bloc:4},
+    {id:"p0-04",name:"Introduction to Claude Cowork",prov:"Anthropic",hrs:"1-2h",cost:"€0",paid:false,url:"https://anthropic.skilljar.com/",bloc:4},
+    {id:"p0-05",name:"Introduction to Model Context Protocol",prov:"Anthropic",hrs:"2-3h",cost:"€0",paid:false,url:"https://anthropic.skilljar.com/",bloc:2},
+    {id:"p0-06",name:"Generative AI Explained",prov:"Nvidia DLI",hrs:"2h",cost:"€0",paid:false,url:"https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+S-FX-07+V1",bloc:4},
+    {id:"p0-07",name:"AI for Everyone (Andrew Ng)",prov:"DeepLearning.AI / Coursera",hrs:"6h",cost:"€0",paid:false,url:"https://www.coursera.org/learn/ai-for-everyone",bloc:4},
+    {id:"p0-08",name:"Deloitte Tech Consulting Virtual Experience",prov:"Deloitte / The Forage",hrs:"5h",cost:"€0",paid:false,url:"https://www.theforage.com/simulations/deloitte",bloc:4},
+  ]},
+  {id:"phase-1",cls:"p1",label:"Phase 1",
+   name:{fr:"Quick Wins — Semaines 2-4",en:"Quick Wins — Weeks 2-4"},
+   meta:{fr:"~40h · 8 certificats · €0",en:"~40h · 8 certifications · €0"},
+   certs:[
+    {id:"p1-01",name:"Building with the Claude API",prov:"Anthropic",hrs:"8h",cost:"€0",paid:false,url:"https://anthropic.skilljar.com/",bloc:2},
+    {id:"p1-02",name:"Claude Code in Action",prov:"Anthropic",hrs:"3-4h",cost:"€0",paid:false,url:"https://anthropic.skilljar.com/",bloc:2},
+    {id:"p1-03",name:"GitHub Skills — Foundations",prov:"GitHub",hrs:"3h",cost:"€0",paid:false,url:"https://skills.github.com/",bloc:4},
+    {id:"p1-04",name:"GitHub Skills — GitHub Actions (CI/CD)",prov:"GitHub",hrs:"2h",cost:"€0",paid:false,url:"https://skills.github.com/",bloc:4},
+    {id:"p1-05",name:"IBM SkillsBuild — AI Foundations",prov:"IBM",hrs:"4h",cost:"€0",paid:false,url:"https://skillsbuild.org/",bloc:4},
+    {id:"p1-06",name:"IBM SkillsBuild — Cloud Computing",prov:"IBM",hrs:"4h",cost:"€0",paid:false,url:"https://skillsbuild.org/",bloc:2},
+    {id:"p1-07",name:"Google Cloud — Generative AI Learning Path",prov:"Google Cloud Skills Boost",hrs:"8h",cost:"€0",paid:false,url:"https://cloudskillsboost.google/paths/118",bloc:2},
+    {id:"p1-08",name:"McKinsey Forward",prov:"McKinsey & Company",hrs:"6 mois",cost:"€0",paid:false,url:"https://www.mckinsey.com/forward/overview",bloc:4},
+  ]},
+  {id:"phase-2",cls:"p2",label:"Phase 2",
+   name:{fr:"Fondements Techniques — Mois 2-3",en:"Technical Foundations — Months 2-3"},
+   meta:{fr:"~80h · 7 certificats · essentiellement €0",en:"~80h · 7 certifications · mostly €0"},
+   certs:[
+    {id:"p2-01",name:"Cisco Networking Basics (CCNA prep)",prov:"Cisco NetAcad",hrs:"25h",cost:"€0",paid:false,url:"https://www.netacad.com/courses/networking/networking-basics",bloc:2},
+    {id:"p2-02",name:"AWS Cloud Practitioner Essentials",prov:"AWS Skill Builder",hrs:"6h",cost:"~€100 exam",paid:true,url:"https://explore.skillbuilder.aws/learn/course/134",bloc:2},
+    {id:"p2-03",name:"Oracle Cloud Infrastructure Foundations",prov:"Oracle University",hrs:"15h",cost:"€0",paid:false,url:"https://education.oracle.com/oracle-cloud-infrastructure-2023-foundations-associate/pexam_1Z0-1085-23",bloc:2},
+    {id:"p2-04",name:"Kubernetes & Cloud Native Fundamentals",prov:"CNCF / KubeAcademy",hrs:"8h",cost:"€0",paid:false,url:"https://kube.academy/",bloc:2},
+    {id:"p2-05",name:"IBM SkillsBuild — DevOps Fundamentals",prov:"IBM",hrs:"6h",cost:"€0",paid:false,url:"https://skillsbuild.org/",bloc:4},
+    {id:"p2-06",name:"IBM SkillsBuild — Cybersecurity Fundamentals",prov:"IBM",hrs:"6h",cost:"€0",paid:false,url:"https://skillsbuild.org/",bloc:3},
+    {id:"p2-07",name:"Docker Foundations",prov:"Docker",hrs:"4h",cost:"€0",paid:false,url:"https://training.docker.com/",bloc:2},
+  ]},
+  {id:"phase-3",cls:"p3",label:"Phase 3",
+   name:{fr:"Sécurité et Linux — Mois 3-5",en:"Security & Linux — Months 3-5"},
+   meta:{fr:"~200h · 4 certificats · €0",en:"~200h · 4 certifications · €0"},
+   certs:[
+    {id:"p3-01",name:"ISC2 Certified in Cybersecurity (CC)",prov:"ISC2",hrs:"15h+",cost:"€0",paid:false,url:"https://www.isc2.org/certifications/cc",bloc:3},
+    {id:"p3-02",name:"Introduction to Linux — LFS101x",prov:"Linux Foundation / edX",hrs:"60h",cost:"€0",paid:false,url:"https://www.edx.org/course/introduction-to-linux",bloc:1},
+    {id:"p3-03",name:"Cisco Junior Cybersecurity Analyst",prov:"Cisco Skills For All",hrs:"120h",cost:"€0",paid:false,url:"https://skillsforall.com/career-path/cybersecurity",bloc:3},
+    {id:"p3-04",name:"Red Hat RHEL Fundamentals",prov:"Red Hat",hrs:"8h",cost:"€0",paid:false,url:"https://www.redhat.com/en/services/training/rh066-fundamentals-of-red-hat-enterprise-linux",bloc:1},
+  ]},
+  {id:"phase-4",cls:"p4",label:"Phase 4",
+   name:{fr:"Azure Fundamentals — Mois 4-7",en:"Azure Fundamentals — Months 4-7"},
+   meta:{fr:"~100h · 3 éléments · ~€165/examen",en:"~100h · 3 items · ~€165/exam"},
+   certs:[
+    {id:"p4-01",name:"Microsoft Learn — AZ-900 Learning Path",prov:"Microsoft Learn",hrs:"20h",cost:"€0",paid:false,url:"https://learn.microsoft.com/en-us/training/paths/azure-fundamentals/",bloc:2},
+    {id:"p4-02",name:"AZ-900 — Azure Fundamentals (official exam)",prov:"Microsoft / Pearson Vue",hrs:"~40h",cost:"~€165",paid:true,url:"https://learn.microsoft.com/en-us/certifications/azure-fundamentals/",bloc:2},
+    {id:"p4-03",name:"Microsoft Learn — AZ-104 Learning Path",prov:"Microsoft Learn",hrs:"40h",cost:"€0",paid:false,url:"https://learn.microsoft.com/en-us/training/paths/az-104-administrator-prerequisites/",bloc:2},
+  ]},
+  {id:"phase-5",cls:"p5",label:"Phase 5",
+   name:{fr:"DevOps & Sécurité Avancée — Mois 6+",en:"Advanced DevOps & Security — Month 6+"},
+   meta:{fr:"~160h · 5 certificats · partiellement payant",en:"~160h · 5 certifications · partially paid"},
+   certs:[
+    {id:"p5-01",name:"HashiCorp Terraform Fundamentals",prov:"HashiCorp",hrs:"20h",cost:"€0",paid:false,url:"https://developer.hashicorp.com/terraform/tutorials",bloc:2},
+    {id:"p5-02",name:"AZ-500 — Azure Security Technologies",prov:"Microsoft / Pearson Vue",hrs:"80h",cost:"~€165",paid:true,url:"https://learn.microsoft.com/en-us/certifications/azure-security-engineer/",bloc:3},
+    {id:"p5-03",name:"AZ-400 — Azure DevOps Solutions",prov:"Microsoft / Pearson Vue",hrs:"80h",cost:"~€165",paid:true,url:"https://learn.microsoft.com/en-us/certifications/devops-engineer/",bloc:2},
+    {id:"p5-04",name:"LPIC-1 — Linux System Administrator",prov:"Linux Professional Institute",hrs:"60h",cost:"~€200",paid:true,url:"https://www.lpi.org/our-certifications/lpic-1-overview/",bloc:1},
+    {id:"p5-05",name:"GitHub Advanced Security",prov:"GitHub",hrs:"8h",cost:"€0",paid:false,url:"https://skills.github.com/",bloc:3},
+  ]},
+];
+
+const AD=[
+  {id:"admin-01",name:{fr:"Soumettre demande ENIC-NARIC (reconnaissance du CET)",en:"Submit ENIC-NARIC request (CET recognition)"},note:{fr:"Attestation de comparabilité · Niveau 5 attendu · Faire dès maintenant depuis le Portugal",en:"Comparability attestation · Level 5 expected · Submit now from Portugal"},url:"https://www.ciep.fr/enic-naric-france"},
+  {id:"admin-02",name:{fr:"S'inscrire à France Travail (demandeur d'emploi)",en:"Register with France Travail (job seeker)"},note:{fr:"Jour 1 en France · Demander réouverture droits ARE Burger King · Avant demande AIF",en:"Day 1 in France · Request reopening of BK ARE rights · Before AIF application"},url:"https://www.francetravail.fr/"},
+  {id:"admin-03",name:{fr:"Déposer dossier RQTH — MDPH Yvelines (78)",en:"File RQTH application — MDPH Yvelines (78)"},note:{fr:"Présence physique nécessaire · Déverrouille AGEFIPH + alternance +33 ans",en:"Physical presence required · Unlocks AGEFIPH funding + over-33 work-study"},url:"https://www.mdph78.fr/"},
+  {id:"admin-04",name:{fr:"Vérifier solde CPF — Mon Compte Formation",en:"Check CPF balance — Mon Compte Formation"},note:{fr:"Confirmer avant tout contact Studi · Possible via le 3949 depuis le Portugal",en:"Confirm before contacting Studi · Possible via 3949 from Portugal"},url:"https://www.moncompteformation.gouv.fr/"},
+  {id:"admin-05",name:{fr:"Envoyer email à Studi — RNCP36061",en:"Send email to Studi — RNCP36061"},note:{fr:"Draft prêt dans DRAFT-EMAIL-STUDI-RNCP36061-20260413-1007.md",en:"Draft ready in DRAFT-EMAIL-STUDI-RNCP36061-20260413-1007.md"},url:"https://www.studi.com/fr/formation/informatique-et-numerique/bac-3-administrateur-systeme-devops"},
+  {id:"admin-06",name:{fr:"Candidater à OpenClassrooms — RNCP40356 alternance",en:"Apply to OpenClassrooms — RNCP40356 work-study"},note:{fr:"Après arrivée en France + RQTH + France Travail enregistré",en:"After arriving in France + RQTH + France Travail registered"},url:"https://openclassrooms.com/fr/paths/1048-administrateur-systemes-reseaux-et-cybersecurite"},
+  {id:"admin-07",name:{fr:"Trouver une entreprise pour l'alternance RNCP40356",en:"Find a company for the RNCP40356 work-study"},note:{fr:"53 entreprises cibles · Prioriser Azure-first (38/53) · Pitch DevSecOps pipeline",en:"53 target companies · Prioritise Azure-first (38/53) · DevSecOps pipeline pitch"},url:""},
+];
+
+const LSK="jt-asrc-v2",LSL="jt-lang",LSD="jt-dark";
+let ST={},lang=localStorage.getItem(LSL)||'fr',filt='all',sq='';
+
+function load(){
+  const r=localStorage.getItem(LSK);if(r)try{ST=JSON.parse(r)}catch(e){}
+  fetch('./progress.json').then(r=>r.ok?r.json():null).then(j=>{
+    if(j&&j.completed){Object.keys(j.completed).forEach(id=>{if(!(id in ST))ST[id]=j.completed[id]});save();raf()}
+  }).catch(()=>{});
+}
+function save(){localStorage.setItem(LSK,JSON.stringify(ST))}
+function done(id){return ST[id]&&ST[id].completed}
+function dt(id){return ST[id]&&ST[id].date?ST[id].date:null}
+function tog(id){const d=done(id);ST[id]={completed:!d,date:!d?new Date().toISOString().split('T')[0]:null};save();raf()}
+
+function setLang(l){
+  lang=l;localStorage.setItem(LSL,l);document.documentElement.lang=l;
+  document.getElementById('btn-fr').classList.toggle('active',l==='fr');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.querySelectorAll('[data-fr]').forEach(e=>e.innerHTML=e.getAttribute('data-'+l));
+  document.querySelectorAll('[data-pfr]').forEach(e=>e.placeholder=e.getAttribute(l==='fr'?'data-pfr':'data-pen'));
+  renderP();applyF(filt);
+}
+
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  const d=document.body.classList.contains('dark');
+  localStorage.setItem(LSD,d?'1':'0');
+  document.getElementById('btn-dark').textContent=d?'☀️':'🌙';
+}
+
+const CHK=`<svg class="chkico" width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1.5,5.5 4.5,8.5 9.5,2.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+function renderP(){
+  let h='';
+  PD.forEach(ph=>{
+    const tot=ph.certs.length,dn=ph.certs.filter(c=>done(c.id)).length;
+    h+=`<div class="ps ${ph.cls}" data-phase="${ph.id}"><div class="ph"><span class="ptag">${ph.label}</span><div class="pinfo"><div class="pname">${ph.name[lang]}</div><div class="pmeta">${ph.meta[lang]}</div></div><div class="pcnt">${dn}/${tot}</div></div><div class="cl">`;
+    ph.certs.forEach(c=>{
+      const d=done(c.id),dd=dt(c.id),s=(c.name+' '+c.prov).toLowerCase();
+      const bdg=c.paid?`<span class="bdg bpaid">${c.cost}</span>`:`<span class="bdg bfree">€0</span>`;
+      h+=`<div class="cr${d?' done':''}" data-id="${c.id}" data-phase="${ph.id}" data-s="${s}" onclick="tog('${c.id}')"><div class="chk">${CHK}</div><div class="ci"><div class="cn">${c.name}</div><div class="cp">${c.prov}</div>${dd?`<div class="cdd">${lang==='fr'?'Complété le':'Completed'} ${dd}</div>`:''}</div><div class="cm"><span class="chrs">${c.hrs}</span>${bdg}${c.url?`<a class="el" href="${c.url}" target="_blank" onclick="event.stopPropagation()">&#x2197;</a>`:''}</div></div>`;
+    });
+    h+=`</div></div>`;
+  });
+  const adn=AD.filter(a=>done(a.id)).length;
+  const al=lang==='fr'?'Démarches Administratives':'Administrative Steps';
+  const am=lang==='fr'?'ENIC-NARIC · France Travail · RQTH · OpenClassrooms · Alternance':'ENIC-NARIC · France Travail · RQTH · OpenClassrooms · Work-Study';
+  h+=`<div class="ps pa" data-phase="admin"><div class="ph"><span class="ptag">Admin</span><div class="pinfo"><div class="pname">${al}</div><div class="pmeta">${am}</div></div><div class="pcnt">${adn}/${AD.length}</div></div><div class="cl">`;
+  AD.forEach(a=>{
+    const d=done(a.id),dd=dt(a.id),s=(a.name.fr+' '+a.name.en).toLowerCase();
+    h+=`<div class="ar${d?' done':''}" data-id="${a.id}" data-phase="admin" data-s="${s}" onclick="tog('${a.id}')"><div class="chksq">${CHK}</div><div class="ai"><div class="an">${a.name[lang]}</div><div class="anote">${a.note[lang]}</div>${dd?`<div class="add">${lang==='fr'?'Complété le':'Completed'} ${dd}</div>`:''}</div>${a.url?`<a class="el" href="${a.url}" target="_blank" onclick="event.stopPropagation()">&#x2197;</a>`:''}</div>`;
+  });
+  h+=`</div></div>`;
+  document.getElementById('phases').innerHTML=h;
+}
+
+function renderStats(){
+  const ac=PD.flatMap(p=>p.certs),tot=ac.length,dn=ac.filter(c=>done(c.id)).length;
+  const H={"1-2h":1.5,"2-3h":2.5,"3-4h":3.5,"1h":1,"2h":2,"3h":3,"4h":4,"5h":5,"6h":6,"8h":8,"15h+":15,"20h":20,"25h":25,"40h":40,"~40h":40,"60h":60,"80h":80,"~80h":80,"120h":120,"6 mois":0};
+  let rem=0;ac.forEach(c=>{if(!done(c.id))rem+=H[c.hrs]||parseInt(c.hrs)||5});
+  document.getElementById('s-done').textContent=dn;
+  document.getElementById('s-tot').textContent=tot;
+  document.getElementById('s-pct').textContent=Math.round(dn/tot*100)+'%';
+  document.getElementById('s-hrs').textContent=rem+'h';
+  document.getElementById('gbar').style.width=Math.round(dn/tot*100)+'%';
+}
+
+function renderBlocs(){
+  const ac=PD.flatMap(p=>p.certs);
+  [1,2,3,4].forEach(b=>{
+    const bl=ac.filter(c=>c.bloc===b),dn=bl.filter(c=>done(c.id)).length,pct=bl.length?Math.round(dn/bl.length*100):0;
+    const f=document.getElementById(`b${b}f`),s=document.getElementById(`b${b}s`);
+    if(f)f.style.width=pct+'%';
+    if(s)s.textContent=`${dn} / ${bl.length} · ${pct}%`;
+  });
+}
+
+function raf(){renderP();renderStats();renderBlocs();applyF(filt)}
+
+function applyF(f){
+  filt=f;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));
+  const q=sq.toLowerCase();
+  document.querySelectorAll('.cr,.ar').forEach(r=>{
+    const pm=f==='all'||(f==='done'&&r.classList.contains('done'))||(f==='pending'&&!r.classList.contains('done'))||(f===r.dataset.phase);
+    const sm=!q||(r.dataset.s||'').includes(q);
+    r.classList.toggle('hidden',!(pm&&sm));
+  });
+}
+
+function doExport(){
+  const o={_info:"Edit on GitHub to sync. Set completed:true with date.",lastUpdated:new Date().toISOString().split('T')[0],completed:{}};
+  Object.entries(ST).forEach(([id,v])=>o.completed[id]=v);
+  const a=document.getElementById('exp-area');
+  a.value=JSON.stringify(o,null,2);a.classList.add('show');
+  document.getElementById('imp-area').classList.remove('show');
+  document.getElementById('iact').classList.remove('show');
+  a.select();
+}
+function showImport(){
+  document.getElementById('imp-area').classList.add('show');
+  document.getElementById('iact').classList.add('show');
+  document.getElementById('exp-area').classList.remove('show');
+}
+function loadImp(){
+  try{
+    const j=JSON.parse(document.getElementById('imp-area').value.trim());
+    if(!j.completed)throw 0;
+    ST={};Object.entries(j.completed).forEach(([id,v])=>ST[id]=v);
+    save();raf();
+    document.getElementById('imp-area').classList.remove('show');
+    document.getElementById('iact').classList.remove('show');
+    alert(lang==='fr'?'Progression chargée !':'Progress loaded!');
+  }catch(e){alert(lang==='fr'?'JSON invalide.':'Invalid JSON.');}
+}
+function cancelImp(){document.getElementById('imp-area').classList.remove('show');document.getElementById('iact').classList.remove('show')}
+function doReset(){if(confirm(lang==='fr'?'Réinitialiser toute la progression ?':'Reset all progress?')){ST={};save();raf()}}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  if(localStorage.getItem(LSD)==='1'){document.body.classList.add('dark');document.getElementById('btn-dark').textContent='☀️'}
+  document.querySelectorAll('.fb').forEach(b=>b.addEventListener('click',()=>applyF(b.dataset.filter)));
+  document.getElementById('fsearch').addEventListener('input',e=>{sq=e.target.value;applyF(filt)});
+  load();raf();setLang(lang);
+});
+</script>
+</body>
+</html>
