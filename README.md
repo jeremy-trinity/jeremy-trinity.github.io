@@ -13,9 +13,9 @@ The tracker hosted at this repository serves as a live, auditable record of ever
 
 ---
 
-## Strategic Target: 53 US Enterprises in the Paris Region
+## Strategic Target: 53 International Companies Established in the Paris Region
 
-The employment strategy concentrates on **53 US-headquartered technology and consulting companies** accessible within a 120-minute public transport radius of central Paris. These firms represent the intersection of three criteria: Azure-first infrastructure (38 of 53 companies), active alternance hiring, and a documented demand for DevSecOps and Cloud Infrastructure engineers with formal French qualifications.
+The employment strategy concentrates on **53 major international technology and consulting companies** established in the Paris region, accessible within a 120-minute public transport radius of central Paris. These firms represent the intersection of three criteria: Azure-first infrastructure (38 of 53 companies), active alternance hiring, and a documented demand for DevSecOps and Cloud Infrastructure engineers with formal French qualifications.
 
 Priority is given to companies that have established French legal entities and are therefore eligible to host alternance contracts under OPCO financing mechanisms. RQTH status (disability recognition) further strengthens eligibility for AGEFIPH-supported placements and removes the standard over-33 age barrier on alternance contracts.
 
@@ -35,7 +35,7 @@ To submit a new certificate: upload the PDF to `/certs/`, set the corresponding 
 
 Jeremy functioned in practice as an Operations Manager across a period of sustained operational responsibility, despite carrying the official title of Team Leader. His duties encompassed team rotation management, coordination with regional leadership, performance indicator tracking, and continuous onboarding of new staff. This experience establishes a proven capacity to bridge strategic direction and ground-level execution, a combination directly applicable to the cross-functional demands of DevSecOps environments.
 
-The career pivot from operations management to cloud infrastructure engineering is deliberate and structured: it is grounded in the Five Pillars development methodology, refined through the Cinq-Piliers framework, and now formalised through the RNCP40356 pathway. Each certification in this tracker represents a step in a sequence designed for zero bad practices from the foundation upward.
+The career pivot from operations management to cloud infrastructure engineering is deliberate and structured: it is grounded in a structured development methodology, refined through the Cinq-Piliers framework, and now formalised through the RNCP40356 pathway. Each certification in this tracker represents a step in a sequence designed for zero bad practices from the foundation upward.
 
 ---
 
