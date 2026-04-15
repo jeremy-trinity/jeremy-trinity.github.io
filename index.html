@@ -221,6 +221,16 @@
       .about-inner,.about-toggle,.sg,.pw{padding-left:1rem;padding-right:1rem}
     }
 
+    /* ACCESSIBILITY: text size widget */
+    .a11y-widget{position:fixed;bottom:1.4rem;right:1.4rem;z-index:200;display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:8px 6px;box-shadow:0 4px 18px rgba(0,0,0,.13)}
+    .a11y-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text3);margin-bottom:2px;user-select:none}
+    .a11y-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--rule);background:var(--surface2);color:var(--text2);font-family:'Inter',Arial,sans-serif;font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;user-select:none;line-height:1}
+    .a11y-btn:hover{border-color:var(--orange);color:var(--orange);background:var(--surface)}
+    .a11y-btn:focus{outline:2px solid var(--orange);outline-offset:2px}
+    .a11y-btn.reset{font-size:11px;color:var(--text3)}
+    .a11y-btn.reset:hover{color:var(--orange)}
+    @media(max-width:640px){.a11y-widget{bottom:.8rem;right:.8rem;padding:6px 5px}}
+
     /* READABILITY BOOST */
     body{font-size:16px}
     .hero-desc{font-size:1rem}
@@ -644,7 +654,27 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.fb').forEach(b=>b.addEventListener('click',()=>applyF(b.dataset.filter)));
   document.getElementById('fsearch').addEventListener('input',e=>{sq=e.target.value;applyF(filt)});
   load();raf();setLang(lang);
+  // Restore saved font size
+  const savedSz=parseInt(localStorage.getItem('a11y-fontsize')||'16',10);
+  document.documentElement.style.fontSize=savedSz+'px';
 });
+// ACCESSIBILITY: text size control
+const A11Y_MIN=12,A11Y_MAX=24,A11Y_STEP=2,A11Y_DEF=16;
+function a11ySize(delta){
+  const cur=parseInt(document.documentElement.style.fontSize||A11Y_DEF,10);
+  const next=delta===0?A11Y_DEF:Math.min(A11Y_MAX,Math.max(A11Y_MIN,cur+delta));
+  document.documentElement.style.fontSize=next+'px';
+  localStorage.setItem('a11y-fontsize',next);
+}
 </script>
+
+<!-- ACCESSIBILITY WIDGET: text size control -->
+<div class="a11y-widget" role="group" aria-label="Text size">
+  <span class="a11y-label" aria-hidden="true">Text</span>
+  <button class="a11y-btn" onclick="a11ySize(2)" title="Increase text size" aria-label="Increase text size" tabindex="0">A+</button>
+  <button class="a11y-btn reset" onclick="a11ySize(0)" title="Reset text size" aria-label="Reset text size to default" tabindex="0">A</button>
+  <button class="a11y-btn" onclick="a11ySize(-2)" title="Decrease text size" aria-label="Decrease text size" tabindex="0">A-</button>
+</div>
+
 </body>
 </html>
