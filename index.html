@@ -655,16 +655,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('fsearch').addEventListener('input',e=>{sq=e.target.value;applyF(filt)});
   load();raf();setLang(lang);
   // Restore saved font size
-  const savedSz=parseInt(localStorage.getItem('a11y-fontsize')||'16',10);
-  document.documentElement.style.fontSize=savedSz+'px';
+  const savedZoom=parseFloat(localStorage.getItem('a11y-zoom')||'1');
+  document.body.style.zoom=savedZoom;
 });
-// ACCESSIBILITY: text size control
-const A11Y_MIN=12,A11Y_MAX=24,A11Y_STEP=2,A11Y_DEF=16;
+// ACCESSIBILITY: text size control (zoom-based -- affects entire page)
+const A11Y_MIN=0.8,A11Y_MAX=1.4,A11Y_STEP=0.1,A11Y_DEF=1.0;
 function a11ySize(delta){
-  const cur=parseInt(document.documentElement.style.fontSize||A11Y_DEF,10);
-  const next=delta===0?A11Y_DEF:Math.min(A11Y_MAX,Math.max(A11Y_MIN,cur+delta));
-  document.documentElement.style.fontSize=next+'px';
-  localStorage.setItem('a11y-fontsize',next);
+  const cur=parseFloat(localStorage.getItem('a11y-zoom')||'1');
+  const next=delta===0?A11Y_DEF:Math.min(A11Y_MAX,Math.max(A11Y_MIN,Math.round((cur+delta)*10)/10));
+  document.body.style.zoom=next;
+  localStorage.setItem('a11y-zoom',next);
 }
 </script>
 
