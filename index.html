@@ -199,6 +199,25 @@
     .iact{display:none;margin-top:8px;gap:8px}
     .iact.show{display:flex}
 
+    /* LIVE PROJECTS PANEL */
+    .projects-panel{background:var(--surface);border-bottom:1px solid var(--rule);transition:background .25s,border-color .25s}
+    .projects-inner{max-width:960px;margin:0 auto;padding:24px 2rem}
+    .projects-label{font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+    .project-card{border:1px solid var(--rule);border-radius:10px;padding:18px 20px;background:var(--bg);transition:background .25s,border-color .25s}
+    .project-card+.project-card{margin-top:12px}
+    .project-card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+    .project-badge{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:var(--green-bg);color:var(--green)}
+    .project-badge.live{background:var(--green-bg);color:var(--green)}
+    .project-date{font-size:11px;color:var(--text3);margin-left:auto}
+    .project-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:6px}
+    .project-title .acc{color:var(--orange)}
+    .project-desc{font-size:.83rem;color:var(--text2);line-height:1.7;margin-bottom:10px}
+    .project-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .ptag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text3);border:1px solid var(--rule)}
+    .project-links{display:flex;gap:10px;margin-top:10px}
+    .project-links a{font-size:11px;font-weight:600;color:var(--orange);text-decoration:none;letter-spacing:.2px}
+    .project-links a:hover{text-decoration:underline}
+
     /* FOOTER: cinq-piliers style */
     footer{background:var(--surface);border-top:1px solid var(--rule);padding:28px 2rem;text-align:center;margin-top:40px;transition:background .25s}
     .footer-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.4rem}
@@ -375,6 +394,41 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- LIVE PROJECTS -->
+<div class="projects-panel">
+  <div class="projects-inner">
+    <div class="projects-label" data-fr="Projets en production" data-en="Live Projects">Projets en production</div>
+
+    <div class="project-card">
+      <div class="project-card-top">
+        <span class="project-badge live" data-fr="En ligne" data-en="Live">En ligne</span>
+        <span class="project-date">Avril 2026</span>
+      </div>
+      <div class="project-title" data-fr="Email Command Center — Premier deploiement cloud sur <span class='acc'>GCP</span>" data-en="Email Command Center — First cloud deployment on <span class='acc'>GCP</span>">Email Command Center — Premier deploiement cloud sur <span class="acc">GCP</span></div>
+      <div class="project-desc" data-fr="Application Flask complète self-hosted sur Google Cloud Platform (Compute Engine e2-micro, us-west1, Oregon). Pipeline CI/CD via GitHub Actions: chaque git push déclenche un déploiement SSH automatique sur la VM, sans intervention manuelle. Inclut un pipeline d'emails automatisé en 7 tiers (355 universités américaines), gestion de boîte de réception Gmail, suivi de contacts, relances automatiques et système de rebond. Premier projet cloud deployé en production sur infrastructure réelle — pas un sandbox, pas un tutoriel." data-en="Full Flask application self-hosted on Google Cloud Platform (Compute Engine e2-micro, us-west1, Oregon). CI/CD pipeline via GitHub Actions: every git push triggers an automatic SSH deployment to the VM with no manual intervention. Includes a 7-tier automated email pipeline (355 US universities), Gmail inbox management, contact tracking, automated follow-ups, and a bounce retry system. First cloud project deployed to real production infrastructure — not a sandbox, not a tutorial.">Application Flask complète self-hosted sur Google Cloud Platform (Compute Engine e2-micro, us-west1, Oregon). Pipeline CI/CD via GitHub Actions: chaque git push déclenche un déploiement SSH automatique sur la VM. Pipeline emails 7 tiers (355 universités américaines), gestion inbox Gmail, contacts, relances et bounce retry. Premier projet cloud en production réelle.</div>
+      <div class="project-tags">
+        <span class="ptag">Google Cloud Platform</span>
+        <span class="ptag">Compute Engine</span>
+        <span class="ptag">GitHub Actions</span>
+        <span class="ptag">CI/CD</span>
+        <span class="ptag">Flask</span>
+        <span class="ptag">Python</span>
+        <span class="ptag">gunicorn</span>
+        <span class="ptag">systemd</span>
+        <span class="ptag">SQLite</span>
+        <span class="ptag">Linux (Debian)</span>
+        <span class="ptag">SSH</span>
+        <span class="ptag">Gmail API</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/jeremy-trinity/email-command-center-cloud" target="_blank">GitHub →</a>
+        <a href="http://35.185.218.54:8080" target="_blank" data-fr="App en ligne →" data-en="Live app →">App en ligne →</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
